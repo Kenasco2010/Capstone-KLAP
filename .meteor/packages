@@ -7,3 +7,9 @@
 meteor-platform
 autopublish
 insecure
+twbs:bootstrap
+fortawesome:fontawesome
+aldeed:autoform
+aldeed:collection2
+iron:router
+yogiben:admin

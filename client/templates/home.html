@@ -1,0 +1,62 @@
+<template name="home">
+	<body>
+		<!-- Hero Area Section -->
+		<section id="hero-area">
+			<div class="hero-inner">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<!-- <div class="animated zoomIn"> -->
+
+							<div id="this-carousel-id" class="carousel slide"><!-- class of slide for animation -->
+								<div class="carousel-inner">
+									<div class="item active"><!-- class of active since it's the first item -->
+										<div class="carousel-caption">
+											<h4 class="title-big animated zoomIn">A Secure, Safe and Trusted Community</h4>
+											<h2 class="subtitle-big animated zoomIn"><i class="fa fa-check"></i> Get your items delivered through a trusted connected community
+											</h2>
+											<h2 class="subtitle-big-second animated zoomIn"><i class="fa fa-check"></i> Earn extra cash on your trip by using the extra space in your luggage.
+											</h2>
+											<!-- </div> -->
+										</div>
+									</div>
+									<div class="item">
+										<div class="carousel-caption">
+											<h4 class="title-big animated zoomIn">A Secure, Safe and Trusted Community</h4>
+											<h2 class="subtitle-big animated zoomIn"><i class="fa fa-check"></i> Get your items delivered through a trusted connected community
+											</h2>
+											<h2 class="subtitle-big-second animated zoomIn"><i class="fa fa-check"></i> Earn extra cash on your trip by using the extra space in your luggage.
+											</h2>
+										</div>
+									</div>
+								</div>
+							</div><!-- /.carousel-inner -->
+
+	  <!--  Next and Previous controls below
+	  href values must reference the id for this carousel -->
+	  <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+	  <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+	</div><!-- /.carousel -->
+	<div class="col-md-12 text-center">
+		<form role="form" class="sign-up-form">
+			<div class="form-group col-md-offset-4 col-md-4 col-md-offset-4 wow fadeInDown">
+				{{#autoForm collection="Emails" id="insertEmailsForm" type="insert"}}
+				<fieldset>
+					{{> afQuickField name='email' placeholder="Enter email"}}
+				</fieldset>
+				<!-- <button type="submit" class="btn btn-primary">Insert</button> -->
+				<div class="form-group  wow fadeInDown" data-wow-delay=".7s">
+					<button class="sign-up-button btn btn-border btn-lg col-md-offset-3 col-md-6 col-md-offset-3 wow fadeInUp" data-wow-delay="1s" type="submit">Sign Up Now!</button>
+				</div>
+				{{/autoForm}}
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Hero Area Section End-->
+</body>
+
+</template>

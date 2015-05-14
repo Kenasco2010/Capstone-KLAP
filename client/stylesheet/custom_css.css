@@ -1,0 +1,21 @@
+ /*
+<======================Text slider on index page ==================================>
+*/
+
+body {
+	/*padding-top: 60px;*/
+	/*padding-bottom: 40px;*/
+}
+
+.item{
+	/*background-color:#ccc;*/
+	display:block;
+}
+
+.carousel-caption{
+	/*color:#000;*/
+	position:static;
+}
+ /*
+<====================== End of Text slider on index page ==================================>
+*/
