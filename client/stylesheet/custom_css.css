@@ -19,3 +19,17 @@ body {
  /*
 <====================== End of Text slider on index page ==================================>
 */
+/*.email{
+	margin-left: 20px;
+	}*/
+/*	.typeOfUser{
+		margin-left: 20px;
+	}
+
+	.sign-up-form input, .sign-in-form input, .sign-up-form input[type="password"], .sign-in-form input[type="password"], .sign-up-form input[type="text"], .sign-in-form input[type="text"], .sign-up-form input, .sign-in-form input, .sign-up-form input[type="email"], .sign-in-form input[type="email"] {
+		margin-left: -170px;
+		}*/
+		.landing-page-table{
+			margin-left: 275px;
+			width: 1530px;
+		}
