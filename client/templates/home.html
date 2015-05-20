@@ -12,22 +12,22 @@
 								<div class="carousel-inner">
 									<div class="item active"><!-- class of active since it's the first item -->
 										<div class="carousel-caption">
-											<h4 class="title-big animated zoomIn">Have your orders delivered to you from other countries </h4>
+											<h4 class="title-big animated zoomIn">Have your items delivered to you from other countries </h4>
 											<h2 class="subtitle-big animated zoomIn">
 											</h2>
-											<h2 class="subtitle-big-second animated zoomIn"><i class="fa fa-check"></i> Travellers purchase your preferred item  from shops in other countries and deliver it directly to you.
+											<h2 class="subtitle-big-second animated zoomIn"><i class="fa fa-check"></i> Connect with travellers to send your preferred item from one country to another country.
 											</h2>
-											<h2 class="subtitle-big-second animated zoomIn"><i class="fa fa-check"></i> It's safe, secure, and affordable
+											<h2 class="subtitle-big-second animated zoomIn"><i class="fa fa-check"></i> Currently available in Ghana, USA & UK.
 											</h2>
 											<!-- </div> -->
 										</div>
 									</div>
 									<div class="item">
 										<div class="carousel-caption">
-											<h4 class="title-big animated zoomIn">Earn Extra Cash on your Trip</h4>
-											<h2 class="subtitle-big animated zoomIn"><i class="fa fa-check"></i> Purchase items from shops in your location, deliver, get reimbursed with extra cash.
+											<h4 class="title-big animated zoomIn">You can earn extra cash on your trip</h4>
+											<h2 class="subtitle-big animated zoomIn"><i class="fa fa-check"></i> Transport items from one location to another.
 											</h2>
-											<h2 class="subtitle-big-second animated zoomIn"><i class="fa fa-check"></i> It's stress-free. Just use extra space in your luggage to transport items purchased.
+											<h2 class="subtitle-big-second animated zoomIn"><i class="fa fa-check"></i> It's stress-free. Just use extra space in your luggage to transport items.
 											</h2>
 										</div>
 									</div>
@@ -36,8 +36,8 @@
 
 	  <!--  Next and Previous controls below
 	  href values must reference the id for this carousel -->
-	  <a class="carousel-control left" href="#this-carousel-id" data-slide="prev"></a>
-	  <a class="carousel-control right" href="#this-carousel-id" data-slide="next"></a>
+	  <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+	  <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
 	</div><!-- /.carousel -->
 	<div class="col-md-12 text-center">
 		<form role="form" class="sign-up-form">
@@ -45,13 +45,13 @@
 				{{#autoForm collection="Emails" id="insertEmailForm" type="insert"}}
 				<fieldset>
 					
-					{{> afQuickField name='email' placeholder="Enter email"}}
+					{{> afQuickField name='email' placeholder="Enter email" id="emails"}}
 
 					{{> afQuickField name='typeOfUser' options="allowed"  placeholder="Type Of User"}}
 					
 				</fieldset>
 				<!-- <button type="submit" class="btn btn-primary">Insert</button> -->
-				<div class="form-group  wow fadeInDown" data-wow-delay=".7s">
+				<div class="form-group  submit wow fadeInDown" data-wow-delay=".7s">
 					<button class="sign-up-button btn btn-border btn-lg col-md-offset-3 col-md-6 col-md-offset-3 wow fadeInUp" data-wow-delay="1s" type="submit">Get Started !</button>
 
 					<!-- 	<button class="sign-up-button btn btn-border btn-lg col-md-offset-3 col-md-6 col-md-offset-3 wow fadeInUp" data-toggle="modal" data-target="#Emailsuccess">Modal try</button> -->
