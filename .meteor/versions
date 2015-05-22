@@ -3,6 +3,8 @@ accounts-facebook@1.0.4
 accounts-google@1.0.4
 accounts-oauth@1.1.5
 accounts-password@1.1.1
+accounts-ui@1.1.5
+accounts-ui-unstyled@1.1.7
 alanning:roles@1.2.13
 aldeed:autoform@5.1.2
 aldeed:collection2@2.3.2
@@ -28,6 +30,7 @@ fastclick@1.0.3
 fortawesome:fontawesome@4.3.0
 geojson-utils@1.0.3
 google@1.1.5
+gwendall:auth-client-callbacks@0.1.0
 html-tools@1.0.4
 htmljs@1.0.4
 http@1.1.0

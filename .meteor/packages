@@ -18,3 +18,6 @@ useraccounts:bootstrap
 accounts-password
 accounts-facebook
 accounts-google
+service-configuration
+accounts-ui
+gwendall:auth-client-callbacks
