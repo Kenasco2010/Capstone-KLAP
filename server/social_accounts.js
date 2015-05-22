@@ -31,4 +31,4 @@ createServiceConfiguration = function(service, clientId, secret) {
 };
 
 createServiceConfiguration('facebook', '348779841999000', '452b7cc3a6c08a697cc6f9e887b8e0da')
-createServiceConfiguration('google', '410884025676-kf5kf6ns6kn61vcms109pv5acg3unbvf.apps.googleusercontent.com', 'gMqoFhmeSRqvPiiE9OdNrrMS')
+createServiceConfiguration('google', '274816430643-hu2n4md6rcie44p4clgkam9q21ein51f.apps.googleusercontent.com', 'P0kM9iYezS4XCY22H-sK8Fc0')

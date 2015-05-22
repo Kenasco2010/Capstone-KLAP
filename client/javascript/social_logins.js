@@ -9,11 +9,11 @@ Template.signup.events({
     });
   },
   "click #at-google": function() {
-    return Meteor.loginWithGoogle(function(error) {
-      if (error) {
-        return console.log(error.reason);
-      }
-    });
+      return Meteor.loginWithGoogle(function(error) {
+        if (error) {
+          return console.log(error.reason);
+        }
+      });
   },
 });
 
