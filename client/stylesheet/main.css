@@ -33,7 +33,7 @@ a:hover {
   background: transparent;
   border: 2px solid #fff;
   color: #fff;
-  margin-left: 70px;
+  /*margin-left: 70px;*/
   width: 206px;
 }
 .btn-border:hover {
