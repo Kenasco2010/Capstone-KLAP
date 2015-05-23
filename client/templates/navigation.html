@@ -22,8 +22,12 @@
 					</li> -->
 							<!-- <li><a href="features.html">Features</a>
 							</li> -->
-							<li><a href="{{pathFor 'signin'}}">Sign In</a>
-							</li>
+						{{#if currentUser}}
+							<li><a href="#" data-action="sign-out">Sign Out</a></li>
+							{{else}}
+							<li><a href="{{pathFor 'signin'}}">Sign In</a></li>
+						{{/if}}
+							
 							<li><a href="{{pathFor 'signup'}}">Sign Up</a>
 							</li>
 						</ul>
