@@ -1,9 +1,10 @@
 <template name="createProfile">
-    <div class="container" id="wrap">
+    <!-- <div class="container" id="wrap">
         <div class="create-profile">
           <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <form action="r" method="post" accept-charset="utf-8" class="form" role="form">   <legend>Create a Profile</legend>
+                <form action="#" method="post" accept-charset="utf-8" class="form" role="form" name="createProfileForm" >   
+                <legend>Create a Profile</legend>
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
                             <input type="text" name="firstname" value="" class="form-control input-lg" placeholder="First Name"  />                        </div>
@@ -14,16 +15,17 @@
                         
                         <div class="row">
                             <div class="col-xs-6 col-md-6">
-                                <select name="country" class="form-control input-lg">
+                                <select name="country" id="country" class="form-control input-lg">
                                     <option value="" disabled selected>Choose your country</option>
-                                    <option value="01">USA</option>
-                                    <option value="02">UK</option>
+                                    <option value="USA">USA</option>
+                                    <option value="UK">UK</option>
                                 </select>
                             </div>
 
                             <div class="col-xs-6 col-md-6">
-                                <select name="city" class="form-control input-lg">
+                                <select name="city" id="city" class="form-control input-lg">
                                     <option value="" disabled selected>Choose your city</option>
+                                    <option value="New York">New York</option>
                                 </select>
                             </div>
                         </div>
@@ -32,7 +34,7 @@
                         <label>Birth Date</label>                    
                         <div class="row">
                             <div class="col-xs-4 col-md-4">
-                                <select name="month" class = "form-control input-lg">
+                                <select name="month" id="month" class="form-control input-lg">
                                     <option value="01">Jan</option>
                                     <option value="02">Feb</option>
                                     <option value="03">Mar</option>
@@ -48,16 +50,16 @@
                                 </select>                        
                             </div>
                             <div class="col-xs-4 col-md-4">
-                                <select name="day" class = "form-control input-lg">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
+                                <select name="day" id="day" class="form-control input-lg">
+                                    <option value="01">1</option>
+                                    <option value="02">2</option>
+                                    <option value="03">3</option>
+                                    <option value="04">4</option>
+                                    <option value="05">5</option>
+                                    <option value="06">6</option>
+                                    <option value="07">7</option>
+                                    <option value="08">8</option>
+                                    <option value="09">9</option>
                                     <option value="10">10</option>
                                     <option value="11">11</option>
                                     <option value="12">12</option>
@@ -83,7 +85,7 @@
                                 </select>                        
                             </div>
                             <div class="col-xs-4 col-md-4">
-                                <select name="year" class = "form-control input-lg">
+                                <select name="year" id="year" class = "form-control input-lg">
                                     <option value="1935">1935</option>
                                     <option value="1936">1936</option>
                                     <option value="1937">1937</option>
@@ -173,6 +175,52 @@
                     </form>          
                 </div>
             </div>            
+        </div>
+    </div> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-2 col-xs-12">
+                {{#autoForm schema=profileFormSchema id="profileForm" type="method" meteormethod="updateUserProfile"}}
+                <fieldset>
+                  <legend>Create your profile</legend>
+                  <div class="form-blocks">
+                      <div class="col-md-6">
+                          {{> afQuickField name="first_name"}}
+                      </div>
+                      <div class="col-md-6">
+                          {{> afQuickField name="last_name"}}
+                      </div>
+                  </div>
+                  <div class="form-blocks">
+                      <div class="col-md-6">
+                      {{> afQuickField name="country"}}
+                      </div>
+                      <div class="col-md-6">
+                       {{> afQuickField name="city"}}
+                    </div>
+                  </div>
+                  <div class="form-blocks">
+                     
+                     <div class=" col-md-12 block-label">
+                         <center><label>Date of Birth</label></center>
+                     </div>
+                      <div class="col-md-4">
+                          {{> afQuickField name="month" label=false select2Options=s2OptsMonth}}
+                      </div>
+                      <div class="col-md-4">
+                          {{> afQuickField name="day" label=false select2Options=s2OptsDay}}
+                      </div>
+                      <div class="col-md-4">
+                              {{> afQuickField name="year" label=false select2Options=s2OptsYear}}
+                      </div>
+                  </div>
+                                  
+                  <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </fieldset>
+                {{/autoForm}}
+            </div>
         </div>
     </div>
 </template>

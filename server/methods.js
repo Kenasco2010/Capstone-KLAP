@@ -1,5 +1,5 @@
-/*Meteor.methods({
-    removeUser: function (userId) {
-      Users.remove(userId);
+Meteor.methods({
+    updateUserProfile: function (userId) {
+    
     }
-})*/
+})

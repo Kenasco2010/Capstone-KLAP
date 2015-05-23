@@ -9,7 +9,6 @@ autopublish
 insecure
 twbs:bootstrap
 fortawesome:fontawesome
-aldeed:autoform
 aldeed:collection2
 iron:router
 yogiben:admin
@@ -21,3 +20,6 @@ accounts-google
 service-configuration
 accounts-ui
 gwendall:auth-client-callbacks
+aldeed:autoform
+aldeed:autoform-select2
+zimme:select2-bootstrap3-css
