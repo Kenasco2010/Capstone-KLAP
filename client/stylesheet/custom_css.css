@@ -478,3 +478,7 @@ body {
 .search-query:focus{
 	width: 260px;
 }   
+
+.form-blocks {
+	margin-bottom: 0px;
+}
