@@ -19,16 +19,13 @@ Template.signup.events({
 
 Accounts.onLogin(function() {
     var userId = Meteor.userId();
-    var user = Meteor.users.find({_id: userId}).fetch();
-    var check_first_name = user[0].profile.first_name;
+    var user = Meteor.users.findOne(userId);
+    var check_first_name = user.profile.first_name;
     
     if ( typeof(check_first_name) == "undefined") {
         Router.go("create_profile");
     }
 
-   /* else if (check_first_name && Router.current().route._path == "/create-profile"){
-        Router.go("welcome-page");
-    }*/
     else {
       Router.go("sender-post");
     }

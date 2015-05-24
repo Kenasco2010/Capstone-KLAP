@@ -484,3 +484,19 @@ body {
 .form-blocks {
 	margin-bottom: 0px;
 }
+
+#welcome-area {
+	background-color: #023A61;
+	width: 100%;
+	min-height: 532px;
+}
+
+.big-title {
+	color: #ffffff;
+	font-size: 40px;
+}
+
+.sub-title {
+	color: #ffffff;
+	font-size: 25px;
+}
