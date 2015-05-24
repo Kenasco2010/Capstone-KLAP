@@ -26,8 +26,11 @@ Accounts.onLogin(function() {
         Router.go("create_profile");
     }
 
+   /* else if (check_first_name && Router.current().route._path == "/create-profile"){
+        Router.go("welcome-page");
+    }*/
     else {
-        
+      Router.go("sender-post");
     }
   
 });

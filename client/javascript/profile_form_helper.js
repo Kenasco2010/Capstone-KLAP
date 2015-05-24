@@ -1,6 +1,6 @@
 Template.createProfile.helpers({
     profileFormSchema: function () {
-        return Schema.profile;
+        return Schema.updateProfile;
     },
     s2OptsDay: function() {
         return {placeholder: "Select Day"};

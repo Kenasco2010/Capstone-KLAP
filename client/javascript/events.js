@@ -6,7 +6,7 @@ Template.navigation.events({
 }
 });
 
-Template.createProfile.events({
+/*Template.createProfile.events({
     "submit form[name='createProfileForm']": function (e,t) {
         var first_name = $("input[name='firstname']").val();
         var last_name = $("input[name='lastname']").val();
@@ -26,4 +26,4 @@ Template.createProfile.events({
         return false;
         // e.preventDefault();
     }
-});
+});*/

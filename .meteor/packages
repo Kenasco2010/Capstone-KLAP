@@ -21,5 +21,6 @@ service-configuration
 accounts-ui
 gwendall:auth-client-callbacks
 aldeed:autoform
-aldeed:autoform-select2
-zimme:select2-bootstrap3-css
+check
+chhib:selectize-bootstrap-3
+comerc:autoform-selectize
