@@ -14,3 +14,6 @@ Template.home.events({
 
 })
 
+Template.senderpost.rendered = function () {
+	new WOW().init()
+};

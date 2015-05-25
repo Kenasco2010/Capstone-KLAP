@@ -20,6 +20,7 @@ accounts-google
 service-configuration
 accounts-ui
 gwendall:auth-client-callbacks
+timmyg:wow
 aldeed:autoform
 check
 chhib:selectize-bootstrap-3
