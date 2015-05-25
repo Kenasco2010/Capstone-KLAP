@@ -6,4 +6,15 @@ Template.navigation.events({
 }
 });
 
+Template.userPublicProfile.rendered = function () {
+   // $.Metro.initAll(".rating");
+ 
+};
+
+Template.checkMe.rendered = function () {
+   // $.Metro.initAll(".rating");
+ 
+};
+
+
 

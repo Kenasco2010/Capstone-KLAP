@@ -15,6 +15,13 @@ Template.signup.events({
         }
       });
   },
+  "click #at-linkedin": function() {
+        return Meteor.loginWithLinkedIn(function(error) {
+          if (error) {
+            return console.log(error.reason);
+          }
+        });
+  }
 });
 
 Accounts.onLogin(function() {
