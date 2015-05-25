@@ -19,30 +19,25 @@ body {
  /*
 <====================== End of Text slider on index page ==================================>
 */
-/*.email{
-	margin-left: 20px;
-	}*/
-/*	.typeOfUser{
-		margin-left: 20px;
-	}
+.fa-icons{
+	font-size: 15px;
+	/*color: white;*/
+	background-color: #3498DB;
+}
+.landing-page-table{
+	margin-left: 275px;
+	width: 1530px;
+}
 
-	.sign-up-form input, .sign-in-form input, .sign-up-form input[type="password"], .sign-in-form input[type="password"], .sign-up-form input[type="text"], .sign-in-form input[type="text"], .sign-up-form input, .sign-in-form input, .sign-up-form input[type="email"], .sign-in-form input[type="email"] {
-		margin-left: -170px;
-		}*/
-		.landing-page-table{
-			margin-left: 275px;
-			width: 1530px;
-		}
-
-		.send-package{
-			margin-left: -260px;
-		}
-		.carry-package{
-			margin-left: 10px;
-		}
-		.home-button-text-center{
-			margin-left: 304px;
-		}
+.send-package{
+	margin-left: -260px;
+}
+.carry-package{
+	margin-left: 10px;
+}
+.home-button-text-center{
+	margin-left: 304px;
+}
 		/* 
 ===========================Profile css==============================
 */
@@ -297,11 +292,13 @@ body {
 	font-size: 17pt;
 	font-weight: 700;
 	margin: 0px;
+	color: #505050;
 }
 .senderpost .event-list > li > .info > .desc {
 	font-size: 13pt;
 	font-weight: 300;
 	margin: 0px;
+	color: #909090 ;
 }
 .senderpost .event-list > li > .info > ul,
 .senderpost .event-list > li > .social > ul {
@@ -329,6 +326,7 @@ body {
 	width: 100%;
 	color: rgb(30, 30, 30);
 	text-decoration: none;
+
 } 
 .senderpost .event-list > li > .social > ul > li {    
 	padding: 0px;
@@ -338,8 +336,8 @@ body {
 } 
 .senderpost .event-list > li > .info > ul > li:hover,
 .senderpost .event-list > li > .social > ul > li:hover {
-	color: rgb(30, 30, 30);
-	background-color: rgb(200, 200, 200);
+	color: #3498DB;
+	background-color: white;
 }
 .senderpost .facebook a,
 .senderpost .twitter a,
@@ -434,47 +432,9 @@ body {
 ==========================SENDER SEARCH BAR CODE ==================================
 */
 
-#custom-search-form {
-	margin:0;
-	margin-top: 5px;
-	padding: 0;
-}
 
-#custom-search-form .search-query {
-	padding-right: 3px;
-	padding-right: 4px \9;
-	padding-left: 3px;
-	padding-left: 4px \9;
-	/* IE7-8 doesn't have border-radius, so don't indent the padding */
-	
-	margin-bottom: 0;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	-webkit-transition: width  0.2s ease-in-out;
-	-moz-transition:width  0.2s ease-in-out;
-	-o-transition: width  0.2s ease-in-out;
-	transition: width  0.2s ease-in-out;
-}
 
-#custom-search-form button {
-	border: 0;
-	background: none;
-	/** belows styles are working good */
-	padding: 2px 5px;
-	margin-top: 2px;
-	position: relative;
-	left: -28px;
-	/* IE7-8 doesn't have border-radius, so don't indent the padding */
-	margin-bottom: 0;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-}
 
-.search-query:focus + button {
-	z-index: 3;   
-}   
-.search-query:focus{
-	width: 260px;
-}   
+/* 
+==========================SENDER POST FORM CODE ==================================
+*/
