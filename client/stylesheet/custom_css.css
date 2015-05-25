@@ -1,3 +1,6 @@
+ @import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic");
+ @import url("//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
+
  /*
 <======================Text slider on index page ==================================>
 */
@@ -232,8 +235,7 @@ body {
 ==================List of sender Post css ==========================
 */
 
-@import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic");
-@import url("//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
+
 /*body {
 	padding: 60px 0px;
 	background-color: rgb(220, 220, 220);
@@ -433,8 +435,71 @@ body {
 */
 
 
-
-
 /* 
 ==========================SENDER POST FORM CODE ==================================
 */
+
+#custom-search-form {
+	margin:0;
+	margin-top: 5px;
+	padding: 0;
+}
+
+#custom-search-form .search-query {
+	padding-right: 3px;
+	padding-right: 4px \9;
+	padding-left: 3px;
+	padding-left: 4px \9;
+	/* IE7-8 doesn't have border-radius, so don't indent the padding */
+	
+	margin-bottom: 0;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-transition: width  0.2s ease-in-out;
+	-moz-transition:width  0.2s ease-in-out;
+	-o-transition: width  0.2s ease-in-out;
+	transition: width  0.2s ease-in-out;
+}
+
+#custom-search-form button {
+	border: 0;
+	background: none;
+	/** belows styles are working good */
+	padding: 2px 5px;
+	margin-top: 2px;
+	position: relative;
+	left: -28px;
+	/* IE7-8 doesn't have border-radius, so don't indent the padding */
+	margin-bottom: 0;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.search-query:focus + button {
+	z-index: 3;   
+}   
+.search-query:focus{
+	width: 260px;
+}   
+
+.form-blocks {
+	margin-bottom: 0px;
+}
+
+#welcome-area {
+	background-color: #023A61;
+	width: 100%;
+	min-height: 532px;
+}
+
+.big-title {
+	color: #ffffff;
+	font-size: 40px;
+}
+
+.sub-title {
+	color: #ffffff;
+	font-size: 25px;
+}

@@ -9,7 +9,6 @@ autopublish
 insecure
 twbs:bootstrap
 fortawesome:fontawesome
-aldeed:autoform
 aldeed:collection2
 iron:router
 yogiben:admin
@@ -22,3 +21,7 @@ service-configuration
 accounts-ui
 gwendall:auth-client-callbacks
 timmyg:wow
+aldeed:autoform
+check
+chhib:selectize-bootstrap-3
+comerc:autoform-selectize
