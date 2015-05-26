@@ -1,0 +1,46 @@
+<template name="postTravel">
+    <template name="postItem">
+                {{#autoForm collection="Travels" id="postTravelForm"}}
+                <fieldset>
+                    <div class="form-blocks">
+                       <div class="col-md-4">
+                         {{> afQuickField name="weight"}}
+                      </div>
+                    </div>
+                    <div class="form-blocks">
+                      <div class=" col-md-12 block-label">
+                          <center><label>You are travelling from</label></center>
+                      </div>
+                      <div class="col-md-4">
+                          {{> afQuickField name="origin_country" label=false selectizeOptions=s2OptsOCountry}}
+                      </div>
+                      <div class="col-md-4">
+                         {{> afQuickField name="origin_city" label=false selectizeOptions=s2OptsOCity}}
+                      </div>
+                      <div class="col-md-4">
+                         <input type="text" name="send_date" class="date-picker form-control" placeholder="Pick a Date">
+                      </div>
+                    </div>
+                    <div class="form-blocks">
+                      <div class=" col-md-12 block-label">
+                          <center><label>To</label></center>
+                      </div>
+                      <div class="col-md-4">
+                        {{> afQuickField name="destination_country" label=false selectizeOptions=s2OptsDCountry}}
+                      </div>
+                      <div class="col-md-4">
+                          {{> afQuickField name="destination_city" label=false selectizeOptions=s2OptsDCity}}
+                      </div>
+                      <div class="col-md-4">
+                         <input type="text" class="date-picker form-control" name="delivery_date" placeholder="Pick a Date">
+                      </div>
+                    </div>
+                    
+                   
+                    <div class="col-md-6">
+                      <button type="submit" class="btn btn-primary submit-btn">Create my post</button>
+                    </div>
+                  </fieldset>
+                {{/autoForm}}
+    </template>
+</template>

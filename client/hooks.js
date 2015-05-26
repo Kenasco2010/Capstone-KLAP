@@ -30,6 +30,14 @@ AutoForm.hooks({
         console.log(doc);
           doc.relativeImageUrl = Session.get('relativeImageUrl');
           doc.absoluteImageUrl = Session.get('absoluteImageUrl');
+
+          var send_date = $("input[name='send_date']").val()
+          send_date = new Date(send_date);
+          doc.send_date = send_date;
+          var delivery_date = $("input[name='delivery_date']").val()
+          delivery_date = new Date(delivery_date);
+          doc.delivery_date = delivery_date;
+
           /*doc.delivery_date = Session.get("delivery_date");
           doc.send_date = Session.get("send_date");*/
           return doc;
