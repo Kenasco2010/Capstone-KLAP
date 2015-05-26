@@ -642,4 +642,23 @@ div.full-width {
 #image-select {
 	margin-top: 10px;
 	margin-bottom: 20px;
+	margin-left: 20px;
+}
+
+.progress {
+	margin-left: 25%;
+	margin-right: 25%;
+}
+
+#postItemForm {
+	padding-top: 20px;
+}
+
+.submit-block {
+	margin-bottom: 30px;
+	margin-top: 10px;
+}
+
+.top-form-block {
+	margin-top: 10px;
 }

@@ -1,38 +1,17 @@
 <template name="postItem">
+              <center><h2>Send a Package</h2></center>
             {{#autoForm collection="Items" id="postItemForm"}}
             <fieldset>
-            {{#each files}}
-                <div>
-                    {{#if uploadNotStarted}}
-                        <p>starting upload...</p>
-                    {{/if}}
-                </div>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="{{percent_uploaded}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percent_uploaded}}%">
-                    {{percent_uploaded}}%
-                  </div>
-                </div>
-                
-                <div id="imageThumbnail">
-                      <img src="{{url}}"  width="100"  height="100" class="img-thumbnail" alt="thumbnail" />
-                </div>
-                {{#if complete}}
-                    <a href="#" data-action="remove-image"><i class="fa fa-times"></i>Remove</a>
-                {{/if}}
-            {{/each}}
-              
-              <div id="image-select">
-                  <p><strong>Attach a picture of the item</strong></p>
-                   <input type="file" class="file_bag">
-              </div>
                 <div class="form-blocks">
-                  <div class="col-md-5">
+                  <div class="col-md-12 top-form-block">
                     {{> afQuickField name="description" rows=3}}
                   </div>
-                   <div class="col-md-2">
+                </div>
+                <div class="form-blocks">
+                   <div class="col-md-6">
                      {{> afQuickField name="weight"}}
                   </div>
-                   <div class="col-md-5">
+                   <div class="col-md-6">
                      {{> afQuickField name="reward" }}
                   </div>
                 </div>
@@ -64,10 +43,38 @@
                      <input type="text" class="date-picker form-control" name="delivery_date" placeholder="Pick a Date">
                   </div>
                 </div>
-                
-               
-                <div class="col-md-6">
-                  <button type="submit" class="btn btn-primary submit-btn">Create my post</button>
+                <div class="form-blocks">
+                  <div class="col-md-12">
+                    {{#each files}}
+                        <div>
+                            {{#if uploadNotStarted}}
+                                <p>starting upload...</p>
+                            {{/if}}
+                        </div>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="{{percent_uploaded}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percent_uploaded}}%">
+                            {{percent_uploaded}}%
+                          </div>
+                        </div>
+                        
+                        <div id="imageThumbnail">
+                              <img src="{{url}}"  width="100"  height="100" class="img-thumbnail" alt="thumbnail" />
+                        </div>
+                        {{#if complete}}
+                            <a href="#" data-action="remove-image"><i class="fa fa-times"></i>Remove</a>
+                        {{/if}}
+                    {{/each}}
+                      
+                      <div id="image-select">
+                          <p><strong>Attach a picture of the item</strong></p>
+                           <input type="file" class="file_bag">
+                      </div>
+                  </div>
+                </div>               
+                <div class="col-md-6 col-md-offset-3 submit-block">
+                  <center>
+                    <input type="submit" value="Submit" class="btn btn-info btn-block">
+                  </center>
                 </div>
               </fieldset>
             {{/autoForm}}
