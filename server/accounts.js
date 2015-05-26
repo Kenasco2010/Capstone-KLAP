@@ -25,6 +25,8 @@ Accounts.onCreateUser(function(options, user) {
    //user.profile = options.profile ? options.profile : {};
      user.profile = {};
      user.profile.rating = 0;
+     user.profile.rating_times = 0;
+     user.profile.accumulated_ratings = 0;
   }
     return user;
 });

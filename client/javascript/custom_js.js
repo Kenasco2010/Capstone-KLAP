@@ -3,11 +3,12 @@
 // 		interval: 2000
 // 	});
 // }; 
-$(document).ready(function(){
-	$('.carousel').carousel({
-		interval: 2000
-	});
-});
+
+Template.home.rendered = function () {
+    $('.carousel').carousel({
+        interval: 2000
+    });
+};
 
 
 /*

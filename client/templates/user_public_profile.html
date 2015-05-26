@@ -1,73 +1,66 @@
 <template name="userPublicProfile">
     <div class="container">
         <div class="row">
-            <div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
-             <div class="well profile">
-                <div class="col-sm-12">
-                    <div class="col-xs-12 col-sm-8">
-                        <h2>Nicole Pearson</h2>
-                        <p><strong>About: </strong> Web Designer / UI. </p>
-                        <p><strong>Nationality:</strong> Ghanaian</p>
-                        <p><strong>City: Accra</strong></p>
-                    </div>             
-                    <div class="col-xs-12 col-sm-4 text-center">
-                        <figure>
-                            <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="img-circle img-responsive">
-                            <figcaption class="ratings">
-                                <p>Ratings
-                                <a href="#">
-                                    <span class="fa fa-star"></span>
-                                </a>
-                                <a href="#">
-                                    <span class="fa fa-star"></span>
-                                </a>
-                                <a href="#">
-                                    <span class="fa fa-star"></span>
-                                </a>
-                                <a href="#">
-                                    <span class="fa fa-star"></span>
-                                </a>
-                                <a href="#">
-                                     <span class="fa fa-star-o"></span>
-                                </a> 
+            <div class=" col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+                <div class="well profile">
+                    <div class="col-sm-12">
+                        <div class="col-xs-12 col-sm-6">
+                            <h2>{{fullUserName user}}</h2>
+                            <p><strong>Nationality:</strong>{{user.profile.country}}</p>
+                            <p><strong>City:</strong> {{user.profile.city}}</p>
+                        </div> 
+                        <div class="col-xs-12 col-sm-6 text-center">
+                            <figure>
+                                <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="img-circle img-responsive">
+                                <figcaption class="ratings">
+                                    <p>Ratings</p>
                                     
-                                </p>
-                            </figcaption>
-                        </figure>
+                                        {{> rating}}
+                                    
+                                </figcaption>
+                            </figure>
+                        </div>
                     </div>
-                </div>            
-                <div class="col-xs-12 divider text-center">
-                    <div class="col-xs-12 col-sm-4 emphasis">
-                        <h2><strong> 50 </strong></h2>                    
-                        <p><small>Points</small></p>
+                    <div class="col-sm-12 col-xs-12">
+                        <section class="col-xs-12 col-sm-12 divider about-section">
+                            <strong><p>About</p></strong>
+                            <p>dbchdcbhdcbhbx xbxc c bc bccjchcctcvcgcgbx ccbx cvbxcxcxhcbxhcbx hcbxhcbxhcbxcbxcb xhcbx hbc hxb hcbxhbcxcbxcbxhbcxh cxcxcbxcx cbxcbxcbxcb cbxhcbxhcbxhcbxhcbxhcbxhcbxhcbx cb xb cbxcbxcbx cbxcbx bcbxcbxcbxbcxcbx cbxcbxbcbxbccbxbcxbcxbcxbcxb</p>
+                        </section>
                     </div>
-                    <div class="col-xs-12 col-sm-4 emphasis">
-                        <h2><strong>5</strong></h2>                    
-                        <p><small>Reviews</small></p>
-                        <button class="btn btn-info btn-block"><span class="fa fa-comments"></span> View Reviews </button>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 emphasis">
-                        <h2><strong>200</strong></h2>                    
-                        <p><small>Connections</small></p>
-                        <div class="btn-group dropup btn-block">
-                          <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options </button>
-                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                          </button>
-                          <ul class="dropdown-menu text-left" role="menu">
-                            <li><a href="#"><span class="fa fa-user-plus pull-right"></span> Connect with Laud</a></li>
-                            <li><a href="#"><span class="fa fa-envelope pull-right"></span> Send a message</a></li>
-                          </ul>
+                    <div class="col-xs-12 divider text-center action-buttons-section">
+                        <div class="col-xs-12 col-sm-4 emphasis">
+                            <h2><strong> 50 </strong></h2>                    
+                            <p><small>Points</small></p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 emphasis">
+                            <h2><strong>5</strong></h2>                    
+                            <p><small>Reviews</small></p>
+                            <button class="btn btn-info btn-block hidden-xs"><span class="fa fa-comments"></span> View Reviews </button>
+                            <button class="btn btn-info btn-block btn-sm visible-xs"><span class="fa fa-comments"></span> View Reviews </button>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 emphasis">
+                            <h2><strong>200</strong></h2>                    
+                            <p><small>Connections</small></p>
+                            <div class="btn-group dropup btn-block">
+                              <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options </button>
+                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                              </button>
+                              <ul class="dropdown-menu text-left" role="menu">
+                                <li><a href="#"><span class="fa fa-user-plus pull-right"></span> Connect with {{user.profile.first_name}}</a></li>
+                                <li><a href="#"><span class="fa fa-envelope pull-right"></span> Send a message</a></li>
+                              </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-             </div>                 
             </div>
         </div>
     </div>
 </template>
 
-<!-- <template name="rating">
-    
-</template> -->
+<template name="rating">
+        <!-- <div class="rating" data-role="rating" data-size="small" data-on-rate="demo_func_onRate"></div> -->
+        <div class="ui rating" id="{{user._id}}" data-rating="{{user.profile.rating}}" data-max-rating="5"></div>
+</template>

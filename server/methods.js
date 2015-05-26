@@ -20,5 +20,22 @@ Meteor.methods({
     else {
         console.log("user not logged in");
     }
+  },
+  updateRatings: function(userId, value){
+
+        var user = Meteor.users.findOne(userId);
+        console.log(user);
+        
+        Meteor.users.update({_id: userId},
+        {
+                    $inc: {"profile.rating": value, 
+                    "profile.rating_times": 1, 
+                    "profile.accumulated_ratings": value}
+        })
+  },
+  postItem: function(doc){
+    Items.insert(doc, function(err, id){
+  });
   }
+
 });

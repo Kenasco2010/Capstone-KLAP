@@ -2,8 +2,19 @@
 	
 	<div class="senderpost">
 
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
+				<div class="col-sm-12 top-bar">
+				  <section class="my-top-bar">
+				    <div class="full-width">
+				    	<ul>
+				    		<li>
+				    			<a href="{{pathFor 'user_profile' _id=currentUser._id}}"><span class="fa fa-user fa-2x"></span> MY PROFILE </a>
+				    		</li>
+				    	</ul>
+				    </div>
+				  </section>
+				</div>
 				<div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
 					<ul class="event-list">
 						<li>
@@ -50,6 +61,7 @@
 								</ul>
 							</div>
 						</li>
+				    </ul>
 			<div class="row ">
 				<div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ] ">
 					<ul class="event-list wow zoomIn">
@@ -117,5 +129,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	</div>
 	</div>
 </template>

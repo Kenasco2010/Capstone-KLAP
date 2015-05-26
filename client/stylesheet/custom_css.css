@@ -1,6 +1,6 @@
  @import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic");
  @import url("//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
- @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+ @import url("http://fonts.googleapis.com/css?family=Lato:400,700");
 
  /*
 <======================Text slider on index page ==================================>
@@ -511,11 +511,18 @@ body
 {
     font-family: 'Lato', 'sans-serif';
     }
-.profile 
-{
-    min-height: 355px;
-    display: inline-block;
-    }
+
+@media only screen and (max-device-width: 480px) {
+ .profile {
+    height: 950px;
+    /*display: inline-block;*/
+ }
+}
+
+.profile {
+    min-height: 500px;
+    /*display: inline-block;*/
+}
 figcaption.ratings
 {
     margin-top:20px;
@@ -585,8 +592,54 @@ span.tags
     bottom: -10px;
     left: 50%;
     margin-left: -10px;
-    z-index: 10;
-    }
+  }
+
+  .about-section {
+  	margin-left: 14px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	word-wrap: break-word;
+  }
+
+  .action-buttons-section {
+  	padding-top: 10px;
+  	padding-bottom: 10px;
+  }
 
 /*=========================== User 	Public 	Profile End========================================*/
 
+.top-bar {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+section.my-top-bar {
+  /*box-sizing: border-box; */
+  padding-bottom: 1.5rem;
+  margin-top: -60px;
+  width: 100%;
+}
+
+div.full-width {
+  position: relative;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 22rem;
+  background: #023A61;
+  color: #ffffff;
+  text-align: left;
+}
+
+.full-width ul {
+	list-style-type: none;
+}
+
+.full-width ul li a {
+	text-decoration: none;
+	color: #fff;
+}
+
+#image-select {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
