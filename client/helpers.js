@@ -26,17 +26,37 @@ Template.createProfile.helpers({
     }
 });
 
-Template.postItem.helpers({
-    s2OptsOCountry: function () {
-        return {placeholder: "Select Country"};
-    },
-    s2OptsOCity: function() {
-        return {placeholder: "Select City"};
-    },
-     s2OptsDCountry: function() {
-        return {placeholder: "Select Country"};
-    },
-     s2OptsDCity: function() {
-        return {placeholder: "Select City"};
-    },
+Template.searchForm.helpers({
+    searchFormSchema: function () {
+        return Schema.search;
+    }
 });
+
+Template.registerHelper("s2OptsOCountry", function(){
+    return  {placeholder: "Select Country"};
+})
+
+Template.registerHelper("s2OptsOCity", function(){
+    return {placeholder: "Select City"};
+})
+Template.registerHelper("s2OptsDCountry", function(){
+    return {placeholder: "Select Country"};
+})
+Template.registerHelper("s2OptsDCity", function(){
+    return {placeholder: "Select City"};
+})
+
+Template.registerHelper("item_owner", function(itemId){
+    var item = Items.findOne(itemId);
+    var ownerId = item.owner;
+    var owner = Meteor.users.findOne(ownerId);
+    var first_name = owner.profile.first_name;
+    var last_name = owner.profile.last_name;
+    var full_name = first_name + " " + last_name;
+    return full_name;
+})
+
+Template.registerHelper("date_ft", function(date){
+    var m = moment(date);
+    return m.format("dddd, MMMM Do YYYY");
+})

@@ -51,19 +51,25 @@ Template.rating.created = function () {
 };
 
 Template.postItem.rendered = function () {
-  // $('#my-datepicker').datepicker();
-  // var picker = new Pikaday({ field: $('#my-datepicker')[0] });
-  // var picker = new Pikaday({ field: document.getElementById('my-datepicker') });
   $(".date-picker").pickadate();
 
 };
 
-/*Template.postItem.events({
-  'submit #postItemForm': function () {
-    var send_date = $("input[name='send_date']").val();
-    var delivery_date = $("input[name='delivery_date']").val();
-    Session.set("send_date", send_date);
-    Session.set("delivery_date", delivery_date);
-  }
-});*/
+Template.postTravel.rendered = function () {
+  $(".date-picker").pickadate();
+};
+
+Template.searchForm.rendered = function () {
+  $(".date-picker").pickadate();
+};
+
+Template.listings.rendered = function () {
+  $('.menu .item').tab();
+};
+
+Template.navigation.rendered = function () {
+  // ...
+};
+
+
 

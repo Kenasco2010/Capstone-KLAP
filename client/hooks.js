@@ -2,7 +2,6 @@ AutoForm.hooks({
 	insertEmailForm: {
 		onSuccess: function(formType, result) {
 			console.log("successfuly done")
-			// $('#Emailsuccess').modal('show');
 			swal("Great!", "We will notify you as soon as we launch", "success")
 		}
 	}
@@ -27,7 +26,6 @@ AutoForm.hooks({
 AutoForm.hooks({
   postItemForm: {
        formToDoc: function(doc, ss, formId) {
-        console.log(doc);
           doc.relativeImageUrl = Session.get('relativeImageUrl');
           doc.absoluteImageUrl = Session.get('absoluteImageUrl');
 
@@ -37,25 +35,49 @@ AutoForm.hooks({
           var delivery_date = $("input[name='delivery_date']").val()
           delivery_date = new Date(delivery_date);
           doc.delivery_date = delivery_date;
-
-          /*doc.delivery_date = Session.get("delivery_date");
-          doc.send_date = Session.get("send_date");*/
           return doc;
       },
       onSubmit: function (insertDoc, updateDoc, currentDoc) {
         Meteor.call('postItem', insertDoc, function (error, result) {
           if (error) {
-            console.log(error);
-            // this.done();
+            this.done();
           }
           else {
             $("#buzzModal").modal("hide");
-            swal("Thanks! your item has been posted successfuly");
+            swal("Thanks! your item has been successfuly posted");
           }
         });
          return false;  
     }
   }
+})
+
+AutoForm.hooks({
+  postTravelForm: {
+    formToDoc: function(doc, ss, formId)  {
+      var travel_date = $("input[name='travel_date']").val();
+      travel_date = new Date(travel_date);
+      doc.travel_date = travel_date;
+      var arrival_date = $("input[name='arrival_date']").val();
+      arrival_date = new Date(arrival_date);
+      doc.arrival_date = arrival_date;
+      console.log(doc);
+      return doc;
+    },
+        onSubmit: function (insertDoc, updateDoc, currentDoc) {
+          Meteor.call('postTrip', insertDoc, function (error, result) {
+            if (error) {
+              // this.done();
+              console.log(error);
+            }
+            else {
+              $("#buzzModal").modal("hide");
+              swal("Thanks! your trip has been successfuly posted");
+            }
+          });
+           return false;  
+      }
+    }
 })
 
 AutoForm.addHooks(null, {

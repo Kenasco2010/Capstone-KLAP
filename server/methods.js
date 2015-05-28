@@ -36,6 +36,13 @@ Meteor.methods({
   postItem: function(doc){
     Items.insert(doc, function(err, id){
   });
+  },
+  postTrip: function(doc){
+    Travels.insert(doc, function(err, id){
+  });
+  },
+  removeItems: function() {
+    return Items.remove({});
   }
 
 });

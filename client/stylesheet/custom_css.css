@@ -629,16 +629,14 @@ section.my-top-bar {
 	padding-bottom: 1.5rem;
 	margin-top: -60px;
 	width: 100%;
+	margin-bottom: -60px;
 }
 
 div.full-width {
 	position: relative;
-	padding-top: 2rem;
-	padding-bottom: 2rem;
-	padding-left: 22rem;
 	background: #023A61;
 	color: #ffffff;
-	text-align: left;
+	padding: 20px;
 }
 
 .full-width ul {
@@ -653,4 +651,301 @@ div.full-width {
 #image-select {
 	margin-top: 10px;
 	margin-bottom: 20px;
+	margin-left: 20px;
+}
+
+.progress {
+	margin-left: 25%;
+	margin-right: 25%;
+}
+
+#postItemForm {
+	padding-top: 20px;
+}
+
+.submit-block {
+	margin-bottom: 30px;
+	margin-top: 10px;
+}
+
+.top-form-block {
+	margin-top: 10px;
+}
+
+h2.form-title {
+	margin-bottom: 10px;
+}
+
+/*=======================List View ===========================================================*/
+/**** LAYOUT ****/
+.list-inline>li {
+	padding: 0 10px 0 0;
+}
+.container-pad {
+	padding: 30px 15px;
+}
+
+
+/**** MODULE ****/
+.bgc-fff {
+	background-color: #fff!important;
+}
+.box-shad {
+	-webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+	box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+}
+.brdr {
+	border: 1px solid #ededed;
+}
+
+/* Font changes */
+.fnt-smaller {
+	font-size: .9em;
+}
+.fnt-lighter {
+	color: #bbb;
+}
+
+/* Padding - Margins */
+.pad-10 {
+	padding: 10px!important;
+}
+.mrg-0 {
+	margin: 0!important;
+}
+.btm-mrg-10 {
+	margin-bottom: 10px!important;
+}
+.btm-mrg-20 {
+	margin-bottom: 20px!important;
+}
+
+/* Color  */
+.clr-535353 {
+	color: #535353;
+}
+
+
+
+
+/**** MEDIA QUERIES ****/
+@media only screen and (max-width: 991px) {
+	#property-listings .property-listing {
+		padding: 5px!important;
+	}
+	#property-listings .property-listing a {
+		margin: 0;
+	}
+	#property-listings .property-listing .media-body {
+		padding: 10px;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	#property-listings .property-listing img {
+		max-width: 180px;
+	}
+}
+
+/*==================List View End=================================================================*/
+
+.form-inline {
+	display: inline;
+}
+
+#type-of-search, #origin-country, #destination-country, #choose-date {
+	width: 220px;
+	text-align: center;
+	height: 44px;
+	background-color: #ffffff;
+	color: #82888A;
+	float: left;
+}
+
+
+..search-form-input-wrapper {
+	display: inline-block;
+	position: relative;
+	/*float: left;*/
+}
+
+/*.type-of-search-wrapper {
+    position: relative;
+    display: inline-block;
+    float: left;
+    }*/
+
+    .input-placeholder-group {
+    	position: relative;
+    	display: inline-block;
+    	float: left;
+    }
+
+    .input-placeholder-label {
+    	position: absolute;
+    	top: 0px;
+    	left: 0px;
+    	padding-top: 11px;
+    	padding-left: 11px;
+    	padding-right: 11px;
+    	font-size: 16px;
+    	max-width: 100%;
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+    	cursor: text;
+    	color: #82888A;
+    }
+
+    .screen-reader-only {
+    	border: 0px none;
+    	clip: rect(0px, 0px, 0px, 0px);
+    	height: 1px;
+    	margin: -1px;
+    	overflow: hidden;
+    	padding: 0px;
+    	position: absolute;
+    	width: 1px;
+    }
+
+    .type-of-search {
+    	border-top-right-radius: 0px;
+    	border-bottom-right-radius: 0px;
+    }
+
+    .input-large {
+    	font-size: 16px;
+    	padding-top: 10px;
+    	padding-bottom: 10px;
+    }
+
+    #search_form input {
+    	height: 44px;
+    }
+
+/*#search_form .origin_country, #search_form .choose_date {
+    width: 180px;
+    text-align: center;
+    }*/
+
+    #submit_search {
+    	border-top-left-radius: 0px;
+    	border-bottom-left-radius: 0px;
+    	height: 44px;
+    }
+
+    .btn-primary.btn {
+    	border-color: #FF5A5F #FF5A5F #E00007;
+    	background-color: #FF5A5F;
+    	color: #FFF;
+    }
+
+    .search-button {
+    	vertical-align: bottom;
+    }
+
+    .select-large {
+    	font-size: 16px;
+    }
+
+    .select {
+    	position: relative;
+    	display: inline-block;
+    	vertical-align: bottom;
+    }
+
+    .select-large select {
+    	padding-top: 9px;
+    	padding-bottom: 9px;
+    }
+
+
+/* 
+=====================CARD 2 =================================
+*/
+
+.card {
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card {
+	margin-top: 10px;
+	box-sizing: border-box;
+	border-radius: 2px;
+	background-clip: padding-box;
+}
+.card span.card-title {
+	color: #fff;
+	font-size: 24px;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+.card .card-image {
+	position: relative;
+	overflow: hidden;
+}
+.card .card-image img {
+	border-radius: 2px 2px 0 0;
+	background-clip: padding-box;
+	position: relative;
+	z-index: -1;
+}
+.card .card-image span.card-title {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 16px;
+}
+.card .card-content {
+	padding: 16px;
+	border-radius: 0 0 2px 2px;
+	background-clip: padding-box;
+	box-sizing: border-box;
+}
+.card .card-content p {
+	margin: 0;
+	color: inherit;
+}
+.card .card-content span.card-title {
+	line-height: 48px;
+}
+.card .card-action {
+	border-top: 1px solid rgba(160, 160, 160, 0.2);
+	padding: 16px;
+}
+.card .card-action a {
+	color: #ffab40;
+	margin-right: 16px;
+	transition: color 0.3s ease;
+	text-transform: uppercase;
+}
+.card .card-action a:hover {
+	color: #ffd8a6;
+	text-decoration: none;
+}
+.col-md-offset-3{
+	margin-left: 0%;
+}
+.side-panel{
+	margin-left: 20%;
+	background-color: red;
+	width: 30%;
+}
+.card-title{
+	margin-left: 2px;
+	margin-top: 20px;
+	font-size: 20px;
+}
+.postDetails-leftPanel .body{margin-top:50px;}
+.glyphicon { margin-right:10px; }
+.panel-body { padding:0px; }
+.panel-body table tr td { padding-left: 15px }
+.panel-body .table {margin-bottom: 0px; }
+
+.small-profile{
+	height: 60px;
+	background-color: red;
+	width: 50px;
+	margin-top: 20px;
+	margin-left: 100px;
 }
