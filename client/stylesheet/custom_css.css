@@ -50,7 +50,10 @@ body {
 	margin-left: 10px;
 	margin-top: 5px;
 }
-		/* 
+.postItemForm{
+	box-shadow: 1px;
+}
+/* 
 ===========================Profile css==============================
 */
 
