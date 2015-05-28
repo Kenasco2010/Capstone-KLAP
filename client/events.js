@@ -59,5 +59,17 @@ Template.postTravel.rendered = function () {
   $(".date-picker").pickadate();
 };
 
+Template.searchForm.rendered = function () {
+  $(".date-picker").pickadate();
+};
+
+Template.listings.rendered = function () {
+  $('.menu .item').tab();
+};
+
+Template.navigation.rendered = function () {
+  // ...
+};
+
 
 
