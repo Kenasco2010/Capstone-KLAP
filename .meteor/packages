@@ -21,7 +21,6 @@ service-configuration
 accounts-ui
 gwendall:auth-client-callbacks
 timmyg:wow
-aldeed:autoform
 check
 chhib:selectize-bootstrap-3
 comerc:autoform-selectize
@@ -34,3 +33,5 @@ lepozepo:s3
 jquery
 cwohlman:pickadate
 ogamedia:timer
+aldeed:autoform
+aldeed:simple-schema

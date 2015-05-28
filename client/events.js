@@ -22,6 +22,18 @@ Template.userPublicProfile.events({
     'click .rating': function () {
         console.log(this);
        console.log(Session.get("review-value"));
+    },
+    'click #hide-reviews': function() {
+      $(".second-container").slideUp();
+    },
+    'click .show-reviews': function() {
+       $(".second-container").slideDown();
+    },
+    'click .btn-send-msg': function() {
+      // $("#messageModal").modal("show");
+      $('.ui.send-message.modal')
+        .modal('show')
+      ;
     }
 });
 
@@ -69,6 +81,10 @@ Template.listings.rendered = function () {
 
 Template.navigation.rendered = function () {
   // ...
+};
+
+Template.createProfile.rendered = function () {
+
 };
 
 

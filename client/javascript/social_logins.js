@@ -34,7 +34,7 @@ Accounts.onLogin(function() {
     }
 
     else {
-      Router.go("sender-post");
+      Router.go("listings");
     }
   
 });

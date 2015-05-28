@@ -1,5 +1,5 @@
-Schema = {};
-Schema.updateProfile = new SimpleSchema({
+Schemas = {};
+Schemas.updateProfile = new SimpleSchema({
     first_name: {
         type: String,
         label: "First Name",
@@ -193,4 +193,7 @@ Schema.updateProfile = new SimpleSchema({
              }
         }
     }
+    
 });
+
+// Meteor.users.attachSchema(Schema.updateProfile);

@@ -1,0 +1,50 @@
+<template name="messageModal">
+    <!-- Modal -->
+<!--     <div id="messageModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Send</h4>
+          </div>
+          <div class="modal-body">
+            {{#autoForm collection="Messages" id="sendMessageForm" }}
+                {{> afQuickField name='subject'}}
+                {{> afQuickField name='text' rows=3}}
+            <div class="call-out">
+                <input type="submit" value="Send message" class="btn btn-info btn-review">
+            </div>
+            {{/autoForm}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+
+      </div>
+    </div> -->
+    <div class="ui send-message modal small">
+      <i class="close icon"></i>
+      <div class="header">
+        Modal Title
+      </div>
+      <div class="content">
+       <!--  <div class="image">
+          An image can appear on left or an icon
+        </div>
+        <div class="description">
+          A description can appear on the right
+        </div> -->
+        {{#autoForm collection="Messages" id="sendMessageForm" }}
+            {{> afQuickField name='subject' template="bootstrap3-horizontal" label-class="col-sm-2" input-col-class="col-sm-8"}}
+            {{> afQuickField name='message' rows=3 label=false template="bootstrap3-horizontal" label-class="col-sm-2" input-col-class="col-sm-8 col-sm-offset-2" placeholder="Enter message"}}
+        <div class="call-out col-sm-6 col-sm-offset-2">
+            <input type="submit" value="Send message" class="btn btn-info btn-review">
+        </div>
+        {{/autoForm}}
+      </div>
+      <div class="actions">
+        <div class="ui button">Cancel</div>
+      </div>
+    </div>
+</template>

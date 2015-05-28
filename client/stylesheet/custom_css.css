@@ -522,7 +522,7 @@ body
 
 @media only screen and (max-device-width: 480px) {
 	.profile {
-		height: 950px;
+		height: 880px;
 		/*display: inline-block;*/
 	}
 }
@@ -672,6 +672,13 @@ div.full-width {
 h2.form-title {
 	  margin-bottom: 10px;
 }
+.span-detail {
+	margin-top: 10px;
+}
+
+/*.btn-review {
+	width: 100px;
+}*/
 
 /*=======================List View ===========================================================*/
 /**** LAYOUT ****/
@@ -830,11 +837,11 @@ h2.form-title {
     height: 44px;
 }
 
-.btn-primary.btn {
+/*.btn-primary.btn {
     border-color: #FF5A5F #FF5A5F #E00007;
     background-color: #FF5A5F;
     color: #FFF;
-}
+}*/
 
 .search-button {
     vertical-align: bottom;
@@ -853,4 +860,29 @@ h2.form-title {
 .select-large select {
     padding-top: 9px;
     padding-bottom: 9px;
+}
+
+.second-container {
+	margin-top: -70px;
+	display: none;
+}
+
+#reviews-well {
+	margin-top: 10px;
+}
+
+a#hide-reviews {
+	color: #999;
+}
+
+.call-out {
+	margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 992px) {
+.ui.small.modal {
+  width: 44.4%;
+  height: 300px;
+}
+
 }

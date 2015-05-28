@@ -6,12 +6,13 @@
                     <div class="col-sm-12">
                         <div class="col-xs-12 col-sm-6">
                             <h2>{{fullUserName user}}</h2>
-                            <p><strong>Nationality:</strong>{{user.profile.country}}</p>
+                            <p><strong>Nationality: </strong>{{user.profile.country}}</p>
                             <p><strong>City:</strong> {{user.profile.city}}</p>
+                            <button class="btn btn-primary btn-send-msg">Send a message</button>
                         </div> 
                         <div class="col-xs-12 col-sm-6 text-center">
                             <figure>
-                                <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="img-circle img-responsive">
+                                <img src="{{user.profile.picture}}" alt="user-image" class="img-circle img-responsive">
                                 <figcaption class="ratings">
                                     <p>Ratings</p>
                                     
@@ -24,21 +25,21 @@
                     <div class="col-sm-12 col-xs-12">
                         <section class="col-xs-12 col-sm-12 divider about-section">
                             <strong><p>About</p></strong>
-                            <p>dbchdcbhdcbhbx xbxc c bc bccjchcctcvcgcgbx ccbx cvbxcxcxhcbxhcbx hcbxhcbxhcbxcbxcb xhcbx hbc hxb hcbxhbcxcbxcbxhbcxh cxcxcbxcx cbxcbxcbxcb cbxhcbxhcbxhcbxhcbxhcbxhcbxhcbx cb xb cbxcbxcbx cbxcbx bcbxcbxcbxbcxcbx cbxcbxbcbxbccbxbcxbcxbcxbcxb</p>
+                            <p>{{checkAbout user._id}}</p>
                         </section>
                     </div>
                     <div class="col-xs-12 divider text-center action-buttons-section">
-                        <div class="col-xs-12 col-sm-4 emphasis">
+                       <!--  <div class="col-xs-12 col-sm-4 emphasis">
                             <h2><strong> 50 </strong></h2>                    
                             <p><small>Points</small></p>
-                        </div>
+                        </div> -->
                         <div class="col-xs-12 col-sm-4 emphasis">
-                            <h2><strong>5</strong></h2>                    
-                            <p><small>Reviews</small></p>
-                            <button class="btn btn-info btn-block hidden-xs"><span class="fa fa-comments"></span> View Reviews </button>
-                            <button class="btn btn-info btn-block btn-sm visible-xs"><span class="fa fa-comments"></span> View Reviews </button>
+                            <h2><strong>{{reviewCount}}</strong></h2>                    
+                            <p><small>{{reviewCountString reviewCount}}</small></p>
+                            <button class="btn btn-info btn-block hidden-xs show-reviews"><span class="fa fa-comments"></span> View Reviews </button>
+                            <button class="btn btn-info btn-block btn-sm visible-xs show-reviews"><span class="fa fa-comments"></span> View Reviews </button>
                         </div>
-                        <div class="col-xs-12 col-sm-4 emphasis">
+                      <!--   <div class="col-xs-12 col-sm-4 emphasis">
                             <h2><strong>200</strong></h2>                    
                             <p><small>Connections</small></p>
                             <div class="btn-group dropup btn-block">
@@ -52,12 +53,45 @@
                                 <li><a href="#"><span class="fa fa-envelope pull-right"></span> Send a message</a></li>
                               </ul>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="container second-container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+                 <a href="#" id="hide-reviews">Hide Reviews</a>
+                <div class="well" id="reviews-well">
+                    {{#autoForm collection="Reviews" id="addReviewForm" }}
+                        {{> afQuickField name='text' rows=3 placeholder="Add a review" label=false}}
+                    <div class="call-out">
+                        <input type="submit" value="Add my review" class="btn btn-info btn-review">
+                    </div>
+                    {{/autoForm}}
+
+                    <div class="ui list">
+                    <p class="getter" data-user-id="{{user._id}}"></p>
+                    {{#each reviews}}
+                      <div class="item">
+                            <img class="ui avatar image" src="{{reviewerPicture reviewer}}">
+                            <div class="content">
+                              <a class="header">{{fullUserName reviewer}}</a>
+                              <div class="description">{{text}}
+                              </div>
+                              <div class="fnt-smaller fnt-lighter fnt-arial span-detail">
+                                  Review posted {{ tm_now createdAt}}
+                              </div>
+                            </div>
+                      </div>
+                     {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{> messageModal}}
 </template>
 
 <template name="rating">

@@ -8,19 +8,44 @@ AutoForm.hooks({
 });
 
 AutoForm.hooks({
-  profileForm: {
-    onSubmit: function (insertDoc, updateDoc, currentDoc) {
-            Meteor.call('updateUserProfile', insertDoc, function (error, result) {
-              if (error) {
-                this.done();
-              }
-              else {
-                Router.go("welcome-page");
-              }
-            });
-       return false;  
+  addReviewForm: {
+    formToDoc: function(doc, ss, formId) {
+
+      var reviewee = $("p.getter").attr("data-user-id");
+      console.log(reviewee);
+      var reviewer = Meteor.userId();
+      doc.reviewee = reviewee;
+      doc.reviewer = reviewer;
+      return doc;
+    },
+    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+             Meteor.call('insertReview', insertDoc, function (error, result) {
+                if (error) {
+                  this.done();
+                }
+                else {
+                  console.log("review successfuly added")
+                }
+              });
+         return false; 
+    }
   }
-}
+})
+
+AutoForm.hooks({
+    profileForm: {
+      onSubmit: function (insertDoc, updateDoc, currentDoc) {
+              Meteor.call('updateUserProfile', insertDoc, function (error, result) {
+                if (error) {
+                  this.done();
+                }
+                else {
+                  Router.go("welcome-page");
+                }
+              });
+         return false;  
+    }
+  }
 });
 
 AutoForm.hooks({

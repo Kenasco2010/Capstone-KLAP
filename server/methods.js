@@ -1,7 +1,7 @@
 Meteor.methods({
   updateUserProfile: function(doc) {
     // Important server-side check for security and data integrity
-    check(doc, Schema.updateProfile);
+    check(doc, Schemas.updateProfile);
     var dob = doc.day +  " " + doc.month + " " + doc.year;
     var date_of_birth = dob.replace(/\s/g,"-");
 
@@ -43,6 +43,10 @@ Meteor.methods({
   },
   removeItems: function() {
     return Items.remove({});
+  },
+  insertReview: function(doc) {
+    Reviews.insert(doc, function(err, id){
+    });
   }
 
 });
