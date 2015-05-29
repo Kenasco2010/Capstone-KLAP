@@ -12,7 +12,6 @@ AutoForm.hooks({
     formToDoc: function(doc, ss, formId) {
 
       var reviewee = $("p.getter").attr("data-user-id");
-      console.log(reviewee);
       var reviewer = Meteor.userId();
       doc.reviewee = reviewee;
       doc.reviewer = reviewer;
@@ -22,13 +21,39 @@ AutoForm.hooks({
              Meteor.call('insertReview', insertDoc, function (error, result) {
                 if (error) {
                   this.done();
-                }
-                else {
-                  console.log("review successfuly added")
-                }
+                };
               });
          return false; 
+    },
+    onSuccess: function(formType, result) {
+           $('.ui.send-message.modal').modal('hide');
+            swal("Thanks! review successfuly posted");
     }
+  }
+})
+
+AutoForm.hooks({
+  sendMessageForm: {
+        formToDoc: function(doc, ss, formId) {
+
+          var  sent_to= $("p.getter").attr("data-user-id");
+          var sent_from = Meteor.userId();
+          doc.sent_to = sent_to;
+          doc.sent_from = sent_from;
+          return doc;
+        },
+        onSubmit: function (insertDoc, updateDoc, currentDoc) {
+                Meteor.call('sendMessage', insertDoc, function (error, result) {
+                  if (error) {
+                    this.done();
+                  };
+                });
+           return false;  
+      },
+      onSuccess: function(formType, result) {
+         $('.ui.send-message.modal').modal('hide');
+          swal("Thanks! your message has been sent");
+      }
   }
 })
 
@@ -68,7 +93,6 @@ AutoForm.hooks({
             this.done();
           }
           else {
-            $("#buzzModal").modal("hide");
             swal("Thanks! your item has been successfuly posted");
           }
         });
@@ -96,7 +120,6 @@ AutoForm.hooks({
               console.log(error);
             }
             else {
-              $("#buzzModal").modal("hide");
               swal("Thanks! your trip has been successfuly posted");
             }
           });

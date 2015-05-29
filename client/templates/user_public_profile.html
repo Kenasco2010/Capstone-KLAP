@@ -12,11 +12,16 @@
                         </div> 
                         <div class="col-xs-12 col-sm-6 text-center">
                             <figure>
-                                <img src="{{user.profile.picture}}" alt="user-image" class="img-circle img-responsive">
+                                {{#if hasPicture user._id}}
+                                    <img src="{{user.profile.picture}}" alt="user-image" class="img-circle img-responsive">
+                                {{else}}
+                                    <img src="/default-avatar.png" alt="user-image" class="img-circle img-responsive">
+                                {{/if}}
                                 <figcaption class="ratings">
                                     <p>Ratings</p>
                                     
-                                        {{> rating}}
+                                        <!-- {{> rating}} -->
+                                    <div class="ui rating" id="{{user._id}}" data-rating="{{user.profile.rating}}" data-max-rating="5"></div>
                                     
                                 </figcaption>
                             </figure>
@@ -36,8 +41,13 @@
                         <div class="col-xs-12 col-sm-4 emphasis">
                             <h2><strong>{{reviewCount}}</strong></h2>                    
                             <p><small>{{reviewCountString reviewCount}}</small></p>
+                        {{#if noReviews reviewCount}}
+                            <button class="btn btn-info btn-block hidden-xs show-reviews"><span class="fa fa-comments"></span> Add a review </button>
+                            <button class="btn btn-info btn-block btn-sm visible-xs show-reviews"><span class="fa fa-comments"></span>  Add a review</button>
+                        {{else}}
                             <button class="btn btn-info btn-block hidden-xs show-reviews"><span class="fa fa-comments"></span> View Reviews </button>
                             <button class="btn btn-info btn-block btn-sm visible-xs show-reviews"><span class="fa fa-comments"></span> View Reviews </button>
+                        {{/if}}
                         </div>
                       <!--   <div class="col-xs-12 col-sm-4 emphasis">
                             <h2><strong>200</strong></h2>                    

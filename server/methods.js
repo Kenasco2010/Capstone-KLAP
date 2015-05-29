@@ -24,12 +24,15 @@ Meteor.methods({
   updateRatings: function(userId, value){
 
         var user = Meteor.users.findOne(userId);
+        var rating_times = user.profile.rating_times;
+        var accumulated_ratings = user.profile.accumulated_ratings;
+        var actual_rating = accumulated_ratings/rating_times;
+        var rating_whole_number = Math.round(actual_rating);
         console.log(user);
-        
         Meteor.users.update({_id: userId},
         {
-                    $inc: {"profile.rating": value, 
-                    "profile.rating_times": 1, 
+                    $set: {"profile.rating": rating_whole_number}, 
+                    $inc: {"profile.rating_times": 1, 
                     "profile.accumulated_ratings": value}
         })
   },
@@ -46,6 +49,10 @@ Meteor.methods({
   },
   insertReview: function(doc) {
     Reviews.insert(doc, function(err, id){
+    });
+  },
+  sendMessage: function() {
+    Messages.insert(doc, function(err, id){
     });
   }
 

@@ -11,7 +11,13 @@ Template.registerHelper("rating", function(user){
     return rating;
 })
 
-
+Template.registerHelper("hasPicture", function(id){
+    var user = Meteor.users.findOne(id);
+    var pictureUrl = user.profile.picture;
+    if (typeof(pictureUrl) != "undefined") {
+        return true;
+    };
+})
 
 Template.searchForm.helpers({
     searchFormSchema: function () {
@@ -64,11 +70,25 @@ Template.registerHelper("tripOwnerId", function(){
 Template.registerHelper("trip_owner", function(tripId){
         var trip = Travels.findOne(tripId);
         var ownerId = trip.owner;
-        var owner = Meteor.users.findOne(ownerId);
-        var first_name = owner.profile.first_name;
-        var last_name = owner.profile.last_name;
-        var full_name = first_name + " " + last_name;
-        return full_name;
+        if (Meteor.userId() == ownerId) {
+            return "You"
+        }
+        else {
+            var owner = Meteor.users.findOne(ownerId);
+            var first_name = owner.profile.first_name;
+            var last_name = owner.profile.last_name;
+            var full_name = first_name + " " + last_name;
+            return full_name;
+        }
+})
+
+Template.registerHelper("noReviews", function(count){
+    if (count == 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
 })
 
 Template.registerHelper("ownerPicture", function(tripId){

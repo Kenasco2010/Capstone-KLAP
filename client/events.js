@@ -7,12 +7,12 @@ Template.navigation.events({
 });
 
 
-Template.rating.rendered = function () {
+Template.userPublicProfile.rendered = function () {
     $this = this;
     ratings = $this.ratings.get();
     userId = $this.userId.get();
     $('.ui.rating').rating('setting', 'onRate', function(value) {
-          Session.set("review-value", value);
+          // Session.set("review-value", value);
           $this.ratings.set(value);
           $this.userId.set(this.id);
       });
@@ -38,7 +38,7 @@ Template.userPublicProfile.events({
 });
 
 
-Template.rating.created = function () {
+Template.userPublicProfile.created = function () {
     var instance = this;
     // initialize the reactive variable
      instance.ratings = new ReactiveVar(0);
