@@ -1,3 +1,19 @@
+Router.onBeforeAction(function(pause) {
+  if (!Meteor.userId()) {
+    // pause();
+    // alert(
+    //   "you need to be logged-in to view this page. Thank You"
+    //   )
+Router.go('notSignIn');
+} else {
+  this.next();
+}
+}, {
+  except: ['home', 'signin', 'signup', 'signout','notSignIn']
+});
+
+
+
 AutoForm.hooks({
 	insertEmailForm: {
 		onSuccess: function(formType, result) {
@@ -18,57 +34,57 @@ AutoForm.hooks({
       return doc;
     },
     onSubmit: function(insertDoc, updateDoc, currentDoc) {
-             Meteor.call('insertReview', insertDoc, function (error, result) {
-                if (error) {
-                  this.done();
-                };
-              });
-         return false; 
-    },
-    onSuccess: function(formType, result) {
-           $('.ui.send-message.modal').modal('hide');
-            swal("Thanks! review successfuly posted");
-    }
-  }
+     Meteor.call('insertReview', insertDoc, function (error, result) {
+      if (error) {
+        this.done();
+      };
+    });
+     return false; 
+   },
+   onSuccess: function(formType, result) {
+     $('.ui.send-message.modal').modal('hide');
+     swal("Thanks! review successfuly posted");
+   }
+ }
 })
 
 AutoForm.hooks({
   sendMessageForm: {
-        formToDoc: function(doc, ss, formId) {
+    formToDoc: function(doc, ss, formId) {
 
-          var  sent_to= $("p.getter").attr("data-user-id");
-          var sent_from = Meteor.userId();
-          doc.sent_to = sent_to;
-          doc.sent_from = sent_from;
-          return doc;
-        },
-        onSubmit: function (insertDoc, updateDoc, currentDoc) {
-                Meteor.call('sendMessage', insertDoc, function (error, result) {
-                  if (error) {
-                    this.done();
-                  };
-                });
-           return false;  
-      },
-      onSuccess: function(formType, result) {
-         $('.ui.send-message.modal').modal('hide');
-          swal("Thanks! your message has been sent");
-      }
-  }
+      var  sent_to= $("p.getter").attr("data-user-id");
+      var sent_from = Meteor.userId();
+      doc.sent_to = sent_to;
+      doc.sent_from = sent_from;
+      return doc;
+    },
+    onSubmit: function (insertDoc, updateDoc, currentDoc) {
+      Meteor.call('sendMessage', insertDoc, function (error, result) {
+        if (error) {
+          this.done();
+        };
+      });
+      return false;  
+    },
+    onSuccess: function(formType, result) {
+     $('.ui.send-message.modal').modal('hide');
+     swal("Thanks! your message has been sent");
+   }
+ }
 })
 
 AutoForm.hooks({
-    profileForm: {
-      onSubmit: function (insertDoc, updateDoc, currentDoc) {
-              Meteor.call('updateUserProfile', insertDoc, function (error, result) {
-                if (error) {
-                  this.done();
-                }
-                else {
-                  Router.go("welcome-page");
-                }
-              });
-         return false;  
+  profileForm: {
+    onSubmit: function (insertDoc, updateDoc, currentDoc) {
+      Meteor.call('updateUserProfile', insertDoc, function (error, result) {
+        if (error) {
+          this.done();
+        }
+        else {
+          Router.go("welcome-page");
+        }
+      });
+      return false;  
     }
   }
 });
@@ -97,7 +113,7 @@ AutoForm.hooks({
          $(".progress").remove();
          return false;  
     }
-  }
+}
 })
 
 AutoForm.hooks({
@@ -136,12 +152,13 @@ AutoForm.hooks({
             else {
               swal("Thanks! your trip has been successfuly posted");
             }
-          });
+
+        });
            this.done();
            this.resetForm();
            return false;  
-      }
-    }
+  }
+}
 })
 
 AutoForm.hooks({

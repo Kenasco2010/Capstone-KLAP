@@ -142,6 +142,7 @@ Template.editItemForm.rendered = function () {
 
 Template.listings.rendered = function () {
   $('.menu .item').tab();
+  new WOW().init()
 };
 
 Template.myProfile.rendered = function () {

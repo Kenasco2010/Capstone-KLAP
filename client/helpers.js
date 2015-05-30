@@ -46,6 +46,10 @@ Template.registerHelper("item_owner", function(itemId){
             if (typeof(owner) == "undefined") {
                 return "user"
             }
+            else if (Meteor.userId() == ownerId) {
+                return "You"
+            }
+            
             else {
                 var first_name = owner.profile.first_name;
                 var last_name = owner.profile.last_name;
