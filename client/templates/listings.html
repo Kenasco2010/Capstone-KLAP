@@ -1,9 +1,9 @@
 <template name="listings">
-        <div class="container-fluid">
-            <div class="row">
-              <div class="col-sm-12 top-bar">
-                <section class="my-top-bar">
-                  <div class="full-width">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 top-bar">
+        <section class="my-top-bar">
+          <div class="full-width">
                    <!--  <ul>
                       <li>
                         <a href="{{pathFor 'user_profile' _id=currentUser._id}}"><span class="fa fa-user fa-2x"></span> MY PROFILE </a>
@@ -17,237 +17,237 @@
                         Post a trip
                       </a>
                     </center>
-                   
+
                     <!-- {{> searchForm}} -->
                   </div>
                 </section>
               </div>
             </div>
+          </div>
+          <div class="ui top attached tabular menu">
+            <a class="active item" data-tab="first">Upcoming Items</a>
+            <a class="item" data-tab="second">Upcoming Trips</a>
+          </div>
+          <div class="ui bottom attached active tab segment" data-tab="first">
+            <div class="container-fluid" style="background-color:#e8e8e8">
+              <div class="container container-pad wow fadeInUp" id="property-listings">
+                <div class="row">
+                  <div class="col-sm-6"> 
+                    {{#each oddItems}}
+                    <!-- Begin Listing -->
+                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                      <div class="media">
+                        <a class="pull-left" href="#" target="_parent">
+                          <img alt="image" class="img-responsive" 
+                          src="{{absoluteImageUrl}}"></a>
+
+                          <div class="clearfix visible-sm"></div>
+
+                          <div class="media-body fnt-smaller">
+                            <a href="#" target="_parent"></a>
+
+                            <h4 class="media-heading">
+                              <a href="#" target="_parent">
+                                {{title}} 
+                              </a>
+                              <a href="{{pathFor 'user_profile' _id=itemOwnerId}}">
+                                <small class="pull-right">
+                                  by {{item_owner _id}}
+                                </small>
+                              </a>
+                            </h4>
+
+
+                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                              <li>weight: {{weight}}kg</li>
+
+                              <li style="list-style: none">|</li>
+
+                              <li>${{reward}} reward</li>
+
+                            </ul>
+
+                            <p class="hidden-xs">{{description}}
+                            </p>
+                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                              <li class="fnt-arial fnt-lighter">
+                                From {{origin_country}} to {{destination_country}}
+                              </li>
+                            </ul>
+                            <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                             <li class="fnt-arial fnt-lighter">
+                              Send Date: {{date_ft send_date}}
+                            </li>
+                          </ul>
+                          <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                           <li class="fnt-arial fnt-lighter">
+                            Delivery Date: {{date_ft delivery_date}}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div><!-- End Listing-->
+                  {{/each}}
+                </div>
+
+                <div class="col-sm-6">  
+                  {{#each evenItems}}
+                  <!-- Begin Listing -->
+                  <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                    <div class="media">
+                      <a class="pull-left" href="#" target="_parent">
+                        <img alt="image" class="img-responsive" 
+                        src="{{absoluteImageUrl}}"></a>
+                        <div class="clearfix visible-sm"></div>
+
+                        <div class="media-body fnt-smaller">
+                          <a href="#" target="_parent"></a>
+
+                          <h4 class="media-heading">
+                            <a href="#" target="_parent">
+                              {{title}} 
+                            </a>
+                            <a href="{{pathFor 'user_profile' _id=itemOwnerId}}">
+                              <small class="pull-right">
+                                by {{item_owner _id}}
+                              </small>
+                            </a>
+                          </h4>
+
+
+                          <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                            <li>weight: {{weight}}kg</li>
+
+                            <li style="list-style: none">|</li>
+
+                            <li>${{reward}} reward</li>
+                          </ul>
+
+                          <p class="hidden-xs">{{description}}
+                          </p>
+                          <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                            <li class="fnt-arial fnt-lighter">
+                              From {{origin_country}} to {{destination_country}}
+                            </li>
+                          </ul>
+                          <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                           <li class="fnt-arial fnt-lighter">
+                            Send Date: {{date_ft send_date}}
+                          </li>
+                        </ul>
+                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                         <li class="fnt-arial fnt-lighter">
+                          Delivery Date: {{date_ft delivery_date}}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div><!-- End Listing-->
+                {{/each}}
+
+              </div><!-- End Col -->
+            </div><!-- End row -->
+          </div><!-- End container -->
         </div>
-            <div class="ui top attached tabular menu">
-                <a class="active item" data-tab="first">Upcoming Items</a>
-                <a class="item" data-tab="second">Upcoming Trips</a>
+
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="second">
+        <div class="container-fluid" style="background-color:#e8e8e8">
+          <div class="container container-pad" id="property-listings">
+            <div class="row">
+              <div class="col-sm-6"> 
+                {{#each oddTrips}}
+                <!-- Begin Listing -->
+                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                  <div class="media">
+                    <a class="pull-left" href="#" target="_parent">
+                      {{#if hasPicture _id}}
+                      <img alt="image" class="img-responsive" 
+                      src="{{ownerPicture _id}}">
+                      {{else}}
+                      <img alt="image" class="img-responsive" 
+                      src="/default-avatar.png">
+                      {{/if}}
+                    </a>
+
+                    <div class="clearfix visible-sm"></div>
+
+                    <div class="media-body fnt-smaller">
+                      <a href="#" target="_parent"></a>
+
+                      <h4 class="media-heading">
+                        <a href="#" target="_parent">
+                          {{origin_country}} to {{destination_country}}
+                        </a>
+                        <a href="{{pathFor 'user_profile' _id=tripOwnerId}}">
+                          <small class="pull-right">
+                            by {{trip_owner _id}}
+                          </small>
+                        </a>
+
+                      </h4>
+
+
+                      <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                        <li>Available space: {{weight}}kg</li>
+
+                        <li style="list-style: none">|</li>
+
+                        <li> Travelling on: {{date_ft travel_date }}</li>
+                      </ul>
+
+                      <p class="hidden-xs"> {{general_thoughts}}
+                      </p>
+                    </div>
+                  </div>
+                </div><!-- End Listing-->
+                {{/each}}
               </div>
-            <div class="ui bottom attached active tab segment" data-tab="first">
-                <div class="container-fluid" style="background-color:#e8e8e8">
-                        <div class="container container-pad" id="property-listings">
-                            <div class="row">
-                                <div class="col-sm-6"> 
-                                  {{#each oddItems}}
-                                    <!-- Begin Listing -->
-                                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                                        <div class="media">
-                                            <a class="pull-left" href="#" target="_parent">
-                                            <img alt="image" class="img-responsive" 
-                                            src="{{absoluteImageUrl}}"></a>
 
-                                            <div class="clearfix visible-sm"></div>
+              <div class="col-sm-6">  
+                {{#each evenTrips}}
+                <!-- Begin Listing -->
+                <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                  <div class="media">
+                    <a class="pull-left" href="#" target="_parent">
+                      <img alt="image" class="img-responsive" 
+                      src="{{ownerPicture _id}}"></a>
+                      <div class="clearfix visible-sm"></div>
 
-                                            <div class="media-body fnt-smaller">
-                                                <a href="#" target="_parent"></a>
+                      <div class="media-body fnt-smaller">
+                        <a href="#" target="_parent"></a>
 
-                                                <h4 class="media-heading">
-                                                  <a href="#" target="_parent">
-                                                    {{title}} 
-                                                  </a>
-                                                  <a href="{{pathFor 'user_profile' _id=itemOwnerId}}">
-                                                    <small class="pull-right">
-                                                      by {{item_owner _id}}
-                                                    </small>
-                                                  </a>
-                                                </h4>
+                        <h4 class="media-heading">
+                         <a href="#" target="_parent">
+                           {{origin_country}} to {{destination_country}}
+                         </a>
+                         <a href="{{pathFor 'user_profile' _id=tripOwnerId}}">
+                           <small class="pull-right">
+                             by {{trip_owner _id}}
+                           </small>
+                         </a>
+
+                       </h4>
 
 
-                                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                                    <li>weight: {{weight}}kg</li>
+                       <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                        <li>Available space: {{weight}}kg</li>
 
-                                                    <li style="list-style: none">|</li>
+                        <li style="list-style: none">|</li>
 
-                                                    <li>${{reward}} reward</li>
+                        <li> Travelling on: {{date_ft travel_date }}</li>
+                      </ul>
 
-                                                </ul>
-
-                                                <p class="hidden-xs">{{description}}
-                                                </p>
-                                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                                    <li class="fnt-arial fnt-lighter">
-                                                      From {{origin_country}} to {{destination_country}}
-                                                    </li>
-                                                </ul>
-                                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                                   <li class="fnt-arial fnt-lighter">
-                                                        Send Date: {{date_ft send_date}}
-                                                    </li>
-                                                </ul>
-                                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                                     <li class="fnt-arial fnt-lighter">
-                                                        Delivery Date: {{date_ft delivery_date}}
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div><!-- End Listing-->
-                                    {{/each}}
-                                </div>
-
-                                <div class="col-sm-6">  
-                                    {{#each evenItems}}
-                                      <!-- Begin Listing -->
-                                      <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                                          <div class="media">
-                                              <a class="pull-left" href="#" target="_parent">
-                                              <img alt="image" class="img-responsive" 
-                                              src="{{absoluteImageUrl}}"></a>
-                                              <div class="clearfix visible-sm"></div>
-
-                                              <div class="media-body fnt-smaller">
-                                                  <a href="#" target="_parent"></a>
-
-                                                  <h4 class="media-heading">
-                                                    <a href="#" target="_parent">
-                                                      {{title}} 
-                                                    </a>
-                                                    <a href="{{pathFor 'user_profile' _id=itemOwnerId}}">
-                                                      <small class="pull-right">
-                                                        by {{item_owner _id}}
-                                                      </small>
-                                                    </a>
-                                                  </h4>
-
-
-                                                  <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                                      <li>weight: {{weight}}kg</li>
-
-                                                      <li style="list-style: none">|</li>
-
-                                                      <li>${{reward}} reward</li>
-                                                  </ul>
-
-                                                  <p class="hidden-xs">{{description}}
-                                                  </p>
-                                                  <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                                      <li class="fnt-arial fnt-lighter">
-                                                        From {{origin_country}} to {{destination_country}}
-                                                      </li>
-                                                  </ul>
-                                                  <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                                     <li class="fnt-arial fnt-lighter">
-                                                          Send Date: {{date_ft send_date}}
-                                                      </li>
-                                                  </ul>
-                                                  <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                                       <li class="fnt-arial fnt-lighter">
-                                                          Delivery Date: {{date_ft delivery_date}}
-                                                      </li>
-                                                  </ul>
-                                              </div>
-                                          </div>
-                                      </div><!-- End Listing-->
-                                      {{/each}}
-                                  
-                                </div><!-- End Col -->
-                            </div><!-- End row -->
-                        </div><!-- End container -->
+                      <p class="hidden-xs"> {{general_thoughts}}
+                      </p>
                     </div>
-                
-            </div>
-            <div class="ui bottom attached tab segment" data-tab="second">
-                <div class="container-fluid" style="background-color:#e8e8e8">
-                        <div class="container container-pad" id="property-listings">
-                            <div class="row">
-                                <div class="col-sm-6"> 
-                                  {{#each oddTrips}}
-                                    <!-- Begin Listing -->
-                                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                                        <div class="media">
-                                            <a class="pull-left" href="#" target="_parent">
-                                            {{#if hasPicture _id}}
-                                              <img alt="image" class="img-responsive" 
-                                              src="{{ownerPicture _id}}">
-                                            {{else}}
-                                              <img alt="image" class="img-responsive" 
-                                              src="/default-avatar.png">
-                                            {{/if}}
-                                            </a>
+                  </div>
+                </div><!-- End Listing-->
+                {{/each}}
 
-                                            <div class="clearfix visible-sm"></div>
-
-                                            <div class="media-body fnt-smaller">
-                                                <a href="#" target="_parent"></a>
-
-                                                <h4 class="media-heading">
-                                                  <a href="#" target="_parent">
-                                                    {{origin_country}} to {{destination_country}}
-                                                  </a>
-                                                  <a href="{{pathFor 'user_profile' _id=tripOwnerId}}">
-                                                    <small class="pull-right">
-                                                      by {{trip_owner _id}}
-                                                    </small>
-                                                  </a>
-                                                   
-                                                </h4>
-
-
-                                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                                    <li>Available space: {{weight}}kg</li>
-                                                   
-                                                    <li style="list-style: none">|</li>
-
-                                                    <li> Travelling on: {{date_ft travel_date }}</li>
-                                                </ul>
-
-                                                <p class="hidden-xs"> {{general_thoughts}}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div><!-- End Listing-->
-                                    {{/each}}
-                                </div>
-
-                                <div class="col-sm-6">  
-                                    {{#each evenTrips}}
-                                      <!-- Begin Listing -->
-                                      <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                                          <div class="media">
-                                              <a class="pull-left" href="#" target="_parent">
-                                              <img alt="image" class="img-responsive" 
-                                              src="{{ownerPicture _id}}"></a>
-                                              <div class="clearfix visible-sm"></div>
-
-                                              <div class="media-body fnt-smaller">
-                                                  <a href="#" target="_parent"></a>
-
-                                                 <h4 class="media-heading">
-                                                   <a href="#" target="_parent">
-                                                     {{origin_country}} to {{destination_country}}
-                                                   </a>
-                                                   <a href="{{pathFor 'user_profile' _id=tripOwnerId}}">
-                                                     <small class="pull-right">
-                                                       by {{trip_owner _id}}
-                                                     </small>
-                                                   </a>
-                                                    
-                                                 </h4>
-
-
-                                                  <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                                      <li>Available space: {{weight}}kg</li>
-                                                      
-                                                      <li style="list-style: none">|</li>
-
-                                                      <li> Travelling on: {{date_ft travel_date }}</li>
-                                                  </ul>
-
-                                                  <p class="hidden-xs"> {{general_thoughts}}
-                                                  </p>
-                                              </div>
-                                          </div>
-                                      </div><!-- End Listing-->
-                                      {{/each}}
-                                  
-                                </div><!-- End Col -->
-                            </div><!-- End row -->
-                        </div><!-- End container -->
-                    </div>
-            </div>
-</template>
+              </div><!-- End Col -->
+            </div><!-- End row -->
+          </div><!-- End container -->
+        </div>
+      </div>
+    </template>
