@@ -1,0 +1,50 @@
+<template name="editTrip">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-12 top-bar">
+            <section class="my-top-bar">
+              <div class="full-width">
+                <center>
+                  <a href="{{pathFor 'listings'}}" class="ui button">
+                    View Listings
+                  </a>
+                  <a href="{{pathFor 'senderPostForm'}}" class="ui button">
+                    Send a package
+                  </a>
+                  <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
+                    Post a trip
+                  </a>
+                </center>
+              </div>
+            </section>
+          </div>
+        </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9">
+          {{> editTripForm}}
+        </div>         
+        <div class="col-sm-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                Guide lines
+              </h3>
+            </div>
+            <div class="panel-body">
+              <ul>
+                <li>All fields are required</li>
+                <li>Information must be explicit</li>
+                <li>Information must be clear</li>
+                <li>Item must be Genuine</li>
+                <li>Included authored jQuery plugin</li>
+                <li>Optional bottom label positioning with the <code>.label-bottom</code> utility</li>
+                <li>Works great with Chrome's AutoComplete</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>

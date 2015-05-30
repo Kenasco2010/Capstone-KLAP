@@ -6,6 +6,63 @@ Template.navigation.events({
 }
 });
 
+Template.myProfile.events({
+  "click [data-action='delete-item']": function (e, t) {
+      var ItemId = e.currentTarget.getAttribute('data-id');
+      var item = Items.findOne(ItemId);
+      sweetAlert({
+      title: "Are you sure?",
+      text: "You will not be able to recover this post!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes, delete it!",
+      closeOnConfirm: false,
+      html: false
+    }, function(){
+      Meteor.call('removeItem', ItemId, function (error, result) {
+        if (error) {}
+        else {
+          S3.delete(
+              item.relativeImageUrl,
+          function(error, success) {
+              if (error) {
+                  console.log(error);
+              };
+          });
+        }
+      });
+      swal("Deleted!",
+      "this post has been deleted.",
+      "success");
+    });
+
+    
+  },
+  "click [data-action='delete-trip']": function(e,t){
+      var tripId = e.currentTarget.getAttribute('data-id');
+      var trip = Travels.findOne(tripId);
+      sweetAlert({
+      title: "Are you sure?",
+      text: "You will not be able to recover this post!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes, delete it!",
+      closeOnConfirm: false,
+      html: false
+    }, function(){
+      Meteor.call('removeTrip', tripId, function (error, result) {
+        if (error) {}
+        else {
+        }
+      });
+      swal("Deleted!",
+      "this post has been deleted.",
+      "success");
+    });
+  }
+});
 
 Template.userPublicProfile.rendered = function () {
     $this = this;
@@ -71,7 +128,15 @@ Template.postTravel.rendered = function () {
   $(".date-picker").pickadate();
 };
 
+Template.editTripForm.rendered = function () {
+  $(".date-picker").pickadate();
+};
+
 Template.searchForm.rendered = function () {
+  $(".date-picker").pickadate();
+};
+
+Template.editItemForm.rendered = function () {
   $(".date-picker").pickadate();
 };
 
@@ -79,13 +144,32 @@ Template.listings.rendered = function () {
   $('.menu .item').tab();
 };
 
+Template.myProfile.rendered = function () {
+  $('.menu .item').tab();
+};
+
 Template.navigation.rendered = function () {
-  // ...
+  $('.ui.dropdown')
+    .dropdown()
+  ;
 };
 
-Template.createProfile.rendered = function () {
+Template.messageView.rendered = function () {
+  $('.menu .item').tab();
+};
 
+Template.messagesHome.rendered = function () {
+  $('.menu .item').tab();
 };
 
 
+Template.postItem.events({
+  'submit #postItemForm': function () {
+     if($("input.file_bag").val() == ''){
+        // your error validation action
+        $("div#attach-pic").addClass('has-error');
+        Session.set("has-error", true);
+    }
+  }
+});
 

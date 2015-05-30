@@ -497,7 +497,10 @@ body {
 }   
 
 .form-blocks {
-	margin-bottom: 0px;
+	margin-bottom: 5px;
+}
+.form-blocks .input-group {
+	margin-top: 15px;
 }
 
 #welcome-area {
@@ -992,4 +995,83 @@ a#hide-reviews {
 
 .sweet-alert h2  {
 	font-size: 22px;
+}
+
+.user-pic-small {
+ margin-bottom: 5px;
+ border-radius: 3px;
+ border: 0;
+}
+
+#view-profile {
+	margin-right: 200px;
+	margin-left: 5px;
+}
+
+.ui.horizontal.list div.item.send-post-btns {
+	  margin-left: 350px;
+}
+
+.dropdown-menu {
+	left: 124px;
+	width: 50%;
+}
+
+.dropdown-menu > li > a:hover {
+	background-color: transparent;
+}
+
+.pull-right.delete {
+	color: #990000;
+}
+.block-label {
+	margin-top: 15px;
+}
+
+.selectize-input, .form-group .form-control {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.public-avatar {
+	width: 130px;
+	height: 130px;
+}
+
+.navbar-pic {
+	width: 40px;
+	height: 40px;
+}
+.badge {
+	background-color: #023A61;
+}
+
+/*===================================== inbox ===========================================*/
+
+.nav-tabs .glyphicon:not(.no-margin) { margin-right:10px; }
+.tab-pane .list-group-item:first-child {border-top-right-radius: 0px;border-top-left-radius: 0px;}
+.tab-pane .list-group-item:last-child {border-bottom-right-radius: 0px;border-bottom-left-radius: 0px;}
+.tab-pane .list-group .checkbox { display: inline-block;margin: 0px; }
+.tab-pane .list-group input[type="checkbox"]{ margin-top: 2px; }
+.tab-pane .list-group .glyphicon { margin-right:5px; }
+.tab-pane .list-group .glyphicon:hover { color:#FFBC00; }
+a.list-group-item.read { color: #222;background-color: #F3F3F3; }
+hr { margin-top: 5px;margin-bottom: 10px; }
+.nav-pills>li>a {padding: 5px 10px;}
+
+.ad { padding: 5px;background: #F5F5F5;color: #222;font-size: 80%;border: 1px solid #E5E5E5; }
+.ad a.title {color: #15C;text-decoration: none;font-weight: bold;font-size: 110%;}
+.ad a.url {color: #093;text-decoration: none;}
+
+/*======================================= inbox end ==============================================*/
+
+.tab-content .name {
+	min-width: 120px; 
+    display: inline-block;
+}
+
+.tab-content .text-muted {
+	font-size: 13px;
 }

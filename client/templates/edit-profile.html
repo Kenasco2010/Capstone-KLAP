@@ -1,8 +1,8 @@
-<template name="createProfile">
+<template name="editProfile">
        <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-2 col-xs-12">
-                {{#autoForm schema=profileFormSchema id="profileForm"}}
+                {{#autoForm collection="Meteor.users" id="editProfileForm" doc=user}}
                 <center><h2 class="form-title">Create your profile</h2></center>
                 <fieldset>
                   <div class="form-blocks top-form-block">
@@ -37,7 +37,7 @@
                       </div>
                   </div>
                                   
-                  <div class="col-sm-6 col-sm-offset-3 submit-block">
+                  <div class="col-md-6 col-md-offset-3 submit-block">
                     <center>
                       <input type="submit" value="Create my Profile" class="btn btn-info btn-block">
                     </center>

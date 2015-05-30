@@ -35,3 +35,6 @@ cwohlman:pickadate
 ogamedia:timer
 aldeed:autoform
 aldeed:simple-schema
+aldeed:autoform-bs-datepicker
+rajit:bootstrap3-datepicker
+utilities:avatar

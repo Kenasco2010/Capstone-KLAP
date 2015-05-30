@@ -1,4 +1,4 @@
-Template.postItem.events({
+Template.editItemForm.events({
     "change .file_bag": function(event, template){
         var files = $("input.file_bag")[0].files
                 S3.upload({
@@ -32,6 +32,7 @@ Template.postItem.events({
                 $("#imageThumbnail img").attr("src", "");
                    $('.img-thumbnail').hide();
                    $("[data-action='remove-image']").hide();
+                 // $( "#progressbar" ).progressbar( "destroy" );
                    $(".progress").remove();
             }
         });
@@ -40,7 +41,7 @@ Template.postItem.events({
 })
 
 
-Template.postItem.helpers({
+Template.editItemForm.helpers({
     "files": function(){
         if (Session.get('fileExists')) {
           return S3.collection.find();
@@ -57,10 +58,3 @@ Template.postItem.helpers({
         };
     }
 })
-
-reset_form_element = function(e) {
-    e.wrap('<form>').parent('form').trigger('reset');
-    e.unwrap();
-}
-
-  

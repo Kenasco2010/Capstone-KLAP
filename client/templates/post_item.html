@@ -1,97 +1,29 @@
 <template name="postItem">
-
-
-  {{#autoForm collection="Items" id="postItemForm"}}
-  <fieldset>
-    {{#each files}}
-    <div>
-      {{#if uploadNotStarted}}
-      <p>starting upload...</p>
-      {{/if}}
-    </div>
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" aria-valuenow="{{percent_uploaded}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percent_uploaded}}%">
-        {{percent_uploaded}}%
-      </div>
-    </div>
-
-    <div id="imageThumbnail">
-      <img src="{{url}}"  width="100"  height="100" class="img-thumbnail" alt="thumbnail" />
-    </div>
-    {{#if complete}}
-    <a href="#" data-action="remove-image"><i class="fa fa-times"></i>Remove</a>
-    {{/if}}
-    {{/each}}
-
-    <div id="image-select">
-      <p><strong>Attach a picture of the item</strong></p>
-      <input type="file" class="file_bag">
-    </div>
-    <div class="form-blocks">
-      <div class="col-md-5">
-        {{> afQuickField name="description" rows=3}}
-      </div>
-      <div class="col-md-2">
-       {{> afQuickField name="weight"}}
-     </div>
-     <div class="col-md-5">
-       {{> afQuickField name="reward" }}
-     </div>
-   </div>
-   <div class="form-blocks">
-    <div class=" col-md-12 block-label">
-      <center><label>You are sending this item from</label></center>
-    </div>
-    <div class="col-md-4">
-      {{> afQuickField name="origin_country" label=false selectizeOptions=s2OptsOCountry}}
-    </div>
-    <div class="col-md-4">
-     {{> afQuickField name="origin_city" label=false selectizeOptions=s2OptsOCity}}
-   </div>
-   <div class="col-md-4">
-     <input type="text" name="send_date" class="date-picker form-control" placeholder="Pick a Date">
-   </div>
- </div>
- <div class="form-blocks">
-  <div class=" col-md-12 block-label">
-    <center><label>To</label></center>
-  </div>
-  <div class="col-md-4">
-    {{> afQuickField name="destination_country" label=false selectizeOptions=s2OptsDCountry}}
-  </div>
-  <div class="col-md-4">
-    {{> afQuickField name="destination_city" label=false selectizeOptions=s2OptsDCity}}
-  </div>
-  <div class="col-md-4">
-   <input type="text" class="date-picker form-control" name="delivery_date" placeholder="Pick a Date">
- </div>
-</div>
-
-
-<div class="col-md-6">
-  <button type="submit" class="btn btn-primary submit-btn">Create my post</button>
-</div>
-</fieldset>
-{{/autoForm}}
-
-
-{{#autoForm collection="Items" id="postItemForm" resetOnSuccess="true"}}
+{{#autoForm collection="Items" id="postItemForm"}}
 <center><h2 class="form-title">Send a Package</h2></center>
 <fieldset>
   <div class="form-blocks top-form-block">
     <div class="col-md-6">
+      <div class="input-group">
       {{> afQuickField name="title"}}
+      </div>
     </div>
     <div class="col-md-6">
-      {{> afQuickField name="description" rows=3}}
+      <div class="input-group">
+        {{> afQuickField name="description" rows=3}}
+      </div>
     </div>
   </div>
   <div class="form-blocks">
    <div class="col-md-6">
-     {{> afQuickField name="weight"}}
+     <div class="input-group">
+       {{> afQuickField name="weight"}}
+     </div>
    </div>
    <div class="col-md-6">
-     {{> afQuickField name="reward" }}
+     <div class="input-group">
+       {{> afQuickField name="reward" }}
+     </div>
    </div>
  </div>
  <div class="form-blocks">
@@ -105,7 +37,7 @@
    {{> afQuickField name="origin_city" label=false selectizeOptions=s2OptsOCity}}
  </div>
  <div class="col-md-4">
-   <input type="text" name="send_date" class="date-picker form-control" placeholder="Pick a Date">
+    {{> afQuickField name="send_date" label=false}}
  </div>
 </div>
 <div class="form-blocks">
@@ -119,7 +51,7 @@
     {{> afQuickField name="destination_city" label=false selectizeOptions=s2OptsDCity}}
   </div>
   <div class="col-md-4">
-   <input type="text" class="date-picker form-control" name="delivery_date" placeholder="Pick a Date">
+   {{> afQuickField name="delivery_date" label=false}}
  </div>
 </div>
 <div class="form-blocks">
@@ -146,11 +78,16 @@
     
     <div id="image-select">
       <p><strong>Attach a picture of the item</strong></p>
-      <input type="file" class="file_bag">
+      <div class="form-group" id="attach-pic">
+        <input type="file" class="file_bag">
+        {{#if hasError}}
+              <span class="help-block">{{helpMessage}}</span>
+        {{/if}}
+      </div>
     </div>
   </div>
 </div>               
-<div class="col-md-6 col-md-offset-3 submit-block">
+<div class="col-sm-6 col-sm-offset-3 submit-block">
   <center>
     <input type="submit" value="Submit" class="btn btn-info btn-block">
   </center>

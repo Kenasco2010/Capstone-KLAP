@@ -1,0 +1,48 @@
+<template name="editTripForm">
+{{#autoForm collection="Travels" id="editTravelForm" doc=trip}}
+<center><h2 class="form-title">Edit Trip</h2></center>
+<fieldset>
+    <div class="form-blocks top-form-block">
+      <div class=" col-md-12 block-label">
+          <center><label>You are travelling from</label></center>
+      </div>
+      <div class="col-md-4">
+          {{> afQuickField name="origin_country" label=false selectizeOptions=s2OptsOCountry}}
+      </div>
+      <div class="col-md-4">
+         {{> afQuickField name="origin_city" label=false selectizeOptions=s2OptsOCity}}
+      </div>
+      <div class="col-md-4">
+            {{> afQuickField name="travel_date" label=false}}
+      </div>
+    </div>
+    <div class="form-blocks">
+      <div class=" col-md-12 block-label">
+          <center><label>To</label></center>
+      </div>
+      <div class="col-md-4">
+        {{> afQuickField name="destination_country" label=false selectizeOptions=s2OptsDCountry}}
+      </div>
+      <div class="col-md-4">
+          {{> afQuickField name="destination_city" label=false selectizeOptions=s2OptsDCity}}
+      </div>
+      <div class="col-md-4">
+             {{> afQuickField name="arrival_date" label=false}}
+      </div>
+    </div>
+    <div class="form-blocks">
+       <div class="col-md-5">
+         {{> afQuickField name="weight"}}
+      </div>
+      <div class="col-md-7">
+        {{> afQuickField name="general_thoughts" rows=5}}
+      </div>
+    </div>
+    <div class="col-sm-6 col-sm-offset-3 submit-block">
+      <center>
+        <input type="submit" value="Post my Trip" class="btn btn-info btn-block">
+      </center>
+    </div>
+  </fieldset>
+{{/autoForm}}
+</template>

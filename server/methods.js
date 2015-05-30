@@ -28,7 +28,6 @@ Meteor.methods({
         var accumulated_ratings = user.profile.accumulated_ratings;
         var actual_rating = accumulated_ratings/rating_times;
         var rating_whole_number = Math.round(actual_rating);
-        console.log(user);
         Meteor.users.update({_id: userId},
         {
                     $set: {"profile.rating": rating_whole_number}, 
@@ -40,9 +39,17 @@ Meteor.methods({
     Items.insert(doc, function(err, id){
   });
   },
+  editItem: function(itemId, doc) {
+    Items.update({_id: itemId}, doc, function(err, success){
+    });
+  },
   postTrip: function(doc){
     Travels.insert(doc, function(err, id){
   });
+  },
+  editTrip: function(tripId, doc) {
+    Travels.update({_id: tripId}, doc, function(err, success){
+    });
   },
   removeItems: function() {
     return Items.remove({});
@@ -54,6 +61,12 @@ Meteor.methods({
   sendMessage: function() {
     Messages.insert(doc, function(err, id){
     });
+  },
+  removeItem: function(id){
+    Items.remove(id);
+  },
+  removeTrip: function(id){
+    Travels.remove(id);
   }
 
 });

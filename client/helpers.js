@@ -91,6 +91,23 @@ Template.registerHelper("noReviews", function(count){
     }
 })
 
+Template.registerHelper('userPic', function(){
+    var user = Meteor.user();
+    var picture = user.profile.picture;
+    return picture;
+})
+
+Template.registerHelper('imgWidth', function() {
+    var user = Meteor.user();
+    var picture = user.profile.picture;
+    if (typeof(picture) == "undefined") {
+      return 0;
+    }
+    else {
+      return 40;
+    }
+})
+
 Template.registerHelper("ownerPicture", function(tripId){
     var trip = Travels.findOne(tripId);
     var ownerId = trip.owner;
@@ -106,7 +123,6 @@ Template.registerHelper("date_ft", function(date){
 
 Template.createProfile.helpers({
     profileFormSchema: function () {
-        console.log(Schema.updateProfile);
         return Schemas.updateProfile;
     },
     s2OptsDay: function() {
@@ -119,6 +135,10 @@ Template.createProfile.helpers({
         return {placeholder: "Select Year"};
     }
 });
+
+Template.registerHelper("profileFormSchema", function(){
+    return Schemas.updateProfile
+})
 
 Template.registerHelper("reviewerPicture", function(id){
     var user = Meteor.users.findOne(id);
@@ -146,4 +166,20 @@ Template.registerHelper("checkAbout", function(id){
     {
         return about;
     }
+})
+
+Template.registerHelper("hasError", function(){
+    return Session.get("has-error");;
+})
+
+Template.registerHelper("helpMessage", function(){
+    return "Picture is required"
+})
+
+Template.registerHelper("sentFrom", function(id) {
+    var user = Meteor.users.findOne(id);
+    var first_name = user.profile.first_name;
+    var last_name = user.profile.last_name;
+    var full_name = first_name + " " + last_name;
+    return full_name;
 })

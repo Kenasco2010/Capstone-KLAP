@@ -78,58 +78,97 @@ AutoForm.hooks({
        formToDoc: function(doc, ss, formId) {
           doc.relativeImageUrl = Session.get('relativeImageUrl');
           doc.absoluteImageUrl = Session.get('absoluteImageUrl');
-
-          var send_date = $("input[name='send_date']").val()
-          send_date = new Date(send_date);
-          doc.send_date = send_date;
-          var delivery_date = $("input[name='delivery_date']").val()
-          delivery_date = new Date(delivery_date);
-          doc.delivery_date = delivery_date;
           return doc;
       },
       onSubmit: function (insertDoc, updateDoc, currentDoc) {
         Meteor.call('postItem', insertDoc, function (error, result) {
           if (error) {
-            this.done();
+            this.done(new Error(error));
           }
           else {
             swal("Thanks! your item has been successfuly posted");
           }
         });
+         this.done();
+         this.resetForm();
+         $("#imageThumbnail img").attr("src", "");
+         $('.img-thumbnail').hide();
+         $("[data-action='remove-image']").hide();
+         $(".progress").remove();
          return false;  
     }
   }
 })
 
 AutoForm.hooks({
-  postTravelForm: {
-    formToDoc: function(doc, ss, formId)  {
-      var travel_date = $("input[name='travel_date']").val();
-      travel_date = new Date(travel_date);
-      doc.travel_date = travel_date;
-      var arrival_date = $("input[name='arrival_date']").val();
-      arrival_date = new Date(arrival_date);
-      doc.arrival_date = arrival_date;
-      console.log(doc);
-      return doc;
+  editItemForm: {
+       formToDoc: function(doc, ss, formId) {
+          doc.relativeImageUrl = Session.get('relativeImageUrl');
+          doc.absoluteImageUrl = Session.get('absoluteImageUrl');
+          return doc;
+      },
+      onSubmit: function (insertDoc, updateDoc, currentDoc) {
+        Meteor.call('editItem', currentDoc._id, updateDoc, function (error, result) {
+          if (error) {
+            this.done(new Error(error));
+          };
+        });
+         this.done();
+         return false;  
     },
+    onSuccess: function(formType, result) {
+         swal("Thanks! your item has been successfuly updated");
+         $( "button.confirm" ).click(function() {
+           Router.go("my-profile");
+         });
+    }
+  }
+})
+
+
+AutoForm.hooks({
+  postTravelForm: {
         onSubmit: function (insertDoc, updateDoc, currentDoc) {
           Meteor.call('postTrip', insertDoc, function (error, result) {
             if (error) {
-              // this.done();
-              console.log(error);
+              this.done(new Error(error));
             }
             else {
               swal("Thanks! your trip has been successfuly posted");
             }
           });
+           this.done();
+           this.resetForm();
            return false;  
       }
     }
 })
 
+AutoForm.hooks({
+  editTravelForm: {
+        onSubmit: function (insertDoc, updateDoc, currentDoc) {
+          Meteor.call('editTrip', currentDoc._id, updateDoc, function (error, result) {
+            if (error) {
+              this.done(new Error(error));
+            }
+            else {
+              swal("Thanks! your trip has been successfuly updated");
+              $( "button.confirm" ).click(function() {
+                Router.go("my-profile");
+              });
+            }
+          });
+           return false;  
+      },
+    }
+})
 AutoForm.addHooks(null, {
   onError: function (operation, error, template) {
     console.log('Error: ' + error);
   }
 });
+
+reset_form_element = function(e) {
+    e.wrap('<form>').parent('form').trigger('reset');
+    e.unwrap();
+}
