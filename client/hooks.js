@@ -95,9 +95,7 @@ AutoForm.hooks({
   sendMessageForm: {
        formToDoc: function(doc, ss, formId) {
         var sent_to = $("p.getter").attr("data-user-id");
-        var sent_from = Meteor.userId();
         doc.sent_to = sent_to;
-        doc.sent_from = sent_from;
         doc.status = "unread";
         return doc;
       },
@@ -109,6 +107,28 @@ AutoForm.hooks({
           else {
             $('.ui.send-message.modal').modal('hide');
             swal("Thanks! your message has been sent");
+          }
+        });
+         this.done();
+         return false;  
+    }
+}
+})
+
+AutoForm.hooks({
+  sendReplyForm: {
+       formToDoc: function(doc, ss, formId) {
+        var messageId = $("p.getter").attr("data-id");
+        doc.messageId = messageId;
+        return doc;
+      },
+      onSubmit: function (insertDoc, updateDoc, currentDoc) {
+        Meteor.call('sendReply', insertDoc, function (error, result) {
+          if (error) {
+            this.done(new Error(error));
+          }
+          else {
+            // swal("Thanks! your message has been sent");
           }
         });
          this.done();

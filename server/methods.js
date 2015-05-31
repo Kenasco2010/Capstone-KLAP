@@ -65,17 +65,6 @@ Meteor.methods({
     var mydoc = doc;
     var userId = doc.sent_to;
     Messages.insert(doc, function(err, id){
-      if (err) {
-        console.log(err)
-      }
-      else {
-        var messageId = id;
-        mydoc._id = id;
-        Meteor.users.update( userId,
-        {
-                    $push: {"profile.messages": mydoc}
-        });
-      }
     });
   },
   removeItem: function(id){
@@ -87,6 +76,10 @@ Meteor.methods({
   updateUserMessageStatus: function(messageId){
     var messages = Messages.findOne(messageId);
     Messages.update(messageId, {$set: {status: "read"}});
+  },
+  sendReply: function(doc){
+    Replies.insert(doc, function(err, id){
+    });
   }
 });
 

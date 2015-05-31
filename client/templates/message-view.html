@@ -285,8 +285,30 @@
                           <li><a href="http://www.jquery2dotnet.com">Sent Messages</a></li>
                       </ul>
                   </div>
-                  <div class="col-sm-9 col-md-10">
-                 
+                  <div class="col-sm-6 col-7-10">
+                      <ul class="list-group" id="contact-list">
+                            <li class="list-group-item" id="ul-list-item">
+                              <div class="col-xs-12 col-sm-3 ul-pic-div">
+                                  {{> avatar userId=sender._id shape="rounded" size="small" class="message-view-pic"}}
+                              </div>
+
+                              <div class="col-xs-12 col-sm-9">
+                                  <span class="name"><strong>{{message.subject}}</strong></span><br/>
+                                  <span class="fnt-lighter fnt-smaller">{{fullUserName sender}}</span>
+                                  <span class="fnt-lighter fnt-smaller">{{tm_locale createdAt}}</span>
+                                  <div id="message-block">
+                                    <span class="message"><p>{{message.message}}</p></span>
+                                  </div>
+                                  <div id="reply-form-block">
+                                  <p class="getter" data-id="{{message._id}}"></p>
+                                   {{#autoForm collection="Replies" id="sendReplyForm"}}
+                                       {{> afQuickField name='text' rows=3 label=false}}
+                                       <button class="ui button mini">reply</button>
+                                   {{/autoForm}} 
+                                  </div>
+                              </div>             
+                            </li>
+                        </ul>
                   </div>
               </div>
           </div>
