@@ -54,11 +54,16 @@ Meteor.methods({
   removeItems: function() {
     return Items.remove({});
   },
+  removeMessages: function(){
+    return Messages.remove({});
+  },
   insertReview: function(doc) {
     Reviews.insert(doc, function(err, id){
     });
   },
-  sendMessage: function() {
+  sendMessage: function(doc) {
+    var mydoc = doc;
+    var userId = doc.sent_to;
     Messages.insert(doc, function(err, id){
     });
   },
@@ -67,6 +72,14 @@ Meteor.methods({
   },
   removeTrip: function(id){
     Travels.remove(id);
+  },
+  updateUserMessageStatus: function(messageId){
+    var messages = Messages.findOne(messageId);
+    Messages.update(messageId, {$set: {status: "read"}});
+  },
+  sendReply: function(doc){
+    Replies.insert(doc, function(err, id){
+    });
   }
-
 });
+

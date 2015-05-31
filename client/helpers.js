@@ -187,3 +187,19 @@ Template.registerHelper("sentFrom", function(id) {
     var full_name = first_name + " " + last_name;
     return full_name;
 })
+
+Template.registerHelper("hasUnreadMessages", function(messages){
+    if (messages.length != 0) {
+        return true
+    };
+})
+
+Template.registerHelper("unreadMessagesCount", function(messages){
+    return messages.length;
+})
+
+Template.registerHelper("unread", function(status){
+    if (status == "unread") {
+        return true
+    };
+})
