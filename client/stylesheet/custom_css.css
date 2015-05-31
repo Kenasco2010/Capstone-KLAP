@@ -906,35 +906,57 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 }
 .round-circles{
 	margin-right: 4px;
+	height: 160px;
 }
 .envelope{
 	font-size: 30px;
 	margin-top: -39px;
 	color: white;
 	margin-left: 12px;
+}
+.bgc-d4d4d5 {
+	background-color: transparent;
+}
 
-	.bgc-d4d4d5 {
-		background-color: transparent;
-	}
+#ul-list-item {
+	min-height: 400px;
+}
 
-	#ul-list-item {
-		min-height: 400px;
-	}
+.message-view-pic {
+	width: 50px;
+	height: 50px;
+}
 
-	.message-view-pic {
-		width: 50px;
-		height: 50px;
-	}
+.ul-pic-div {
+	width: 13%;
+}
 
-	.ul-pic-div {
-		width: 13%;
-	}
+span.message p{
+	margin-top: 10px;
+}
 
-	span.message p{
-		margin-top: 10px;
-	}
+#sendReplyForm {
+	margin-top: 50px;
 
-	#sendReplyForm {
-		margin-top: 50px;
+}
 
-	}
+/* 
+===============CUSTOMIZED BUTTONS==========
+*/
+.btn-round-lg{
+	border-radius: 22.5px;
+}
+.btn-round{
+	border-radius: 17px;
+}
+.btn-round-sm{
+	border-radius: 15px;
+}
+.btn-round-xs{
+	border-radius: 11px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.applyToCarryItems{
+	margin-top: 75px;
+}
