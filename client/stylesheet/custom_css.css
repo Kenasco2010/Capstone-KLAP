@@ -803,9 +803,9 @@ a#hide-reviews {
 }
 
 .user-pic-small {
- margin-bottom: 5px;
- border-radius: 3px;
- border: 0;
+	margin-bottom: 5px;
+	border-radius: 3px;
+	border: 0;
 }
 
 #view-profile {
@@ -814,7 +814,7 @@ a#hide-reviews {
 }
 
 .ui.horizontal.list div.item.send-post-btns {
-	  margin-left: 350px;
+	margin-left: 350px;
 }
 
 .dropdown-menu {
@@ -874,7 +874,7 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 
 .tab-content .name {
 	min-width: 120px; 
-    display: inline-block;
+	display: inline-block;
 }
 
 .tab-content .text-muted {
@@ -885,4 +885,30 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 	/*font-size: 20px;*/
 	height: 300px;
 	margin-top: 150px;
+}
+.circle{
+	background-color: #3498DB;
+	height: 55px;
+	width: 55px;
+	border-radius: 30px;
+}
+.amount{
+	margin-left: 8px;
+	font-size: 20px;
+	color: #FFFFFf;
+	margin-top: -50px;
+}
+.fontawesome{
+	margin-left: 16px;
+	font-size: 20px;
+	color: #FFFFFF;
+}
+.round-circles{
+	margin-right: 4px;
+}
+.envelope{
+	font-size: 30px;
+	margin-top: -39px;
+	color: white;
+	margin-left: 12px;
 }

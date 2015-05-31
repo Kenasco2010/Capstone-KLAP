@@ -1,4 +1,4 @@
-<template name="postDetails">
+<template name="listDetails">
 	<!-- <div class="col-md-6">
 		<div class="small-profile">
 			profile
@@ -6,22 +6,23 @@
 	</div> -->
 	
 
+	{{#with listDetails}}
 	<div class=" container ">
 		<div class="row">
 			<!-- Card Projects -->
 			<div class=" col-md-6 card-title">
-				<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem alias, repudiandae provident quisquam doloribus minus!</span>
+				<span>{{title}}</span>
 
 			</div>
 			<div class="col-md-6 col-md-offset-3">
 				<div class="card">
 					<div class="card-image">
-						<img class="img-responsive" src="http://material-design.storage.googleapis.com/publish/v_2/material_ext_publish/0Bx4BSt6jniD7TDlCYzRROE84YWM/materialdesign_introduction.png">
+						<img class="img-responsive" src="{{absoluteImageUrl}}">
 						
 					</div>
 
 					<div class="card-content">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus quasi nisi nobis minus quaerat. Ea est sapiente aliquid veritatis repellendus iusto itaque provident porro deserunt repudiandae doloribus, nesciunt, consequuntur, tenetur.
+						<p>{{description}}
 						</p>
 					</div>
 
@@ -34,6 +35,7 @@
 					</div>
 				</div>
 			</div>
+
 
 			<div class="col-md-6 side-panel">
 				<div class="postDetails-leftPanel">
@@ -186,20 +188,123 @@
 				</div>
 			</div>
 		</div>
-		<ul>
-			<li>
-				this is an information
+	</div>
+	{{/with}}
+	<hr>
 
-			</li>
-			<li>
-				this is an information
+	<!-- Page Content -->
+	<div class="container">
 
-			</li>
-			<li>
-				this is an information
+		<div class="row">
 
-			</li>
-		</ul>
+			<!-- Blog Entries Column -->
+			<div class="col-md-8">
+
+				<!-- First Blog Post -->
+				<h2>
+					<a href="#">Blog Post Title</a>
+				</h2>
+				<p class="lead">
+					by <a href="index.php">Start Bootstrap</a>
+				</p>
+				<p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
+				<hr>
+				<img class="img-responsive" src="http://placehold.it/900x300" alt="">
+				<hr>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
+				<a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+			</div>
+
+			<!-- Blog Sidebar Widgets Column -->
+			<div class="col-md-4">
+
+				<!-- Blog Search Well -->
+				<div class="well">
+					<h4>Item Specifications</h4>
+					<div class="row round-circles">
+						<div class="col-md-4">
+							<div class="circle" title="Amount offered">
+								<p class="fontawesome">
+									<i class="fa fa-money"></i>
+								</p>
+								<p class="amount">
+									<br>
+									$ 20
+								</p>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="circle" title="Targeted weight">
+								<p class="fontawesome">
+									<i class="fa fa-suitcase"></i>
+								</p>
+								<p class="amount">
+									<br>
+									9kg
+								</p>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="circle" title="Mail me">
+								<p class="fontawesome">
+									<i class="fa fa-env"></i>
+								</p>
+								<p class="envelope">
+									<i class="fa fa-envelope-o"></i>
+								</p>
+							</div>
+						</div>
+					</div>
+					<!-- /.input-group -->
+				</div>
+
+				<!-- Blog Categories Well -->
+				<div class="well">
+					<h4>Verifications</h4>
+					<div class="row">
+						<div class="col-lg-6">
+							<ul class="list-unstyled">
+								<li><i class="fa fa-envelope-o"></i><a href="#">Passport</a>
+								</li>
+								<li><i class="fa fa-envelope-o"></i><a href="#">Drivers Licence</a>
+								</li>
+								<li><a href="#">Facebook</a>
+								</li>
+								<li><a href="#">Linkdin</a>
+								</li>
+							</ul>
+						</div>
+						<!-- /.col-lg-6 -->
+						<div class="col-lg-6">
+							<ul class="list-unstyled">
+								<li><a href="#">email</a>
+								</li>
+								<li><a href="#">Mobiel phone</a>
+								</li>
+								<li><a href="#">google +</a>
+								</li>
+								<li><a href="#">Twitter</a>
+								</li>
+							</ul>
+						</div>
+						<!-- /.col-lg-6 -->
+					</div>
+					<!-- /.row -->
+				</div>
+
+				<!-- Side Widget Well -->
+				<div class="well">
+					<h4>Activities</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- /.row -->
 
 	</div>
+	<!-- /.container -->
+
 </template>
