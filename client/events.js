@@ -61,6 +61,10 @@ Template.myProfile.events({
       "this post has been deleted.",
       "success");
     });
+  },
+  "click .list-group": function(e, t){
+    var messageId = e.currentTarget.getAttribute('data-id');
+    Meteor.call('updateUserMessageStatus', messageId, function (error, result) {});
   }
 });
 
@@ -174,3 +178,9 @@ Template.postItem.events({
   }
 });
 
+Template.messagesHome.events({
+  "click .list-group": function(e, t){
+    var messageId = e.currentTarget.getAttribute('data-id');
+    Meteor.call('updateUserMessageStatus', messageId, function (error, result) {});
+  }
+});

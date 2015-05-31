@@ -2,8 +2,6 @@ Accounts.onCreateUser(function(options, user) {
   // We're enforcing at least an empty profile object to avoid needing to check
   // for its existence later.
   // user.profile = options.profile ? options.profile : {};
-  console.log(options);
-  console.log(user);
   if (user.services.facebook) {
        user.profile = options.profile;
        user.profile.username = options.profile.name;
@@ -22,7 +20,6 @@ Accounts.onCreateUser(function(options, user) {
       }
 
   else {
-   //user.profile = options.profile ? options.profile : {};
      user.profile = {};
      user.profile.rating = 0;
      user.profile.rating_times = 0;

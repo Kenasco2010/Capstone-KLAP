@@ -31,3 +31,19 @@ Travels.allow({
         return (userId && (userId === doc.owner));
     }
 });
+
+Messages.allow({
+    insert: function (userId, doc) {
+        //...
+    },
+    update: function (userId, doc, fields, modifier) {
+        //...
+    },
+    remove: function (userId, doc) {
+        true;
+    },
+    fetch: ['owner'],
+    transform: function () {
+        //...
+    }
+});

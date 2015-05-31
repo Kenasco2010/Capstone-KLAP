@@ -24,7 +24,7 @@
       <!-- <a class="active item" data-tab="first">My Profile</a> -->
       <a class="active item" data-tab="second">My Items</a>
       <a class="item" data-tab="third">My Trips</a>
-      <a class="item" data-tab="fourth">My Messages <span class="badge">42</span></a>
+      <a class="item" data-tab="fourth">My Messages</a>
   </div>
   <!-- <div class="ui bottom attached active tab segment" data-tab="first">
       {{> editProfile}}      
@@ -269,7 +269,15 @@
               <div class="row">
                   <div class="col-sm-3 col-md-2">
                       <ul class="nav nav-pills nav-stacked">
-                          <li class="active"><a href="#"><span class="badge pull-right">42</span> Inbox </a>
+                          <li class="active">
+                            <a href="#">
+                              {{#if hasUnreadMessages unreadMessages}}
+                                  <span class="badge pull-right">
+                                    {{unreadMessagesCount unreadMessages}}
+                                  </span> 
+                              {{/if}}
+                              Inbox 
+                            </a>
                           </li>
                           <li><a href="http://www.jquery2dotnet.com">Sent Messages</a></li>
                       </ul>
@@ -284,15 +292,27 @@
                     {{#each messages}}
                       <div class="tab-content">
                           <div class="tab-pane fade in active" id="home">
-                              <div class="list-group">
+                              <div class="list-group" data-id="{{_id}}">
                                   <a href="{{pathFor 'message-view' _id=_id}}" class="list-group-item">
-                                     <span class="name">
-                                          {{sentFrom sent_from}}
-                                     </span> 
-                                     <span class=""></span>
-                                      <span class="text-muted">
-                                          {{message}}
-                                      </span> 
+                                {{#if unread status}}
+                                  <strong>
+                                    <span class="name">
+                                         {{sentFrom sent_from}}
+                                    </span> 
+                                    <span class=""></span>
+                                     <span class="text-muted">
+                                         {{message}}
+                                     </span>
+                                  </strong> 
+                                  {{else}}
+                                  <span class="name">
+                                       {{sentFrom sent_from}}
+                                  </span> 
+                                  <span class=""></span>
+                                   <span class="text-muted">
+                                       {{message}}
+                                   </span>
+                                {{/if}}
                                       <span class="badge">
                                           {{tm_cal createdAt}}
                                       </span>
