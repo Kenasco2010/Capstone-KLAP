@@ -80,6 +80,7 @@
                           From {{origin_country}} to {{destination_country}}
                         </li>
                       </ul>
+
                       <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                        <li class="fnt-arial fnt-lighter">
                         Send Date: {{date_ft send_date}}
@@ -91,75 +92,114 @@
                     </li>
                   </ul>
                 </div>
+
+                <!-- Tab panes -->
+                {{#each messages}}
+                <div class="tab-content">
+                  <div class="tab-pane fade in active" id="home">
+                    <div class="list-group" data-id="{{_id}}">
+                      <a href="{{pathFor 'message-view' _id=_id}}" class="list-group-item">
+                        {{#if unread _id}}
+                        <strong>
+                          <span class="name">
+                           {{sentFrom owner}}
+                           {{#if hasUnreadReplies _id}}
+                           ({{unreadRepliesCount _id}})
+                           {{/if}}
+                         </span> 
+                         <span class=""></span>
+                         <span class="text-muted">
+                           {{shortMessage message}}
+                         </span>
+                       </strong> 
+                       {{else}}
+                       <span class="name">
+                         {{sentFrom owner}}
+                       </span> 
+                       <span class=""></span>
+                       <span class="text-muted">
+                         {{shortMessage message}}
+                       </span>
+                       {{/if}}
+                       <span class="badge">
+                        {{tm_cal createdAt}}
+                      </span>
+                    </a>
+                  </div>
+                </div>
               </div>
-            </div><!-- End Listing-->
-            {{/each}}
-          </div>
+              {{/each}}
+            </div>
 
-          <div class="col-sm-6">  
-            {{#each evenItems}}
-            <!-- Begin Listing -->
-            <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-              <div class="media">
-                <a class="pull-left" href="{{pathFor 'listDetails' id=listid}}" target="_parent">
-                  <img alt="image" class="img-responsive" 
-                  src="{{absoluteImageUrl}}"></a>
-                  <div class="clearfix visible-sm"></div>
+            
+          </div><!-- End Listing-->
+          {{/each}}
+        </div>
 
-                  <div class="media-body fnt-smaller">
-                    <a href="#" target="_parent"></a>
+        <div class="col-sm-6">  
+          {{#each evenItems}}
+          <!-- Begin Listing -->
+          <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+            <div class="media">
+              <a class="pull-left" href="{{pathFor 'listDetails' id=listid}}" target="_parent">
+                <img alt="image" class="img-responsive" 
+                src="{{absoluteImageUrl}}"></a>
+                <div class="clearfix visible-sm"></div>
 
-                    <h4 class="media-heading">
-                      <a href="#" target="_parent">
-                        {{title}} 
-                      </a>
-                      <a href="{{pathFor 'edit-item' _id=_id}}">
-                        <small class="pull-right">
-                          EDIT
-                        </small>
-                      </a>
-                      <a href="#" data-action="delete-item" data-id="{{_id}}" id="delete-item">
-                        <small class="pull-right delete">
-                          DELETE &nbsp;
-                        </small>
-                      </a>
-                    </h4>
+                <div class="media-body fnt-smaller">
+                  <a href="#" target="_parent"></a>
+
+                  <h4 class="media-heading">
+                    <a href="#" target="_parent">
+                      {{title}} 
+                    </a>
+                    <a href="{{pathFor 'edit-item' _id=_id}}">
+                      <small class="pull-right">
+                        EDIT
+                      </small>
+                    </a>
+                    <a href="#" data-action="delete-item" data-id="{{_id}}" id="delete-item">
+                      <small class="pull-right delete">
+                        DELETE &nbsp;
+                      </small>
+                    </a>
+                  </h4>
 
 
-                    <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                      <li>weight: {{weight}}kg</li>
+                  <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <li>weight: {{weight}}kg</li>
 
-                      <li style="list-style: none">|</li>
+                    <li style="list-style: none">|</li>
 
-                      <li>${{reward}} reward</li>
-                    </ul>
+                    <li>${{reward}} reward</li>
+                  </ul>
 
-                    <p class="hidden-xs">{{description}}
-                    </p>
-                    <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                      <li class="fnt-arial fnt-lighter">
-                        From {{origin_country}} to {{destination_country}}
-                      </li>
-                    </ul>
-                    <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                     <li class="fnt-arial fnt-lighter">
-                      Send Date: {{date_ft send_date}}
+                  <p class="hidden-xs">{{description}}
+                  </p>
+                  <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <li class="fnt-arial fnt-lighter">
+                      From {{origin_country}} to {{destination_country}}
                     </li>
                   </ul>
                   <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                    <li class="fnt-arial fnt-lighter">
-                    Delivery Date: {{date_ft delivery_date}}
+                    Send Date: {{date_ft send_date}}
                   </li>
                 </ul>
-              </div>
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                 <li class="fnt-arial fnt-lighter">
+                  Delivery Date: {{date_ft delivery_date}}
+                </li>
+              </ul>
             </div>
-          </div><!-- End Listing-->
-          {{/each}}
-          
-        </div><!-- End Col -->
-      </div><!-- End row -->
-    </div><!-- End container -->
-  </div>  
+          </div>
+        </div><!-- End Listing-->
+        {{/each}}
+
+      </div><!-- End Col -->
+    </div><!-- End row -->
+  </div><!-- End container -->
+</div>  
 </div>
 <div class="ui bottom attached tab segment" data-tab="third">
   <div class="container-fluid" style="background-color:#e8e8e8">

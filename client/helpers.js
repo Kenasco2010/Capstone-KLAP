@@ -189,17 +189,70 @@ Template.registerHelper("sentFrom", function(id) {
 })
 
 Template.registerHelper("hasUnreadMessages", function(messages){
-    if (messages.length != 0) {
+    var replies = this.unreadRep;
+    if (messages.length != 0 || replies.length != 0) {
         return true
     };
 })
 
 Template.registerHelper("unreadMessagesCount", function(messages){
-    return messages.length;
+    var replies = this.unreadRep;
+    var totalUnread =  messages.length + replies.length;
+    return totalUnread;
 })
 
-Template.registerHelper("unread", function(status){
-    if (status == "unread") {
+Template.registerHelper("unread", function(id){
+    var message = Messages.findOne(id);
+    var msg_status = message.status;
+    var msg_replies = Replies.find({messageId: id}).fetch();
+    var replies = [];
+
+    $(msg_replies).each(function(index, value) {
+        if (value.status == "unread") {
+            replies.push(value);
+        };
+    });
+    if (msg_status == "unread" || replies.length != 0) {
         return true
     };
+})
+
+Template.registerHelper("shortMessage", function(message){
+    var shortmsg = jQuery.trim(message).substring(0, 80).split(" ").slice(0, -1).join(" ") + "...";
+    return shortmsg;
+})
+
+Template.registerHelper("fullName", function(id){
+    var user = Meteor.users.findOne(id);
+    var first_name = user.profile.first_name;
+    var last_name = user.profile.last_name;
+    var full_name = first_name + " " + last_name;
+    return full_name;
+})
+
+Template.registerHelper("hasUnreadReplies", function(id){
+    var message = Messages.findOne(id);
+    var msg_replies = Replies.find({messageId: id}).fetch();
+    var replies = [];
+    $(msg_replies).each(function(index, value) {
+        if (value.status == "unread") {
+            replies.push(value);
+        };
+    });
+    if (replies.length != 0) {
+        return true
+    };
+})
+
+Template.registerHelper("unreadRepliesCount", function(id){
+    var message = Messages.findOne(id);
+    var msg_replies = Replies.find({messageId: id}).fetch();
+    var replies = [];
+    $(msg_replies).each(function(index, value) {
+        if (value.status == "unread") {
+            replies.push(value);
+        };
+    });
+    
+    return replies.length;
 })

@@ -294,14 +294,17 @@
                               <div class="tab-pane fade in active" id="home">
                                   <div class="list-group" data-id="{{_id}}">
                                       <a href="{{pathFor 'message-view' _id=_id}}" class="list-group-item">
-                                        {{#if unread status}}
+                                        {{#if unread _id}}
                                           <strong>
                                             <span class="name">
                                                  {{sentFrom owner}}
+                                                 {{#if hasUnreadReplies _id}}
+                                                  ({{unreadRepliesCount _id}})
+                                                 {{/if}}
                                             </span> 
                                             <span class=""></span>
                                              <span class="text-muted">
-                                                 {{message}}
+                                                 {{shortMessage message}}
                                              </span>
                                           </strong> 
                                           {{else}}
@@ -310,7 +313,7 @@
                                           </span> 
                                           <span class=""></span>
                                            <span class="text-muted">
-                                               {{message}}
+                                               {{shortMessage message}}
                                            </span>
                                         {{/if}}
                                               <span class="badge">

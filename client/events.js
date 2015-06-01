@@ -161,6 +161,8 @@ Template.navigation.rendered = function () {
 
 Template.messageView.rendered = function () {
   $('.menu .item').tab();
+   var messageId = Router.current().params._id;
+   Meteor.call('updateReplyMessageStatus', messageId, function (error, result) {});
 };
 
 Template.messagesHome.rendered = function () {
