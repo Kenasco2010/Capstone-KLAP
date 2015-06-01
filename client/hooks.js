@@ -78,6 +78,7 @@ AutoForm.hooks({
           }
           else {
             swal("Thanks! your item has been successfuly posted");
+            Router.go("upcoming-trips");
           }
         });
          this.done();
@@ -175,6 +176,7 @@ AutoForm.hooks({
             }
             else {
               swal("Thanks! your trip has been successfuly posted");
+              Router.go("pending-items");
             }
 
         });
