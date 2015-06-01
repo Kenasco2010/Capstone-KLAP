@@ -18,315 +18,362 @@
             </div>
           </section>
         </div>
-      </div>
   </div>
   <div class="ui top attached tabular menu">
-      <!-- <a class="active item" data-tab="first">My Profile</a> -->
-      <a class="active item" data-tab="second">My Items</a>
-      <a class="item" data-tab="third">My Trips</a>
-      <a class="item" data-tab="fourth">My Messages</a>
+    <!-- <a class="active item" data-tab="first">My Profile</a> -->
+    <a class="active item" data-tab="second">My Items</a>
+    <a class="item" data-tab="third">My Trips</a>
+    <a class="item" data-tab="fourth">My Messages</a>
   </div>
   <!-- <div class="ui bottom attached active tab segment" data-tab="first">
       {{> editProfile}}      
-  </div> -->
-  <div class="ui bottom attached active tab segment" data-tab="second">
+    </div> -->
+    <div class="ui bottom attached active tab segment" data-tab="second">
       <div class="container-fluid" style="background-color:#e8e8e8">
-              <div class="container container-pad" id="property-listings">
-                  <div class="row">
-                      <div class="col-sm-6"> 
-                        {{#each oddItems}}
-                          <!-- Begin Listing -->
-                          <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                              <div class="media">
-                                  <a class="pull-left" href="#" target="_parent">
-                                  <img alt="image" class="img-responsive" 
-                                  src="{{absoluteImageUrl}}"></a>
+        <div class="container container-pad" id="property-listings">
+          <div class="row">
+            <div class="col-sm-6"> 
+              {{#each oddItems}}
+              <!-- Begin Listing -->
+              <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                <div class="media">
+                  <a class="pull-left" href="{{pathFor 'listDetails' id=listid}}" target="_parent">
+                    <img alt="image" class="img-responsive" 
+                    src="{{absoluteImageUrl}}"></a>
 
-                                  <div class="clearfix visible-sm"></div>
+                    <div class="clearfix visible-sm"></div>
 
-                                  <div class="media-body fnt-smaller">
-                                      <a href="#" target="_parent"></a>
+                    <div class="media-body fnt-smaller">
+                      <a href="#" target="_parent"></a>
 
-                                      <h4 class="media-heading">
-                                        <a href="#" target="_parent">
-                                          {{title}} 
-                                        </a>
-                                        <a href="{{pathFor 'edit-item' _id=_id}}">
-                                          <small class="pull-right">
-                                            EDIT
-                                          </small>
-                                        </a>
-                                        <a href="#" data-action="delete-item" data-id="{{_id}}" id="delete-item">
-                                          <small class="pull-right delete">
-                                            DELETE &nbsp;
-                                          </small>
-                                        </a>
-                                      </h4>
-
-
-                                      <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                          <li>weight: {{weight}}kg</li>
-
-                                          <li style="list-style: none">|</li>
-
-                                          <li>${{reward}} reward</li>
-
-                                      </ul>
-
-                                      <p class="hidden-xs">{{description}}
-                                      </p>
-                                      <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                          <li class="fnt-arial fnt-lighter">
-                                            From {{origin_country}} to {{destination_country}}
-                                          </li>
-                                      </ul>
-                                      <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                         <li class="fnt-arial fnt-lighter">
-                                              Send Date: {{date_ft send_date}}
-                                          </li>
-                                      </ul>
-                                      <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                           <li class="fnt-arial fnt-lighter">
-                                              Delivery Date: {{date_ft delivery_date}}
-                                          </li>
-                                      </ul>
-                                  </div>
-                              </div>
-                          </div><!-- End Listing-->
-                          {{/each}}
-                      </div>
-
-                      <div class="col-sm-6">  
-                          {{#each evenItems}}
-                            <!-- Begin Listing -->
-                            <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                                <div class="media">
-                                    <a class="pull-left" href="#" target="_parent">
-                                    <img alt="image" class="img-responsive" 
-                                    src="{{absoluteImageUrl}}"></a>
-                                    <div class="clearfix visible-sm"></div>
-
-                                    <div class="media-body fnt-smaller">
-                                        <a href="#" target="_parent"></a>
-
-                                        <h4 class="media-heading">
-                                          <a href="#" target="_parent">
-                                            {{title}} 
-                                          </a>
-                                          <a href="{{pathFor 'edit-item' _id=_id}}">
-                                            <small class="pull-right">
-                                              EDIT
-                                            </small>
-                                          </a>
-                                          <a href="#" data-action="delete-item" data-id="{{_id}}" id="delete-item">
-                                            <small class="pull-right delete">
-                                              DELETE &nbsp;
-                                            </small>
-                                          </a>
-                                        </h4>
+                      <h4 class="media-heading">
+                        <a href="#" target="_parent">
+                          {{title}} 
+                        </a>
+                        <a href="{{pathFor 'edit-item' _id=_id}}">
+                          <small class="pull-right">
+                            EDIT
+                          </small>
+                        </a>
+                        <a href="#" data-action="delete-item" data-id="{{_id}}" id="delete-item">
+                          <small class="pull-right delete">
+                            DELETE &nbsp;
+                          </small>
+                        </a>
+                      </h4>
 
 
-                                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                            <li>weight: {{weight}}kg</li>
+                      <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                        <li>weight: {{weight}}kg</li>
 
-                                            <li style="list-style: none">|</li>
+                        <li style="list-style: none">|</li>
 
-                                            <li>${{reward}} reward</li>
-                                        </ul>
+                        <li>${{reward}} reward</li>
 
-                                        <p class="hidden-xs">{{description}}
-                                        </p>
-                                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                            <li class="fnt-arial fnt-lighter">
-                                              From {{origin_country}} to {{destination_country}}
-                                            </li>
-                                        </ul>
-                                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                           <li class="fnt-arial fnt-lighter">
-                                                Send Date: {{date_ft send_date}}
-                                            </li>
-                                        </ul>
-                                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                             <li class="fnt-arial fnt-lighter">
-                                                Delivery Date: {{date_ft delivery_date}}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!-- End Listing-->
-                            {{/each}}
-                        
-                      </div><!-- End Col -->
-                  </div><!-- End row -->
-              </div><!-- End container -->
-          </div>  
-  </div>
-              <div class="ui bottom attached tab segment" data-tab="third">
-                  <div class="container-fluid" style="background-color:#e8e8e8">
-                          <div class="container container-pad" id="property-listings">
-                              <div class="row">
-                                  <div class="col-sm-6"> 
-                                    {{#each oddTrips}}
-                                      <!-- Begin Listing -->
-                                      <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                                          <div class="media">
-                                              <a class="pull-left" href="#" target="_parent">
-                                              {{> avatar userId=tripOwnerId shape="circle" size="large"}}
-                                              </a>
-
-                                              <div class="clearfix visible-sm"></div>
-
-                                              <div class="media-body fnt-smaller">
-                                                  <a href="#" target="_parent"></a>
-
-                                                  <h4 class="media-heading">
-                                                    <a href="#" target="_parent">
-                                                      {{origin_country}} to {{destination_country}}
-                                                    </a>
-                                                    <a href="{{pathFor 'edit-trip' _id=_id}}">
-                                                      <small class="pull-right">
-                                                        EDIT
-                                                      </small>
-                                                    </a>
-                                                    <a href="#" data-action="delete-trip" data-id="{{_id}}" id="delete-trip">
-                                                      <small class="pull-right delete">
-                                                        DELETE &nbsp;
-                                                      </small>
-                                                    </a>
-                                                     
-                                                  </h4>
-
-
-                                                  <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                                      <li>Available space: {{weight}}kg</li>
-                                                     
-                                                      <li style="list-style: none">|</li>
-
-                                                      <li> Travelling on: {{date_ft travel_date }}</li>
-                                                  </ul>
-
-                                                  <p class="hidden-xs"> {{general_thoughts}}
-                                                  </p>
-                                              </div>
-                                          </div>
-                                      </div><!-- End Listing-->
-                                      {{/each}}
-                                  </div>
-
-                                  <div class="col-sm-6">  
-                                      {{#each evenTrips}}
-                                        <!-- Begin Listing -->
-                                        <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-                                            <div class="media">
-                                                <a class="pull-left" href="#" target="_parent">
-                                                   {{> avatar userId=tripOwnerId shape="circle" size="large"}}
-                                                </a>
-                                                <div class="clearfix visible-sm"></div>
-
-                                                <div class="media-body fnt-smaller">
-                                                    <a href="#" target="_parent"></a>
-
-                                                   <h4 class="media-heading">
-                                                     <a href="#" target="_parent">
-                                                       {{origin_country}} to {{destination_country}}
-                                                     </a>
-                                                     <a href="{{pathFor 'edit-trip' _id=_id}}">
-                                                       <small class="pull-right">
-                                                         EDIT
-                                                       </small>
-                                                     </a>
-                                                     <a href="#" data-action="delete-trip" data-id="{{_id}}" id="delete-trip">
-                                                       <small class="pull-right delete">
-                                                         DELETE &nbsp;
-                                                       </small>
-                                                     </a>
-                                                      
-                                                   </h4>
-
-
-                                                    <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                                        <li>Available space: {{weight}}kg</li>
-                                                        
-                                                        <li style="list-style: none">|</li>
-
-                                                        <li> Travelling on: {{date_ft travel_date }}</li>
-                                                    </ul>
-
-                                                    <p class="hidden-xs"> {{general_thoughts}}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div><!-- End Listing-->
-                                        {{/each}}
-                                    
-                                  </div><!-- End Col -->
-                              </div><!-- End row -->
-                          </div><!-- End container -->
-                      </div>
-              </div>
-      <div class="ui bottom attached tab segment" data-tab="fourth">
-          <div class="container">
-              <div class="row">
-                  <div class="col-sm-3 col-md-2">
-                      <ul class="nav nav-pills nav-stacked">
-                          <li class="active">
-                            <a href="#">
-                              {{#if hasUnreadMessages unreadMessages}}
-                                  <span class="badge pull-right">
-                                    {{unreadMessagesCount unreadMessages}}
-                                  </span> 
-                              {{/if}}
-                              Inbox 
-                            </a>
-                          </li>
-                          <li><a href="http://www.jquery2dotnet.com">Sent Messages</a></li>
                       </ul>
-                  </div>
-                  <div class="col-sm-9 col-md-10">
-                      <!-- Nav tabs -->
-                      <ul class="nav nav-tabs">
-                          <li class="active"><a href="#home" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
-                          </span>Primary</a></li>
+
+                      <p class="hidden-xs">{{description}}
+                      </p>
+                      <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                        <li class="fnt-arial fnt-lighter">
+                          From {{origin_country}} to {{destination_country}}
+                        </li>
                       </ul>
-                      <!-- Tab panes -->
-                    {{#each messages}}
-                      <div class="tab-content">
-                          <div class="tab-pane fade in active" id="home">
-                              <div class="list-group" data-id="{{_id}}">
-                                  <a href="{{pathFor 'message-view' _id=_id}}" class="list-group-item">
-                                {{#if unread _id}}
-                                  <strong>
-                                    <span class="name">
-                                         {{sentFrom owner}}
-                                         {{#if hasUnreadReplies _id}}
-                                          ({{unreadRepliesCount _id}})
-                                         {{/if}}
-                                    </span> 
-                                    <span class=""></span>
-                                     <span class="text-muted">
-                                         {{shortMessage message}}
-                                     </span>
-                                  </strong> 
-                                  {{else}}
-                                  <span class="name">
-                                       {{sentFrom owner}}
-                                  </span> 
-                                  <span class=""></span>
-                                   <span class="text-muted">
-                                       {{shortMessage message}}
-                                   </span>
-                                {{/if}}
-                                      <span class="badge">
-                                          {{tm_cal createdAt}}
-                                      </span>
-                                  </a>
-                              </div>
-                          </div>
-                      </div>
-                    {{/each}}
+
+                      <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                       <li class="fnt-arial fnt-lighter">
+                        Send Date: {{date_ft send_date}}
+                      </li>
+                    </ul>
+                    <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                     <li class="fnt-arial fnt-lighter">
+                      Delivery Date: {{date_ft delivery_date}}
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Tab panes -->
+                {{#each messages}}
+                <div class="tab-content">
+                  <div class="tab-pane fade in active" id="home">
+                    <div class="list-group" data-id="{{_id}}">
+                      <a href="{{pathFor 'message-view' _id=_id}}" class="list-group-item">
+                        {{#if unread _id}}
+                        <strong>
+                          <span class="name">
+                           {{sentFrom owner}}
+                           {{#if hasUnreadReplies _id}}
+                           ({{unreadRepliesCount _id}})
+                           {{/if}}
+                         </span> 
+                         <span class=""></span>
+                         <span class="text-muted">
+                           {{shortMessage message}}
+                         </span>
+                       </strong> 
+                       {{else}}
+                       <span class="name">
+                         {{sentFrom owner}}
+                       </span> 
+                       <span class=""></span>
+                       <span class="text-muted">
+                         {{shortMessage message}}
+                       </span>
+                       {{/if}}
+                       <span class="badge">
+                        {{tm_cal createdAt}}
+                      </span>
+                    </a>
                   </div>
+                </div>
               </div>
+              {{/each}}
+            </div>
+
+            
+          </div><!-- End Listing-->
+          {{/each}}
+        </div>
+
+        <div class="col-sm-6">  
+          {{#each evenItems}}
+          <!-- Begin Listing -->
+          <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+            <div class="media">
+              <a class="pull-left" href="{{pathFor 'listDetails' id=listid}}" target="_parent">
+                <img alt="image" class="img-responsive" 
+                src="{{absoluteImageUrl}}"></a>
+                <div class="clearfix visible-sm"></div>
+
+                <div class="media-body fnt-smaller">
+                  <a href="#" target="_parent"></a>
+
+                  <h4 class="media-heading">
+                    <a href="#" target="_parent">
+                      {{title}} 
+                    </a>
+                    <a href="{{pathFor 'edit-item' _id=_id}}">
+                      <small class="pull-right">
+                        EDIT
+                      </small>
+                    </a>
+                    <a href="#" data-action="delete-item" data-id="{{_id}}" id="delete-item">
+                      <small class="pull-right delete">
+                        DELETE &nbsp;
+                      </small>
+                    </a>
+                  </h4>
+
+
+                  <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <li>weight: {{weight}}kg</li>
+
+                    <li style="list-style: none">|</li>
+
+                    <li>${{reward}} reward</li>
+                  </ul>
+
+                  <p class="hidden-xs">{{description}}
+                  </p>
+                  <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                    <li class="fnt-arial fnt-lighter">
+                      From {{origin_country}} to {{destination_country}}
+                    </li>
+                  </ul>
+                  <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                   <li class="fnt-arial fnt-lighter">
+                    Send Date: {{date_ft send_date}}
+                  </li>
+                </ul>
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                 <li class="fnt-arial fnt-lighter">
+                  Delivery Date: {{date_ft delivery_date}}
+                </li>
+              </ul>
+            </div>
           </div>
+        </div><!-- End Listing-->
+        {{/each}}
 
+      </div><!-- End Col -->
+    </div><!-- End row -->
+  </div><!-- End container -->
+</div>  
+</div>
+<div class="ui bottom attached tab segment" data-tab="third">
+  <div class="container-fluid" style="background-color:#e8e8e8">
+    <div class="container container-pad" id="property-listings">
+      <div class="row">
+        <div class="col-sm-6"> 
+          {{#each oddTrips}}
+          <!-- Begin Listing -->
+          <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+            <div class="media">
+              <a class="pull-left" href="#" target="_parent">
+                {{> avatar userId=tripOwnerId shape="circle" size="large"}}
+              </a>
+
+              <div class="clearfix visible-sm"></div>
+
+              <div class="media-body fnt-smaller">
+                <a href="#" target="_parent"></a>
+
+                <h4 class="media-heading">
+                  <a href="#" target="_parent">
+                    {{origin_country}} to {{destination_country}}
+                  </a>
+                  <a href="{{pathFor 'edit-trip' _id=_id}}">
+                    <small class="pull-right">
+                      EDIT
+                    </small>
+                  </a>
+                  <a href="#" data-action="delete-trip" data-id="{{_id}}" id="delete-trip">
+                    <small class="pull-right delete">
+                      DELETE &nbsp;
+                    </small>
+                  </a>
+                  
+                </h4>
+
+
+                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                  <li>Available space: {{weight}}kg</li>
+                  
+                  <li style="list-style: none">|</li>
+
+                  <li> Travelling on: {{date_ft travel_date }}</li>
+                </ul>
+
+                <p class="hidden-xs"> {{general_thoughts}}
+                </p>
+              </div>
+            </div>
+          </div><!-- End Listing-->
+          {{/each}}
+        </div>
+
+        <div class="col-sm-6">  
+          {{#each evenTrips}}
+          <!-- Begin Listing -->
+          <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+            <div class="media">
+              <a class="pull-left" href="#" target="_parent">
+               {{> avatar userId=tripOwnerId shape="circle" size="large"}}
+             </a>
+             <div class="clearfix visible-sm"></div>
+
+             <div class="media-body fnt-smaller">
+              <a href="#" target="_parent"></a>
+
+              <h4 class="media-heading">
+               <a href="#" target="_parent">
+                 {{origin_country}} to {{destination_country}}
+               </a>
+               <a href="{{pathFor 'edit-trip' _id=_id}}">
+                 <small class="pull-right">
+                   EDIT
+                 </small>
+               </a>
+               <a href="#" data-action="delete-trip" data-id="{{_id}}" id="delete-trip">
+                 <small class="pull-right delete">
+                   DELETE &nbsp;
+                 </small>
+               </a>
+               
+             </h4>
+
+
+             <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+              <li>Available space: {{weight}}kg</li>
+              
+              <li style="list-style: none">|</li>
+
+              <li> Travelling on: {{date_ft travel_date }}</li>
+            </ul>
+
+            <p class="hidden-xs"> {{general_thoughts}}
+            </p>
+          </div>
+        </div>
+      </div><!-- End Listing-->
+      {{/each}}
+      
+    </div><!-- End Col -->
+  </div><!-- End row -->
+</div><!-- End container -->
+</div>
+</div>
+<div class="ui bottom attached tab segment" data-tab="fourth">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 col-md-2">
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active">
+            <a href="#">
+              {{#if hasUnreadMessages unreadMessages}}
+              <span class="badge pull-right">
+                {{unreadMessagesCount unreadMessages}}
+              </span> 
+              {{/if}}
+              Inbox 
+            </a>
+          </li>
+          <li><a href="http://www.jquery2dotnet.com">Sent Messages</a></li>
+        </ul>
       </div>
+      <div class="col-sm-9 col-md-10">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#home" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
+          </span>Primary</a></li>
+        </ul>
+        <!-- Tab panes -->
+        {{#each messages}}
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="home">
+            <div class="list-group" data-id="{{_id}}">
+              <a href="{{pathFor 'message-view' _id=_id}}" class="list-group-item">
+                {{#if unread status}}
+                <strong>
+                  <span class="name">
+                   {{sentFrom owner}}
+                 </span> 
+                 <span class=""></span>
+                 <span class="text-muted">
+                   {{message}}
+                 </span>
+               </strong> 
+               {{else}}
+               <span class="name">
+                 {{sentFrom owner}}
+               </span> 
+               <span class=""></span>
+               <span class="text-muted">
+                 {{message}}
+               </span>
+               {{/if}}
+               <span class="badge">
+                {{tm_cal createdAt}}
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="tab-pane fade in" id="profile">
+          <div class="list-group">
+            <div class="list-group-item">
+              <span class="text-center">This tab is empty.</span>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade in" id="messages">
+          ...</div>
+          <div class="tab-pane fade in" id="settings">
+            This tab is empty.</div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+
+  </div>
 </template>

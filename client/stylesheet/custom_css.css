@@ -965,13 +965,16 @@ span.message p{
 }
 .applyToCarryItems{
 	margin-top: 75px;
+
+	margin-left: 15px;
+
 }
 .replier-pic {
 	display: inline-block;
 }
 
 .my-list-group {
-	 margin-top: 7px;
+	margin-top: 7px;
 }
 
 .my-list-group-item {
@@ -997,4 +1000,5 @@ span.name {
 
 #reply-content {
 	margin-bottom: 40px;
+
 }
