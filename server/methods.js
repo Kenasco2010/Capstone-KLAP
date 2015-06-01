@@ -80,6 +80,30 @@ Meteor.methods({
   sendReply: function(doc){
     Replies.insert(doc, function(err, id){
     });
-  }
+  },
+  updateReplyMessageStatus: function(messageId){
+    var message = Messages.findOne(messageId);
+    var msg_replies = Replies.find({messageId: messageId}).fetch();
+    var replies = [];
+    
+    for (i = 0; i < msg_replies.length; i++) { 
+        var value = msg_replies[i];
+        if (value.status == "unread") {
+            replies.push(value);
+        };
+    }
+    
+    if (replies.length == 0) {
+      return;
+    }
+
+    else {
+        for (i = 0; i < replies.length; i++) { 
+            var value = replies[i];
+            Replies.update(value._id, {$set: {status: "read"}});
+        }
+    }
+  },
 });
+
 

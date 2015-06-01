@@ -936,8 +936,14 @@ span.message p{
 }
 
 #sendReplyForm {
-	margin-top: 50px;
+	margin-top: 60px;
 
+}
+
+#message-list-view {
+	/*min-height: 450px;*/
+	margin-top: 20px;
+	border: 0;
 }
 
 /* 
@@ -959,4 +965,36 @@ span.message p{
 }
 .applyToCarryItems{
 	margin-top: 75px;
+}
+.replier-pic {
+	display: inline-block;
+}
+
+.my-list-group {
+	 margin-top: 7px;
+}
+
+.my-list-group-item {
+	border: 0;
+}
+
+span.name {
+	margin-right: 20px;
+}
+
+#message-content {
+	margin-top: 30px;
+}
+
+#message-title {
+	margin-bottom: 15px;
+	text-transform: capitalize;
+}
+
+#main-replies-bloc {
+	margin-top: 20px;
+}
+
+#reply-content {
+	margin-bottom: 40px;
 }

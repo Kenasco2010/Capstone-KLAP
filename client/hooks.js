@@ -119,7 +119,10 @@ AutoForm.hooks({
   sendReplyForm: {
        formToDoc: function(doc, ss, formId) {
         var messageId = $("p.getter").attr("data-id");
+        var sent_to = $("p.getter").attr("data-owner");
         doc.messageId = messageId;
+        doc.sent_to = sent_to;
+        doc.status = "unread";
         return doc;
       },
       onSubmit: function (insertDoc, updateDoc, currentDoc) {
