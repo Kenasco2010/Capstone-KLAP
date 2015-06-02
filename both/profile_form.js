@@ -10,26 +10,69 @@ Schemas.updateProfile = new SimpleSchema({
     },
     country: {
         type: String,
-        label: "Choose country",
+        label: "Choose resident country",
         autoform: {
             type: "selectize",
             options: function() {
                 return [
                     {label: "USA", value: "USA"},
-                    {label: "UK", value: "UK"}
+                    {label: "UK", value: "UK"},
+                    {label: "Ghana", value: "Ghana"}
                 ];
             }
         }
     },
+    travel_route_from: {
+        type: String,
+        autoform: {
+            type: "selectize",
+            options: function() {
+                return [
+                    {label: "Ghana", value: "Ghana"},
+                    {label: "UK", value: "UK"},
+                    {label: "USA", value: "USA"},
+
+                ];
+            }
+
+        }
+    },
+    travel_route_to: {
+        type: String,
+        autoform: {
+            type: "selectize",
+            options: function() {
+                return [
+                    {label: "Ghana", value: "Ghana"},
+                    {label: "UK", value: "UK"},
+                    {label: "USA", value: "USA"},
+
+                ];
+            }
+
+        }
+    },
+    number_of_travels: {
+        type: Number,
+        label: "How many times do you travel on this route per year?"
+    },
+    available_as_carrier: {
+        type: Boolean,
+        label: "Do you want to receive package delivery requests?"
+    },
     city: {
         type: String,
-        label: "Choose city",
+        label: "Choose resident city",
         autoform: {
             type: "selectize",
             options: function() {
                 return [
                     {label: "New York", value: "New York"},
-                    {label: "London", value: "London"}
+                    {label: "London", value: "London"},
+                    {label: "Accra", value: "Accra"},
+                    {label: "San Francisco", value: "San Francisco"},
+
+
                 ];
             }
         }

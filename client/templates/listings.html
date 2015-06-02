@@ -46,14 +46,15 @@
                       </a>
                       <a href="{{pathFor 'user_profile' _id=itemOwnerId}}">
                         <small class="pull-right">
-                          by {{item_owner _id}}
+                          <!-- by {{item_owner _id}} -->
+                          by {{fullName _id}}
                         </small>
                       </a>
                     </h4>
 
 
                     <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                      <li>weight: {{weight}}</li>
+                      <li>weight: {{weight}} kg</li>
 
                       <li style="list-style: none">|</li>
 
@@ -89,7 +90,7 @@
           <!-- Begin Listing -->
           <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
             <div class="media">
-              <a class="pull-left" href="{{pathFor 'listDetails' id=listid}}" target="_parent">
+              <a class="pull-left" href="{{pathFor 'itemDetails' id=itemId}}" target="_parent">
                 <img alt="image" class="img-responsive" 
                 src="{{absoluteImageUrl}}"></a>
                 <div class="clearfix visible-sm"></div>
@@ -98,7 +99,7 @@
                   <a href="#" target="_parent"></a>
 
                   <h4 class="media-heading">
-                    <a href="#" target="_parent">
+                    <a href="{{pathFor 'itemDetails' id=itemId}}" target="_parent">
                       {{title}} 
                     </a>
                     <a href="{{pathFor 'user_profile' _id=itemOwnerId}}">
@@ -110,7 +111,7 @@
 
 
                   <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                    <li>weight: {{weight}}</li>
+                    <li>weight: {{weight}} kg</li>
 
                     <li style="list-style: none">|</li>
 

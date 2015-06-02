@@ -1,0 +1,16 @@
+<template name="selectItem">
+      <div class="ui selection dropdown select-package-dropdown">
+        <input type="hidden" name="title">
+        <div class="default text">Select your item</div>
+        <i class="dropdown icon"></i>
+        <p class="getme" data-user-id="{{user._id}}"></p>
+        <div class="menu">
+          {{# each Items}}
+            {{> itemsTitle}}
+          {{/each}}
+        </div>
+      </div>
+</template>
+<template name="itemsTitle">
+    <div class="item" name="title" data-value="{{_id}}"><strong>{{title}}</strong>            (posted on: {{tm_locale createdAt}})</div>
+</template>

@@ -38,6 +38,12 @@ Template.registerHelper("s2OptsDCountry", function(){
 Template.registerHelper("s2OptsDCity", function(){
     return {placeholder: "Select City"};
 })
+Template.registerHelper("travel_route_from", function(){
+    return {placeholder: "From"};
+})
+Template.registerHelper("travel_route_to", function(){
+    return {placeholder: "To"};
+})
 
 Template.registerHelper("item_owner", function(itemId){
             var item = Items.findOne(itemId);
@@ -255,4 +261,45 @@ Template.registerHelper("unreadRepliesCount", function(id){
     });
     
     return replies.length;
+})
+
+Template.registerHelper("hasProfile", function(id){
+    var user = Meteor.users.findOne(id);
+    var first_name = user.profile.first_name;
+    if (typeof(first_name) != "undefined") {
+        return true;
+    };
+})
+
+Template.selectItem.helpers({
+    Items: function () {
+        var _id = Meteor.userId();
+        return Items.find({owner: _id}).fetch();
+    }
+});
+
+Template.registerHelper("getItemId", function(){
+    var options = [];
+    var userId = Meteor.userId();
+    var userItems = Items.find({owner: userId}).fetch();
+
+    $(userItems).each(function(index, value) {
+       options.push({label: value.title + "(posted on: )" + value.createdAt, value: value.title})
+    });
+
+    return options;
+})
+
+Template.registerHelper("item_owner_id", function(itemId){
+    var item = Items.findOne(itemId);
+    var ownerId = item.owner;
+    return ownerId;
+})
+
+Template.registerHelper("hasSentRequest", function(itemId){
+    var userId = Meteor.userId();
+    var application = Applications.findOne({itemId: itemId, owner: userId})
+    if (typeof(application) != "undefined") {
+        return true
+    };
 })

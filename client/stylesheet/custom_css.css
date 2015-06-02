@@ -339,7 +339,7 @@ body
 }
 
 .profile {
-	min-height: 500px;
+	min-height: 580px;
 	/*display: inline-block;*/
 }
 figcaption.ratings
@@ -783,9 +783,17 @@ a#hide-reviews {
 }
 
 @media only screen and (min-width: 992px) {
-	.ui.small.modal {
+	.ui.send-message.small.modal {
 		width: 44.4%;
 		height: 300px;
+	}
+
+}
+
+@media only screen and (min-width: 992px) {
+	.ui.send-request.small.modal {
+		width: 44.4%;
+		height: 195px;
 	}
 
 }
@@ -906,7 +914,6 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 }
 .round-circles{
 	margin-right: 4px;
-	height: 160px;
 }
 .envelope{
 	font-size: 30px;
@@ -1001,4 +1008,33 @@ span.name {
 #reply-content {
 	margin-bottom: 40px;
 
+}
+
+button.btn-send-request {
+	margin-bottom: 10px;
+}
+
+.select-package-dropdown {
+	width: 70%;
+	margin-top: 10px;
+	margin-left: 15%;
+	margin-bottom: 20px;
+}
+/*.ui.dimmer .ui.send-request {
+	height: 32%;
+}*/
+
+.big-circle {
+  background-color: #3498DB;
+  height: 55px;
+  width: 55px;
+  border-radius: 30px;
+}
+
+.side-well .row {
+	padding: 0;
+}
+
+.applyToCarryItems .btn-default[disabled]{
+	background-color: #95A5A6;
 }

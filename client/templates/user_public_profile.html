@@ -25,13 +25,24 @@
             <div class=" col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
                 <div class="well profile">
                     <div class="col-sm-12">
-                        <div class="col-xs-12 col-sm-6">
+                        <div class="col-xs-12 col-sm-7">
                             <h2>{{fullUserName user}}</h2>
-                            <p><strong>Nationality: </strong>{{user.profile.country}}</p>
-                            <p><strong>City:</strong> {{user.profile.city}}</p>
-                            <button class="btn btn-primary btn-send-msg">Send a message</button>
+                            <p><strong>Country of Residence: </strong>{{user.profile.country}}</p>
+                            <p><strong>City of Residence:</strong> {{user.profile.city}}</p>
+                            <p>
+                              <strong>Travel Route: </strong>{{user.profile.travel_route_from}} 
+                              <i class="fa fa-arrow-right"></i> {{user.profile.travel_route_to}}
+                            </p>
+                            <p>
+                              <strong>Number of Travels: </strong> {{user.profile.number_of_travels}} times a year
+                            </p>
+                            <p>
+                              <strong>Number of Deliveries: </strong> 
+                              {{user.profile.number_of_deliveries}}
+                            </p>
+                            <button class="btn btn-primary btn-send-request">Send delivery request</button>
                         </div> 
-                        <div class="col-xs-12 col-sm-6 text-center">
+                        <div class="col-xs-12 col-sm-5 text-center">
                             <figure>
                                 {{> avatar userId=user._id shape="circle" size="large" class="public-avatar"}}
                                 <figcaption class="ratings">
@@ -47,7 +58,11 @@
                     <div class="col-sm-12 col-xs-12">
                         <section class="col-xs-12 col-sm-12 divider about-section">
                             <strong><p>About</p></strong>
-                            <p>{{checkAbout user._id}}</p>
+                            <!-- <p>{{checkAbout user._id}}</p> -->
+                            <p>
+                              I am the Director of Business Development - MEST Training Program & Incubator.
+                            </p>
+                            <p> I oversee external relationships and affairs at MEST, including business development, partnerships, investor relations, communications and marketing for the MEST training program, incubator and incubated companies</p>
                         </section>
                     </div>
                     <div class="col-xs-12 divider text-center action-buttons-section">
@@ -119,6 +134,7 @@
         </div>
     </div>
     {{> messageModal}}
+    {{> requestModal}}
 </template>
 
 <template name="rating">

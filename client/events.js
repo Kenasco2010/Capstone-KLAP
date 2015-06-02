@@ -95,6 +95,26 @@ Template.userPublicProfile.events({
       $('.ui.send-message.modal')
         .modal('show')
       ;
+    },
+    'click .btn-send-request': function(){
+      var userId = $("p.getme").attr("data-user-id");
+      $(".ui.send-request.modal").modal("setting", {
+          closable: false,
+          onApprove: function () {
+             var itemId = Session.get("itemSelected");
+            Meteor.call('insertRequest', userId, itemId, function (error, result) {
+              if (error) {
+                $('.ui.send-request.modal').modal('hide');
+                swal("Sorry! something went wrong");
+              }
+              else {
+                  $('.ui.send-request.modal').modal('hide');
+                  swal("Thanks! your request has been sent");
+              }
+            });
+            return false;
+          }
+      }).modal("show");
     }
 });
 
@@ -153,11 +173,11 @@ Template.myProfile.rendered = function () {
   $('.menu .item').tab();
 };
 
-Template.navigation.rendered = function () {
+/*Template.navigation.rendered = function () {
   $('.ui.dropdown')
     .dropdown()
   ;
-};
+};*/
 
 Template.messageView.rendered = function () {
   $('.menu .item').tab();
@@ -184,5 +204,36 @@ Template.messagesHome.events({
   "click .list-group": function(e, t){
     var messageId = e.currentTarget.getAttribute('data-id');
     Meteor.call('updateUserMessageStatus', messageId, function (error, result) {});
+  }
+});
+
+Template.selectItem.rendered = function () {
+/*  $('.ui.selection.dropdown')
+     .dropdown('restore default text')
+     ;*/
+
+  $(".ui.selection.dropdown").dropdown({
+      onChange: function (val) {
+          Session.set("itemSelected", val);
+      }
+  })
+
+};
+
+Template.itemDetails.events({
+  'click .btn-carry-req': function (e, t) {
+    var senderId = $("p.get-item-owner").attr("data-user-id");
+    var itemId = $("p.get-item-id").attr("data-item-id");
+    Meteor.call('insertApplication', itemId, senderId, function (error, result) {
+      if (error) {
+        swal("Sorry! something went wrong");
+      }
+      else {
+          swal("Thanks! your request has been sent");
+      }
+    });
+  },
+  'click #send-msg': function(e, t){
+    
   }
 });

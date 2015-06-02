@@ -36,6 +36,25 @@
                               {{> afQuickField name="year" label=false selectizeOptions=s2OptsYear}}
                       </div>
                   </div>
+                  <div class="form-blocks">
+                      <div class=" col-md-12 block-label">
+                          <center><label>Frequent travel route</label></center>
+                      </div>
+                      <div class="col-md-6">
+                          {{> afQuickField name="travel_route_from" label=false selectizeOptions=travel_route_from}}
+                      </div>
+                      <div class="col-md-6">
+                          {{> afQuickField name="travel_route_to" label=false selectizeOptions=travel_route_to}}
+                      </div>
+                  </div>
+                  <div class="form-blocks">
+                      <div class="col-md-6">
+                          {{> afQuickField name="number_of_travels"}}
+                      </div>
+                      <div class="col-md-6">
+                          {{> afQuickField name="available_as_carrier" type="boolean-radios" trueLabel="Yes" falseLabel="No"}}
+                      </div>
+                  </div>
                                   
                   <div class="col-sm-6 col-sm-offset-3 submit-block">
                     <center>

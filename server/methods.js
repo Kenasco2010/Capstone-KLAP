@@ -13,7 +13,12 @@ Meteor.methods({
                         "profile.last_name": doc.last_name,
                         "profile.country": doc.country,
                         "profile.city": doc.city,
-                        "profile.date_of_birth": date_of_birth
+                        "profile.date_of_birth": date_of_birth,
+                        "profile.number_of_travels": doc.number_of_travels,
+                        "profile.travel_route_from": doc.travel_route_from,
+                        "profile.travel_route_to": doc.travel_route_to,
+                        "profile.available_as_carrier": doc.available_as_carrier
+
         }
         });
     }
@@ -104,6 +109,23 @@ Meteor.methods({
         }
     }
   },
+  insertRequest: function(userId, itemId){
+    Requests.insert({
+          itemId: itemId,
+          carrierId: userId,
+          owner: Meteor.user()._id,
+          createdAt: new Date() // current time
+        }, function(err, id){});
+  },
+  insertApplication: function(itemId, senderId){
+    Applications.insert({
+           itemId: itemId,
+          senderId: senderId,
+          owner: Meteor.user()._id,
+          createdAt: new Date() // current time
+        }, function(err, id){});
+  },
+  
 });
 
 
