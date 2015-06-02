@@ -47,3 +47,35 @@ Messages.allow({
         //...
     }
 });
+
+Requests.allow({
+    insert: function (userId, doc) {
+        //...
+    },
+    update: function (userId, doc, fields, modifier) {
+        //...
+    },
+    remove: function (userId, doc) {
+        return true;
+    },
+    fetch: ['owner'],
+    transform: function () {
+        //...
+    }
+});
+
+Applications.allow({
+    insert: function (userId, doc) {
+        //...
+    },
+    update: function (userId, doc, fields, modifier) {
+        //...
+    },
+    remove: function (userId, doc) {
+         return true;
+    },
+    fetch: ['owner'],
+    transform: function () {
+        //...
+    }
+});

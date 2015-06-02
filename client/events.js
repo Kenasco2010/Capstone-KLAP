@@ -97,12 +97,12 @@ Template.userPublicProfile.events({
       ;
     },
     'click .btn-send-request': function(){
-      var userId = $("p.getme").attr("data-user-id");
+      var carrierId = $("p.getme").attr("data-user-id");
       $(".ui.send-request.modal").modal("setting", {
           closable: false,
           onApprove: function () {
-             var itemId = Session.get("itemSelected");
-            Meteor.call('insertRequest', userId, itemId, function (error, result) {
+             var req_carry_itemId = Session.get("itemSelected");
+            Meteor.call('requestToCarry', req_carry_itemId, carrierId, function (error, result) {
               if (error) {
                 $('.ui.send-request.modal').modal('hide');
                 swal("Sorry! something went wrong");
@@ -223,8 +223,8 @@ Template.selectItem.rendered = function () {
 Template.itemDetails.events({
   'click .btn-carry-req': function (e, t) {
     var senderId = $("p.get-item-owner").attr("data-user-id");
-    var itemId = $("p.get-item-id").attr("data-item-id");
-    Meteor.call('insertApplication', itemId, senderId, function (error, result) {
+    var app_carry_itemId = $("p.get-item-id").attr("data-item-id");
+    Meteor.call('applicationToCarry', app_carry_itemId, senderId, function (error, result) {
       if (error) {
         swal("Sorry! something went wrong");
       }
@@ -234,6 +234,8 @@ Template.itemDetails.events({
     });
   },
   'click #send-msg': function(e, t){
-    
+    $('.ui.send-message.modal')
+      .modal('show')
+    ;
   }
 });

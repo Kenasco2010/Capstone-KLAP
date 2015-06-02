@@ -1038,3 +1038,7 @@ button.btn-send-request {
 .applyToCarryItems .btn-default[disabled]{
 	background-color: #95A5A6;
 }
+
+#send-msg {
+	cursor: pointer;
+}

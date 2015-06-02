@@ -25,6 +25,7 @@
     <a class="active item" data-tab="second">My Items</a>
     <a class="item" data-tab="third">My Trips</a>
     <a class="item" data-tab="fourth">My Messages</a>
+    <a class="item" data-tab="fifth">My Requests</a>
   </div>
   <!-- <div class="ui bottom attached active tab segment" data-tab="first">
       {{> editProfile}}      
@@ -359,22 +360,72 @@
             </a>
           </div>
         </div>
-        <div class="tab-pane fade in" id="profile">
-          <div class="list-group">
-            <div class="list-group-item">
-              <span class="text-center">This tab is empty.</span>
-            </div>
-          </div>
-        </div>
-        <div class="tab-pane fade in" id="messages">
-          ...</div>
-          <div class="tab-pane fade in" id="settings">
-            This tab is empty.</div>
-          </div>
+      </div>
           {{/each}}
         </div>
       </div>
     </div>
 
+  </div>
+  <div class="ui bottom attached tab segment" data-tab="fifth">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-md-2">
+          <ul class="nav nav-pills nav-stacked">
+            <li class="active">
+              <a href="#">
+                <!-- {{#if hasUnreadRequests unreadRequests}} -->
+                <span class="badge pull-right">
+                  <!-- {{unreadRequestsCount unreadRequests}} -->
+                </span> 
+                <!-- {{/if}} -->
+                Open Requests 
+              </a>
+            </li>
+            <li><a href="http://www.jquery2dotnet.com">Closed Requests</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-md-10">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
+            </span>Primary</a></li>
+          </ul>
+          <!-- Tab panes -->
+  <!--         {{#each requests}}
+          <div class="tab-content">
+            <div class="tab-pane fade in active" id="home">
+              <div class="list-group" data-id="{{_id}}">
+                <a href="{{pathFor 'message-view' _id=_id}}" class="list-group-item">
+                  {{#if unread status}}
+                  <strong>
+                    <span class="name">
+                     {{sentFrom owner}}
+                   </span> 
+                   <span class=""></span>
+                   <span class="text-muted">
+                     {{message}}
+                   </span>
+                 </strong> 
+                 {{else}}
+                 <span class="name">
+                   {{sentFrom owner}}
+                 </span> 
+                 <span class=""></span>
+                 <span class="text-muted">
+                   {{message}}
+                 </span>
+                 {{/if}}
+                 <span class="badge">
+                  {{tm_cal createdAt}}
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+            {{/each}} -->
+          </div>
+        </div>
+      </div>
   </div>
 </template>

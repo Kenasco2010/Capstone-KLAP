@@ -303,3 +303,16 @@ Template.registerHelper("hasSentRequest", function(itemId){
         return true
     };
 })
+
+Template.registerHelper("hasUnreadRequests", function(requests){
+    var requests = this.unreadReq;
+    if (requests.length != 0) {
+        return true
+    };
+})
+
+Template.registerHelper("unreadRequestsCount", function(requests){
+    var requests = this.unreadReq;
+    var totalUnread =  requests.length;
+    return totalUnread;
+})

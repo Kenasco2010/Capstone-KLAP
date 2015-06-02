@@ -64,6 +64,7 @@
 							</div>
 						</div>
 						<div class="applyToCarryItems">
+							<p class="getter" data-user-id="{{item_owner_id _id}}"></p>
 							<p class="get-item-owner" data-user-id="{{item_owner_id _id}}"></p>
 							<p class="get-item-id" data-item-id="{{_id}}"></p>
 							<center>
@@ -110,5 +111,5 @@
 		{{/with}}
 	</div>
 	<!-- /.container -->
-
+{{> messageModal}}
 </template>

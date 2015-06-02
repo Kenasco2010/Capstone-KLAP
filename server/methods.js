@@ -59,8 +59,14 @@ Meteor.methods({
   removeItems: function() {
     return Items.remove({});
   },
+  removeRequests: function() {
+    return Requests.remove({});
+  },
   removeMessages: function(){
     return Messages.remove({});
+  },
+  removeApplications: function(){
+    return Applications.remove({});
   },
   insertReview: function(doc) {
     Reviews.insert(doc, function(err, id){
@@ -109,11 +115,12 @@ Meteor.methods({
         }
     }
   },
-  insertRequest: function(userId, itemId){
+/*  insertRequest: function(userId, itemId){
     Requests.insert({
           itemId: itemId,
           carrierId: userId,
           owner: Meteor.user()._id,
+          status: "unread",
           createdAt: new Date() // current time
         }, function(err, id){});
   },
@@ -121,11 +128,31 @@ Meteor.methods({
     Applications.insert({
            itemId: itemId,
           senderId: senderId,
+          status: unread,
           owner: Meteor.user()._id,
           createdAt: new Date() // current time
         }, function(err, id){});
+  },*/
+  applicationToCarry: function(app_carry_itemId, senderId){
+      Requests.insert({
+        app_carry_itemId: app_carry_itemId,
+        senderId: senderId,
+        owner: Meteor.user()._id,
+        read_status: "unread",
+        action_status: "open",
+        createdAt: new Date() // current time
+      }, function(err, id){});
   },
-  
+  requestToCarry: function(req_carry_itemId, carrierId){
+    Requests.insert({
+      req_carry_itemId: req_carry_itemId,
+      carrierId: carrierId,
+      owner: Meteor.user()._id,
+      read_status: "unread",
+      action_status: "open",
+      createdAt: new Date() // current time
+    }, function(err, id){});
+  }
 });
 
 
