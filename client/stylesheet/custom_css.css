@@ -1042,3 +1042,15 @@ button.btn-send-request {
 #send-msg {
 	cursor: pointer;
 }
+
+#tk-action-block {
+	margin-top: 15px
+}
+
+ #tk-action-block .btn-default[disabled] {
+	background-color: #95A5A6;
+}
+
+ #tk-action-block .btn-danger[disabled] {
+	background-color: #95A5A6;
+}

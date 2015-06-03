@@ -39,7 +39,7 @@
               <!-- Begin Listing -->
               <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                 <div class="media">
-                  <a class="pull-left" href="{{pathFor 'listDetails' id=listid}}" target="_parent">
+                  <a class="pull-left" href="{{pathFor 'itemDetails' _id=itemId}}" target="_parent">
                     <img alt="image" class="img-responsive" 
                     src="{{absoluteImageUrl}}"></a>
 
@@ -142,7 +142,7 @@
           <!-- Begin Listing -->
           <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
             <div class="media">
-              <a class="pull-left" href="{{pathFor 'listDetails' id=listid}}" target="_parent">
+              <a class="pull-left" href="{{pathFor 'itemDetails' id=itemId}}" target="_parent">
                 <img alt="image" class="img-responsive" 
                 src="{{absoluteImageUrl}}"></a>
                 <div class="clearfix visible-sm"></div>
@@ -373,38 +373,52 @@
         <div class="col-sm-3 col-md-2">
           <ul class="nav nav-pills nav-stacked">
             <li class="active">
-              <a href="#">
-                <!-- {{#if hasUnreadRequests unreadRequests}} -->
+              <a href="{{pathFor 'requests-home'}}">
+                {{#if hasUnreadRequests unreadRequests}}
                 <span class="badge pull-right">
-                  <!-- {{unreadRequestsCount unreadRequests}} -->
+                  {{unreadRequestsCount unreadRequests}}
                 </span> 
-                <!-- {{/if}} -->
+                {{/if}}
                 Open Requests 
               </a>
             </li>
-            <li><a href="http://www.jquery2dotnet.com">Closed Requests</a></li>
+            <li id="clo-req"><a href="{{pathFor 'closed-requests'}}">Closed Requests</a></li>
+            <li id="notif">
+              <a href="#" class="">
+                {{#if hasUnreadNotifications unreadNotifications}}
+                <span class="badge pull-right">
+                  {{unreadNotificationsCount unreadNotifications}}
+                </span>
+                  {{/if}}
+                Notifications
+              </a>
+            </li>
           </ul>
         </div>
         <div class="col-sm-9 col-md-10">
           <!-- Nav tabs -->
           <ul class="nav nav-tabs">
-            <li class="active"><a href="#home" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
+            <li class="active"><a href="{{pathFor 'my-profile'}}" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
             </span>Primary</a></li>
           </ul>
           <!-- Tab panes -->
-  <!--         {{#each requests}}
+          {{#each openRequests}}
           <div class="tab-content">
             <div class="tab-pane fade in active" id="home">
               <div class="list-group" data-id="{{_id}}">
-                <a href="{{pathFor 'message-view' _id=_id}}" class="list-group-item">
-                  {{#if unread status}}
+                <a href="{{pathFor 'request-details' _id=_id}}" class="list-group-item">
+                  {{#if unreadReq read_status}}
                   <strong>
                     <span class="name">
-                     {{sentFrom owner}}
+                      {{#if userIsOwner owner}}
+                        From You
+                      {{else}}
+                        {{sentFrom owner}}
+                      {{/if}}
                    </span> 
                    <span class=""></span>
                    <span class="text-muted">
-                     {{message}}
+                     <!-- {{message}} -->
                    </span>
                  </strong> 
                  {{else}}
@@ -413,7 +427,7 @@
                  </span> 
                  <span class=""></span>
                  <span class="text-muted">
-                   {{message}}
+                   <!-- {{message}} -->
                  </span>
                  {{/if}}
                  <span class="badge">
@@ -423,7 +437,7 @@
             </div>
           </div>
         </div>
-            {{/each}} -->
+            {{/each}}
           </div>
         </div>
       </div>
