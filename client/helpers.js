@@ -6,7 +6,6 @@ Template.registerHelper("fullUserName", function(user){
 })
 
 Template.registerHelper("rating", function(user){
-    console.log(user.profile.rating);
     var rating = user.profile.rating;
     return rating;
 })
@@ -360,4 +359,48 @@ Template.registerHelper("rejectedToCarry", function(itemId){
        if (item.acceptance_status == "rejected") {
            return true;
        };
+})
+
+Template.registerHelper("hasUnreadNotifications", function(notifs){
+    var notifs = notifs;
+    if (notifs.length != 0) {
+        return true
+    };
+})
+
+Template.registerHelper("unreadNotificationsCount", function(notifs){
+    var notifs = notifs;
+    var totalUnread =  notifs.length;
+    return totalUnread;
+})
+
+Template.registerHelper("unreadNotif", function(status){
+    if (status == "unread") {
+        return true;
+    };
+})
+
+Template.registerHelper("acceptedResponse", function(notif){
+    var notification = notif;
+    if (notification.type == "ac-notif") {
+        return true;
+    };
+})
+
+Template.registerHelper("getItemSendDate", function(itemId){
+    var item = Items.findOne(itemId);
+    return item.send_date;
+})
+
+Template.registerHelper("getItemDeliveryDate", function(itemId){
+    var item = Items.findOne(itemId);
+    return item.delivery_date;
+})
+
+Template.registerHelper("")
+
+Template.registerHelper("firstName", function(userId){
+    var user = Meteor.users.findOne(userId);
+    var first_name = user.profile.first_name;
+    return first_name;
 })

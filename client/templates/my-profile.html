@@ -321,6 +321,16 @@
             </a>
           </li>
           <li><a href="http://www.jquery2dotnet.com">Sent Messages</a></li>
+          <li id="notif">
+            <a href="{{pathFor "notifications"}}" class="">
+              {{#if hasUnreadNotifications unreadNotifications}}
+              <span class="badge pull-right">
+                {{unreadNotificationsCount unreadNotifications}}
+              </span>
+                {{/if}}
+              Notifications
+            </a>
+          </li>
         </ul>
       </div>
       <div class="col-sm-9 col-md-10">
@@ -384,7 +394,7 @@
             </li>
             <li id="clo-req"><a href="{{pathFor 'closed-requests'}}">Closed Requests</a></li>
             <li id="notif">
-              <a href="#" class="">
+              <a href="{{pathFor "notifications"}}" class="">
                 {{#if hasUnreadNotifications unreadNotifications}}
                 <span class="badge pull-right">
                   {{unreadNotificationsCount unreadNotifications}}

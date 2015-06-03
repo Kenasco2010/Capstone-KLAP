@@ -147,7 +147,8 @@ Meteor.methods({
       from: from,
       type: "ac-notif",
       itemId: itemId,
-      status: "unread"
+      status: "unread",
+      createdAt: new Date()
     }, function(err, id){});
   },
   sendRejectedNotification: function(recipient, from, itemId){
@@ -156,7 +157,8 @@ Meteor.methods({
       from: from,
       itemId: itemId,
       type: "rj-notif",
-      status: "unread"
+      status: "unread",
+      createdAt: new Date()
     }, function(err, id){});
   }
 });
