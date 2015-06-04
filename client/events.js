@@ -173,6 +173,21 @@ Template.myProfile.rendered = function () {
   $('.menu .item').tab();
 };
 
+Template.closedRequests.rendered = function () {
+   $('.menu .item').tab();
+};
+
+Template.requestsHome.rendered = function () {
+   $('.menu .item').tab();
+};
+
+Template.notifications.rendered = function () {
+  $('.menu .item').tab();
+};
+
+Template.notificationView.rendered = function () {
+   $('.menu .item').tab();
+};
 /*Template.navigation.rendered = function () {
   $('.ui.dropdown')
     .dropdown()
@@ -234,6 +249,37 @@ Template.itemDetails.events({
     });
   },
   'click #send-msg': function(e, t){
+    $('.ui.send-message.modal')
+      .modal('show')
+    ;
+  }
+});
+
+Template.requestDetails.events({
+  'click #accept-btn': function (e, t) {
+    var itemId = e.currentTarget.getAttribute('data-id');
+    var item = Items.findOne(itemId);
+    var itemOwner = item.owner;
+    var recipient = itemOwner;
+    var from = Meteor.userId();
+    var status = "accepted"
+    Meteor.call('acceptedItemStatus', status, itemId, function (error, result) {});
+    Meteor.call('sendAcceptedNotification', recipient, from, itemId, function (error, result) {});
+  },
+  'click #reject-btn': function(e, t){
+    var itemId = e.currentTarget.getAttribute('data-id');
+    var item = Items.findOne(itemId);
+    var itemOwner = item.owner;
+    var recipient = itemOwner;
+    var from = Meteor.userId();
+    var status = "rejected"
+    Meteor.call('rejectedItemStatus', status, itemId, function (error, result) {});
+    Meteor.call('sendRejectedNotification', recipient, from, itemId, function (error, result) {});
+  }
+});
+
+Template.notificationView.events({
+  'click .notif-send-msg': function () {
     $('.ui.send-message.modal')
       .modal('show')
     ;

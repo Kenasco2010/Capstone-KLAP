@@ -69,6 +69,8 @@ AutoForm.hooks({
        formToDoc: function(doc, ss, formId) {
           doc.relativeImageUrl = Session.get('relativeImageUrl');
           doc.absoluteImageUrl = Session.get('absoluteImageUrl');
+          doc.acceptance_status = "not-accepted",
+          doc.delivery_status = "not-delivered"
           return doc;
       },
       onSubmit: function (insertDoc, updateDoc, currentDoc) {

@@ -115,24 +115,6 @@ Meteor.methods({
         }
     }
   },
-/*  insertRequest: function(userId, itemId){
-    Requests.insert({
-          itemId: itemId,
-          carrierId: userId,
-          owner: Meteor.user()._id,
-          status: "unread",
-          createdAt: new Date() // current time
-        }, function(err, id){});
-  },
-  insertApplication: function(itemId, senderId){
-    Applications.insert({
-           itemId: itemId,
-          senderId: senderId,
-          status: unread,
-          owner: Meteor.user()._id,
-          createdAt: new Date() // current time
-        }, function(err, id){});
-  },*/
   applicationToCarry: function(app_carry_itemId, senderId){
       Requests.insert({
         app_carry_itemId: app_carry_itemId,
@@ -151,6 +133,32 @@ Meteor.methods({
       read_status: "unread",
       action_status: "open",
       createdAt: new Date() // current time
+    }, function(err, id){});
+  },
+  acceptedItemStatus: function(status, itemId){
+     Items.update(itemId, {$set: {acceptance_status: status}});
+  },
+  rejectedItemStatus: function(status, itemId){
+    Items.update(itemId, {$set: {acceptance_status: status}});
+  },
+  sendAcceptedNotification: function(recipient, from, itemId){
+    Notifications.insert({
+      recipient: recipient,
+      from: from,
+      type: "ac-notif",
+      itemId: itemId,
+      status: "unread",
+      createdAt: new Date()
+    }, function(err, id){});
+  },
+  sendRejectedNotification: function(recipient, from, itemId){
+    Notifications.insert({
+      recipient: recipient,
+      from: from,
+      itemId: itemId,
+      type: "rj-notif",
+      status: "unread",
+      createdAt: new Date()
     }, function(err, id){});
   }
 });

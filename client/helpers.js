@@ -6,7 +6,6 @@ Template.registerHelper("fullUserName", function(user){
 })
 
 Template.registerHelper("rating", function(user){
-    console.log(user.profile.rating);
     var rating = user.profile.rating;
     return rating;
 })
@@ -305,14 +304,103 @@ Template.registerHelper("hasSentRequest", function(itemId){
 })
 
 Template.registerHelper("hasUnreadRequests", function(requests){
-    var requests = this.unreadReq;
+    var requests = requests;
     if (requests.length != 0) {
         return true
     };
 })
 
 Template.registerHelper("unreadRequestsCount", function(requests){
-    var requests = this.unreadReq;
+    var requests = requests;
     var totalUnread =  requests.length;
     return totalUnread;
+})
+
+Template.registerHelper("userIsOwner", function(userId){
+    if (Meteor.userId() == userId) {
+        return true;
+    };
+})
+
+Template.registerHelper("unreadReq", function(read_status){
+    if (read_status == "unread") {
+        return true;
+    };
+})
+
+Template.registerHelper("reqToCarryItemOwner", function(itemId){
+    var item = Items.findOne(itemId);
+    var ownerId = item.owner;
+    var user = Meteor.users.findOne(ownerId);
+    var first_name = user.profile.first_name;
+    var last_name = user.profile.last_name;
+    var full_name = first_name + " " + last_name;
+    return full_name;
+
+})
+
+Template.registerHelper("reqToCarry", function(request){
+    var request = request;
+    var carrierId = request.carrierId;
+    if (typeof(carrierId) != "undefined") {
+        return true;
+    };
+})
+
+Template.registerHelper("acceptedToCarry", function(itemId){
+    var item = Items.findOne(itemId);
+    if (item.acceptance_status == "accepted") {
+        return true;
+    };
+})
+
+Template.registerHelper("rejectedToCarry", function(itemId){
+       var item = Items.findOne(itemId);
+       if (item.acceptance_status == "rejected") {
+           return true;
+       };
+})
+
+Template.registerHelper("hasUnreadNotifications", function(notifs){
+    var notifs = notifs;
+    if (notifs.length != 0) {
+        return true
+    };
+})
+
+Template.registerHelper("unreadNotificationsCount", function(notifs){
+    var notifs = notifs;
+    var totalUnread =  notifs.length;
+    return totalUnread;
+})
+
+Template.registerHelper("unreadNotif", function(status){
+    if (status == "unread") {
+        return true;
+    };
+})
+
+Template.registerHelper("acceptedResponse", function(notif){
+    var notification = notif;
+    if (notification.type == "ac-notif") {
+        return true;
+    };
+})
+
+Template.registerHelper("getItemSendDate", function(itemId){
+    var item = Items.findOne(itemId);
+    return item.send_date;
+})
+
+Template.registerHelper("getItemDeliveryDate", function(itemId){
+    var item = Items.findOne(itemId);
+    return item.delivery_date;
+})
+
+Template.registerHelper("")
+
+Template.registerHelper("firstName", function(userId){
+    var user = Meteor.users.findOne(userId);
+    var first_name = user.profile.first_name;
+    return first_name;
 })

@@ -1039,6 +1039,7 @@ button.btn-send-request {
 		background-color: #95A5A6;
 	}
 
+
 	#send-msg {
 		cursor: pointer;
 	}
@@ -1127,3 +1128,57 @@ span.tags
 	margin-left: -10px;
 	z-index: 10;
 }
+
+#send-msg {
+	cursor: pointer;
+}
+
+#tk-action-block {
+	margin-top: 15px
+}
+
+#tk-action-block .btn-default[disabled] {
+	background-color: #95A5A6;
+}
+
+#tk-action-block .btn-danger[disabled] {
+	background-color: #95A5A6;
+}
+
+/*================Notifications View=======================================================*/
+
+#notif-details .thumbnail {
+	padding:0px;
+}
+#notif-details .panel {
+	position:relative;
+}
+#notif-details .panel>.panel-heading:after,.panel>.panel-heading:before{
+	position:absolute;
+	top:11px;left:-16px;
+	right:100%;
+	width:0;
+	height:0;
+	display:block;
+	content:" ";
+	border-color:transparent;
+	border-style:solid solid outset;
+	pointer-events:none;
+}
+#notif-details .panel>.panel-heading:after{
+	border-width:7px;
+	border-right-color:#f7f7f7;
+	margin-top:1px;
+	margin-left:2px;
+}
+#notif-details .panel>.panel-heading:before{
+	border-right-color:#ddd;
+	border-width:8px;
+}
+
+#notif-details .panel>.panel-body {
+	padding: 10px;
+}
+
+/*==========================Nofications End=====================================================*/
+

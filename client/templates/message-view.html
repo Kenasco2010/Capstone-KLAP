@@ -283,39 +283,19 @@
                               </a>
                             </li>
                           <li><a href="http://www.jquery2dotnet.com">Sent Messages</a></li>
+                          <li id="notif">
+                            <a href="{{pathFor "notifications"}}" class="">
+                              {{#if hasUnreadNotifications unreadNotifications}}
+                              <span class="badge pull-right">
+                                {{unreadNotificationsCount unreadNotifications}}
+                              </span>
+                                {{/if}}
+                              Notifications
+                            </a>
+                          </li>
                       </ul>
                   </div>
                   <div class="col-sm-6 col-md-7">
-                    <!--   <ul class="list-group">
-                            <li class="list-group-item" id="message-list-view">
-                              <div class="col-xs-12 col-sm-3 ul-pic-div">
-                                  {{> avatar userId=sender._id shape="rounded" size="small" class="message-view-pic"}}
-                              </div>
-                              <div class="col-xs-12 col-sm-9">
-                                  <span class="name"><strong>{{message.subject}}</strong></span><br/>
-                                  <div class="fnt-lighter fnt-smaller">{{fullUserName sender}}</div>
-                                  <span class="fnt-lighter fnt-smaller">{{tm_locale createdAt}}</span>
-                                  <div id="message-block">
-                                    <span class="message"><p>{{message.message}}</p></span>
-                                  </div>
-                              </div>             
-                            </li>
-                        </ul> -->
-                   <!--      {{#each replies}}
-                        <ul class="list-group my-list-group">
-                          <li class="list-group-item my-list-group-item">
-                              <div class="col-xs-12 col-sm-3 ul-pic-div">
-                                {{> avatar userId=owner shape="rounded" size="small"}}
-                              </div>
-                              <div class="col-xs-12 col-sm-9">
-                                <span>{{text}}</span><br/>
-                                <div class="fnt-lighter fnt-smaller">{{fullName owner}}</div>
-                                <span class="fnt-lighter fnt-smaller">{{tm_locale createdAt}}</span>
-
-                              </div>
-                          </li>
-                        </ul>
-                        {{/each}} -->
                         <div id="main-message-bloc">
                           <div id="message-title" style="width:100%">
                             <p>{{message.subject}}</p>
