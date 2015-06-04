@@ -1,44 +1,44 @@
 <template name="postItem">
-{{#autoForm collection="Items" id="postItemForm"}}
-<center><h2 class="form-title">Send a Package</h2></center>
-<fieldset>
-  <div class="form-blocks top-form-block">
-    <div class="col-md-6">
-      <div class="input-group">
-      {{> afQuickField name="title"}}
+  {{#autoForm collection="Items" id="postItemForm"}}
+  <center><h2 class="form-title">Send a Package</h2></center>
+  <fieldset>
+    <div class="form-blocks top-form-block">
+      <div class="col-md-6">
+        <div class="input-group">
+          {{> afQuickField name="title"}}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group">
+          {{> afQuickField name="description" rows=3}}
+        </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="input-group">
-        {{> afQuickField name="description" rows=3}}
-      </div>
+    <div class="form-blocks">
+     <div class="col-md-6">
+       <div class="input-group">
+         {{> afQuickField name="weight"}}
+       </div>
+     </div>
+     <div class="col-md-6">
+       <div class="input-group">
+         {{> afQuickField name="reward" }}
+       </div>
+     </div>
+   </div>
+   <div class="form-blocks">
+    <div class=" col-md-12 block-label">
+      <center><label>You are sending this item from</label></center>
     </div>
-  </div>
-  <div class="form-blocks">
-   <div class="col-md-6">
-     <div class="input-group">
-       {{> afQuickField name="weight"}}
-     </div>
+    <div class="col-md-4 postItem-origin_country">
+      {{> afQuickField name="origin_country" label=false selectizeOptions=s2OptsOCountry}}
+    </div>
+    <div class="col-md-4">
+     {{> afQuickField name="origin_city" label=false selectizeOptions=s2OptsOCity}}
    </div>
-   <div class="col-md-6">
-     <div class="input-group">
-       {{> afQuickField name="reward" }}
-     </div>
-   </div>
- </div>
- <div class="form-blocks">
-  <div class=" col-md-12 block-label">
-    <center><label>You are sending this item from</label></center>
-  </div>
-  <div class="col-md-4">
-    {{> afQuickField name="origin_country" label=false selectizeOptions=s2OptsOCountry}}
-  </div>
-  <div class="col-md-4">
-   {{> afQuickField name="origin_city" label=false selectizeOptions=s2OptsOCity}}
- </div>
- <div class="col-md-4">
+   <div class="col-md-4">
     {{> afQuickField name="send_date" label=false}}
- </div>
+  </div>
 </div>
 <div class="form-blocks">
   <div class=" col-md-12 block-label">
@@ -81,7 +81,7 @@
       <div class="form-group" id="attach-pic">
         <input type="file" class="file_bag">
         {{#if hasError}}
-              <span class="help-block">{{helpMessage}}</span>
+        <span class="help-block">{{helpMessage}}</span>
         {{/if}}
       </div>
     </div>
