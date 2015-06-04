@@ -31,7 +31,6 @@ semantic:ui-css
 reactive-var
 lepozepo:s3
 jquery
-cwohlman:pickadate
 ogamedia:timer
 aldeed:autoform
 aldeed:simple-schema

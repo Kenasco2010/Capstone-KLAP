@@ -188,11 +188,12 @@ Template.notifications.rendered = function () {
 Template.notificationView.rendered = function () {
    $('.menu .item').tab();
 };
-/*Template.navigation.rendered = function () {
-  $('.ui.dropdown')
-    .dropdown()
-  ;
-};*/
+Template.navigation.rendered = function () {
+/* $('.ui.dropdown')
+   .dropdown()
+ ;*/
+ $('.dropdown-toggle').dropdown();
+};
 
 Template.messageView.rendered = function () {
   $('.menu .item').tab();
@@ -201,6 +202,10 @@ Template.messageView.rendered = function () {
 };
 
 Template.messagesHome.rendered = function () {
+  $('.menu .item').tab();
+};
+
+Template.requestDetails.rendered = function () {
   $('.menu .item').tab();
 };
 
@@ -262,9 +267,11 @@ Template.requestDetails.events({
     var itemOwner = item.owner;
     var recipient = itemOwner;
     var from = Meteor.userId();
-    var status = "accepted"
+    var status = "accepted";
+    var action_status = "closed"
     Meteor.call('acceptedItemStatus', status, itemId, function (error, result) {});
     Meteor.call('sendAcceptedNotification', recipient, from, itemId, function (error, result) {});
+    Meteor.call('updateRequestActionStatus', action_status, function (error, result) {});
   },
   'click #reject-btn': function(e, t){
     var itemId = e.currentTarget.getAttribute('data-id');
@@ -275,6 +282,7 @@ Template.requestDetails.events({
     var status = "rejected"
     Meteor.call('rejectedItemStatus', status, itemId, function (error, result) {});
     Meteor.call('sendRejectedNotification', recipient, from, itemId, function (error, result) {});
+    Meteor.call('updateRequestActionStatus', action_status, function (error, result) {});
   }
 });
 
@@ -285,3 +293,18 @@ Template.notificationView.events({
     ;
   }
 });
+
+Template.notifications.events({
+  'click .notif-list-group': function (e, t) {
+    var notifId = e.currentTarget.getAttribute('data-id');
+    Meteor.call('updateNotifStatus', notifId, function (error, result) {});
+  }
+});
+
+Template.requestsHome.events({
+  'click .open-req-list-group': function (e, t) {
+    var requestId = e.currentTarget.getAttribute('data-id');
+    Meteor.call('updateRequestReadStatus', requestId, function (error, result) {});
+  }
+});
+

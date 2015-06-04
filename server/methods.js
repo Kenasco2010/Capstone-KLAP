@@ -88,6 +88,15 @@ Meteor.methods({
     var messages = Messages.findOne(messageId);
     Messages.update(messageId, {$set: {status: "read"}});
   },
+  updateNotifStatus: function(notifId) {
+    Notifications.update(notifId, {$set: {status: "read"}});
+  },
+  updateRequestActionStatus: function(requestId){
+    Requests.update(requestId, {$set: {action_status: "closed"}});
+  },
+   updateRequestReadStatus: function(requestId){
+    Requests.update(requestId, {$set: {read_status: "read"}});
+  },
   sendReply: function(doc){
     Replies.insert(doc, function(err, id){
     });
@@ -115,6 +124,9 @@ Meteor.methods({
         }
     }
   },
+  /*A user can apply to carry another user's item. This user user then becomes the owner of 
+  that request of type "app_carry". A user can also recieve a request from another user to 
+  carry his/her item. In this case the user becomes the carrier of the item.*/
   applicationToCarry: function(app_carry_itemId, senderId){
       Requests.insert({
         app_carry_itemId: app_carry_itemId,
@@ -122,15 +134,20 @@ Meteor.methods({
         owner: Meteor.user()._id,
         read_status: "unread",
         action_status: "open",
+        type: "app_carry",
         createdAt: new Date() // current time
       }, function(err, id){});
   },
+  /*A user can request another user to carry his/her item. This user becomes the owner of the request
+   of type "req_carry". A user can also recieve a request from another user to carry an item he/she has
+    posted. In this case the user becomes the sender of the item.*/
   requestToCarry: function(req_carry_itemId, carrierId){
     Requests.insert({
       req_carry_itemId: req_carry_itemId,
       carrierId: carrierId,
       owner: Meteor.user()._id,
       read_status: "unread",
+      type: "req_carry",
       action_status: "open",
       createdAt: new Date() // current time
     }, function(err, id){});

@@ -4,17 +4,42 @@
         <div class="col-sm-12 top-bar">
           <section class="my-top-bar">
             <div class="full-width">
-              <center>
-                <a href="{{pathFor 'listings'}}" class="ui button">
-                  View All Listings
-                </a>
-                <a href="{{pathFor 'senderPostForm'}}" class="ui button">
-                  Send a package
-                </a>
-                <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
-                  Post a trip
-                </a>
-              </center>
+              <div class="full-width-btns-lg hidden-xs">
+                <center>
+                  <a href="{{pathFor 'listings'}}" class="ui button">
+                    View All Listings
+                  </a>
+                  <a href="{{pathFor 'senderPostForm'}}" class="ui button">
+                    Send a package
+                  </a>
+                  <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
+                    Post a trip
+                  </a>
+                </center>
+              </div>
+              <div class="full-width-btn-xs visible-xs">
+                <table style="width:100%" id="full-width-btns-table">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <a href="{{pathFor 'listings'}}" class="ui button mini">
+                            View All Listings
+                        </a>
+                      </td>
+                      <td>
+                        <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+                          Send a package
+                        </a>
+                      </td>
+                      <td>
+                        <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+                          Send a package
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </section>
         </div>
@@ -320,7 +345,7 @@
               Inbox 
             </a>
           </li>
-          <li><a href="http://www.jquery2dotnet.com">Sent Messages</a></li>
+          <li><a href="{{pathFor 'sent-messages'}}">Sent Messages</a></li>
           <li id="notif">
             <a href="{{pathFor "notifications"}}" class="">
               {{#if hasUnreadNotifications unreadNotifications}}
@@ -347,26 +372,26 @@
               <a href="{{pathFor 'message-view' _id=_id}}" class="list-group-item">
                 {{#if unread status}}
                 <strong>
-                  <span class="name">
+                  <div class="name col-sm-2">
                    {{sentFrom owner}}
-                 </span> 
-                 <span class=""></span>
-                 <span class="text-muted">
+                 </div> 
+                 <div class="text-muted col-sm-8">
                    {{message}}
-                 </span>
+                 </div>
                </strong> 
                {{else}}
-               <span class="name">
+               <div class="name col-sm-2">
                  {{sentFrom owner}}
-               </span> 
-               <span class=""></span>
-               <span class="text-muted">
+               </div> 
+               <span class="text-muted col-sm-8">
                  {{message}}
                </span>
                {{/if}}
-               <span class="badge">
-                {{tm_cal createdAt}}
-              </span>
+               <div>
+                  <span class="badge">
+                   {{tm_cal createdAt}}
+                 </span>
+               </div>
             </a>
           </div>
         </div>
@@ -437,7 +462,6 @@
                  </span> 
                  <span class=""></span>
                  <span class="text-muted">
-                   <!-- {{message}} -->
                  </span>
                  {{/if}}
                  <span class="badge">

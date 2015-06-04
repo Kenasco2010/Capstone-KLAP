@@ -223,8 +223,13 @@ Template.registerHelper("unread", function(id){
 })
 
 Template.registerHelper("shortMessage", function(message){
-    var shortmsg = jQuery.trim(message).substring(0, 80).split(" ").slice(0, -1).join(" ") + "...";
-    return shortmsg;
+    if (message.length < 80) {
+        return message;
+    }
+    else {
+        var shortmsg = jQuery.trim(message).substring(0, 80).split(" ").slice(0, -1).join(" ") + "...";
+        return shortmsg;
+    }
 })
 
 Template.registerHelper("fullName", function(id){
@@ -297,7 +302,7 @@ Template.registerHelper("item_owner_id", function(itemId){
 
 Template.registerHelper("hasSentRequest", function(itemId){
     var userId = Meteor.userId();
-    var application = Applications.findOne({itemId: itemId, owner: userId})
+    var application = Requests.findOne({app_carry_itemId: itemId, owner: userId})
     if (typeof(application) != "undefined") {
         return true
     };
@@ -339,12 +344,26 @@ Template.registerHelper("reqToCarryItemOwner", function(itemId){
 
 })
 
-Template.registerHelper("reqToCarry", function(request){
-    var request = request;
-    var carrierId = request.carrierId;
-    if (typeof(carrierId) != "undefined") {
+Template.registerHelper("appToCarry", function(request){
+    if (request.type == "app_carry" && request.owner == Meteor.userId()) {
         return true;
     };
+    
+})
+
+Template.registerHelper("recReqToCarryAUser", function(request){
+    if (request.type == "req_carry" && request.carrierId == Meteor.userId()) {
+        return true;
+    };
+    
+})
+
+Template.registerHelper("recReqToCarryUserItem", function(request){
+     var userId = Meteor.userId();
+    if (request.senderId == userId && request.type == "app_carry") {
+        return true;
+    };
+    
 })
 
 Template.registerHelper("acceptedToCarry", function(itemId){
@@ -403,4 +422,89 @@ Template.registerHelper("firstName", function(userId){
     var user = Meteor.users.findOne(userId);
     var first_name = user.profile.first_name;
     return first_name;
+})
+
+Template.registerHelper("getItemPicUrl", function(itemId){
+    var item = Items.findOne(itemId);
+    var url = item.absoluteImageUrl;
+    return url;
+})
+
+
+Template.registerHelper("getItemTitle", function(itemId){
+    var item = Items.findOne(itemId);
+    var title = item.title;
+    return title;
+})
+
+Template.registerHelper("getItemOwnerId", function(itemId){
+    var item = Items.findOne(itemId);
+    var ownerId = item.owner;
+    return ownerId;
+})
+
+Template.registerHelper("getItemWeight", function(itemId){
+    var item = Items.findOne(itemId);
+    var weight = item.weight;
+    return weight;
+})
+
+Template.registerHelper("getItemReward", function(itemId){
+    var item = Items.findOne(itemId);
+    var reward = item.reward;
+    return reward;
+})
+
+Template.registerHelper("getItemDesc", function(itemId){
+    var item = Items.findOne(itemId);
+    var description = item.description;
+    return description;
+})
+
+Template.registerHelper("getItemOriginCountry", function(itemId){
+    var item = Items.findOne(itemId);
+    var origin = item.origin_country;
+    return origin;
+})
+
+Template.registerHelper("getItemDestinationCountry", function(itemId){
+    var item = Items.findOne(itemId);
+    var destination = item.destination_country;
+    return destination;
+})
+
+
+Template.registerHelper("getMeItemOwnerId", function(){
+    var checkItemId = this.request.app_carry_itemId
+    var itemId;
+    if (typeof(checkItemId) == "undefined") {
+        itemId = this.request.req_carry_itemId;
+        var item = Items.findOne(itemId);
+        return item.owner;
+    }
+    else {
+        itemId = checkItemId;
+        var item = Items.findOne(itemId);
+        return item.owner;
+    }
+})
+
+
+Template.registerHelper("getMeReqToCarryItemId", function(){
+    var itemId = this.request.req_carry_itemId;
+    return itemId;
+})
+
+Template.registerHelper("ownerOfItem", function(itemId){
+    var item = Items.findOne(itemId);
+    if (item.owner == Meteor.userId()) {
+        return true;
+    };
+})
+
+Template.registerHelper("ownerOfTrip", function(tripId){
+    var trip = Travels.findOne(tripId);
+    if (trip.owner == Meteor.userId()) {
+        return true;
+    };
 })

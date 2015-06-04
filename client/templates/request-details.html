@@ -4,17 +4,42 @@
             <div class="col-sm-12 top-bar">
               <section class="my-top-bar">
                 <div class="full-width">
-                  <center>
-                    <a href="{{pathFor 'listings'}}" class="ui button">
-                      View All Listings
-                    </a>
-                    <a href="{{pathFor 'senderPostForm'}}" class="ui button">
-                      Send a package
-                    </a>
-                    <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
-                      Post a trip
-                    </a>
-                  </center>
+                  <div class="full-width-btns-lg hidden-xs">
+                    <center>
+                      <a href="{{pathFor 'listings'}}" class="ui button">
+                        View All Listings
+                      </a>
+                      <a href="{{pathFor 'senderPostForm'}}" class="ui button">
+                        Send a package
+                      </a>
+                      <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
+                        Post a trip
+                      </a>
+                    </center>
+                  </div>
+                  <div class="full-width-btn-xs visible-xs">
+                    <table style="width:100%" id="full-width-btns-table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <a href="{{pathFor 'listings'}}" class="ui button mini">
+                                View All Listings
+                            </a>
+                          </td>
+                          <td>
+                            <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+                              Send a package
+                            </a>
+                          </td>
+                          <td>
+                            <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+                              Send a package
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </section>
             </div>
@@ -379,14 +404,15 @@
                       {{unreadRequestsCount unreadRequests}}
                     </span> 
                     {{/if}}
-                    Open Requests 
+                      Requests 
                   </a>
                 </li>
-                <li><a href="{{pathFor 'closed-requests'}}">Closed Requests</a></li>
+                <!-- <li><a href="{{pathFor 'closed-requests'}}">Closed Requests</a></li> -->
               </ul>
             </div>
             <div class="col-sm-9 col-md-10">
-                {{#if reqToCarry request}}
+            <!-- if the request is a recieved request to carry another user's item? -->
+                {{#if recReqToCarryAUser request}}
                     <div id="main-message-bloc">
                       <div id="message-title" style="width:100%">
                         <p>From: {{fullName request.owner}}</p>
@@ -408,25 +434,24 @@
                         </tbody>
                       </table>
                       <div id="tk-action-block">
-                          <h3>Are you travelling between {{date_ft req_to_carry_item.send_date}} and {{date_ft req_to_carry_item.delivery_date}} and willing to carry the following item?</h3>
-
-                          {{#if acceptedToCarry req_to_carry_item._id}}
-                            <button type="button" disabled data-id="{{c._id}}" class="btn btn-default">You have accepted</button>
+                          <h3>Are you travelling between {{date_ft getItemSendDate request.req_carry_itemId}} and {{date_ft getItemDeliveryDate request.req_carry_itemId}} and willing to carry the following item?</h3>
+                          {{#if acceptedToCarry request.req_carry_itemId}}
+                            <button type="button" disabled class="btn btn-default">You have accepted</button>
                           {{else}}
-                          <button type="button" data-id="{{req_to_carry_item._id}}" class="ui button blue" id="accept-btn">Yes</button>
+                          <button type="button" data-id="{{request.req_carry_itemId}}" class="ui button blue" id="accept-btn">Yes</button>
                           {{/if}}
-                          {{#if rejectedToCarry req_to_carry_item._id}}
-                           <button type="button" disabled data-id="{{req_to_carry_item._id}}" class="btn btn-danger">You have not accepted</button>
+                          {{#if rejectedToCarry request.req_carry_itemId}}
+                           <button type="button" disabled class="btn btn-danger">You have not accepted</button>
                           {{else}}
-                            <button type="button" data-id="{{req_to_carry_item._id}}" class="ui button red" id="reject-btn">No</button>
+                            <button type="button" data-id="{{request.req_carry_itemId}}" class="ui button red" id="reject-btn">No</button>
                           {{/if}}
                       </div>
                       <div id="message-content">
                           <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                             <div class="media">
-                              <a class="pull-left" href="{{pathFor 'itemDetails' _id=req_to_carry_item._id}}" target="_parent">
+                              <a class="pull-left" href="{{pathFor 'itemDetails' _id=request.req_carry_itemId}}" target="_parent">
                                 <img alt="image" class="img-responsive" 
-                                src="{{req_to_carry_item.absoluteImageUrl}}" height="200" width="200"></a>
+                                src="{{getItemPicUrl request.req_carry_itemId}}" height="200" width="200"></a>
 
                                 <div class="clearfix visible-sm"></div>
 
@@ -434,42 +459,41 @@
                                   <a href="#" target="_parent"></a>
 
                                   <h4 class="media-heading">
-                                    <a href="{{pathFor 'itemDetails' _id=req_to_carry_item._id}}" target="_parent">
-                                      {{req_to_carry_item.title}} 
+                                    <a href="{{pathFor 'itemDetails' _id=request.req_carry_itemId}}" target="_parent">
+                                      {{getItemTitle request.req_carry_itemId}} 
                                     </a>
-                                    <a href="{{pathFor 'user_profile' _id=req_to_carry_item.owner}}">
+                                    <a href="{{pathFor 'user_profile' _id=getMeItemOwnerId}}">
                                       <small class="pull-right">
-                                        by {{reqToCarryItemOwner req_to_carry_item._id}}
-                                        <!-- by {{fullName _id}} -->
+                                        by {{item_owner request.req_carry_itemId._id}}
                                       </small>
                                     </a>
                                   </h4>
 
 
                                   <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                                    <li>weight: {{req_to_carry_item.weight}} kg</li>
+                                    <li>weight: {{getItemWeight request.req_carry_itemId}} kg</li>
 
                                     <li style="list-style: none">|</li>
 
-                                    <li>${{req_to_carry_item.reward}} reward</li>
+                                    <li>${{getItemReward request.req_carry_itemId}} reward</li>
 
                                   </ul>
 
-                                  <p class="hidden-xs">{{req_to_carry_item.description}}
+                                  <p class="hidden-xs">{{getItemDesc request.req_carry_itemId}}
                                   </p>
                                   <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                     <li class="fnt-arial fnt-lighter">
-                                      From {{req_to_carry_item.origin_country}} to {{req_to_carry_item.destination_country}}
+                                      From {{getItemOriginCountry request.req_carry_itemId}} to {{getItemDestinationCountry request.req_carry_itemId}}
                                     </li>
                                   </ul>
                                   <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                    <li class="fnt-arial fnt-lighter">
-                                    Send Date: {{date_ft req_to_carry_item.send_date}}
+                                    Send Date: {{date_ft getItemSendDate request.req_carry_itemId}}
                                   </li>
                                 </ul>
                                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                  <li class="fnt-arial fnt-lighter">
-                                  Delivery Date: {{date_ft req_to_carry_item.delivery_date}}
+                                  Delivery Date: {{date_ft getItemDeliveryDate request.req_carry_itemId}}
                                 </li>
                               </ul>
                             </div>
@@ -477,6 +501,99 @@
                         </div><!-- End Listing-->
                       </div>
                     </div>
+                    {{/if}}
+                    {{#if appToCarry request}}
+                    <div id="rtc-action-block">
+                      <h3>You have requested to carry the following item</h3>
+                    </div>
+                    <div id="message-content">
+                        <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                          <div class="media">
+                            <a class="pull-left" href="{{pathFor 'itemDetails' _id=request.app_carry_itemId}}" target="_parent">
+                              <img alt="image" class="img-responsive" 
+                              src="{{getItemPicUrl request.app_carry_itemId}}" height="200" width="200"></a>
+
+                              <div class="clearfix visible-sm"></div>
+
+                              <div class="media-body fnt-smaller">
+                                <a href="#" target="_parent"></a>
+
+                                <h4 class="media-heading">
+                                  <a href="{{pathFor 'itemDetails' _id=request.app_carry_itemId}}" target="_parent">
+                                    {{getItemTitle request.app_carry_itemId}} 
+                                  </a>
+                                  <a href="{{pathFor 'user_profile' _id=getMeItemOwnerId}}">
+                                    <small class="pull-right">
+                                      by {{item_owner request.app_carry_itemId}}
+                                    </small>
+                                  </a>
+                                </h4>
+
+
+                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                  <li>weight: {{getItemWeight request.app_carry_itemId}} kg</li>
+
+                                  <li style="list-style: none">|</li>
+
+                                  <li>${{getItemReward request.app_carry_itemId}} reward</li>
+
+                                </ul>
+
+                                <p class="hidden-xs">{{getItemDesc request.app_carry_itemId}}
+                                </p>
+                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                  <li class="fnt-arial fnt-lighter">
+                                    From {{req_to_carry_item.origin_country}} to {{req_to_carry_item.destination_country}}
+                                  </li>
+                                </ul>
+                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                 <li class="fnt-arial fnt-lighter">
+                                  Send Date: {{date_ft getItemSendDate request.app_carry_itemId}}
+                                </li>
+                              </ul>
+                              <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                               <li class="fnt-arial fnt-lighter">
+                                Delivery Date: {{date_ft getItemDeliveryDate request.app_carry_itemId}}
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div><!-- End Listing-->
+                    </div>
+                {{/if}}
+                {{#if recReqToCarryUserItem request}}
+                  <div id="rtc-action-block">
+                    <h3>{{fullName request.owner}} has requested to carry the following item</h3>
+                  </div>
+                   <hr>
+                  <table style="width:100%">
+                    <tbody>
+                      <tr>
+                        <td>
+                          {{> avatar userId=request.owner shape="rounded" size="small" class="message-view-pic"}}
+                        </td>
+                        <td>
+                          <h3>{{fullName request.owner}}</h3>
+                        </td>
+                        <td>
+                          {{tm_locale createdAt}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div id="tk-action-block">
+                      <h3>Do you want {{fullName request.owner}} to be the carrier of your item?</h3>
+                      {{#if acceptedToCarry request.app_carry_itemId}}
+                        <button type="button" disabled class="btn btn-default">You have accepted</button>
+                      {{else}}
+                      <button type="button" data-id="{{request.app_carry_itemId}}" class="ui button blue" id="accept-btn">Yes</button>
+                      {{/if}}
+                      {{#if rejectedToCarry request.app_carry_itemId}}
+                       <button type="button" disabled class="btn btn-danger">You have not accepted</button>
+                      {{else}}
+                        <button type="button" data-id="{{request.app_carry_itemId}}" class="ui button red" id="reject-btn">No</button>
+                      {{/if}}
+                  </div>
                 {{/if}}
               </div>
             </div>
