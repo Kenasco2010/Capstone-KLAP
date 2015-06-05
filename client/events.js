@@ -143,26 +143,7 @@ Template.userPublicProfile.created = function () {
       });
 };
 
-Template.postItem.rendered = function () {
-  $(".date-picker").pickadate();
 
-};
-
-Template.postTravel.rendered = function () {
-  $(".date-picker").pickadate();
-};
-
-Template.editTripForm.rendered = function () {
-  $(".date-picker").pickadate();
-};
-
-Template.searchForm.rendered = function () {
-  $(".date-picker").pickadate();
-};
-
-Template.editItemForm.rendered = function () {
-  $(".date-picker").pickadate();
-};
 
 Template.listings.rendered = function () {
   $('.menu .item').tab();

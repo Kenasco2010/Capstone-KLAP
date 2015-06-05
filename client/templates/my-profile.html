@@ -370,7 +370,7 @@
           <div class="tab-pane fade in active" id="home">
             <div class="list-group" data-id="{{_id}}">
               <a href="{{pathFor 'message-view' _id=_id}}" class="list-group-item">
-                {{#if unread status}}
+                {{#if unread _id}}
                 <strong>
                   <div class="name col-sm-2">
                    {{sentFrom owner}}
@@ -414,10 +414,10 @@
                   {{unreadRequestsCount unreadRequests}}
                 </span> 
                 {{/if}}
-                Open Requests 
+                Requests 
               </a>
             </li>
-            <li id="clo-req"><a href="{{pathFor 'closed-requests'}}">Closed Requests</a></li>
+            <!-- <li id="clo-req"><a href="{{pathFor 'closed-requests'}}">Closed Requests</a></li> -->
             <li id="notif">
               <a href="{{pathFor "notifications"}}" class="">
                 {{#if hasUnreadNotifications unreadNotifications}}

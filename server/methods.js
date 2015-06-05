@@ -42,6 +42,26 @@ Meteor.methods({
   },
   postItem: function(doc){
     Items.insert(doc, function(err, id){
+      if (err) {
+        return err;
+      }
+      else {
+        var users = Meteor.users.find({}).fetch();    
+        for (i = 0; i < users.length; i++) { 
+            var value = users[i];
+            if (value.profile.available_as_carrier == true ) {
+                Requests.insert({
+                  req_carry_itemId: id,
+                  carrierId: value._id,
+                  owner: Meteor.user()._id,
+                  read_status: "unread",
+                  type: "req_carry",
+                  action_status: "open",
+                  // createdAt: new Date() // current time
+                }, function(err, id){});
+            };
+        }
+      }
   });
   },
   editItem: function(itemId, doc) {
