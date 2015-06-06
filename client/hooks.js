@@ -79,7 +79,11 @@ AutoForm.hooks({
             this.done(new Error(error));
           }
           else {
-            swal("Thanks! your item has been successfuly posted");
+              sweetAlert({
+              title: "Thanks!",
+               text: "Your post has successfuly been sent to members who match the route you specified. You will a notification if any member accepts to carry your item"
+            }, function(){ Router.go("my-profile")}
+            );
           }
         });
          this.done();

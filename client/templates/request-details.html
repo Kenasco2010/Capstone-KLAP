@@ -51,6 +51,7 @@
         <a class="item" data-tab="third">My Trips</a>
         <a class="item" data-tab="fourth">My Messages</a>
         <a class="item active" data-tab="fifth">My Requests</a>
+        <a class="item" data-tab="sixth">My Notifications</a>
       </div>
       <!-- <div class="ui bottom attached active tab segment" data-tab="first">
           {{> editProfile}}      
@@ -434,7 +435,7 @@
                         </tbody>
                       </table>
                       <div id="tk-action-block">
-                          <h3>Are you travelling between {{date_ft getItemSendDate request.req_carry_itemId}} and {{date_ft getItemDeliveryDate request.req_carry_itemId}} and willing to carry the following item?</h3>
+                          <h3><!-- Are you travelling from {{getItemOriginCountry request.req_carry_itemId}} to {{getItemDestinationCountry request.req_carry_itemId}} between {{date_ft getItemSendDate request.req_carry_itemId}} and {{date_ft getItemDeliveryDate request.req_carry_itemId}} and willing to carry the following item? -->{{getSingleItemTitle request.req_carry_itemId}}</h3>
                           {{#if acceptedToCarry request.req_carry_itemId}}
                             <button type="button" disabled class="btn btn-default">You have accepted</button>
                           {{else}}
@@ -464,7 +465,7 @@
                                     </a>
                                     <a href="{{pathFor 'user_profile' _id=getMeItemOwnerId}}">
                                       <small class="pull-right">
-                                        by {{item_owner request.req_carry_itemId._id}}
+                                        by {{item_owner request.req_carry_itemId}}
                                       </small>
                                     </a>
                                   </h4>
@@ -599,6 +600,65 @@
             </div>
           </div>
       </div>
-
+      <div class="ui bottom attached tab segment" data-tab="sixth">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3 col-md-2">
+              <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                 <a href="{{pathFor "notifications"}}" class="">
+                   {{#if hasUnreadNotifications unreadNotifications}}
+                   <span class="badge pull-right">
+                     {{unreadNotificationsCount unreadNotifications}}
+                   </span>
+                     {{/if}}
+                   Notifications
+                 </a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-9 col-md-10">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
+                </span>Primary</a></li>
+              </ul>
+              <!-- Tab panes -->
+              {{#each notifications}}
+              <div class="tab-content">
+                <div class="tab-pane fade in active" id="home">
+                  <div class="list-group notif-list-group" data-id="{{_id}}">
+                    <a href="{{pathFor 'notification-view' _id=_id}}" class="list-group-item">
+                      {{#if unreadNotif status}}
+                      <strong>
+                        <div class="name col-sm-9">
+                            {{sentFrom from}} responded to your request.
+                       </div> 
+                       <!-- <div class="text-muted col-sm-8">
+                         {{message}}
+                       </div> -->
+                     </strong> 
+                     {{else}}
+                     <div class="name col-sm-9">
+                       {{sentFrom from}} responded to your request.
+                     </div> 
+                    <!--  <div class="text-muted col-sm-8">
+                       {{message}}
+                     </div> -->
+                     {{/if}}
+                     <div>
+                        <span class="badge">
+                         {{tm_cal createdAt}}
+                       </span>
+                     </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+      </div>
 </template>
 

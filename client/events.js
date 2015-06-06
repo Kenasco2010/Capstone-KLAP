@@ -176,6 +176,10 @@ Template.navigation.rendered = function () {
  $('.dropdown-toggle').dropdown();
 };
 
+Template.sentMessages.rendered = function () {
+  $('.menu .item').tab();
+};
+
 Template.messageView.rendered = function () {
   $('.menu .item').tab();
    var messageId = Router.current().params._id;

@@ -508,3 +508,43 @@ Template.registerHelper("ownerOfTrip", function(tripId){
         return true;
     };
 })
+
+Template.registerHelper("getItemOriginCountry", function(itemId){
+    var item = Items.findOne(itemId);
+    return item.origin_country;
+})
+
+Template.registerHelper("getItemDestinationCountry", function(itemId){
+    var item = Items.findOne(itemId);
+    return item.destination_country;
+})
+
+Template.registerHelper("askToCarryUserItem", function(requestId){
+    var request = Requests.findOne(requestId);
+    var userId = Meteor.userId();
+    if (request.type == "req_carry" && request.carrierId == userId) {
+        return true;
+    };
+})
+
+Template.registerHelper("getRequestTitle", function(requestId){
+    var request = Requests.findOne(requestId);
+    var itemId = request.req_carry_itemId;
+    var item = Items.findOne(itemId);
+    var item_send_date = item.send_date;
+    var m = moment(item_send_date);
+    var date = m.format("dddd, MMMM Do YYYY");
+     return "Are you travelling from " + item.origin_country + " to " + item.destination_country + " between " + date + " and...?";
+})
+
+Template.registerHelper("getSingleItemTitle", function(itemId){
+    var item = Items.findOne(itemId);
+    var item_send_date = item.send_date;
+    var item_delivery_date = item.delivery_date;
+    var sd = moment(item_send_date);
+    var dd = moment(item_delivery_date);
+    var send_date = sd.format("dddd, MMMM Do YYYY");
+    var delivery_date = dd.format("dddd, MMMM Do YYYY");
+
+    return  "Are you travelling from " + item.origin_country + " to " + item.destination_country + " between " + send_date + " and " + delivery_date + " and " + " and willing to carry the following item?";
+})
