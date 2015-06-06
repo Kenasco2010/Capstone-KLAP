@@ -1,5 +1,5 @@
 <template name="postItem">
-  {{#autoForm collection="Items" id="postItemForm"}}
+  {{#autoForm collection="Items" id="postItemForm" type="insert"}}
   <center><h2 class="form-title">Send a Package</h2></center>
   <fieldset>
     <div class="form-blocks top-form-block">
@@ -31,30 +31,30 @@
       <center><label>You are sending this item from</label></center>
     </div>
     <div class="col-md-4 postItem-origin_country">
-      {{> afQuickField name="origin_country" label=false selectizeOptions=s2OptsOCountry}}
+      {{> afQuickField name="origin_country" label=false  id='item_post_origin_country'}}
     </div>
     <div class="col-md-4">
-     {{> afQuickField name="origin_city" label=false selectizeOptions=s2OptsOCity}}
+      {{> afQuickField name="origin_city" label=false options=cityListings}}
+    </div>
+    <div class="col-md-4">
+      {{> afQuickField name="send_date" label=false}}
+    </div>
+  </div>
+  <div class="form-blocks">
+    <div class=" col-md-12 block-label">
+      <center><label>To</label></center>
+    </div>
+    <div class="col-md-4">
+      {{> afQuickField name="destination_country" label=false id='item_post_destination_country'}}
+    </div>
+    <div class="col-md-4">
+      {{> afQuickField name="destination_city" label=false options=postitemdestinationcityListings}}
+    </div>
+    <div class="col-md-4">
+     {{> afQuickField name="delivery_date" label=false}}
    </div>
-   <div class="col-md-4">
-    {{> afQuickField name="send_date" label=false}}
-  </div>
-</div>
-<div class="form-blocks">
-  <div class=" col-md-12 block-label">
-    <center><label>To</label></center>
-  </div>
-  <div class="col-md-4">
-    {{> afQuickField name="destination_country" label=false selectizeOptions=s2OptsDCountry}}
-  </div>
-  <div class="col-md-4">
-    {{> afQuickField name="destination_city" label=false selectizeOptions=s2OptsDCity}}
-  </div>
-  <div class="col-md-4">
-   {{> afQuickField name="delivery_date" label=false}}
  </div>
-</div>
-<div class="form-blocks">
+ <div class="form-blocks">
   <div class="col-md-7">
     {{#each files}}
     <div>
