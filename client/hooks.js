@@ -80,7 +80,6 @@ AutoForm.hooks({
           }
           else {
             swal("Thanks! your item has been successfuly posted");
-            Router.go("upcoming-trips");
           }
         });
          this.done();
@@ -98,7 +97,9 @@ AutoForm.hooks({
   sendMessageForm: {
        formToDoc: function(doc, ss, formId) {
         var sent_to = $("p.getter").attr("data-user-id");
-        doc.sent_to = sent_to;
+        var sentToArray = [];
+        sentToArray.push(sent_to);
+        doc.sent_to = sentToArray;
         doc.status = "unread";
         return doc;
       },

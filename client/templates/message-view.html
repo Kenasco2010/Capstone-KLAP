@@ -4,17 +4,42 @@
         <div class="col-sm-12 top-bar">
           <section class="my-top-bar">
             <div class="full-width">
-              <center>
-                <a href="{{pathFor 'listings'}}" class="ui button">
-                  View Listings
-                </a>
-                <a href="{{pathFor 'senderPostForm'}}" class="ui button">
-                  Send a package
-                </a>
-                <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
-                  Post a trip
-                </a>
-              </center>
+              <div class="full-width-btns-lg hidden-xs">
+                <center>
+                  <a href="{{pathFor 'listings'}}" class="ui button">
+                    View All Listings
+                  </a>
+                  <a href="{{pathFor 'senderPostForm'}}" class="ui button">
+                    Send a package
+                  </a>
+                  <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
+                    Post a trip
+                  </a>
+                </center>
+              </div>
+              <div class="full-width-btn-xs visible-xs">
+                <table style="width:100%" id="full-width-btns-table">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <a href="{{pathFor 'listings'}}" class="ui button mini">
+                            View All Listings
+                        </a>
+                      </td>
+                      <td>
+                        <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+                          Send a package
+                        </a>
+                      </td>
+                      <td>
+                        <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+                          Send a package
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </section>
         </div>
@@ -269,11 +294,11 @@
               <div class="row">
                   <div class="col-sm-3 col-md-2">
                       <ul class="nav nav-pills nav-stacked">
-                          <li>
+                          <!-- <li>
                             <a href="{{pathFor "messages-home"}}">Messages (Home)</a>
-                          </li>
+                          </li> -->
                             <li class="active">
-                              <a href="#">
+                              <a href="{{pathFor 'messages-home'}}">
                                 {{#if hasUnreadMessages unreadMessages}}
                                     <span class="badge pull-right">
                                       {{unreadMessagesCount unreadMessages}}
@@ -282,7 +307,7 @@
                                 Inbox 
                               </a>
                             </li>
-                          <li><a href="http://www.jquery2dotnet.com">Sent Messages</a></li>
+                          <li><a href="{{pathFor 'sent-messages'}}">Sent Messages</a></li>
                           <li id="notif">
                             <a href="{{pathFor "notifications"}}" class="">
                               {{#if hasUnreadNotifications unreadNotifications}}

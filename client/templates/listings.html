@@ -44,10 +44,9 @@
                       <a href="#" target="_parent">
                         {{title}} 
                       </a>
-                      <a href="{{pathFor 'user_profile' _id=itemOwnerId}}">
+                      <a href="{{#if ownerOfItem _id}} {{pathFor 'my-profile'}} {{else}} {{pathFor 'user_profile' _id=itemOwnerId}} {{/if}}">
                         <small class="pull-right">
-                          <!-- by {{item_owner _id}} -->
-                          by {{fullName _id}}
+                          by {{item_owner _id}}
                         </small>
                       </a>
                     </h4>
@@ -90,7 +89,7 @@
           <!-- Begin Listing -->
           <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
             <div class="media">
-              <a class="pull-left" href="{{pathFor 'tripDetails' id=itemId}}" target="_parent">
+              <a class="pull-left" href="{{pathFor 'itemDetails' id=itemId}}" target="_parent">
                 <img alt="image" class="img-responsive" 
                 src="{{absoluteImageUrl}}"></a>
                 <div class="clearfix visible-sm"></div>
@@ -102,7 +101,7 @@
                     <a href="{{pathFor 'itemDetails' id=itemId}}" target="_parent">
                       {{title}} 
                     </a>
-                    <a href="{{pathFor 'user_profile' _id=itemOwnerId}}">
+                    <a href="{{#if ownerOfItem _id}} {{pathFor 'my-profile'}} {{else}} {{pathFor 'user_profile' _id=itemOwnerId}} {{/if}}">
                       <small class="pull-right">
                         by {{item_owner _id}}
                       </small>
@@ -167,7 +166,7 @@
                   <a href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                     {{origin_country}} to {{destination_country}}
                   </a>
-                  <a href="{{pathFor 'user_profile' _id=tripOwnerId}}">
+                  <a href="{{#if ownerOfTrip _id}} {{pathFor 'my-profile'}} {{else}} {{pathFor 'user_profile' _id=tripOwnerId}} {{/if}}">
                     <small class="pull-right">
                       by {{trip_owner _id}}
                     </small>
@@ -208,12 +207,11 @@
                 <a href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                  {{origin_country}} to {{destination_country}}
                </a>
-               <a href="{{pathFor 'user_profile' _id=tripOwnerId}}">
+               <a href="{{#if ownerOfTrip _id}} {{pathFor 'my-profile'}} {{else}} {{pathFor 'user_profile' _id=tripOwnerId}} {{/if}}">
                  <small class="pull-right">
                    by {{trip_owner _id}}
                  </small>
                </a>
-
              </h4>
 
 

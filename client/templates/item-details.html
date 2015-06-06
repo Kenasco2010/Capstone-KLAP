@@ -69,17 +69,20 @@
 							<p class="get-item-id" data-item-id="{{_id}}"></p>
 							<center>
 								<p>
-									{{#if hasSentRequest _id}}
-										 <button class="btn btn-default btn-round" type="button" disabled>
-										 	<i class="fa fa-weixin"></i>
-										 	Request Sent
-										 </button>
-										{{else}}
-											<a type="button" class="btn btn-default btn-round 
-												btn-carry-req"><i class="fa fa-weixin"></i>
-												Request to carry
-											</a>
+									{{#if ownerOfItem _id}}
+									{{else}}
+										{{#if hasSentRequest _id}}
+											 <button class="btn btn-default btn-round" type="button" disabled>
+											 	<i class="fa fa-weixin"></i>
+											 	Request Sent
+											 </button>
+											{{else}}
+												<a type="button" class="btn btn-default btn-round 
+													btn-carry-req"><i class="fa fa-weixin"></i>
+													Request to carry
+												</a>
 										{{/if}}
+									{{/if}}
 								</p>
 							</center>
 						</div>
