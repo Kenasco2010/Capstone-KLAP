@@ -1,8 +1,13 @@
 Template.registerHelper("fullUserName", function(user){
-    var first_name = user.profile.first_name;
-    var last_name = user.profile.last_name;
-    var full_name = first_name + " " + last_name;
-    return full_name;
+    if (typeof(user.profile) == "undefined") {
+        return;
+    }
+    else {
+        var first_name = user.profile.first_name;
+        var last_name = user.profile.last_name;
+        var full_name = first_name + " " + last_name;
+        return full_name;
+    }
 })
 
 Template.registerHelper("rating", function(user){
@@ -517,6 +522,14 @@ Template.registerHelper("ownerOfTrip", function(tripId){
     };
 })
 
+Template.registerHelper("currentUserProfile", function(userId){
+    var currentUserId = Meteor.userId();
+    if (currentUserId == userId) {
+        return true;
+    };
+
+})
+
 Template.registerHelper("getItemOriginCountry", function(itemId){
     var item = Items.findOne(itemId);
     return item.origin_country;
@@ -612,3 +625,14 @@ Template.registerHelper("getSingleItemTitle", function(itemId){
         return first_name + " has requested to carry your item.";
     })
 
+Template.registerHelper("noItems", function(items){
+    if (items.length == 0) {
+        return true;
+    };
+})
+
+Template.registerHelper("noTrips", function(trips){
+    if (trips.length == 0) {
+        return true;
+    };
+})

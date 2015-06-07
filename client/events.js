@@ -74,16 +74,17 @@ Template.userPublicProfile.rendered = function () {
   userId = $this.userId.get();
   $('.ui.rating').rating('setting', 'onRate', function(value) {
           // Session.set("review-value", value);
-          $this.ratings.set(value);
-          $this.userId.set(this.id);
+          if (Meteor.userId() == this.id) {
+            swal("Illegal Operation");
+          }
+          else {
+            $this.ratings.set(value);
+            $this.userId.set(this.id);
+          }
         });
 };
 
 Template.userPublicProfile.events({
-  'click .rating': function () {
-    console.log(this);
-    console.log(Session.get("review-value"));
-  },
   'click #hide-reviews': function() {
     $(".second-container").slideUp();
   },
@@ -118,6 +119,29 @@ Template.userPublicProfile.events({
     }
   });
 
+Template.tripDetails.events({
+  'click .btn-send-req': function () {
+     var carrierId = this.owner;
+     $(".ui.send-request.modal").modal("setting", {
+       closable: false,
+       onApprove: function () {
+        var req_carry_itemId = Session.get("itemSelected");
+        Meteor.call('requestToCarry', req_carry_itemId, carrierId, function (error, result) {
+         if (error) {
+           $('.ui.send-request.modal').modal('hide');
+           swal("Sorry! something went wrong");
+         }
+         else {
+           $('.ui.send-request.modal').modal('hide');
+           swal("Thanks! your request has been sent");
+         }
+       });
+        return false;
+      }
+    }).modal("show");
+    console.log(this);
+  }
+});
 
 Template.userPublicProfile.created = function () {
   var instance = this;

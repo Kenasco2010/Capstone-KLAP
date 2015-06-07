@@ -54,6 +54,13 @@
         <a class="item active" data-tab="sixth">My Notifications</a>
       </div>
         <div class="ui bottom attached tab segment" data-tab="second">
+          {{#if noItems items}}
+            <center>
+              <div class="no-items">
+                <h1>There are no items listed yet.</h1>
+              </div>
+            </center>
+            {{else}}
           <div class="container-fluid" style="background-color:#e8e8e8">
             <div class="container container-pad" id="property-listings">
               <div class="row">
@@ -223,9 +230,17 @@
           </div><!-- End Col -->
         </div><!-- End row -->
       </div><!-- End container -->
-    </div>  
+    </div>
+  {{/if}}  
     </div>
     <div class="ui bottom attached tab segment" data-tab="third">
+      {{#if noTrips trips}}
+        <center>
+          <div class="no-items">
+            <h1>There are no trips listed yet.</h1>
+          </div>
+        </center>
+        {{else}}
       <div class="container-fluid" style="background-color:#e8e8e8">
         <div class="container container-pad" id="property-listings">
           <div class="row">
@@ -327,6 +342,7 @@
       </div><!-- End row -->
     </div><!-- End container -->
     </div>
+    {{/if}}
     </div>
     <div class="ui bottom attached tab segment" data-tab="fourth">
       <div class="container">
@@ -419,35 +435,16 @@
                 <div class="tab-pane fade in active" id="home">
                   <div class="list-group open-req-list-group" data-id="{{_id}}">
                     <a href="{{pathFor 'request-details' _id=_id}}" class="list-group-item">
-                         {{#if unreadReq read_status}}
-                         <strong>
-                           <div class="name col-sm-2">
-                             {{#if userIsOwner owner}}
-                               From You
-                             {{else}}
-                               {{sentFrom owner}}
-                             {{/if}}
-                          </div> 
-                          <div class="text-muted col-sm-7">
-                            {{#if recReqToCarryAnotherUserItem _id}}
-                              {{getRequestTitle _id}}
-                            {{/if}}
-                            {{#if appToCarryItem _id}}
-                              {{getAppToCarryItemTitle _id}}
-                            {{/if}}
-                            {{#if requestToCarryYourItem _id}}
-                              {{getReqToCarryYourItemTitle _id}}
-                            {{/if}}
-                            {{#if recReqToCarryYourItem _id}}
-                              {{getRecReqToCarryYourItemTitle _id}}
-                            {{/if}}
-                          </div>
-                        </strong> 
-                        {{else}}
-                        <div class="name col-sm-2">
-                          {{sentFrom owner}}
+                       {{#if unreadReq read_status}}
+                       <strong>
+                         <div class="name col-sm-2">
+                           {{#if userIsOwner owner}}
+                             From You
+                           {{else}}
+                             {{sentFrom owner}}
+                           {{/if}}
                         </div> 
-                        <div class=" text-muted col-sm-7">
+                        <div class="text-muted col-sm-7">
                           {{#if recReqToCarryAnotherUserItem _id}}
                             {{getRequestTitle _id}}
                           {{/if}}
@@ -461,12 +458,31 @@
                             {{getRecReqToCarryYourItemTitle _id}}
                           {{/if}}
                         </div>
+                      </strong> 
+                      {{else}}
+                      <div class="name col-sm-2">
+                        {{sentFrom owner}}
+                      </div> 
+                      <div class=" text-muted col-sm-7">
+                        {{#if recReqToCarryAnotherUserItem _id}}
+                          {{getRequestTitle _id}}
                         {{/if}}
-                      <div class="">
-                         <span class="badge">
-                          {{tm_cal createdAt}}
-                        </span>
+                        {{#if appToCarryItem _id}}
+                          {{getAppToCarryItemTitle _id}}
+                        {{/if}}
+                        {{#if requestToCarryYourItem _id}}
+                          {{getReqToCarryYourItemTitle _id}}
+                        {{/if}}
+                        {{#if recReqToCarryYourItem _id}}
+                          {{getRecReqToCarryYourItemTitle _id}}
+                        {{/if}}
                       </div>
+                      {{/if}}
+                    <div class="">
+                       <span class="badge">
+                        {{tm_cal createdAt}}
+                      </span>
+                    </div>
                   </a>
                 </div>
               </div>

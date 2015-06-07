@@ -29,16 +29,21 @@ Meteor.methods({
   updateRatings: function(userId, value){
 
         var user = Meteor.users.findOne(userId);
-        var rating_times = user.profile.rating_times;
-        var accumulated_ratings = user.profile.accumulated_ratings;
-        var actual_rating = accumulated_ratings/rating_times;
-        var rating_whole_number = Math.round(actual_rating);
-        Meteor.users.update({_id: userId},
-        {
-                    $set: {"profile.rating": rating_whole_number}, 
-                    $inc: {"profile.rating_times": 1, 
-                    "profile.accumulated_ratings": value}
-        })
+        if (typeof(user) == "undefined") {
+          return;
+        }
+        else {
+            var rating_times = user.profile.rating_times;
+            var accumulated_ratings = user.profile.accumulated_ratings;
+            var actual_rating = accumulated_ratings/rating_times;
+            var rating_whole_number = Math.round(actual_rating);
+            Meteor.users.update({_id: userId},
+            {
+                        $set: {"profile.rating": rating_whole_number}, 
+                        $inc: {"profile.rating_times": 1, 
+                        "profile.accumulated_ratings": value}
+            })
+        }
   },
   postItem: function(doc){
     Items.insert(doc, function(err, id){
@@ -105,7 +110,10 @@ Meteor.methods({
     Items.remove(id);
   },
   removeTrip: function(id){
-    Travels.remove(id);
+    return Travels.remove({});
+  },
+  removeTrips: function(){
+    Travels.remove({});
   },
   updateUserMessageStatus: function(messageId){
     var messages = Messages.findOne(messageId);

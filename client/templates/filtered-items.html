@@ -48,6 +48,13 @@
       <div class="ui top attached tabular menu">
         <a class="active item" data-tab="first">Pending items that match your travel route</a>
       </div>
+    {{#if noItems items}}
+      <center>
+        <div class="no-items">
+          <h1>There are no pending items currently on this travel route.</h1>
+        </div>
+      </center>
+      {{else}}
       <div class="ui bottom attached active tab segment" data-tab="first">
         <div class="container-fluid" style="background-color:#e8e8e8">
           <div class="container container-pad" id="property-listings">
@@ -170,4 +177,5 @@
       </div><!-- End container -->
     </div>  
     </div>
+  {{/if}}
 </template>

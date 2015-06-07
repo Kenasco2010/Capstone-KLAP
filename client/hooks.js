@@ -182,7 +182,6 @@ AutoForm.hooks({
               this.done(new Error(error));
             }
             else {
-              console.log(result);
               swal("Thanks! your trip has been successfuly posted");
               Router.go('filteredItems', {_id: result})
             }
