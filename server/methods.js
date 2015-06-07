@@ -88,6 +88,9 @@ Meteor.methods({
   removeApplications: function(){
     return Applications.remove({});
   },
+  removeNotifications: function(){
+    return Notifications.remove({});
+  },
   insertReview: function(doc) {
     Reviews.insert(doc, function(err, id){
     });

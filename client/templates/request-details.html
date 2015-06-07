@@ -435,7 +435,7 @@
                         </tbody>
                       </table>
                       <div id="tk-action-block">
-                          <h3><!-- Are you travelling from {{getItemOriginCountry request.req_carry_itemId}} to {{getItemDestinationCountry request.req_carry_itemId}} between {{date_ft getItemSendDate request.req_carry_itemId}} and {{date_ft getItemDeliveryDate request.req_carry_itemId}} and willing to carry the following item? -->{{getSingleItemTitle request.req_carry_itemId}}</h3>
+                          <h3>{{getSingleItemTitle request.req_carry_itemId}}</h3>
                           {{#if acceptedToCarry request.req_carry_itemId}}
                             <button type="button" disabled class="btn btn-default">You have accepted</button>
                           {{else}}

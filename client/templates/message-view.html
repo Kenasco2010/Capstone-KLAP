@@ -75,7 +75,7 @@
                                       <a href="#" target="_parent"></a>
 
                                       <h4 class="media-heading">
-                                        <a href="#" target="_parent">
+                                        <a href="{{pathFor 'itemDetails' id=itemId}}" target="_parent">
                                           {{title}} 
                                         </a>
                                         <a href="{{pathFor 'edit-item' _id=_id}}">
@@ -137,7 +137,7 @@
                                         <a href="#" target="_parent"></a>
 
                                         <h4 class="media-heading">
-                                          <a href="#" target="_parent">
+                                          <a href="{{pathFor 'itemDetails' id=itemId}}" target="_parent">
                                             {{title}} 
                                           </a>
                                           <a href="{{pathFor 'edit-item' _id=_id}}">
@@ -412,7 +412,7 @@
                           </div> 
                           <div class="text-muted col-sm-7">
                             {{#if askToCarryUserItem _id}}
-                              
+                              {{getRequestTitle _id}}
                             {{/if}}
                           </div>
                         </strong> 
