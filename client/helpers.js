@@ -351,16 +351,24 @@ Template.registerHelper("appToCarry", function(request){
     
 })
 
-Template.registerHelper("recReqToCarryAUser", function(request){
+Template.registerHelper("recReqToCarryAUserItem", function(request){
     if (request.type == "req_carry" && request.carrierId == Meteor.userId()) {
         return true;
     };
     
 })
 
-Template.registerHelper("recReqToCarryUserItem", function(request){
+Template.registerHelper("recReqToCarryUrItem", function(request){
      var userId = Meteor.userId();
     if (request.senderId == userId && request.type == "app_carry") {
+        return true;
+    };
+    
+})
+
+Template.registerHelper("sendReqToCarryUrItem", function(request){
+     var userId = Meteor.userId();
+    if (request.owner == userId && request.type == "req_carry") {
         return true;
     };
     

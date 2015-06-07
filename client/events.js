@@ -144,27 +144,6 @@ Template.userPublicProfile.created = function () {
   };
 
 
-  Template.postItem.rendered = function () {
-    $(".date-picker").pickadate();
-
-  };
-
-  Template.postTravel.rendered = function () {
-    $(".date-picker").pickadate();
-  };
-
-  Template.editTripForm.rendered = function () {
-    $(".date-picker").pickadate();
-  };
-
-  Template.searchForm.rendered = function () {
-    $(".date-picker").pickadate();
-  };
-
-  Template.editItemForm.rendered = function () {
-    $(".date-picker").pickadate();
-  };
-
   Template.listings.rendered = function () {
     $('.menu .item').tab();
     new WOW().init()
@@ -226,6 +205,7 @@ Template.postItem.events({
     'change #item_post_origin_country': function (e,t) {
       var countries = e.currentTarget.value ? e.currentTarget.value : null
       Session.set('countries', countries);
+      console.log(Session.get('countries'));
 
     },
     'change #item_post_destination_country': function (e,t) {

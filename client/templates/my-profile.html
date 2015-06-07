@@ -432,8 +432,17 @@
                          {{/if}}
                       </div> 
                       <div class="text-muted col-sm-7">
-                        {{#if askToCarryUserItem _id}}
+                        {{#if recReqToCarryAnotherUserItem _id}}
                           {{getRequestTitle _id}}
+                        {{/if}}
+                        {{#if appToCarryItem _id}}
+                          {{getAppToCarryItemTitle _id}}
+                        {{/if}}
+                        {{#if requestToCarryYourItem _id}}
+                          {{getReqToCarryYourItemTitle _id}}
+                        {{/if}}
+                        {{#if recReqToCarryYourItem _id}}
+                          {{getRecReqToCarryYourItemTitle _id}}
                         {{/if}}
                       </div>
                     </strong> 
@@ -442,9 +451,18 @@
                       {{sentFrom owner}}
                     </div> 
                     <div class=" text-muted col-sm-7">
-                      {{#if askToCarryUserItem _id}}
-                        {{getRequestTitle _id}}
-                      {{/if}}
+                        {{#if recReqToCarryAnotherUserItem _id}}
+                          {{getRequestTitle _id}}
+                        {{/if}}
+                        {{#if appToCarryItem _id}}
+                          {{getAppToCarryItemTitle _id}}
+                        {{/if}}
+                        {{#if requestToCarryYourItem _id}}
+                          {{getReqToCarryYourItemTitle _id}}
+                        {{/if}}
+                        {{#if recReqToCarryYourItem _id}}
+                          {{getRecReqToCarryYourItemTitle _id}}
+                        {{/if}}
                     </div>
                     {{/if}}
                   <div class="">

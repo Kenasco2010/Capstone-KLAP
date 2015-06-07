@@ -69,7 +69,7 @@ Meteor.methods({
     });
   },
   postTrip: function(doc){
-    Travels.insert(doc, function(err, id){
+    return Travels.insert(doc, function(err, id){
   });
   },
   editTrip: function(tripId, doc) {

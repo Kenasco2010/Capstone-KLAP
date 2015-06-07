@@ -81,7 +81,7 @@ AutoForm.hooks({
           else {
               sweetAlert({
               title: "Thanks!",
-               text: "Your post has successfuly been sent to members who match the route you specified. You will a notification if any member accepts to carry your item"
+               text: "Your post has successfuly been sent to members who match the route you specified. You will receive a notification if any member accepts to carry your item."
             }, function(){ Router.go("my-profile")}
             );
           }
@@ -182,8 +182,9 @@ AutoForm.hooks({
               this.done(new Error(error));
             }
             else {
+              console.log(result);
               swal("Thanks! your trip has been successfuly posted");
-              Router.go("pending-items");
+              Router.go('filteredItems', {_id: result})
             }
 
         });
