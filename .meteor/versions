@@ -20,6 +20,7 @@ blaze@2.1.2
 blaze-tools@1.0.3
 boilerplate-generator@1.0.3
 callback-hook@1.0.3
+cfs:http-methods@0.0.29
 check@1.0.5
 chhib:selectize-bootstrap-3@0.0.1
 chrismbeckett:metro-ui2@2.0.32_3
@@ -36,6 +37,7 @@ fortawesome:fontawesome@4.3.0
 geojson-utils@1.0.3
 google@1.1.5
 gwendall:auth-client-callbacks@0.1.0
+hitchcott:paginator@0.2.0
 html-tools@1.0.4
 htmljs@1.0.4
 http@1.1.0
@@ -98,6 +100,7 @@ spacebars@1.0.6
 spacebars-compiler@1.0.6
 srp@1.0.3
 stylus@1.0.7
+tap:i18n@1.4.1
 templating@1.1.1
 timmyg:wow@1.0.1
 tracker@1.0.7

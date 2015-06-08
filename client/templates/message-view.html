@@ -57,7 +57,7 @@
       {{> editProfile}}      
   </div> -->
   <div class="ui bottom attached tab segment" data-tab="second">
-    {{#if noItems items}}
+    {{#if noItems paginationItems}}
       <center>
         <div class="no-items">
           <h1>There are no items listed yet.</h1>
@@ -192,12 +192,13 @@
                         
                       </div><!-- End Col -->
                   </div><!-- End row -->
+               {{> Paginator_UI items}}
               </div><!-- End container -->
           </div> 
   {{/if}} 
   </div>
               <div class="ui bottom attached tab segment" data-tab="third">
-                  {{#if noTrips trips}}
+                  {{#if noTrips paginationTrips}}
                     <center>
                       <div class="no-items">
                         <h1>There are no trips listed yet.</h1>
@@ -303,6 +304,7 @@
                                     
                                   </div><!-- End Col -->
                               </div><!-- End row -->
+                               {{> Paginator_UI trips}}
                           </div><!-- End container -->
                       </div>
               {{/if}}
@@ -472,6 +474,7 @@
                 {{/each}}
               </div>
             </div>
+             {{> Paginator_UI pagRequests}}
           </div>
       </div>
       <div class="ui bottom attached tab segment" data-tab="sixth">
@@ -532,6 +535,7 @@
                 {{/each}}
               </div>
             </div>
+            {{> Paginator_UI pagNotifications}}
           </div>
       </div>
 </template>
