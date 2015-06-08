@@ -121,26 +121,26 @@ Template.userPublicProfile.events({
 
 Template.tripDetails.events({
   'click .btn-send-req': function () {
-     var carrierId = this.owner;
-     $(".ui.send-request.modal").modal("setting", {
-       closable: false,
-       onApprove: function () {
-        var req_carry_itemId = Session.get("itemSelected");
-        Meteor.call('requestToCarry', req_carry_itemId, carrierId, function (error, result) {
-         if (error) {
-           $('.ui.send-request.modal').modal('hide');
-           swal("Sorry! something went wrong");
-         }
-         else {
-           $('.ui.send-request.modal').modal('hide');
-           swal("Thanks! your request has been sent");
-         }
-       });
-        return false;
-      }
-    }).modal("show");
-    console.log(this);
-  }
+   var carrierId = this.owner;
+   $(".ui.send-request.modal").modal("setting", {
+     closable: false,
+     onApprove: function () {
+      var req_carry_itemId = Session.get("itemSelected");
+      Meteor.call('requestToCarry', req_carry_itemId, carrierId, function (error, result) {
+       if (error) {
+         $('.ui.send-request.modal').modal('hide');
+         swal("Sorry! something went wrong");
+       }
+       else {
+         $('.ui.send-request.modal').modal('hide');
+         swal("Thanks! your request has been sent");
+       }
+     });
+      return false;
+    }
+  }).modal("show");
+   console.log(this);
+ }
 });
 
 Template.userPublicProfile.created = function () {
@@ -166,7 +166,6 @@ Template.userPublicProfile.created = function () {
 
       });
   };
-
 
   Template.listings.rendered = function () {
     $('.menu .item').tab();
@@ -199,11 +198,11 @@ Template.navigation.rendered = function () {
    $('.dropdown-toggle').dropdown();
  };
 
-Template.sentMessages.rendered = function () {
+ Template.sentMessages.rendered = function () {
   $('.menu .item').tab();
 };
 
- Template.messageView.rendered = function () {
+Template.messageView.rendered = function () {
   $('.menu .item').tab();
   var messageId = Router.current().params._id;
   Meteor.call('updateReplyMessageStatus', messageId, function (error, result) {});
