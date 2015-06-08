@@ -32,7 +32,7 @@
               <!-- Begin Listing -->
               <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                 <div class="media">
-                  <a class="pull-left" href="#" target="_parent">
+                  <a class="pull-left" href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                     {{> avatar userId=tripOwnerId shape="circle" size="large"}}
                   </a>
 
@@ -42,7 +42,7 @@
                     <a href="#" target="_parent"></a>
 
                     <h4 class="media-heading">
-                      <a href="#" target="_parent">
+                      <a href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                         {{origin_country}} to {{destination_country}}
                       </a>
                       <a href="{{pathFor 'user_profile' _id=tripOwnerId}}">
@@ -74,7 +74,7 @@
               <!-- Begin Listing -->
               <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                 <div class="media">
-                  <a class="pull-left" href="#" target="_parent">
+                  <a class="pull-left" href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                    {{> avatar userId=tripOwnerId shape="circle" size="large"}}
                  </a>
                  <div class="clearfix visible-sm"></div>
@@ -83,7 +83,7 @@
                   <a href="#" target="_parent"></a>
 
                   <h4 class="media-heading">
-                   <a href="#" target="_parent">
+                   <a href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                      {{origin_country}} to {{destination_country}}
                    </a>
                    <a href="{{pathFor 'user_profile' _id=tripOwnerId}}">
