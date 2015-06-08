@@ -1187,6 +1187,7 @@ span.tags
 	padding-right: 5px;
 }
 
+
 /***************** TEAM *********************************/
 .about-team {
 	padding: 100px 0px;
@@ -1230,4 +1231,24 @@ span.tags
 .social-media{
 	margin-left: 550px;
 	margin-top: 7px;
+}
+@media only screen and (min-width: 992px) {
+	.view-profile-block {
+		width: 50%;
+		margin-bottom: 10px;
+	}
+}
+
+.view-profile-block {
+	margin-bottom: 10px;
+}
+
+.send-req-disabled {
+	margin-bottom: 10px;
+}
+
+.no-items {
+	margin-top: 200px;
+	margin-bottom: 230px;
+
 }

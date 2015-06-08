@@ -1,8 +1,13 @@
 Template.registerHelper("fullUserName", function(user){
-    var first_name = user.profile.first_name;
-    var last_name = user.profile.last_name;
-    var full_name = first_name + " " + last_name;
-    return full_name;
+    if (typeof(user.profile) == "undefined") {
+        return;
+    }
+    else {
+        var first_name = user.profile.first_name;
+        var last_name = user.profile.last_name;
+        var full_name = first_name + " " + last_name;
+        return full_name;
+    }
 })
 
 Template.registerHelper("rating", function(user){
@@ -351,16 +356,24 @@ Template.registerHelper("appToCarry", function(request){
     
 })
 
-Template.registerHelper("recReqToCarryAUser", function(request){
+Template.registerHelper("recReqToCarryAUserItem", function(request){
     if (request.type == "req_carry" && request.carrierId == Meteor.userId()) {
         return true;
     };
     
 })
 
-Template.registerHelper("recReqToCarryUserItem", function(request){
+Template.registerHelper("recReqToCarryUrItem", function(request){
      var userId = Meteor.userId();
     if (request.senderId == userId && request.type == "app_carry") {
+        return true;
+    };
+    
+})
+
+Template.registerHelper("sendReqToCarryUrItem", function(request){
+     var userId = Meteor.userId();
+    if (request.owner == userId && request.type == "req_carry") {
         return true;
     };
     
@@ -509,6 +522,14 @@ Template.registerHelper("ownerOfTrip", function(tripId){
     };
 })
 
+Template.registerHelper("currentUserProfile", function(userId){
+    var currentUserId = Meteor.userId();
+    if (currentUserId == userId) {
+        return true;
+    };
+
+})
+
 Template.registerHelper("getItemOriginCountry", function(itemId){
     var item = Items.findOne(itemId);
     return item.origin_country;
@@ -519,7 +540,7 @@ Template.registerHelper("getItemDestinationCountry", function(itemId){
     return item.destination_country;
 })
 
-Template.registerHelper("askToCarryUserItem", function(requestId){
+Template.registerHelper("recReqToCarryAnotherUserItem", function(requestId){
     var request = Requests.findOne(requestId);
     var userId = Meteor.userId();
     if (request.type == "req_carry" && request.carrierId == userId) {
@@ -547,4 +568,71 @@ Template.registerHelper("getSingleItemTitle", function(itemId){
     var delivery_date = dd.format("dddd, MMMM Do YYYY");
 
     return  "Are you travelling from " + item.origin_country + " to " + item.destination_country + " between " + send_date + " and " + delivery_date + " and " + " and willing to carry the following item?";
+})
+
+    Template.registerHelper("appToCarryItem", function(requestId){
+        var request = Requests.findOne(requestId);
+        var userId = Meteor.userId();
+        if (request.type == "app_carry" && request.owner == userId) {
+            return true;
+        };
+    })
+
+    Template.registerHelper("getAppToCarryItemTitle", function(requestId){
+        var request = Requests.findOne(requestId);
+        var itemId = request.app_carry_itemId;
+        var item = Items.findOne(itemId);
+        var item_owner = item.owner;
+        var user = Meteor.users.findOne(item_owner);
+        var first_name = user.profile.first_name;
+        return "you have requested to carry " + first_name + "'s item";
+    })
+
+    Template.registerHelper("requestToCarryYourItem", function(requestId){
+        var request = Requests.findOne(requestId);
+        var userId = Meteor.userId();
+        if (request.type == "req_carry" && request.owner == userId) {
+            return true;
+        };
+    })
+
+    Template.registerHelper("recReqToCarryYourItem", function(requestId){
+        var request = Requests.findOne(requestId);
+        var userId = Meteor.userId();
+        if (request.type == "app_carry" && request.senderId == userId) {
+            return true;
+        };
+    })
+
+    Template.registerHelper("getReqToCarryYourItemTitle", function(requestId){
+        var request = Requests.findOne(requestId);
+        var itemId = request.req_carry_itemId;
+        var item = Items.findOne(itemId);
+        var carrierId = request.carrierId;
+        var user = Meteor.users.findOne(carrierId);
+        var first_name = user.profile.first_name;
+        return "you have requested " + first_name + " to carry your item.";
+
+    })
+
+    Template.registerHelper("getRecReqToCarryYourItemTitle", function(requestId){
+        var request = Requests.findOne(requestId);
+        var itemId = request.app_carry_itemId;
+        var item = Items.findOne(itemId);
+        var requesterId = request.owner;
+        var user = Meteor.users.findOne(requesterId);
+        var first_name = user.profile.first_name;
+        return first_name + " has requested to carry your item.";
+    })
+
+Template.registerHelper("noItems", function(items){
+    if (items.length == 0) {
+        return true;
+    };
+})
+
+Template.registerHelper("noTrips", function(trips){
+    if (trips.length == 0) {
+        return true;
+    };
 })

@@ -413,7 +413,7 @@
             </div>
             <div class="col-sm-9 col-md-10">
             <!-- if the request is a recieved request to carry another user's item? -->
-                {{#if recReqToCarryAUser request}}
+                {{#if recReqToCarryAUserItem request}}
                     <div id="main-message-bloc">
                       <div id="message-title" style="width:100%">
                         <p>From: {{fullName request.owner}}</p>
@@ -435,7 +435,7 @@
                         </tbody>
                       </table>
                       <div id="tk-action-block">
-                          <h3><!-- Are you travelling from {{getItemOriginCountry request.req_carry_itemId}} to {{getItemDestinationCountry request.req_carry_itemId}} between {{date_ft getItemSendDate request.req_carry_itemId}} and {{date_ft getItemDeliveryDate request.req_carry_itemId}} and willing to carry the following item? -->{{getSingleItemTitle request.req_carry_itemId}}</h3>
+                          <h3>{{getSingleItemTitle request.req_carry_itemId}}</h3>
                           {{#if acceptedToCarry request.req_carry_itemId}}
                             <button type="button" disabled class="btn btn-default">You have accepted</button>
                           {{else}}
@@ -505,7 +505,7 @@
                     {{/if}}
                     {{#if appToCarry request}}
                     <div id="rtc-action-block">
-                      <h3>You have requested to carry the following item</h3>
+                      <h3>You have requested to carry the following item.</h3>
                     </div>
                     <div id="message-content">
                         <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
@@ -544,7 +544,7 @@
                                 </p>
                                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
                                   <li class="fnt-arial fnt-lighter">
-                                    From {{req_to_carry_item.origin_country}} to {{req_to_carry_item.destination_country}}
+                                    From {{getItemOriginCountry request.app_carry_itemId}} to {{getItemDestinationCountry request.app_carry_itemId}}
                                   </li>
                                 </ul>
                                 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
@@ -562,7 +562,7 @@
                       </div><!-- End Listing-->
                     </div>
                 {{/if}}
-                {{#if recReqToCarryUserItem request}}
+                {{#if recReqToCarryUrItem request}}
                   <div id="rtc-action-block">
                     <h3>{{fullName request.owner}} has requested to carry the following item</h3>
                   </div>
@@ -595,6 +595,66 @@
                         <button type="button" data-id="{{request.app_carry_itemId}}" class="ui button red" id="reject-btn">No</button>
                       {{/if}}
                   </div>
+                {{/if}}
+                {{#if sendReqToCarryUrItem request}}
+                    <div id="rtc-action-block">
+                      <h3>You have requested {{fullName request.carrierId}} to carry the following item.</h3>
+                    </div>
+                     <hr>
+                    <div id="message-content">
+                        <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                          <div class="media">
+                            <a class="pull-left" href="{{pathFor 'itemDetails' _id=request.req_carry_itemId}}" target="_parent">
+                              <img alt="image" class="img-responsive" 
+                              src="{{getItemPicUrl request.req_carry_itemId}}" height="200" width="200"></a>
+
+                              <div class="clearfix visible-sm"></div>
+
+                              <div class="media-body fnt-smaller">
+                                <a href="#" target="_parent"></a>
+
+                                <h4 class="media-heading">
+                                  <a href="{{pathFor 'itemDetails' _id=request.req_carry_itemId}}" target="_parent">
+                                    {{getItemTitle request.req_carry_itemId}} 
+                                  </a>
+                                  <a href="{{pathFor 'user_profile' _id=getMeItemOwnerId}}">
+                                    <small class="pull-right">
+                                      by {{item_owner request.req_carry_itemId}}
+                                    </small>
+                                  </a>
+                                </h4>
+
+
+                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                  <li>weight: {{getItemWeight request.req_carry_itemId}} kg</li>
+
+                                  <li style="list-style: none">|</li>
+
+                                  <li>${{getItemReward request.req_carry_itemId}} reward</li>
+
+                                </ul>
+
+                                <p class="hidden-xs">{{getItemDesc request.req_carry_itemId}}
+                                </p>
+                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                  <li class="fnt-arial fnt-lighter">
+                                    From {{getItemOriginCountry request.req_carry_itemId}} to {{getItemDestinationCountry request.req_carry_itemId}}
+                                  </li>
+                                </ul>
+                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                 <li class="fnt-arial fnt-lighter">
+                                  Send Date: {{date_ft getItemSendDate request.req_carry_itemId}}
+                                </li>
+                              </ul>
+                              <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                               <li class="fnt-arial fnt-lighter">
+                                Delivery Date: {{date_ft getItemDeliveryDate request.req_carry_itemId}}
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div><!-- End Listing-->
+                    </div> 
                 {{/if}}
               </div>
             </div>

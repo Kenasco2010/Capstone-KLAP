@@ -74,16 +74,17 @@ Template.userPublicProfile.rendered = function () {
   userId = $this.userId.get();
   $('.ui.rating').rating('setting', 'onRate', function(value) {
           // Session.set("review-value", value);
-          $this.ratings.set(value);
-          $this.userId.set(this.id);
+          if (Meteor.userId() == this.id) {
+            swal("Illegal Operation");
+          }
+          else {
+            $this.ratings.set(value);
+            $this.userId.set(this.id);
+          }
         });
 };
 
 Template.userPublicProfile.events({
-  'click .rating': function () {
-    console.log(this);
-    console.log(Session.get("review-value"));
-  },
   'click #hide-reviews': function() {
     $(".second-container").slideUp();
   },
@@ -118,6 +119,29 @@ Template.userPublicProfile.events({
     }
   });
 
+Template.tripDetails.events({
+  'click .btn-send-req': function () {
+   var carrierId = this.owner;
+   $(".ui.send-request.modal").modal("setting", {
+     closable: false,
+     onApprove: function () {
+      var req_carry_itemId = Session.get("itemSelected");
+      Meteor.call('requestToCarry', req_carry_itemId, carrierId, function (error, result) {
+       if (error) {
+         $('.ui.send-request.modal').modal('hide');
+         swal("Sorry! something went wrong");
+       }
+       else {
+         $('.ui.send-request.modal').modal('hide');
+         swal("Thanks! your request has been sent");
+       }
+     });
+      return false;
+    }
+  }).modal("show");
+   console.log(this);
+ }
+});
 
 Template.userPublicProfile.created = function () {
   var instance = this;
@@ -142,28 +166,6 @@ Template.userPublicProfile.created = function () {
 
       });
   };
-
-
-  // Template.postItem.rendered = function () {
-  //   $(".date-picker").pickadate();
-
-  // };
-
-  // Template.postTravel.rendered = function () {
-  //   $(".date-picker").pickadate();
-  // };
-
-  // Template.editTripForm.rendered = function () {
-  //   $(".date-picker").pickadate();
-  // };
-
-  // Template.searchForm.rendered = function () {
-  //   $(".date-picker").pickadate();
-  // };
-
-  // Template.editItemForm.rendered = function () {
-  //   $(".date-picker").pickadate();
-  // };
 
   Template.listings.rendered = function () {
     $('.menu .item').tab();
@@ -196,11 +198,11 @@ Template.navigation.rendered = function () {
    $('.dropdown-toggle').dropdown();
  };
 
-Template.sentMessages.rendered = function () {
+ Template.sentMessages.rendered = function () {
   $('.menu .item').tab();
 };
 
- Template.messageView.rendered = function () {
+Template.messageView.rendered = function () {
   $('.menu .item').tab();
   var messageId = Router.current().params._id;
   Meteor.call('updateReplyMessageStatus', messageId, function (error, result) {});
@@ -226,6 +228,7 @@ Template.postItem.events({
     'change #item_post_origin_country': function (e,t) {
       var countries = e.currentTarget.value ? e.currentTarget.value : null
       Session.set('countries', countries);
+      console.log(Session.get('countries'));
 
     },
     'change #item_post_destination_country': function (e,t) {

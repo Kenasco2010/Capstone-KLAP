@@ -1,40 +1,60 @@
-<template name="pendingItems">
+<template name="filteredItems">
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-12 top-bar">
             <section class="my-top-bar">
               <div class="full-width">
-                <center>
-                  <a href="{{pathFor 'listings'}}" class="ui button">
-                    View All Listings
-                  </a>
-                  <a href="{{pathFor 'senderPostForm'}}" class="ui button">
-                    Send a package
-                  </a>
-                  <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
-                    Post a trip
-                  </a>
-                </center>
-              </div>
-              <div class="well">
-                <h4>Search</h4>
-                <div class="input-group">
-                  <input type="text" class="form-control">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">
-                      <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                  </span>
+                <div class="full-width-btns-lg hidden-xs">
+                  <center>
+                    <a href="{{pathFor 'listings'}}" class="ui button">
+                      View All Listings
+                    </a>
+                    <a href="{{pathFor 'senderPostForm'}}" class="ui button">
+                      Send a package
+                    </a>
+                    <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
+                      Post a trip
+                    </a>
+                  </center>
                 </div>
-                <!-- /.input-group -->
+                <div class="full-width-btn-xs visible-xs">
+                  <table style="width:100%" id="full-width-btns-table">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <a href="{{pathFor 'listings'}}" class="ui button mini">
+                              View All Listings
+                          </a>
+                        </td>
+                        <td>
+                          <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+                            Send a package
+                          </a>
+                        </td>
+                        <td>
+                          <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+                            Send a package
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </section>
           </div>
         </div>
       </div>
       <div class="ui top attached tabular menu">
-        <a class="active item" data-tab="first">Pending Items</a>
+        <a class="active item" data-tab="first">Pending items that match your travel route</a>
       </div>
+    {{#if noItems items}}
+      <center>
+        <div class="no-items">
+          <h1>There are no pending items currently on this travel route.</h1>
+        </div>
+      </center>
+      {{else}}
       <div class="ui bottom attached active tab segment" data-tab="first">
         <div class="container-fluid" style="background-color:#e8e8e8">
           <div class="container container-pad" id="property-listings">
@@ -157,4 +177,5 @@
       </div><!-- End container -->
     </div>  
     </div>
+  {{/if}}
 </template>

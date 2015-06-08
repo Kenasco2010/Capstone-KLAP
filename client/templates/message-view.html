@@ -57,6 +57,13 @@
       {{> editProfile}}      
   </div> -->
   <div class="ui bottom attached tab segment" data-tab="second">
+    {{#if noItems items}}
+      <center>
+        <div class="no-items">
+          <h1>There are no items listed yet.</h1>
+        </div>
+      </center>
+      {{else}}
       <div class="container-fluid" style="background-color:#e8e8e8">
               <div class="container container-pad" id="property-listings">
                   <div class="row">
@@ -75,7 +82,7 @@
                                       <a href="#" target="_parent"></a>
 
                                       <h4 class="media-heading">
-                                        <a href="#" target="_parent">
+                                        <a href="{{pathFor 'itemDetails' id=itemId}}" target="_parent">
                                           {{title}} 
                                         </a>
                                         <a href="{{pathFor 'edit-item' _id=_id}}">
@@ -137,7 +144,7 @@
                                         <a href="#" target="_parent"></a>
 
                                         <h4 class="media-heading">
-                                          <a href="#" target="_parent">
+                                          <a href="{{pathFor 'itemDetails' id=itemId}}" target="_parent">
                                             {{title}} 
                                           </a>
                                           <a href="{{pathFor 'edit-item' _id=_id}}">
@@ -186,9 +193,17 @@
                       </div><!-- End Col -->
                   </div><!-- End row -->
               </div><!-- End container -->
-          </div>  
+          </div> 
+  {{/if}} 
   </div>
               <div class="ui bottom attached tab segment" data-tab="third">
+                  {{#if noTrips trips}}
+                    <center>
+                      <div class="no-items">
+                        <h1>There are no trips listed yet.</h1>
+                      </div>
+                    </center>
+                    {{else}}
                   <div class="container-fluid" style="background-color:#e8e8e8">
                           <div class="container container-pad" id="property-listings">
                               <div class="row">
@@ -290,6 +305,7 @@
                               </div><!-- End row -->
                           </div><!-- End container -->
                       </div>
+              {{/if}}
               </div>
       <div class="ui bottom attached tab active segment" data-tab="fourth">
           <div class="container">
@@ -411,8 +427,17 @@
                              {{/if}}
                           </div> 
                           <div class="text-muted col-sm-7">
-                            {{#if askToCarryUserItem _id}}
-                              
+                            {{#if recReqToCarryAnotherUserItem _id}}
+                              {{getRequestTitle _id}}
+                            {{/if}}
+                            {{#if appToCarryItem _id}}
+                              {{getAppToCarryItemTitle _id}}
+                            {{/if}}
+                            {{#if requestToCarryYourItem _id}}
+                              {{getReqToCarryYourItemTitle _id}}
+                            {{/if}}
+                            {{#if recReqToCarryYourItem _id}}
+                              {{getRecReqToCarryYourItemTitle _id}}
                             {{/if}}
                           </div>
                         </strong> 
@@ -421,8 +446,17 @@
                           {{sentFrom owner}}
                         </div> 
                         <div class=" text-muted col-sm-7">
-                          {{#if askToCarryUserItem _id}}
+                          {{#if recReqToCarryAnotherUserItem _id}}
                             {{getRequestTitle _id}}
+                          {{/if}}
+                          {{#if appToCarryItem _id}}
+                            {{getAppToCarryItemTitle _id}}
+                          {{/if}}
+                          {{#if requestToCarryYourItem _id}}
+                            {{getReqToCarryYourItemTitle _id}}
+                          {{/if}}
+                          {{#if recReqToCarryYourItem _id}}
+                            {{getRecReqToCarryYourItemTitle _id}}
                           {{/if}}
                         </div>
                         {{/if}}

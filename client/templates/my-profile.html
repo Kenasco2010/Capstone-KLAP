@@ -1,69 +1,69 @@
 <template name="myProfile">
   <div class="container-fluid">
-   <div class="row">
-    <div class="col-sm-12 top-bar">
-      <section class="my-top-bar">
-        <div class="full-width">
-          <div class="full-width-btns-lg hidden-xs">
-            <div class="mydashboard">
-             <h2>
-               My Dashboard
-             </h2> 
-           </div>
-
-
-           <center>
-            <a href="{{pathFor 'listings'}}" class="ui button">
-              View All Listings
-            </a>
-            <a href="{{pathFor 'senderPostForm'}}" class="ui button">
-              Send a package
-            </a>
-            <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
-              Post a trip
-            </a>
-          </center>
-        </div>
-        <div class="full-width-btn-xs visible-xs">
-          <table style="width:100%" id="full-width-btns-table">
-            <tbody>
-              <tr>
-                <td>
-                  <a href="{{pathFor 'listings'}}" class="ui button mini">
-                    View All Listings
-                  </a>
-                </td>
-                <td>
-                  <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
-                    Send a package
-                  </a>
-                </td>
-                <td>
-                  <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
-                    Send a package
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="row">
+      <div class="col-sm-12 top-bar">
+        <section class="my-top-bar">
+          <div class="full-width">
+            <div class="full-width-btns-lg hidden-xs">
+              <center>
+                <a href="{{pathFor 'listings'}}" class="ui button">
+                  View All Listings
+                </a>
+                <a href="{{pathFor 'senderPostForm'}}" class="ui button">
+                  Send a package
+                </a>
+                <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
+                  Post a trip
+                </a>
+              </center>
+            </div>
+            <div class="full-width-btn-xs visible-xs">
+              <table style="width:100%" id="full-width-btns-table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <a href="{{pathFor 'listings'}}" class="ui button mini">
+                        View All Listings
+                      </a>
+                    </td>
+                    <td>
+                      <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+                        Send a package
+                      </a>
+                    </td>
+                    <td>
+                      <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+                        Send a package
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
   </div>
-</div>
-</div>
-<div class="ui top attached tabular menu">
-  <!-- <a class="active item" data-tab="first">My Profile</a> -->
-  <a class="active item" data-tab="second">My Items</a>
-  <a class="item" data-tab="third">My Trips</a>
-  <a class="item" data-tab="fourth">My Messages</a>
-  <a class="item" data-tab="fifth">My Requests</a>
-  <a class="item" data-tab="sixth">My Notifications</a>
-</div>
+  <div class="ui top attached tabular menu">
+    <!-- <a class="active item" data-tab="first">My Profile</a> -->
+    <a class="active item" data-tab="second">My Items</a>
+    <a class="item" data-tab="third">My Trips</a>
+    <a class="item" data-tab="fourth">My Messages</a>
+    <a class="item" data-tab="fifth">My Requests</a>
+    <a class="item" data-tab="sixth">My Notifications</a>
+  </div>
   <!-- <div class="ui bottom attached active tab segment" data-tab="first">
       {{> editProfile}}      
     </div> -->
     <div class="ui bottom attached active tab segment" data-tab="second">
+      {{#if noItems items}}
+      <center>
+        <div class="no-items">
+          <h1>There are no items listed yet.</h1>
+        </div>
+      </center>
+      {{else}}
       <div class="container-fluid" style="background-color:#e8e8e8">
         <div class="container container-pad" id="property-listings">
           <div class="row">
@@ -233,9 +233,17 @@
       </div><!-- End Col -->
     </div><!-- End row -->
   </div><!-- End container -->
-</div>  
+</div> 
+{{/if}} 
 </div>
 <div class="ui bottom attached tab segment" data-tab="third">
+  {{#if noTrips trips}}
+  <center>
+    <div class="no-items">
+      <h1>There are no trips listed yet.</h1>
+    </div>
+  </center>
+  {{else}}
   <div class="container-fluid" style="background-color:#e8e8e8">
     <div class="container container-pad" id="property-listings">
       <div class="row">
@@ -337,6 +345,7 @@
   </div><!-- End row -->
 </div><!-- End container -->
 </div>
+{{/if}}
 </div>
 <div class="ui bottom attached tab segment" data-tab="fourth">
   <div class="container">
@@ -354,16 +363,6 @@
             </a>
           </li>
           <li><a href="{{pathFor 'sent-messages'}}">Sent Messages</a></li>
-          <li id="notif">
-            <a href="{{pathFor "notifications"}}" class="">
-              {{#if hasUnreadNotifications unreadNotifications}}
-              <span class="badge pull-right">
-                {{unreadNotificationsCount unreadNotifications}}
-              </span>
-              {{/if}}
-              Notifications
-            </a>
-          </li>
         </ul>
       </div>
       <div class="col-sm-9 col-md-10">
@@ -439,38 +438,61 @@
           <div class="tab-pane fade in active" id="home">
             <div class="list-group" data-id="{{_id}}">
               <a href="{{pathFor 'request-details' _id=_id}}" class="list-group-item">
-                {{#if unreadReq read_status}}
-                <strong>
-                  <span class="name">
-                    {{#if userIsOwner owner}}
-                    From You
-                    {{else}}
-                    {{sentFrom owner}}
-                    {{/if}}
-                  </span> 
-                  <span class=""></span>
-                  <span class="text-muted">
-                   <!-- {{message}} -->
-                 </span>
-               </strong> 
-               {{else}}
-               <span class="name">
-                 {{sentFrom owner}}
-               </span> 
-               <span class=""></span>
-               <span class="text-muted">
-               </span>
-               {{/if}}
+               {{#if unreadReq read_status}}
+               <strong>
+                 <div class="name col-sm-2">
+                   {{#if userIsOwner owner}}
+                   From You
+                   {{else}}
+                   {{sentFrom owner}}
+                   {{/if}}
+                 </div> 
+                 <div class="text-muted col-sm-7">
+                  {{#if recReqToCarryAnotherUserItem _id}}
+                  {{getRequestTitle _id}}
+                  {{/if}}
+                  {{#if appToCarryItem _id}}
+                  {{getAppToCarryItemTitle _id}}
+                  {{/if}}
+                  {{#if requestToCarryYourItem _id}}
+                  {{getReqToCarryYourItemTitle _id}}
+                  {{/if}}
+                  {{#if recReqToCarryYourItem _id}}
+                  {{getRecReqToCarryYourItemTitle _id}}
+                  {{/if}}
+                </div>
+              </strong> 
+              {{else}}
+              <div class="name col-sm-2">
+                {{sentFrom owner}}
+              </div> 
+              <div class=" text-muted col-sm-7">
+                {{#if recReqToCarryAnotherUserItem _id}}
+                {{getRequestTitle _id}}
+                {{/if}}
+                {{#if appToCarryItem _id}}
+                {{getAppToCarryItemTitle _id}}
+                {{/if}}
+                {{#if requestToCarryYourItem _id}}
+                {{getReqToCarryYourItemTitle _id}}
+                {{/if}}
+                {{#if recReqToCarryYourItem _id}}
+                {{getRecReqToCarryYourItemTitle _id}}
+                {{/if}}
+              </div>
+              {{/if}}
+              <div class="">
                <span class="badge">
                 {{tm_cal createdAt}}
               </span>
-            </a>
-          </div>
+            </div>
+          </a>
         </div>
       </div>
-      {{/each}}
     </div>
+    {{/each}}
   </div>
+</div>
 </div>
 </div>
 <div class="ui bottom attached tab segment" data-tab="sixth">
@@ -534,3 +556,4 @@
  </div>
 </div>
 </template>
+
