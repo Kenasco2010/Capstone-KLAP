@@ -27,7 +27,7 @@
 						{{#if hasProfile currentUser._id}}
 						<li class="">
 							<a href="{{pathFor 'my-profile'}}">
-								{{fullUserName currentUser}}
+								{{fullUserName currentUser}} (Go To Dashboard)
 								
 							</a>
 							<!-- <ul class="dropdown-menu" role="menu">
@@ -42,8 +42,8 @@
 						<li><a href="#" data-action="sign-out">Sign Out</a></li>
 						{{else}}
 						<li><a href="{{pathFor 'signin'}}">Sign In</a></li>
-						{{/if}}
 						<li><a href="{{pathFor 'signup'}}">Sign Up</a></li>
+						{{/if}}
 					</ul>
 				</div>
 			</div>
