@@ -4,65 +4,66 @@
       <div class="col-sm-12 top-bar">
         <section class="my-top-bar">
           <div class="full-width">
-           <div class="full-width-btns-lg hidden-xs">
-            <div>
-             <h2>
-               My Dashboard
-             </h2> 
-           </div>
-             <center>
-              <a href="{{pathFor 'listings'}}" class="ui button">
-                View All Listings
-              </a>
-              <a href="{{pathFor 'senderPostForm'}}" class="ui button">
-                Send a package
-              </a>
-              <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
-                Post a trip
-              </a>
-            </center>
+            <div class="full-width-btns-lg hidden-xs">
+              <div>
+                <h2>
+                  
+                  My Dashboard
+                </h2>
+              </div>
+              <center>
+                <a href="{{pathFor 'listings'}}" class="ui button">
+                  View All Listings
+                </a>
+                <a href="{{pathFor 'senderPostForm'}}" class="ui button">
+                  Send a package
+                </a>
+                <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
+                  Post a trip
+                </a>
+              </center>
+            </div>
+            <div class="full-width-btn-xs visible-xs">
+              <table style="width:100%" id="full-width-btns-table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <a href="{{pathFor 'listings'}}" class="ui button mini">
+                        View All Listings
+                      </a>
+                    </td>
+                    <td>
+                      <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+                        Send a package
+                      </a>
+                    </td>
+                    <td>
+                      <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+                        Send a package
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div class="full-width-btn-xs visible-xs">
-            <table style="width:100%" id="full-width-btns-table">
-              <tbody>
-                <tr>
-                  <td>
-                    <a href="{{pathFor 'listings'}}" class="ui button mini">
-                      View All Listings
-                    </a>
-                  </td>
-                  <td>
-                    <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
-                      Send a package
-                    </a>
-                  </td>
-                  <td>
-                    <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
-                      Send a package
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   </div>
-</div>
-<div class="ui top attached tabular menu">
-  <!-- <a class="active item" data-tab="first">My Profile</a> -->
-  <a class="active item" data-tab="second">My Items</a>
-  <a class="item" data-tab="third">My Trips</a>
-  <a class="item" data-tab="fourth">My Messages</a>
-  <a class="item" data-tab="fifth">My Requests</a>
-  <a class="item" data-tab="sixth">My Notifications</a>
-</div>
+  <div class="ui top attached tabular menu">
+    <!-- <a class="active item" data-tab="first">My Profile</a> -->
+    <a class="active item" data-tab="second">My Items</a>
+    <a class="item" data-tab="third">My Trips</a>
+    <a class="item" data-tab="fourth">My Messages</a>
+    <a class="item" data-tab="fifth">My Requests</a>
+    <a class="item" data-tab="sixth">My Notifications</a>
+  </div>
   <!-- <div class="ui bottom attached active tab segment" data-tab="first">
       {{> editProfile}}      
     </div> -->
     <div class="ui bottom attached active tab segment" data-tab="second">
-      {{#if noItems items}}
+      {{#if noItems paginationItems}}
       <center>
         <div class="no-items">
           <h1>There are no items listed yet.</h1>
@@ -87,7 +88,7 @@
                       <a href="#" target="_parent"></a>
 
                       <h4 class="media-heading">
-                        <a href="#" target="_parent">
+                        <a href="{{pathFor 'itemDetails' id=_id}}" target="_parent">
                           {{title}} 
                         </a>
                         <a href="{{pathFor 'edit-item' _id=_id}}">
@@ -180,7 +181,7 @@
           <!-- Begin Listing -->
           <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
             <div class="media">
-              <a class="pull-left" href="{{pathFor 'itemDetails' id=itemId}}" target="_parent">
+              <a class="pull-left" href="{{pathFor 'itemDetails' id=_id}}" target="_parent">
                 <img alt="image" class="img-responsive" 
                 src="{{absoluteImageUrl}}"></a>
                 <div class="clearfix visible-sm"></div>
@@ -189,7 +190,7 @@
                   <a href="#" target="_parent"></a>
 
                   <h4 class="media-heading">
-                    <a href="#" target="_parent">
+                    <a href="{{pathFor 'itemDetails' id=_id}}" target="_parent">
                       {{title}} 
                     </a>
                     <a href="{{pathFor 'edit-item' _id=_id}}">
@@ -237,12 +238,13 @@
 
       </div><!-- End Col -->
     </div><!-- End row -->
+    {{> Paginator_UI items}}
   </div><!-- End container -->
 </div> 
 {{/if}} 
 </div>
 <div class="ui bottom attached tab segment" data-tab="third">
-  {{#if noTrips trips}}
+  {{#if noTrips paginationTrips}}
   <center>
     <div class="no-items">
       <h1>There are no trips listed yet.</h1>
@@ -257,7 +259,7 @@
           <!-- Begin Listing -->
           <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
             <div class="media">
-              <a class="pull-left" href="#" target="_parent">
+              <a class="pull-left" href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                 {{> avatar userId=tripOwnerId shape="circle" size="large"}}
               </a>
 
@@ -267,7 +269,7 @@
                 <a href="#" target="_parent"></a>
 
                 <h4 class="media-heading">
-                  <a href="#" target="_parent">
+                  <a href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                     {{origin_country}} to {{destination_country}}
                   </a>
                   <a href="{{pathFor 'edit-trip' _id=_id}}">
@@ -305,7 +307,7 @@
           <!-- Begin Listing -->
           <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
             <div class="media">
-              <a class="pull-left" href="#" target="_parent">
+              <a class="pull-left" href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                {{> avatar userId=tripOwnerId shape="circle" size="large"}}
              </a>
              <div class="clearfix visible-sm"></div>
@@ -314,7 +316,7 @@
               <a href="#" target="_parent"></a>
 
               <h4 class="media-heading">
-               <a href="#" target="_parent">
+               <a href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                  {{origin_country}} to {{destination_country}}
                </a>
                <a href="{{pathFor 'edit-trip' _id=_id}}">
@@ -348,6 +350,7 @@
       
     </div><!-- End Col -->
   </div><!-- End row -->
+  {{> Paginator_UI trips}}
 </div><!-- End container -->
 </div>
 {{/if}}
@@ -377,7 +380,7 @@
           </span>Primary</a></li>
         </ul>
         <!-- Tab panes -->
-        {{#each messages}}
+        {{#each pagRecMessages}}
         <div class="tab-content">
           <div class="tab-pane fade in active" id="home">
             <div class="list-group" data-id="{{_id}}">
@@ -493,6 +496,7 @@
             </div>
           </a>
         </div>
+        {{> Paginator_UI pagRequests}}
       </div>
     </div>
     {{/each}}
@@ -558,7 +562,9 @@
        {{/each}}
      </div>
    </div>
+   {{> Paginator_UI pagNotifications}}
  </div>
 </div>
 </template>
+
 

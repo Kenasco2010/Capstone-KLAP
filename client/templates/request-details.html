@@ -57,6 +57,13 @@
           {{> editProfile}}      
         </div> -->
         <div class="ui bottom attached tab segment" data-tab="second">
+        {{#if noItems paginationItems}}
+          <center>
+            <div class="no-items">
+              <h1>There are no items listed yet.</h1>
+            </div>
+          </center>
+          {{else}}
           <div class="container-fluid" style="background-color:#e8e8e8">
             <div class="container container-pad" id="property-listings">
               <div class="row">
@@ -65,7 +72,7 @@
                   <!-- Begin Listing -->
                   <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                     <div class="media">
-                      <a class="pull-left" href="{{pathFor 'itemDetails' id=itemId}}" target="_parent">
+                      <a class="pull-left" href="{{pathFor 'itemDetails' _id=_id}}" target="_parent">
                         <img alt="image" class="img-responsive" 
                         src="{{absoluteImageUrl}}"></a>
 
@@ -75,7 +82,7 @@
                           <a href="#" target="_parent"></a>
 
                           <h4 class="media-heading">
-                            <a href="#" target="_parent">
+                            <a href="{{pathFor 'itemDetails' _id=_id}}" target="_parent">
                               {{title}} 
                             </a>
                             <a href="{{pathFor 'edit-item' _id=_id}}">
@@ -168,7 +175,7 @@
               <!-- Begin Listing -->
               <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                 <div class="media">
-                  <a class="pull-left" href="{{pathFor 'itemDetails' id=itemId}}" target="_parent">
+                  <a class="pull-left" href="{{pathFor 'itemDetails' _id=_id}}" target="_parent">
                     <img alt="image" class="img-responsive" 
                     src="{{absoluteImageUrl}}"></a>
                     <div class="clearfix visible-sm"></div>
@@ -177,7 +184,7 @@
                       <a href="#" target="_parent"></a>
 
                       <h4 class="media-heading">
-                        <a href="#" target="_parent">
+                        <a href="{{pathFor 'itemDetails' _id=_id}}" target="_parent">
                           {{title}} 
                         </a>
                         <a href="{{pathFor 'edit-item' _id=_id}}">
@@ -225,10 +232,19 @@
 
           </div><!-- End Col -->
         </div><!-- End row -->
+        {{> Paginator_UI items}}
       </div><!-- End container -->
-    </div>  
+    </div> 
+    {{/if}} 
     </div>
     <div class="ui bottom attached tab segment" data-tab="third">
+    {{#if noTrips paginationTrips}}
+      <center>
+        <div class="no-items">
+          <h1>There are no trips listed yet.</h1>
+        </div>
+      </center>
+      {{else}}
       <div class="container-fluid" style="background-color:#e8e8e8">
         <div class="container container-pad" id="property-listings">
           <div class="row">
@@ -237,7 +253,7 @@
               <!-- Begin Listing -->
               <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                 <div class="media">
-                  <a class="pull-left" href="#" target="_parent">
+                  <a class="pull-left" href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                     {{> avatar userId=tripOwnerId shape="circle" size="large"}}
                   </a>
 
@@ -247,7 +263,7 @@
                     <a href="#" target="_parent"></a>
 
                     <h4 class="media-heading">
-                      <a href="#" target="_parent">
+                      <a href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                         {{origin_country}} to {{destination_country}}
                       </a>
                       <a href="{{pathFor 'edit-trip' _id=_id}}">
@@ -285,7 +301,7 @@
               <!-- Begin Listing -->
               <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                 <div class="media">
-                  <a class="pull-left" href="#" target="_parent">
+                  <a class="pull-left" href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                    {{> avatar userId=tripOwnerId shape="circle" size="large"}}
                  </a>
                  <div class="clearfix visible-sm"></div>
@@ -294,7 +310,7 @@
                   <a href="#" target="_parent"></a>
 
                   <h4 class="media-heading">
-                   <a href="#" target="_parent">
+                   <a href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                      {{origin_country}} to {{destination_country}}
                    </a>
                    <a href="{{pathFor 'edit-trip' _id=_id}}">
@@ -328,8 +344,10 @@
           
         </div><!-- End Col -->
       </div><!-- End row -->
+      {{> Paginator_UI trips}}
     </div><!-- End container -->
     </div>
+    {{/if}}
     </div>
     <div class="ui bottom attached tab segment" data-tab="fourth">
       <div class="container">
@@ -337,7 +355,7 @@
           <div class="col-sm-3 col-md-2">
             <ul class="nav nav-pills nav-stacked">
               <li class="active">
-                <a href="#">
+                <a href="{{pathFor 'messages-home'}}">
                   {{#if hasUnreadMessages unreadMessages}}
                   <span class="badge pull-right">
                     {{unreadMessagesCount unreadMessages}}
@@ -356,7 +374,7 @@
               </span>Primary</a></li>
             </ul>
             <!-- Tab panes -->
-            {{#each messages}}
+            {{#each pagRecMessages}}
             <div class="tab-content">
               <div class="tab-pane fade in active" id="home">
                 <div class="list-group" data-id="{{_id}}">
@@ -390,6 +408,7 @@
               {{/each}}
             </div>
           </div>
+           {{> Paginator_UI messages}}
         </div>
 
       </div>
