@@ -4,55 +4,60 @@
       <div class="col-sm-12 top-bar">
         <section class="my-top-bar">
           <div class="full-width">
-            <div class="full-width-btns-lg hidden-xs">
-              <center>
-                <a href="{{pathFor 'listings'}}" class="ui button">
-                  View All Listings
-                </a>
-                <a href="{{pathFor 'senderPostForm'}}" class="ui button">
-                  Send a package
-                </a>
-                <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
-                  Post a trip
-                </a>
-              </center>
-            </div>
-            <div class="full-width-btn-xs visible-xs">
-              <table style="width:100%" id="full-width-btns-table">
-                <tbody>
-                  <tr>
-                    <td>
-                      <a href="{{pathFor 'listings'}}" class="ui button mini">
-                        View All Listings
-                      </a>
-                    </td>
-                    <td>
-                      <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
-                        Send a package
-                      </a>
-                    </td>
-                    <td>
-                      <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
-                        Send a package
-                      </a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+           <div class="full-width-btns-lg hidden-xs">
+            <div>
+             <h2>
+               My Dashboard
+             </h2> 
+           </div>
+             <center>
+              <a href="{{pathFor 'listings'}}" class="ui button">
+                View All Listings
+              </a>
+              <a href="{{pathFor 'senderPostForm'}}" class="ui button">
+                Send a package
+              </a>
+              <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
+                Post a trip
+              </a>
+            </center>
           </div>
-        </section>
-      </div>
+          <div class="full-width-btn-xs visible-xs">
+            <table style="width:100%" id="full-width-btns-table">
+              <tbody>
+                <tr>
+                  <td>
+                    <a href="{{pathFor 'listings'}}" class="ui button mini">
+                      View All Listings
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+                      Send a package
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+                      Send a package
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
-  <div class="ui top attached tabular menu">
-    <!-- <a class="active item" data-tab="first">My Profile</a> -->
-    <a class="active item" data-tab="second">My Items</a>
-    <a class="item" data-tab="third">My Trips</a>
-    <a class="item" data-tab="fourth">My Messages</a>
-    <a class="item" data-tab="fifth">My Requests</a>
-    <a class="item" data-tab="sixth">My Notifications</a>
-  </div>
+</div>
+<div class="ui top attached tabular menu">
+  <!-- <a class="active item" data-tab="first">My Profile</a> -->
+  <a class="active item" data-tab="second">My Items</a>
+  <a class="item" data-tab="third">My Trips</a>
+  <a class="item" data-tab="fourth">My Messages</a>
+  <a class="item" data-tab="fifth">My Requests</a>
+  <a class="item" data-tab="sixth">My Notifications</a>
+</div>
   <!-- <div class="ui bottom attached active tab segment" data-tab="first">
       {{> editProfile}}      
     </div> -->
