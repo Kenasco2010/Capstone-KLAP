@@ -1,18 +1,23 @@
-Router.onBeforeAction(function(pause) {
-  if (!Meteor.userId()) {
+/*Router.onBeforeAction(function(pause) {
+  if (!Meteor.userId()) {*/
     // pause();
     // alert(
     //   "you need to be logged-in to view this page. Thank You"
     //   )
-Router.go('notSignIn');
+/*Router.go('notSignIn');
 } else {
   this.next();
 }
 }, {
   except: ['home', 'signin', 'signup', 'signout','notSignIn']
+});*/
+
+Router.onBeforeAction('authenticate', {
+  authenticate: {
+    template: 'notSignIn'
+  },
+  except: ['home', 'signin', 'signup', 'signout','notSignIn']
 });
-
-
 
 AutoForm.hooks({
 	insertEmailForm: {
