@@ -1228,13 +1228,16 @@ span.tags
 	margin-top: -50px;
 }
 .social-media{
-	margin-left: 550px;
 	margin-top: 7px;
 }
 @media only screen and (min-width: 992px) {
 	.view-profile-block {
 		width: 50%;
 		margin-bottom: 10px;
+	}
+	.social-media{
+		margin-left: 550px;
+		margin-top: 7px;
 	}
 }
 

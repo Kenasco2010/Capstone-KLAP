@@ -1,2 +1,6 @@
 settings.json
 mup.json
+/tests
+/fixtures
+/packages/npm-container/
+packages.json
