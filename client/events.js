@@ -254,6 +254,14 @@ Template.messagesHome.events({
     Meteor.call('updateUserMessageStatus', messageId, function (error, result) {});
   }
 });
+Template.createProfile.events({
+  'change #create_profile_country': function(e,t){
+    // alert("you have clicked me")
+    var countries = e.currentTarget.value ? e.currentTarget.value : null
+    Session.set('createProfileResidenceCity', countries);
+  }
+
+})
 
 Template.selectItem.rendered = function () {
 /*  $('.ui.selection.dropdown')
