@@ -365,8 +365,15 @@ Template.requestsHome.events({
 Template.footer.events({
   'click #send-item': function (e, t) {
     e.preventDefault();
+    
     if (Meteor.userId()) {
-      Router.go("senderPostForm");
+      var userId = Meteor.userId();
+      var user = Meteor.users.findOne(userId);
+      var check_first_name = user.profile.first_name;
+
+      if ( typeof(check_first_name) != "undefined") {
+          Router.go("senderPostForm");
+      }
     }
     else {
       Router.go("signin");
@@ -375,7 +382,13 @@ Template.footer.events({
    'click #post-trip': function (e,t) {
     e.preventDefault();
     if (Meteor.userId()) {
-      Router.go("travellerPostForm");
+      var userId = Meteor.userId();
+      var user = Meteor.users.findOne(userId);
+      var check_first_name = user.profile.first_name;
+
+      if ( typeof(check_first_name) != "undefined") {
+          Router.go("travellerPostForm");
+      }
     }
     else {
       Router.go("signin");
@@ -384,7 +397,13 @@ Template.footer.events({
    'click #pending-items': function (e,t) {
     e.preventDefault();
     if (Meteor.userId()) {
-      Router.go("listings");
+      var userId = Meteor.userId();
+      var user = Meteor.users.findOne(userId);
+      var check_first_name = user.profile.first_name;
+
+      if ( typeof(check_first_name) != "undefined") {
+          Router.go("listings");
+      }
     }
     else {
       Router.go("signin");
@@ -393,10 +412,16 @@ Template.footer.events({
    'click #upcoming-trips': function (e,t) {
     e.preventDefault();
     if (Meteor.userId()) {
-      Router.go("upcoming-trips");
+      var userId = Meteor.userId();
+      var user = Meteor.users.findOne(userId);
+      var check_first_name = user.profile.first_name;
+
+      if ( typeof(check_first_name) != "undefined") {
+          Router.go("upcoming-trips");
+      }
     }
     else {
-      Router.go("signin")
+      Router.go("signin");
     }
   }
 });
