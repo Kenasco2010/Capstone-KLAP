@@ -55,9 +55,30 @@
     <!-- <a class="active item" data-tab="first">My Profile</a> -->
     <a class="active item" data-tab="second">My Items</a>
     <a class="item" data-tab="third">My Trips</a>
-    <a class="item" data-tab="fourth">My Messages</a>
-    <a class="item" data-tab="fifth">My Requests</a>
-    <a class="item" data-tab="sixth">My Notifications</a>
+    <a class="item" data-tab="fourth">
+      My Messages
+      {{#if hasUnreadMessages unreadMessages}}
+          <span class="badge pull-right msg-badge">
+            {{unreadMessagesCount unreadMessages}}
+          </span> 
+      {{/if}}
+    </a>
+    <a class="item" data-tab="fifth">
+      My Requests
+      {{#if hasUnreadRequests unreadRequests}}
+      <span class="badge pull-right req-badge">
+        {{unreadRequestsCount unreadRequests}}
+      </span> 
+      {{/if}}
+    </a>
+    <a class="item" data-tab="sixth">
+      My Notifications
+      {{#if hasUnreadNotifications unreadNotifications}}
+      <span class="badge pull-right notif-badge">
+        {{unreadNotificationsCount unreadNotifications}}
+      </span>
+      {{/if}}
+    </a>
   </div>
   <!-- <div class="ui bottom attached active tab segment" data-tab="first">
       {{> editProfile}}      
@@ -361,7 +382,7 @@
       <div class="col-sm-3 col-md-2">
         <ul class="nav nav-pills nav-stacked">
           <li class="active">
-            <a href="#">
+            <a href="{{pathFor 'messages-home'}}">
               {{#if hasUnreadMessages unreadMessages}}
               <span class="badge pull-right">
                 {{unreadMessagesCount unreadMessages}}
@@ -496,7 +517,9 @@
             </div>
           </a>
         </div>
+        {{#if arepagRequests pagRequests}}
         {{> Paginator_UI pagRequests}}
+        {{/if}}
       </div>
     </div>
     {{/each}}

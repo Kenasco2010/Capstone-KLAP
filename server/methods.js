@@ -62,7 +62,7 @@ Meteor.methods({
                   read_status: "unread",
                   type: "req_carry",
                   action_status: "open",
-                  // createdAt: new Date() // current time
+                  createdAt: new Date() // current time
                 }, function(err, id){});
             };
         }

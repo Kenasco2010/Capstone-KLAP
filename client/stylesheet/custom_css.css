@@ -1257,3 +1257,7 @@ span.tags
 .navbar-brand{
 	margin-left: 100px;
 }
+
+.req-badge, .msg-badge, .notif-badge {
+	margin-left: 4px;
+}

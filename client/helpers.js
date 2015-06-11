@@ -83,17 +83,19 @@ Template.registerHelper("tripOwnerId", function(){
 
 Template.registerHelper("trip_owner", function(tripId){
         var trip = Travels.findOne(tripId);
-        var ownerId = trip.owner;
-        if (Meteor.userId() == ownerId) {
-            return "You"
-        }
-        else {
-            var owner = Meteor.users.findOne(ownerId);
-            var first_name = owner.profile.first_name;
-            var last_name = owner.profile.last_name;
-            var full_name = first_name + " " + last_name;
-            return full_name;
-        }
+        if (typeof(trip) != "undefined") {
+            var ownerId = trip.owner;
+            if (Meteor.userId() == ownerId) {
+                return "You"
+            }
+            else {
+                var owner = Meteor.users.findOne(ownerId);
+                var first_name = owner.profile.first_name;
+                var last_name = owner.profile.last_name;
+                var full_name = first_name + " " + last_name;
+                return full_name;
+            }
+        };
 })
 
 Template.registerHelper("noReviews", function(count){
@@ -633,6 +635,12 @@ Template.registerHelper("noItems", function(items){
 
 Template.registerHelper("noTrips", function(trips){
     if (trips.length == 0) {
+        return true;
+    };
+})
+
+Template.registerHelper("arepagRequests", function(requests){
+    if (typeof(requests) != "undefined") {
         return true;
     };
 })
