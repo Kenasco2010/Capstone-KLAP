@@ -362,4 +362,42 @@ Template.requestsHome.events({
   }
 });
 
+Template.footer.events({
+  'click #send-item': function (e, t) {
+    e.preventDefault();
+    if (Meteor.userId()) {
+      Router.go("senderPostForm");
+    }
+    else {
+      Router.go("signin");
+    }
+  },
+   'click #post-trip': function (e,t) {
+    e.preventDefault();
+    if (Meteor.userId()) {
+      Router.go("travellerPostForm");
+    }
+    else {
+      Router.go("signin");
+    }
+  },
+   'click #pending-items': function (e,t) {
+    e.preventDefault();
+    if (Meteor.userId()) {
+      Router.go("listings");
+    }
+    else {
+      Router.go("signin");
+    }
+  },
+   'click #upcoming-trips': function (e,t) {
+    e.preventDefault();
+    if (Meteor.userId()) {
+      Router.go("upcoming-trips");
+    }
+    else {
+      Router.go("signin")
+    }
+  }
+});
 
