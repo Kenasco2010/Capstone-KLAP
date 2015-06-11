@@ -89,6 +89,7 @@ Template.registerHelper("trip_owner", function(tripId){
                 return "You"
             }
             else {
+                var ownerId = trip.owner;
                 var owner = Meteor.users.findOne(ownerId);
                 var first_name = owner.profile.first_name;
                 var last_name = owner.profile.last_name;
@@ -557,7 +558,7 @@ Template.registerHelper("getRequestTitle", function(requestId){
     var item_send_date = item.send_date;
     var m = moment(item_send_date);
     var date = m.format("dddd, MMMM Do YYYY");
-     return "Are you travelling from " + item.origin_country + " to " + item.destination_country + " between " + date + " and...?";
+     return "Are you travelling from " + item.origin_country + " to " + item.destination_country + " between " + date + "...?";
 })
 
 Template.registerHelper("getSingleItemTitle", function(itemId){
