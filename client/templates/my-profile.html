@@ -65,9 +65,9 @@
     <a class="item" data-tab="fourth">
       My Messages
       {{#if hasUnreadMessages unreadMessages}}
-          <span class="badge pull-right msg-badge">
-            {{unreadMessagesCount unreadMessages}}
-          </span> 
+      <span class="badge pull-right msg-badge">
+        {{unreadMessagesCount unreadMessages}}
+      </span> 
       {{/if}}
     </a>
     <a class="item" data-tab="fifth">
@@ -441,6 +441,7 @@
      </div>
      {{/each}}
    </div>
+   {{> Paginator_UI messages}}
  </div>
 </div>
 
