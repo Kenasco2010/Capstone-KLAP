@@ -11,15 +11,16 @@ Schemas.updateProfile = new SimpleSchema({
     country:{
         type: String,
         autoform: {
+
           options: function() {
             return _.map(Config.countries, function(item, key) {
               return {
                 label: item.origin_country,
                 value: item.origin_country
-            }
+            } 
         });
-        }
-    }
+        } 
+    } 
 },
 travel_route_from: {
     type: String,
@@ -49,6 +50,7 @@ travel_route_to: {
             ];
         }
 
+
     }
 },
 number_of_travels: {
@@ -65,6 +67,7 @@ city: {
       options: []
   }
 
+
 },
 month: {
     type: String,
@@ -72,7 +75,7 @@ month: {
         type: "selectize",
         options: function() {
             return [
-            
+
             {label: "Jan", value: "01"},
             {label: "Feb", value: "02"},
             {label: "Mar", value: "03"},
@@ -92,8 +95,8 @@ month: {
 day: {
     type: String,
     autoform: {
-       type: "selectize",
-       options: function() {
+     type: "selectize",
+     options: function() {
         return [
         {label: "01", value: "01"},
         {label: "02", value: "02"},
@@ -127,10 +130,12 @@ day: {
         {label: "30", value: "30"},
         {label: "31", value: "31"},
 
+
         ];
     }
 }
 },
+
 year: {
     type: Number,
     autoform: {
@@ -217,8 +222,6 @@ year: {
         {label: "2014", value: 2014},
         {label: "2015", value: 2015}
 
-
-        
 
         ];
     }

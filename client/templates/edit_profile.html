@@ -1,8 +1,9 @@
-<template name="createProfile">
+<template name="editProfile">
  <div class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-2 col-xs-12">
-      {{#autoForm schema=profileFormSchema id="profileForm"}}
+      {{#autoForm schema=profileFormSchema id="profileForm" type="update"}}
+
       <center><h2 class="form-title">Yay! You are just a step away from joining the Travit community.</h2></center>
       <center><h2 class="form-title">Create your profile to complete.</h2></center>
       <fieldset>
@@ -16,7 +17,6 @@
         </div>
         <div class="form-blocks">
           <div class="col-md-6">
-
             {{> afQuickField name="country" id='create_profile_country'}}
           </div>
           <div class="col-md-6">

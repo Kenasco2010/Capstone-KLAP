@@ -33,26 +33,26 @@ body {
 	width: 1530px;
 }
 
-.send-package{
+/*.send-package{
 	margin-left: -260px;
 }
 .carry-package{
 	margin-left: 10px;
-}
-.home-button-text-center{
+	}*/
+/*.home-button-text-center{
 	margin-left: 304px;
-}
-.sendfromcountry{
-	margin-top: -7px;
-	margin-left: 10px;
-}
-.datesent{
-	margin-left: 10px;
-	margin-top: 5px;
-}
-.postItemForm{
-	box-shadow: 1px;
-}
+	}*/
+	.sendfromcountry{
+		margin-top: -7px;
+		margin-left: 10px;
+	}
+	.datesent{
+		margin-left: 10px;
+		margin-top: 5px;
+	}
+	.postItemForm{
+		box-shadow: 1px;
+	}
 /* 
 ===========================Profile css==============================
 */
@@ -554,11 +554,60 @@ span.tags
 		#property-listings .property-listing .media-body {
 			padding: 10px;
 		}
+
 	}
 
 	@media only screen and (min-width: 992px) {
 		#property-listings .property-listing img {
 			max-width: 180px;
+		}
+	}
+
+
+	@media(max-width: 990px){
+		/*media query for buttons*/
+
+		.media-btn{
+			margin: 5px 292px;
+		}
+	}
+
+
+	@media(max-width: 800px){
+		/*media query for buttons*/
+
+		.media-btn{
+			margin: 5px 185px;
+		}
+	}
+	@media(max-width: 414px){
+		/*media query for buttons*/
+
+		.media-btn{
+			margin: 5px 185px;
+		}
+	}
+
+	@media(max-width: 639px){
+		/*media query for buttons*/
+
+		.media-btn{
+			margin: 5px 0px 5px 130px;
+		}
+
+		.package-btn{
+			margin-bottom: 20px;
+		}
+
+		.media-btn button{
+			width: 70%;
+		}
+	}
+
+
+	@media(max-width: 405px){
+		.media-btn{
+			margin: 120px 0px 5px 85px;
 		}
 	}
 
@@ -1047,7 +1096,6 @@ button.btn-send-request {
 /* 
 ==============TRIP DETAILS=============
 */
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
 body
 {
 	font-family: 'Lato', 'sans-serif';
@@ -1229,13 +1277,16 @@ span.tags
 	margin-top: -50px;
 }
 .social-media{
-	margin-left: 550px;
 	margin-top: 7px;
 }
 @media only screen and (min-width: 992px) {
 	.view-profile-block {
 		width: 50%;
 		margin-bottom: 10px;
+	}
+	.social-media{
+		margin-left: 550px;
+
 	}
 }
 
@@ -1257,4 +1308,17 @@ span.tags
 }
 .navbar-brand{
 	margin-left: 100px;
+}
+
+.req-badge, .msg-badge, .notif-badge {
+	margin-left: 4px;
+}
+
+#full-width-btns {
+	display: inline-block;
+	margin-left: 280px;
+}
+#dash-xs {
+	padding-bottom: 10px;
+	text-align: center;
 }

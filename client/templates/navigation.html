@@ -15,7 +15,9 @@
 					</button>
 					<!-- <a class="navbar-brand" href="{{pathFor 'home'}}"><i class="fa fa-fa fa-truck"></i> Travit</a> -->
 					<a class="navbar-brand" href="{{pathFor 'home'}}">
-						<img src="/images/travit-logo1.png" alt="">
+
+						<img src="images/travit-logo1.png" alt="Travit">
+
 					</a>
 				</div>
 
@@ -23,13 +25,13 @@
 					<ul class="nav navbar-nav pull-right">
 						{{#if currentUser}}
 						<li>
-							<a href="{{pathFor 'my-profile'}}">
-								{{> avatar userId=currentUser._id shape="rounded" class="navbar-pic" size="small" }}
+							<a href="{{pathFor 'my-profile' _id=$.Meteor.userId}}">
+								{{> avatar userId=$.Meteor.userId shape="rounded" class="navbar-pic" size="small" }}
 							</a>
 						</li>
-						{{#if hasProfile currentUser._id}}
+						{{#if hasProfile $.Meteor.userId}}
 						<li class="">
-							<a href="{{pathFor 'my-profile'}}">
+							<a href="{{pathFor 'my-profile' _id=$.Meteor.userId}}">
 								{{fullUserName currentUser}} (Go To Dashboard)
 								
 							</a>

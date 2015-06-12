@@ -4,42 +4,42 @@
 	      <div class="col-sm-12 top-bar">
 	        <section class="my-top-bar">
 	          <div class="full-width">
-	            <div class="full-width-btns-lg hidden-xs">
-	              <center>
-	                <a href="{{pathFor 'listings'}}" class="ui button">
-	                  View All Listings
-	                </a>
-	                <a href="{{pathFor 'senderPostForm'}}" class="ui button">
-	                  Send a package
-	                </a>
-	                <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
-	                  Post a trip
-	                </a>
-	              </center>
-	            </div>
-	            <div class="full-width-btn-xs visible-xs">
-	              <table style="width:100%" id="full-width-btns-table">
-	                <tbody>
-	                  <tr>
-	                    <td>
-	                      <a href="{{pathFor 'listings'}}" class="ui button mini">
-	                          View All Listings
-	                      </a>
-	                    </td>
-	                    <td>
-	                      <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
-	                        Send a package
-	                      </a>
-	                    </td>
-	                    <td>
-	                      <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
-	                        Send a package
-	                      </a>
-	                    </td>
-	                  </tr>
-	                </tbody>
-	              </table>
-	            </div>
+	      		<div class="full-width-btns-lg hidden-xs">
+	      		    <center>
+	      		      <a href="{{pathFor 'listings'}}" class="ui button">
+	      		        View All Listings
+	      		      </a>
+	      		      <a href="{{pathFor 'senderPostForm'}}" class="ui button">
+	      		        Send a package
+	      		      </a>
+	      		      <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
+	      		        Post a trip
+	      		      </a>
+	      		    </center>
+	      		</div>
+	      		<div class="full-width-btn-xs visible-xs">
+	      		  <table style="width:100%" id="full-width-btns-table">
+	      		    <tbody>
+	      		      <tr>
+	      		        <td>
+	      		          <a href="{{pathFor 'listings'}}" class="ui button mini">
+	      		            View All Listings
+	      		          </a>
+	      		        </td>
+	      		        <td>
+	      		          <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+	      		            Send a package
+	      		          </a>
+	      		        </td>
+	      		        <td>
+	      		          <a href="{{pathFor 'senderPostForm'}}" class="ui button mini">
+	      		            Send a package
+	      		          </a>
+	      		        </td>
+	      		      </tr>
+	      		    </tbody>
+	      		  </table>
+	      		</div>
 	          </div>
 	        </section>
 	      </div>
@@ -58,7 +58,7 @@
 				</p>
 				<p class="lead">
 					<h6>Posted by <a href="{{pathFor 'user_profile' _id=itemOwnerId}}">
-					{{item_owner _id}}
+						{{item_owner _id}}
 					</a></h6>
 				</p>
 				<p>
@@ -117,37 +117,37 @@
 								<p>
 									{{#if ownerOfItem _id}}
 									{{else}}
-										{{#if hasSentRequest _id}}
-											 <button class="btn btn-default btn-round" type="button" disabled>
-											 	<i class="fa fa-weixin"></i>
-											 	Request Sent
-											 </button>
-											{{else}}
-												<a type="button" class="btn btn-default btn-round 
-													btn-carry-req"><i class="fa fa-weixin"></i>
-													Request to carry
-												</a>
-										{{/if}}
-									{{/if}}
-								</p>
-							</center>
-						</div>
+									{{#if hasSentRequest _id}}
+									<button class="btn btn-default btn-round" type="button" disabled>
+										<i class="fa fa-weixin"></i>
+										Request Sent
+									</button>
+									{{else}}
+									<a type="button" class="btn btn-default btn-round 
+									btn-carry-req"><i class="fa fa-weixin"></i>
+									Request to carry
+								</a>
+								{{/if}}
+								{{/if}}
+							</p>
+						</center>
 					</div>
-					<!-- /.input-group -->
 				</div>
+				<!-- /.input-group -->
+			</div>
 
-				<!-- Blog Categories Well -->
-				<div class="well side-well">
-					<h4>Item description</h4>
-					<div class="row">
-						<div class="col-lg-12 col-md-12">
-							{{description}}
-						</div>
+			<!-- Blog Categories Well -->
+			<div class="well side-well">
+				<h4>Item description</h4>
+				<div class="row">
+					<div class="col-lg-12 col-md-12">
+						{{description}}
 					</div>
-					<!-- /.row -->
 				</div>
+				<!-- /.row -->
+			</div>
 
-				<!-- Side Widget Well -->
+			<!-- Side Widget Well -->
 				<!-- <div class="well">
 					<h4>Activities</h4>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
@@ -160,5 +160,5 @@
 		{{/with}}
 	</div>
 	<!-- /.container -->
-{{> messageModal}}
+	{{> messageModal}}
 </template>

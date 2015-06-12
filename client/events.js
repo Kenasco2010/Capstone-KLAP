@@ -296,7 +296,7 @@ Template.selectItem.rendered = function () {
     }
   });
 
-   Template.requestDetails.events({
+/*   Template.requestDetails.events({
     'click #accept-btn': function (e, t) {
       var itemId = e.currentTarget.getAttribute('data-id');
       var item = Items.findOne(itemId);
@@ -317,7 +317,7 @@ Template.selectItem.rendered = function () {
       Meteor.call('rejectedItemStatus', status, itemId, function (error, result) {});
       Meteor.call('sendRejectedNotification', recipient, from, itemId, function (error, result) {});
     }
-  });
+  });*/
 
 
    Template.requestDetails.events({
@@ -370,4 +370,67 @@ Template.requestsHome.events({
   }
 });
 
+Template.footer.events({
+  'click #send-item': function (e, t) {
+    e.preventDefault();
+    
+    if (Meteor.userId()) {
+      var userId = Meteor.userId();
+      var user = Meteor.users.findOne(userId);
+      var check_first_name = user.profile.first_name;
+
+      if ( typeof(check_first_name) != "undefined") {
+          Router.go("senderPostForm");
+      }
+    }
+    else {
+      Router.go("signin");
+    }
+  },
+   'click #post-trip': function (e,t) {
+    e.preventDefault();
+    if (Meteor.userId()) {
+      var userId = Meteor.userId();
+      var user = Meteor.users.findOne(userId);
+      var check_first_name = user.profile.first_name;
+
+      if ( typeof(check_first_name) != "undefined") {
+          Router.go("travellerPostForm");
+      }
+    }
+    else {
+      Router.go("signin");
+    }
+  },
+   'click #pending-items': function (e,t) {
+    e.preventDefault();
+    if (Meteor.userId()) {
+      var userId = Meteor.userId();
+      var user = Meteor.users.findOne(userId);
+      var check_first_name = user.profile.first_name;
+
+      if ( typeof(check_first_name) != "undefined") {
+          Router.go("listings");
+      }
+    }
+    else {
+      Router.go("signin");
+    }
+  },
+   'click #upcoming-trips': function (e,t) {
+    e.preventDefault();
+    if (Meteor.userId()) {
+      var userId = Meteor.userId();
+      var user = Meteor.users.findOne(userId);
+      var check_first_name = user.profile.first_name;
+
+      if ( typeof(check_first_name) != "undefined") {
+          Router.go("upcoming-trips");
+      }
+    }
+    else {
+      Router.go("signin");
+    }
+  }
+});
 
