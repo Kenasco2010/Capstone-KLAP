@@ -5,25 +5,38 @@
             <section class="my-top-bar">
               <div class="full-width">
                 <div class="full-width-btns-lg hidden-xs">
-                  <center>
-                    <a href="{{pathFor 'listings'}}" class="ui button">
-                      View All Listings
-                    </a>
-                    <a href="{{pathFor 'senderPostForm'}}" class="ui button">
-                      Send a package
-                    </a>
-                    <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
-                      Post a trip
-                    </a>
-                  </center>
+                  <div>
+                    <h2 style="display: inline-block">
+                      
+                      My Dashboard
+                    </h2>
+                    <div id="full-width-btns">
+                      <a href="{{pathFor 'listings'}}" class="ui button">
+                        View All Listings
+                      </a>
+                      <a href="{{pathFor 'senderPostForm'}}" class="ui button">
+                        Send a package
+                      </a>
+                      <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
+                        Post a trip
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                <div class="full-width-btns-xs visible-xs">
+                <div class="full-width-btn-xs visible-xs">
                   <table style="width:100%" id="full-width-btns-table">
                     <tbody>
                       <tr>
+                        <td colspan="3" id="dash-xs">
+                          <h2>
+                            My Dashboard
+                          </h2>
+                        </td>
+                      </tr>
+                      <tr>
                         <td>
                           <a href="{{pathFor 'listings'}}" class="ui button mini">
-                              View All Listings
+                            View All Listings
                           </a>
                         </td>
                         <td>

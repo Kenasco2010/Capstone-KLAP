@@ -216,18 +216,23 @@ Template.registerHelper("unreadMessagesCount", function(messages){
 
 Template.registerHelper("unread", function(id){
     var message = Messages.findOne(id);
-    var msg_status = message.status;
-    var msg_replies = Replies.find({messageId: id}).fetch();
-    var replies = [];
+    if (typeof(message) == "undefined") {
+        return;
+    }
+    else {
+        var msg_status = message.status;
+        var msg_replies = Replies.find({messageId: id}).fetch();
+        var replies = [];
 
-    $(msg_replies).each(function(index, value) {
-        if (value.status == "unread") {
-            replies.push(value);
+        $(msg_replies).each(function(index, value) {
+            if (value.status == "unread") {
+                replies.push(value);
+            };
+        });
+        if (msg_status == "unread" || replies.length != 0) {
+            return true
         };
-    });
-    if (msg_status == "unread" || replies.length != 0) {
-        return true
-    };
+    }
 })
 
 Template.registerHelper("shortMessage", function(message){
@@ -600,11 +605,16 @@ Template.registerHelper("getSingleItemTitle", function(itemId){
     })
 
     Template.registerHelper("recReqToCarryYourItem", function(requestId){
-        var request = Requests.findOne(requestId);
-        var userId = Meteor.userId();
-        if (request.type == "app_carry" && request.senderId == userId) {
-            return true;
-        };
+        if (typeof(requestId) == "undefined") {
+            return;
+        }
+        else {
+            var request = Requests.findOne(requestId);
+            var userId = Meteor.userId();
+            if (request.type == "app_carry" && request.senderId == userId) {
+                return true;
+            };
+        }
     })
 
     Template.registerHelper("getReqToCarryYourItemTitle", function(requestId){
@@ -635,8 +645,10 @@ Template.registerHelper("noItems", function(items){
 })
 
 Template.registerHelper("noTrips", function(trips){
-    if (trips.length == 0) {
-        return true;
+    if (typeof(trips) != "undefined") {
+        if (trips.length == 0) {
+            return true;
+        };
     };
 })
 
@@ -645,3 +657,10 @@ Template.registerHelper("arepagRequests", function(requests){
         return true;
     };
 })
+Template.registerHelper("notifFrom", function(){
+    return this.from;
+})
+
+/*Template.registerHelper("reqUser", function(){
+    return this.carrierId;
+})*/

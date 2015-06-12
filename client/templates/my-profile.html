@@ -6,26 +6,33 @@
           <div class="full-width">
             <div class="full-width-btns-lg hidden-xs">
               <div>
-                <h2>
+                <h2 style="display: inline-block">
                   
                   My Dashboard
                 </h2>
+                <div id="full-width-btns">
+                  <a href="{{pathFor 'listings'}}" class="ui button">
+                    View All Listings
+                  </a>
+                  <a href="{{pathFor 'senderPostForm'}}" class="ui button">
+                    Send a package
+                  </a>
+                  <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
+                    Post a trip
+                  </a>
+                </div>
               </div>
-              <center>
-                <a href="{{pathFor 'listings'}}" class="ui button">
-                  View All Listings
-                </a>
-                <a href="{{pathFor 'senderPostForm'}}" class="ui button">
-                  Send a package
-                </a>
-                <a href="{{pathFor 'travellerPostForm'}}" class="ui button">
-                  Post a trip
-                </a>
-              </center>
             </div>
             <div class="full-width-btn-xs visible-xs">
               <table style="width:100%" id="full-width-btns-table">
                 <tbody>
+                  <tr>
+                    <td colspan="3" id="dash-xs">
+                      <h2>
+                        My Dashboard
+                      </h2>
+                    </td>
+                  </tr>
                   <tr>
                     <td>
                       <a href="{{pathFor 'listings'}}" class="ui button mini">
@@ -52,15 +59,15 @@
     </div>
   </div>
   <div class="ui top attached tabular menu">
-    <!-- <a class="active item" data-tab="first">My Profile</a> -->
-    <a class="active item" data-tab="second">My Items</a>
+    <a class="active item" data-tab="first">My Profile</a>
+    <a class="active" data-tab="second">My Items</a>
     <a class="item" data-tab="third">My Trips</a>
     <a class="item" data-tab="fourth">
       My Messages
       {{#if hasUnreadMessages unreadMessages}}
-          <span class="badge pull-right msg-badge">
-            {{unreadMessagesCount unreadMessages}}
-          </span> 
+      <span class="badge pull-right msg-badge">
+        {{unreadMessagesCount unreadMessages}}
+      </span> 
       {{/if}}
     </a>
     <a class="item" data-tab="fifth">
@@ -80,10 +87,10 @@
       {{/if}}
     </a>
   </div>
-  <!-- <div class="ui bottom attached active tab segment" data-tab="first">
+    <div class="ui bottom attached active tab segment" data-tab="first">
       {{> editProfile}}      
-    </div> -->
-    <div class="ui bottom attached active tab segment" data-tab="second">
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="second">
       {{#if noItems paginationItems}}
       <center>
         <div class="no-items">
@@ -382,7 +389,7 @@
       <div class="col-sm-3 col-md-2">
         <ul class="nav nav-pills nav-stacked">
           <li class="active">
-            <a href="{{pathFor 'messages-home'}}">
+            <a href="{{pathFor 'messages-home' _id=$.Meteor.userId}}">
               {{#if hasUnreadMessages unreadMessages}}
               <span class="badge pull-right">
                 {{unreadMessagesCount unreadMessages}}
@@ -391,7 +398,7 @@
               Inbox 
             </a>
           </li>
-          <li><a href="{{pathFor 'sent-messages'}}">Sent Messages</a></li>
+          <li><a href="{{pathFor 'sent-messages' _id=$.Meteor.userId}}">Sent Messages</a></li>
         </ul>
       </div>
       <div class="col-sm-9 col-md-10">
@@ -434,6 +441,7 @@
      </div>
      {{/each}}
    </div>
+   {{> Paginator_UI messages}}
  </div>
 </div>
 
@@ -444,7 +452,7 @@
       <div class="col-sm-3 col-md-2">
         <ul class="nav nav-pills nav-stacked">
           <li class="active">
-            <a href="{{pathFor 'requests-home'}}">
+            <a href="{{pathFor 'requests-home' _id=$.Meteor.userId}}">
               {{#if hasUnreadRequests unreadRequests}}
               <span class="badge pull-right">
                 {{unreadRequestsCount unreadRequests}}
@@ -458,7 +466,7 @@
       <div class="col-sm-9 col-md-10">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
-          <li class="active"><a href="{{pathFor 'my-profile'}}" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
+          <li class="active"><a href="{{pathFor 'my-profile'  _id=$.Meteor.userId}}" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
           </span>Primary</a></li>
         </ul>
         <!-- Tab panes -->
@@ -533,7 +541,7 @@
       <div class="col-sm-3 col-md-2">
         <ul class="nav nav-pills nav-stacked">
           <li class="active">
-           <a href="{{pathFor "notifications"}}" class="">
+           <a href="{{pathFor 'notifications' _id=$.Meteor.userId}}" class="">
              {{#if hasUnreadNotifications unreadNotifications}}
              <span class="badge pull-right">
                {{unreadNotificationsCount unreadNotifications}}
@@ -555,7 +563,7 @@
       <div class="tab-content">
         <div class="tab-pane fade in active" id="home">
           <div class="list-group notif-list-group" data-id="{{_id}}">
-            <a href="{{pathFor 'notification-view' _id=_id}}" class="list-group-item">
+            <a href="{{pathFor 'notification-view' userId=notifFrom _id=_id}}" class="list-group-item">
               {{#if unreadNotif status}}
               <strong>
                 <div class="name col-sm-9">

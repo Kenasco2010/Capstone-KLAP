@@ -1313,3 +1313,12 @@ span.tags
 .req-badge, .msg-badge, .notif-badge {
 	margin-left: 4px;
 }
+
+#full-width-btns {
+	display: inline-block;
+	margin-left: 280px;
+}
+#dash-xs {
+	padding-bottom: 10px;
+	text-align: center;
+}
