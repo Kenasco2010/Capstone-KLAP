@@ -25,6 +25,7 @@ chhib:selectize-bootstrap-3@0.0.1
 chrismbeckett:metro-ui2@2.0.32_3
 coffeescript@1.0.6
 comerc:autoform-selectize@2.2.2
+dburles:collection-helpers@1.0.3
 ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6

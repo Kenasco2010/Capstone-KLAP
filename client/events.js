@@ -288,7 +288,7 @@ Template.selectItem.rendered = function () {
     }
   });
 
-   Template.requestDetails.events({
+/*   Template.requestDetails.events({
     'click #accept-btn': function (e, t) {
       var itemId = e.currentTarget.getAttribute('data-id');
       var item = Items.findOne(itemId);
@@ -309,7 +309,7 @@ Template.selectItem.rendered = function () {
       Meteor.call('rejectedItemStatus', status, itemId, function (error, result) {});
       Meteor.call('sendRejectedNotification', recipient, from, itemId, function (error, result) {});
     }
-  });
+  });*/
 
 
    Template.requestDetails.events({
