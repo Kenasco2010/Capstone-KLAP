@@ -58,22 +58,29 @@
                               <strong>Travel Route: </strong>{{user.profile.travel_route_from}} 
                               <i class="fa fa-arrow-right"></i> {{user.profile.travel_route_to}}
                             </p>
-                            <p>
+                            <!-- <p>
                               <strong>Number of Travels: </strong> {{user.profile.number_of_travels}} times a year
-                            </p>
+                            </p> -->
                             <p>
                               <strong>Number of Deliveries: </strong> 
                               {{user.profile.number_of_deliveries}}
                             </p>
                             {{#if currentUserProfile user._id}}
                                 <button class="btn btn-primary send-req-disabled" disabled>Send delivery request</button>
+                                <button class="btn btn-info send-msg-disabled" disabled>Send message</button>
                               {{else}}
                               <button class="btn btn-primary btn-send-request">Send delivery request</button>
+                              <button class="btn btn-info btn-send-msg">Send message</button>
                             {{/if}}
+
                         </div> 
                         <div class="col-xs-12 col-sm-5 text-center">
                             <figure>
-                                {{> avatar userId=user._id shape="circle" size="large" class="public-avatar"}}
+                                {{#if ownerHasPhoto user._id}}
+                                    <img src="{{getOwnerPhotoUrl user._id}}" class="img-responsive img-circle" alt="user photo" height="150" width="150">
+                                    {{else}}
+                                      {{> avatar userId=user._id shape="circle" size="large" class="public-avatar"}}
+                                {{/if}}
                                 <figcaption class="ratings">
                                     <p>Ratings</p>
                                     
@@ -90,12 +97,8 @@
                     </div>
                     <div class="col-sm-12 col-xs-12">
                         <section class="col-xs-12 col-sm-12 divider about-section">
-                            <strong><p>About</p></strong>
-                            <!-- <p>{{checkAbout user._id}}</p> -->
-                            <p>
-                              I am the Director of Business Development - MEST Training Program & Incubator.
-                            </p>
-                            <p> I oversee external relationships and affairs at MEST, including business development, partnerships, investor relations, communications and marketing for the MEST training program, incubator and incubated companies</p>
+                            <strong><p>Bio</p></strong>
+                            <p>{{checkBio user._id}}</p>
                         </section>
                     </div>
                     <div class="col-xs-12 divider text-center action-buttons-section">

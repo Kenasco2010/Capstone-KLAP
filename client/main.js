@@ -57,6 +57,25 @@ var provinceByCountry = Config.countries[index] ? (Config.countries[index]).orig
 });
 
 //This section of the code gets the particular country and reveals its cities
+Template.registerHelper('userResidentCity', function () {
+//this is linked to the province field in the EVENTS collection
+var index = _.pluck(Config.countries, 'user_resident_country').indexOf(Session.get('userResidentCountry'));
+
+var provinceByCountry = Config.countries[index] ? (Config.countries[index]).origin_city : null
+
+	//Returning the name from provinces attached to country
+	array = _.map(provinceByCountry, function(item, key) {
+		return {
+			label: item,
+			value: item
+		}
+	});
+	
+	return array;
+
+});
+
+//This section of the code gets the particular country and reveals its cities
 Template.registerHelper('posttraveldestinationcityListings', function () {
 //this is linked to the province field in the EVENTS collection
 var index = _.pluck(Config.countries, 'posttravel_destination_country').indexOf(Session.get('posttraveldestinationcountries'));

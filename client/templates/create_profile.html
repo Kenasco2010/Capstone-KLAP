@@ -1,70 +1,68 @@
 <template name="createProfile">
- <div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-2 col-xs-12">
-      {{#autoForm schema=profileFormSchema id="profileForm"}}
-      <center><h2 class="form-title">Yay! You are just a step away from joining the Travit community.</h2></center>
-      <center><h2 class="form-title">Create your profile to complete.</h2></center>
-      <fieldset>
-        <div class="form-blocks top-form-block">
-          <div class="col-md-6">
-            {{> afQuickField name="first_name"}}
-          </div>
-          <div class="col-md-6">
-            {{> afQuickField name="last_name"}}
-          </div>
-        </div>
-        <div class="form-blocks">
-          <div class="col-md-6">
-            {{> afQuickField name="country"}}
-          </div>
-          <div class="col-md-6">
-           {{> afQuickField name="city"}}
-         </div>
+      <div class="container">
+       <div class="row">
+           <div class="col-md-8 col-md-offset-2 col-xs-12">
+               <!-- {{#autoForm collection="Meteor.users" id="profileForm" }} -->
+                {{#autoForm schema=profileFormSchema id="profileForm"}}
+               <center><h2 class="form-title">Create your profile</h2></center>
+               <fieldset>
+                 <div class="form-blocks top-form-block">
+                     <div class="col-md-6">
+                         {{> afQuickField name="first_name"}}
+                     </div>
+                     <div class="col-md-6">
+                         {{> afQuickField name="last_name"}}
+                     </div>
+                 </div>
+                 <div class="form-blocks">
+                     <div class="col-md-6">
+                     {{> afQuickField name="country" id='user_resident_country'}}
+                     </div>
+                     <div class="col-md-6">
+                      {{> afQuickField name="city" options=userResidentCity}}
+                   </div>
+                 </div>
+                 <div class="form-blocks">
+                    <div class="col-md-6">
+                        {{> afQuickField name="birthday" }}
+                    </div>
+                   <div class="col-md-6">
+                       {{> afQuickField name="gender"}}
+                   </div>
+                 </div>
+                 <div class="form-blocks">
+                   <div class="col-md-12">
+                       {{> afQuickField name="bio" rows=3}}
+                   </div>
+                 </div>
+                 <div class="form-blocks">
+                     <div class=" col-md-12 block-label">
+                         <center><label>Frequent travel route</label></center>
+                     </div>
+                     <div class="col-md-6">
+                         {{> afQuickField name="travel_route_from" label=false selectizeOptions=travel_route_from}}
+                     </div>
+                     <div class="col-md-6">
+                         {{> afQuickField name="travel_route_to" label=false selectizeOptions=travel_route_to}}
+                     </div>
+                 </div>
+                 <div class="form-blocks">
+                     <div class="col-md-6">
+                         {{> afQuickField name="number_of_travels"}}
+                     </div>
+                     <div class="col-md-6">
+                         {{> afQuickField name="available_as_carrier" type="boolean-radios" trueLabel="Yes" falseLabel="No"}}
+                     </div>
+                 </div>
+                                 
+                 <div class="col-sm-6 col-sm-offset-3 submit-block">
+                   <center>
+                     <input type="submit" value="Create my Profile" class="btn btn-info btn-block">
+                   </center>
+                 </div>
+               </fieldset>
+               {{/autoForm}}
+           </div>
        </div>
-       <div class="form-blocks">
-
-         <div class=" col-md-12 block-label">
-           <center><label>Date of Birth</label></center>
-         </div>
-         <div class="col-md-4">
-          {{> afQuickField name="month" label=false selectizeOptions=s2OptsMonth}}
-        </div>
-        <div class="col-md-4">
-          {{> afQuickField name="day" label=false selectizeOptions=s2OptsDay}}
-        </div>
-        <div class="col-md-4">
-          {{> afQuickField name="year" label=false selectizeOptions=s2OptsYear}}
-        </div>
-      </div>
-      <div class="form-blocks">
-        <div class=" col-md-12 block-label">
-          <center><label>Frequent travel route</label></center>
-        </div>
-        <div class="col-md-6">
-          {{> afQuickField name="travel_route_from" label=false selectizeOptions=travel_route_from}}
-        </div>
-        <div class="col-md-6">
-          {{> afQuickField name="travel_route_to" label=false selectizeOptions=travel_route_to}}
-        </div>
-      </div>
-      <div class="form-blocks">
-        <div class="col-md-6">
-          {{> afQuickField name="number_of_travels"}}
-        </div>
-        <div class="col-md-6">
-          {{> afQuickField name="available_as_carrier" type="boolean-radios" trueLabel="Yes" falseLabel="No"}}
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-sm-offset-3 submit-block">
-        <center>
-          <input type="submit" value="Create my Profile" class="btn btn-info btn-block">
-        </center>
-      </div>
-    </fieldset>
-    {{/autoForm}}
-  </div>
-</div>
-</div>
+   </div>
 </template>

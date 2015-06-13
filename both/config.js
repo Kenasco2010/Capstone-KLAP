@@ -1,6 +1,7 @@
 Config = {
     countries:[
     {origin_country: "USA",
+    user_resident_country: "USA",
     posttravel_destination_country: "USA",
     postitem_destinaton_country: "USA",
     origin_city:[
@@ -312,6 +313,7 @@ Config = {
     
 },
 {origin_country: "Ghana",
+user_resident_country: "Ghana",
 posttravel_destination_country: "Ghana",
 postitem_destinaton_country: "Ghana",
 origin_city:["Accra",  
@@ -328,6 +330,7 @@ origin_city:["Accra",
 
 },
 {origin_country: "UK",
+user_resident_country: "Uk",
 posttravel_destination_country: "UK",
 postitem_destinaton_country: "UK",
 origin_city:["Aberdeen",

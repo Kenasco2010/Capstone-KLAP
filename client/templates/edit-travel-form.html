@@ -1,33 +1,33 @@
 <template name="editTripForm">
-{{#autoForm collection="Travels" id="editTravelForm" doc=trip}}
+{{#autoForm collection="Travels" id="editTravelForm" doc=trip type="update"}}
 <center><h2 class="form-title">Edit Trip</h2></center>
 <fieldset>
     <div class="form-blocks top-form-block">
       <div class=" col-md-12 block-label">
           <center><label>You are travelling from</label></center>
       </div>
-      <div class="col-md-4">
-          {{> afQuickField name="origin_country" label=false selectizeOptions=s2OptsOCountry}}
-      </div>
-      <div class="col-md-4">
-         {{> afQuickField name="origin_city" label=false selectizeOptions=s2OptsOCity}}
-      </div>
-      <div class="col-md-4">
-            {{> afQuickField name="travel_date" label=false}}
-      </div>
+     <div class="col-md-4">
+       {{> afQuickField name="origin_country" label=false id='traveller_origin_country'}}
+     </div>
+     <div class="col-md-4">
+      {{> afQuickField name="origin_city" label=false options=cityListings}}
+    </div>
+    <div class="col-md-4">
+      {{> afQuickField name="travel_date" label=false}}
+    </div>
     </div>
     <div class="form-blocks">
       <div class=" col-md-12 block-label">
           <center><label>To</label></center>
       </div>
-      <div class="col-md-4">
-        {{> afQuickField name="destination_country" label=false selectizeOptions=s2OptsDCountry}}
-      </div>
-      <div class="col-md-4">
-          {{> afQuickField name="destination_city" label=false selectizeOptions=s2OptsDCity}}
-      </div>
-      <div class="col-md-4">
-             {{> afQuickField name="arrival_date" label=false}}
+       <div class="col-md-4">
+         {{> afQuickField name="destination_country" label=false id='traveller_destination_country'}}
+       </div>
+       <div class="col-md-4">
+         {{> afQuickField name="destination_city" label=false options=posttraveldestinationcityListings}}
+       </div>
+       <div class="col-md-4">
+        {{> afQuickField name="arrival_date" label=false}}
       </div>
     </div>
     <div class="form-blocks">

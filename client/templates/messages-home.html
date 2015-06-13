@@ -376,13 +376,13 @@
                                       <a href="{{pathFor 'message-view' _id=_id}}" class="list-group-item">
                                         {{#if unread _id}}
                                           <strong>
-                                            <div class="name col-sm-2">
+                                            <div class="name col-sm-3">
                                                  {{sentFrom owner}}
                                                  {{#if hasUnreadReplies _id}}
                                                   ({{unreadRepliesCount _id}})
                                                  {{/if}}
                                             </div> 
-                                             <div class="text-muted col-sm-8">
+                                             <div class="text-muted col-sm-6">
                                                  {{shortMessage message}}
                                              </div>
                                           </strong> 

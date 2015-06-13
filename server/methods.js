@@ -1,11 +1,11 @@
 Meteor.methods({
   updateUserProfile: function(doc) {
     // Important server-side check for security and data integrity
-    check(doc, Schemas.updateProfile);
-    var dob = doc.day +  " " + doc.month + " " + doc.year;
-    var date_of_birth = dob.replace(/\s/g,"-");
+    // check(doc, Schemas.updateProfile);
+    /*var dob = doc.day +  " " + doc.month + " " + doc.year;
+    var date_of_birth = dob.replace(/\s/g,"-");*/
 
-    if (Meteor.user()) {
+/*    if (Meteor.user()) {
         Meteor.users.update({
             _id: Meteor.user()._id}, 
             {
@@ -24,7 +24,25 @@ Meteor.methods({
     }
     else {
         console.log("user not logged in");
-    }
+    }*/
+    Meteor.users.update({_id: Meteor.user()._id}, {
+              $set: {"profile.first_name": doc.first_name, 
+                      "profile.last_name": doc.last_name,
+                      "profile.country": doc.country,
+                      "profile.city": doc.city,
+                      "profile.birthday": doc.birthday,
+                      "profile.gender": doc.gender,
+                      "profile.bio": doc.bio,
+                      "profile.number_of_travels": doc.number_of_travels,
+                      "profile.travel_route_from": doc.travel_route_from,
+                      "profile.travel_route_to": doc.travel_route_to,
+                      "profile.available_as_carrier": doc.available_as_carrier
+
+      }
+    });
+  },
+  changeUserProfilePhoto: function(url){
+        Meteor.users.update({_id: Meteor.user()._id}, {$set: {"profile.photo": url}});
   },
   updateRatings: function(userId, value){
 
@@ -54,7 +72,7 @@ Meteor.methods({
         var users = Meteor.users.find({}).fetch();    
         for (i = 0; i < users.length; i++) { 
             var value = users[i];
-            if (value.profile.available_as_carrier == true ) {
+            if (value.profile.available_as_carrier == true && value._id != Meteor.user()._id) {
                 Requests.insert({
                   req_carry_itemId: id,
                   carrierId: value._id,

@@ -1,5 +1,5 @@
 Template.registerHelper("fullUserName", function(user){
-    if (typeof(user.profile) == "undefined") {
+    if (typeof(user.profile) == "undefined" || null) {
         return;
     }
     else {
@@ -28,6 +28,33 @@ Template.searchForm.helpers({
         return Schema.search;
     }
 });
+
+Template.registerHelper("ownerHasPhoto", function(userId){
+   var user = Meteor.users.findOne(userId);
+    if (user.profile.photo == "undefined" || null) {
+        return false;
+    };
+})
+
+Template.messageView.helpers({
+    sender: function () {
+         var senderId = this.message.owner;
+         var sender = Meteor.users.findOne(senderId);
+         return sender;
+
+    },
+
+});
+Template.registerHelper("getOwnerPhotoUrl", function(userId){
+    var user = Meteor.users.findOne(userId);
+    if (typeof(user) == "undefined" || null) {
+        return;
+    }
+    else {
+       var photo = user.profile.photo;
+       return photo;
+    }
+})
 
 Template.registerHelper("s2OptsOCountry", function(){
     return  {placeholder: "Select Country"};
@@ -83,20 +110,28 @@ Template.registerHelper("tripOwnerId", function(){
 
 Template.registerHelper("trip_owner", function(tripId){
         var trip = Travels.findOne(tripId);
-        if (typeof(trip) != "undefined") {
-            var ownerId = trip.owner;
-            if (Meteor.userId() == ownerId) {
-                return "You"
+        if (typeof(trip) == "undefined") {
+                return;
             }
-            else {
+        else {
                 var ownerId = trip.owner;
-                var owner = Meteor.users.findOne(ownerId);
-                var first_name = owner.profile.first_name;
-                var last_name = owner.profile.last_name;
-                var full_name = first_name + " " + last_name;
-                return full_name;
-            }
-        };
+                if (Meteor.userId() == ownerId) {
+                    return "You"
+                }
+                else {
+                    var ownerId = trip.owner;
+                    var owner = Meteor.users.findOne(ownerId);
+                    console.log(owner);
+                    var first_name = owner.profile.first_name;
+                    var last_name = owner.profile.last_name;
+                    var full_name = first_name + " " + last_name;
+                    return full_name;
+                }
+        }
+})
+
+Template.registerHelper("photoUpOptions", function(){
+
 })
 
 Template.registerHelper("noReviews", function(count){
@@ -138,6 +173,25 @@ Template.registerHelper("date_ft", function(date){
     return m.format("dddd, MMMM Do YYYY");
 })
 
+Template.registerHelper("dob_ft", function(date){
+    var m = moment(date);
+    return m.format(" MMMM Do YYYY");
+})
+
+Template.registerHelper("checkCarrierStatus", function(user){
+    if (typeof(user) == "undefined") {
+        return;
+    }
+    else {
+        if (user.profile.available_as_carrier == true) {
+            return "available as carrier"
+        }
+        else {
+            return "available not available as carrier"
+        }
+    }
+})
+
 Template.createProfile.helpers({
     profileFormSchema: function () {
         return Schemas.updateProfile;
@@ -159,8 +213,14 @@ Template.registerHelper("profileFormSchema", function(){
 
 Template.registerHelper("reviewerPicture", function(id){
     var user = Meteor.users.findOne(id);
-    var pictureUrl = user.profile.picture;
-    return pictureUrl;
+    if (typeof(user) == "undefined") {
+        return;
+    }
+    else {
+        var pictureUrl = user.profile.picture;
+        return pictureUrl;
+    }
+   
 })
 
 Template.registerHelper("reviewCountString", function(count){
@@ -172,16 +232,16 @@ Template.registerHelper("reviewCountString", function(count){
     }
 })
 
-Template.registerHelper("checkAbout", function(id){
+Template.registerHelper("checkBio", function(id){
     var user = Meteor.users.findOne(id);
     var first_name = user.profile.first_name;
-    var about = user.profile.about;
-    if (typeof(about) == "undefined") {
+    var bio = user.profile.bio;
+    if (typeof(bio) == "undefined" || null) {
         return "(" + first_name + " has not written any bio yet)";
     }
     else
     {
-        return about;
+        return bio;
     }
 })
 
@@ -247,10 +307,15 @@ Template.registerHelper("shortMessage", function(message){
 
 Template.registerHelper("fullName", function(id){
     var user = Meteor.users.findOne(id);
-    var first_name = user.profile.first_name;
-    var last_name = user.profile.last_name;
-    var full_name = first_name + " " + last_name;
-    return full_name;
+    if (typeof(user) == "undefined") {
+        return;
+    }
+    else {
+        var first_name = user.profile.first_name;
+        var last_name = user.profile.last_name;
+        var full_name = first_name + " " + last_name;
+        return full_name;
+    }
 })
 
 Template.registerHelper("hasUnreadReplies", function(id){
@@ -558,12 +623,29 @@ Template.registerHelper("recReqToCarryAnotherUserItem", function(requestId){
 
 Template.registerHelper("getRequestTitle", function(requestId){
     var request = Requests.findOne(requestId);
-    var itemId = request.req_carry_itemId;
-    var item = Items.findOne(itemId);
-    var item_send_date = item.send_date;
-    var m = moment(item_send_date);
-    var date = m.format("dddd, MMMM Do YYYY");
-     return "Are you travelling from " + item.origin_country + " to " + item.destination_country + " between " + date + "...?";
+    if (typeof(request) == "undefined" || null) {
+        return;
+    }
+    else {
+        var itemId = request.req_carry_itemId;
+        var item = Items.findOne(itemId);
+        if (typeof(item) == "undefined" || null) {
+            return;
+        }
+        else {
+            var item_send_date = item.send_date;
+            var m = moment(item_send_date);
+            var date = m.format("dddd, MMMM Do YYYY");
+             return "Are you travelling from " + item.origin_country + " to " + item.destination_country + " between " + date + "...?";
+        }
+        
+    }
+})
+
+Template.registerHelper("hasPhoto", function(user){
+    if (user.profile.photo != "undefined" || null) {
+        return true;
+    };
 })
 
 Template.registerHelper("getSingleItemTitle", function(itemId){
@@ -661,6 +743,6 @@ Template.registerHelper("notifFrom", function(){
     return this.from;
 })
 
-/*Template.registerHelper("reqUser", function(){
-    return this.carrierId;
-})*/
+Template.registerHelper("current", function(){
+    return Meteor.user();
+})

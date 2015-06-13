@@ -477,10 +477,18 @@
                         <tbody>
                           <tr>
                             <td>
-                              {{> avatar userId=request.owner shape="rounded" size="small" class="message-view-pic"}}
+                            {{#if ownerHasPhoto request.owner}}
+                                <a href="{{pathFor 'user_profile' _id=request.owner}}">
+                                  <img src="{{getOwnerPhotoUrl request.owner}}" class="img-responsive img-thumbnail" alt="user photo" height="40" width="40">
+                                </a>
+                                {{else}}
+                                <a href="{{pathFor 'user_profile' _id=request.owner}}">
+                                  {{> avatar userId=request.owner shape="rounded" size="small" class="message-view-pic"}}
+                                </a>
+                            {{/if}}
                             </td>
                             <td>
-                              <h3>{{fullName request.owner}}</h3>
+                              <h3><a href="{{pathFor 'user_profile' _id=request.owner}}">{{fullName request.owner}}</a></h3>
                             </td>
                             <td>
                               {{tm_locale createdAt}}

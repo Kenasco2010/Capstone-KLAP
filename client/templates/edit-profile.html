@@ -1,50 +1,38 @@
 <template name="editProfile">
-       <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-2 col-xs-12">
-                {{#autoForm schema=profileFormSchema id="editProfileForm" doc=user}}
-                <center><h2 class="form-title">Your Personal Information</h2></center>
-                <fieldset>
-                  <div class="form-blocks top-form-block">
-                      <div class="col-md-6">
-                          {{> afQuickField name="first_name"}}
-                      </div>
-                      <div class="col-md-6">
-                          {{> afQuickField name="last_name"}}
-                      </div>
-                  </div>
-                  <div class="form-blocks">
-                      <div class="col-md-6">
-                      {{> afQuickField name="country"}}
-                      </div>
-                      <div class="col-md-6">
-                       {{> afQuickField name="city"}}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-8">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        {{#if hasPhoto user}}
+                            <img src="{{user.profile.photo}}" class="img-responsive img-thumbnail" alt="user photo" height="150" width="150">
+                            {{else}}
+                            {{> avatar userId=$.Meteor.userId shape="rounded" class="edit-profile-pic" size="large" }}
+                        {{/if}}
+                        <a href="#" id="chg-picture">change picture</a>
                     </div>
-                  </div>
-                  <div class="form-blocks">
-                     
-                     <div class=" col-md-12 block-label">
-                         <center><label>Date of Birth</label></center>
-                     </div>
-                      <div class="col-md-4">
-                          {{> afQuickField name="month" label=false selectizeOptions=s2OptsMonth}}
-                      </div>
-                      <div class="col-md-4">
-                          {{> afQuickField name="day" label=false selectizeOptions=s2OptsDay}}
-                      </div>
-                      <div class="col-md-4">
-                              {{> afQuickField name="year" label=false selectizeOptions=s2OptsYear}}
-                      </div>
-                  </div>
-                                  
-                  <div class="col-md-6 col-md-offset-3 submit-block">
-                    <center>
-                      <input type="submit" value="Create my Profile" class="btn btn-info btn-block">
-                    </center>
-                  </div>
-                </fieldset>
-                {{/autoForm}}
+                    <div class="col-sm-6 col-md-8">
+                        <h4>
+                            {{fullName user}}</h4>
+                        <small><cite title="{{user.profile.city}}, {{user.profile.country}}">&nbsp;{{user.profile.city}}, {{user.profile.country}} <i class="fa fa-map-marker"></i></cite></small>
+                        <p>
+                            <i class="fa fa-shopping-cart"></i>&nbsp;{{checkCarrierStatus user}}
+                            <br />
+                            <i class="fa fa-plane"></i>&nbsp;{{user.profile.travel_route_from}} to {{user.profile.travel_route_to}}
+                            <br />
+                            <i class="fa fa-birthday-cake"></i>&nbsp;{{dob_ft user.profile.birthday}}
+                            <br />
+                            <strong>Bio:</strong>&nbsp;{{user.profile.bio}} 
+                        </p>
+                            <a href="{{pathFor 'edit-profile' _id=$.Meteor.userId}}" class="btn btn-primary">
+                                Edit Profile
+                            </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
+{{> changeProfilePhotoModal}}
 </template>
