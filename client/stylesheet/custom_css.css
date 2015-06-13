@@ -1325,6 +1325,7 @@ span.tags
 
 .req-badge, .msg-badge, .notif-badge {
 	margin-left: 4px;
+	margin-top: -14px;
 }
 
 #full-width-btns {
