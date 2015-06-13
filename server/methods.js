@@ -78,7 +78,7 @@ Meteor.methods({
                   carrierId: value._id,
                   owner: Meteor.user()._id,
                   read_status: "unread",
-                  type: "req_carry",
+                  type: "bulk_req_carry",
                   action_status: "open",
                   createdAt: new Date() // current time
                 }, function(err, id){});
