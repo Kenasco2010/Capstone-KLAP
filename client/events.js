@@ -228,7 +228,6 @@ Template.postItem.events({
     'change #item_post_origin_country': function (e,t) {
       var countries = e.currentTarget.value ? e.currentTarget.value : null
       Session.set('countries', countries);
-      console.log(Session.get('countries'));
 
     },
     'change #item_post_destination_country': function (e,t) {
@@ -238,6 +237,32 @@ Template.postItem.events({
     }
 
   });
+
+Template.editProfileForm.events({
+  'change #user_resident_country': function (e,t) {
+    var countries = e.currentTarget.value ? e.currentTarget.value : null
+    Session.set('userResidentCountry', countries);
+
+  }
+});
+
+Template.editProfileForm.events({
+  'change #user_resident_country': function (e,t) {
+    var countries = e.currentTarget.value ? e.currentTarget.value : null
+    Session.set('userResidentCountry', countries);
+
+  }
+});
+
+Template.createProfile.events({
+  'change #user_resident_country': function (e,t) {
+    var countries = e.currentTarget.value ? e.currentTarget.value : null
+    Session.set('userResidentCountry', countries);
+
+  }
+});
+
+
 Template.postTravel.events({
   'change #traveller_origin_country': function(e,t){
     var countries = e.currentTarget.value ? e.currentTarget.value : null
@@ -296,28 +321,27 @@ Template.selectItem.rendered = function () {
     }
   });
 
-/*   Template.requestDetails.events({
-    'click #accept-btn': function (e, t) {
-      var itemId = e.currentTarget.getAttribute('data-id');
-      var item = Items.findOne(itemId);
-      var itemOwner = item.owner;
-      var recipient = itemOwner;
-      var from = Meteor.userId();
-      var status = "accepted"
-      Meteor.call('acceptedItemStatus', status, itemId, function (error, result) {});
-      Meteor.call('sendAcceptedNotification', recipient, from, itemId, function (error, result) {});
+   Template.editProfile.events({
+    'click #chg-picture': function (e, t) {
+       $(".ui.chgProfilePhoto.modal").modal("setting", {
+         closable: true,
+         onApprove: function () {
+          var getImageUrl = Session.get("profilePhotoUrl");
+          Meteor.call('changeUserProfilePhoto', getImageUrl, function (error, result) {
+           if (error) {
+             $('.ui.chgProfilePhoto.modal').modal('hide');
+             swal("Sorry! something went wrong");
+           }
+           else {
+             $('.ui.chgProfilePhoto.modal').modal('hide');
+             swal("Thanks! your photo has been changed");
+           }
+         });
+          return false;
+        }
+      }).modal("show");
     },
-    'click #reject-btn': function(e, t){
-      var itemId = e.currentTarget.getAttribute('data-id');
-      var item = Items.findOne(itemId);
-      var itemOwner = item.owner;
-      var recipient = itemOwner;
-      var from = Meteor.userId();
-      var status = "rejected"
-      Meteor.call('rejectedItemStatus', status, itemId, function (error, result) {});
-      Meteor.call('sendRejectedNotification', recipient, from, itemId, function (error, result) {});
-    }
-  });*/
+  });
 
 
    Template.requestDetails.events({

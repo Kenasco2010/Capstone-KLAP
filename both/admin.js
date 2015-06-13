@@ -1,6 +1,13 @@
 
 AdminConfig = {
 	collections: {
-		Emails: {}
-	}
+		Emails: {},
+        Items: {},
+        Messages: {},
+        Notifications: {},
+        Requests: {},
+        Replies: {},
+        Travels: {},
+        Reviews: {}
+	},
 };

@@ -22,28 +22,28 @@
       <div class=" col-md-12 block-label">
         <center><label>You are sending this item from</label></center>
       </div>
-      <div class="col-md-4">
-        {{> afQuickField name="origin_country" label=false selectizeOptions=s2OptsOCountry}}
+      <div class="col-md-4 postItem-origin_country">
+        {{> afQuickField name="origin_country" label=false  id='item_post_origin_country'}}
       </div>
       <div class="col-md-4">
-       {{> afQuickField name="origin_city" label=false selectizeOptions=s2OptsOCity}}
-     </div>
-     <div class="col-md-4">
-       {{> afQuickField name="send_date" label=false}}
-     </div>
+        {{> afQuickField name="origin_city" label=false options=cityListings}}
+      </div>
+      <div class="col-md-4">
+        {{> afQuickField name="send_date" label=false}}
+      </div>
     </div>
     <div class="form-blocks">
       <div class=" col-md-12 block-label">
         <center><label>To</label></center>
       </div>
       <div class="col-md-4">
-        {{> afQuickField name="destination_country" label=false selectizeOptions=s2OptsDCountry}}
+        {{> afQuickField name="destination_country" label=false id='item_post_destination_country'}}
       </div>
       <div class="col-md-4">
-        {{> afQuickField name="destination_city" label=false selectizeOptions=s2OptsDCity}}
+        {{> afQuickField name="destination_city" label=false options=postitemdestinationcityListings}}
       </div>
       <div class="col-md-4">
-        {{> afQuickField name="delivery_date" label=false}}
+       {{> afQuickField name="delivery_date" label=false}}
      </div>
     </div>
     <div class="form-blocks">

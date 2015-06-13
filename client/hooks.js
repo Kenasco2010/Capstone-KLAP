@@ -70,6 +70,23 @@ AutoForm.hooks({
 });
 
 AutoForm.hooks({
+  editProfileForm: {
+    onSubmit: function (insertDoc, updateDoc, currentDoc) {
+      Meteor.call('updateUserProfile', insertDoc, function (error, result) {
+        if (error) {
+          this.done();
+        }
+        else {
+          swal("Thanks! your profile has been updated.")
+          Router.go('my-profile', {_id: Meteor.userId()});
+        }
+      });
+      return false;  
+    }
+  }
+});
+
+AutoForm.hooks({
   postItemForm: {
        formToDoc: function(doc, ss, formId) {
           doc.relativeImageUrl = Session.get('relativeImageUrl');
@@ -87,7 +104,7 @@ AutoForm.hooks({
               sweetAlert({
               title: "Thanks!",
                text: "Your post has successfuly been sent to members who match the route you specified. You will receive a notification if any member accepts to carry your item."
-            }, function(){ Router.go("my-profile")}
+            }, function(){ Router.go('my-profile', {_id: Meteor.userId()}) }
             );
           }
         });
@@ -172,12 +189,11 @@ AutoForm.hooks({
     onSuccess: function(formType, result) {
          swal("Thanks! your item has been successfuly updated");
          $( "button.confirm" ).click(function() {
-           Router.go("my-profile");
+           Router.go('my-profile', {_id: Meteor.userId()});
          });
     }
   }
 })
-
 
 AutoForm.hooks({
   postTravelForm: {
@@ -209,7 +225,7 @@ AutoForm.hooks({
             else {
               swal("Thanks! your trip has been successfuly updated");
               $( "button.confirm" ).click(function() {
-                Router.go("my-profile");
+                Router.go('my-profile', {_id: Meteor.userId()});
               });
             }
           });

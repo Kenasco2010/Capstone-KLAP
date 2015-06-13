@@ -372,10 +372,18 @@
               <tbody>
                 <tr>
                   <td>
-                    {{> avatar userId=sender._id shape="rounded" size="small" class="message-view-pic"}}
+                        {{#if ownerHasPhoto sender._id}}
+                            <a href="{{pathFor 'user_profile' _id=sender._id}}">
+                              <img src="{{getOwnerPhotoUrl sender._id}}" class="img-responsive img-thumbnail" alt="user photo" height="40" width="40">
+                            </a>
+                            {{else}}
+                            <a href="{{pathFor 'user_profile' _id=sender._id}}">
+                              {{> avatar userId=sender._id shape="rounded" size="small" class="message-view-pic"}}
+                            </a>
+                        {{/if}}
                   </td>
                   <td>
-                    <h3>{{fullUserName sender}}</h3>
+                    <h3><a href="{{pathFor 'user_profile' _id=sender._id}}">{{fullUserName sender}}</a></h3>
                   </td>
                   <td>
                     {{tm_locale createdAt}}
@@ -394,7 +402,11 @@
               <tbody>
                 <tr>
                   <td>
-                    {{> avatar userId=owner shape="rounded" size="small" class="message-view-pic"}}
+                    {{#if hasNoMainPhoto currentUser}}
+                        {{> avatar userId=$.Meteor.userId shape="rounded" class="navbar-pic" size="small" }}
+                        {{else}}
+                        <img src="{{currentUser.profile.photo}}" class="img-responsive img-thumbnail" alt="user photo" height="40" width="40">
+                    {{/if}}
                   </td>
                   <td>
                     <h3>{{fullName owner}}</h3>

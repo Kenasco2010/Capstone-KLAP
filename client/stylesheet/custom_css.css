@@ -837,6 +837,11 @@ a#hide-reviews {
 		height: 300px;
 	}
 
+	.ui.chgProfilePhoto.small.modal {
+		width: 40%;
+		height: 480px;
+	}
+
 }
 
 @media only screen and (min-width: 992px) {
@@ -906,10 +911,18 @@ a#hide-reviews {
 		width: 40px;
 		height: 40px;
 	}
+
+	.edit-profile-pic {
+		width: 150px;
+		height: 150px;
+	}
+
 	.badge {
 		background-color: #023A61;
 	}
-
+	#chg-picture {
+		display: block;
+	}
 	/*===================================== inbox ===========================================*/
 
 	.nav-tabs .glyphicon:not(.no-margin) { margin-right:10px; }
@@ -1294,7 +1307,7 @@ span.tags
 	margin-bottom: 10px;
 }
 
-.send-req-disabled {
+.send-req-disabled, .send-msg-disabled, .btn-send-msg {
 	margin-bottom: 10px;
 }
 
@@ -1322,3 +1335,9 @@ span.tags
 	padding-bottom: 10px;
 	text-align: center;
 }
+
+/*=============================================Edit Profile=========================*/
+
+
+
+/*===============================================Edit Profile=============================*/
