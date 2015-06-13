@@ -31,7 +31,7 @@ Template.searchForm.helpers({
 
 Template.registerHelper("ownerHasPhoto", function(userId){
    var user = Meteor.users.findOne(userId);
-    if (user.profile.photo == "undefined" || null) {
+    if (typeof(user.profile.photo) == "undefined") {
         return false;
     };
 })
@@ -121,11 +121,15 @@ Template.registerHelper("trip_owner", function(tripId){
                 else {
                     var ownerId = trip.owner;
                     var owner = Meteor.users.findOne(ownerId);
-                    console.log(owner);
-                    var first_name = owner.profile.first_name;
-                    var last_name = owner.profile.last_name;
-                    var full_name = first_name + " " + last_name;
-                    return full_name;
+                    if (typeof(owner) == "undefined") {
+                        return;
+                    }
+                    else {
+                        var first_name = owner.profile.first_name;
+                        var last_name = owner.profile.last_name;
+                        var full_name = first_name + " " + last_name;
+                        return full_name;
+                    }
                 }
         }
 })
@@ -642,11 +646,16 @@ Template.registerHelper("getRequestTitle", function(requestId){
     }
 })
 
-Template.registerHelper("hasPhoto", function(user){
-    if (user.profile.photo != "undefined" || null) {
-        return true;
-    };
+
+Template.registerHelper("hasNoMainPhoto", function(user){
+   if (typeof(user.profile.photo) == "undefined") {
+    return true;
+   }
+   else {
+    return false;
+   }
 })
+
 
 Template.registerHelper("getSingleItemTitle", function(itemId){
     var item = Items.findOne(itemId);

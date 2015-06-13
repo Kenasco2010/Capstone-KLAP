@@ -24,10 +24,10 @@
 						{{#if currentUser}}
 						<li>
 							<a href="{{pathFor 'my-profile' _id=$.Meteor.userId}}">
-								{{#if hasPhoto currentUser}}
-								    <img src="{{currentUser.profile.photo}}" class="img-responsive img-thumbnail" alt="user photo" height="40" width="40">
-								    {{else}}
-								    {{> avatar userId=$.Meteor.userId shape="rounded" class="navbar-pic" size="small" }}
+								{{#if hasNoMainPhoto currentUser}}
+									{{> avatar userId=$.Meteor.userId shape="rounded" class="navbar-pic" size="small" }}
+								{{else}}
+									<img src="{{currentUser.profile.photo}}" class="img-responsive img-thumbnail" alt="user photo" height="40" width="40">
 								{{/if}}
 							</a>
 						</li>

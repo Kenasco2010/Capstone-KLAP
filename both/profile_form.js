@@ -38,17 +38,6 @@ Schemas.updateProfile = new SimpleSchema({
    country: {
        type: String,
        label: "Choose resident country",
-  /*     autoform: {
-           type: "selectize",
-           options: function() {
-               return [
-               {label: "USA", value: "USA"},
-               {label: "UK", value: "UK"},
-               {label: "Ghana", value: "Ghana"},
-               {label: "Other", value: "Other"}
-               ];
-           }
-       }*/
        autoform: {
          options: function() {
            return _.map(Config.countries, function(item, key) {
@@ -58,29 +47,6 @@ Schemas.updateProfile = new SimpleSchema({
              }
            });
          }
-       }
-   },
-   city: {
-       type: String,
-       label: "Choose resident city",
-       optional: true,
-/*       autoform: {
-           type: "selectize",
-           options: function() {
-               return [
-               {label: "New York", value: "New York"},
-               {label: "London", value: "London"},
-               {label: "Accra", value: "Accra"},
-               {label: "Accra", value: "Kumasi"},
-               {label: "San Francisco", value: "San Francisco"},
-               {label: "Other", value: "Other"}
-
-
-               ];
-           }
-       }*/
-       autoform: {
-         options: []
        }
    },
    travel_route_from: {
@@ -135,6 +101,12 @@ Schemas.updateProfile = new SimpleSchema({
         type: Boolean,
         label: "Do you want to receive package delivery requests?"
     },
+city: {
+    type: String,
+    autoform: {
+      options: []
+  }
+},
 });
 
 // Meteor.users.attachSchema(Schemas.updateProfile)
