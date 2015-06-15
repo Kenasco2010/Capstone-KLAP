@@ -64,11 +64,16 @@
   <a class="item" data-tab="third">My Trips</a>
   <a class="item" data-tab="fourth">
     My Messages
-    {{#if hasUnreadMessages unreadMessages}}
-    <span class="badge pull-right msg-badge">
-      {{unreadMessagesCount unreadMessages}}
-    </span> 
-    {{/if}}
+     {{#if hasUnreadMessages unreadMessages}}
+         <span class="badge pull-right msg-badge">
+           {{unreadMessagesCount unreadMessages}}
+         </span> 
+     {{/if}}
+      {{#if unreadReplyToSentMsgs userSentMessages}}
+        <span class="badge pull-right msg-badge">
+          {{unreadReplyToSentMsgsCount userSentMessages}}
+        </span> 
+      {{/if}}
   </a>
   <a class="item" data-tab="fifth">
     My Requests
@@ -389,7 +394,7 @@
       <div class="col-sm-3 col-md-2">
         <ul class="nav nav-pills nav-stacked">
           <li class="active">
-            <a href="#">
+            <a href="{{pathFor 'messages-home'}}">
               {{#if hasUnreadMessages unreadMessages}}
               <span class="badge pull-right">
                 {{unreadMessagesCount unreadMessages}}
@@ -398,7 +403,16 @@
               Inbox 
             </a>
           </li>
-          <li><a href="{{pathFor 'sent-messages' _id=$.Meteor.userId}}">Sent Messages</a></li>
+          <li>
+            <a href="{{pathFor 'sent-messages'}}">
+              {{#if unreadReplyToSentMsgs userSentMessages}}
+                <span class="badge pull-right">
+                  {{unreadReplyToSentMsgsCount userSentMessages}}
+                </span> 
+              {{/if}}
+              Sent Messages
+            </a>
+          </li>
         </ul>
       </div>
       <div class="col-sm-9 col-md-10">
@@ -420,7 +434,7 @@
                  </span> 
                  <span class=""></span>
                  <span class="text-muted">
-                   {{message}}
+                   {{shortMessage message}}
                  </span>
                </strong> 
                {{else}}
@@ -429,7 +443,7 @@
                </span> 
                <span class=""></span>
                <span class="text-muted">
-                 {{message}}
+                 {{shortMessage message}}
                </span>
                {{/if}}
                <span class="badge">

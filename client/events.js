@@ -62,7 +62,7 @@ Template.myProfile.events({
         "success");
     });
   },
-  "click .list-group": function(e, t){
+  "click .msg-list-group": function(e, t){
     var messageId = e.currentTarget.getAttribute('data-id');
     Meteor.call('updateUserMessageStatus', messageId, function (error, result) {});
   }
@@ -204,8 +204,6 @@ Template.navigation.rendered = function () {
 
 Template.messageView.rendered = function () {
   $('.menu .item').tab();
-  var messageId = Router.current().params._id;
-  Meteor.call('updateReplyMessageStatus', messageId, function (error, result) {});
 };
 
 Template.messagesHome.rendered = function () {
@@ -274,11 +272,26 @@ Template.postTravel.events({
   }
 });
 Template.messagesHome.events({
-  "click .list-group": function(e, t){
+  "click .msg-list-group": function(e, t){
     var messageId = e.currentTarget.getAttribute('data-id');
     Meteor.call('updateUserMessageStatus', messageId, function (error, result) {});
+    var reply = Replies.findOne(messageId);
+    // if (typeof(reply) != "undefined") {
+       Meteor.call('updateReplyMessageStatus', messageId, function (error, result) {});
+    // };
   }
 });
+
+Template.sentMessages.events({
+  "click .sent-msg-list-group": function(e, t){
+    var messageId = e.currentTarget.getAttribute('data-id');
+    var reply = Replies.findOne(messageId);
+    // if (typeof(reply) != "undefined") {
+       Meteor.call('updateReplyMessageStatus', messageId, function (error, result) {});
+    // };
+  }
+});
+
 Template.createProfile.events({
   'change #create_profile_country': function(e,t){
     // alert("you have clicked me")

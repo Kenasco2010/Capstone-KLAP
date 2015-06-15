@@ -1,3 +1,4 @@
+Meteor.subscribe('allUsers');
 Template.registerHelper("fullUserName", function(user){
     if (typeof(user.profile) == "undefined" || null) {
         return;
@@ -43,6 +44,10 @@ Template.messageView.helpers({
          return sender;
 
     },
+    replies: function() {
+        var messageId = this.message._id;
+        return Replies.find({messageId: messageId}, {sort: {createdAt: 1}}).fetch();
+    }
 
 });
 Template.registerHelper("getOwnerPhotoUrl", function(userId){
@@ -265,27 +270,102 @@ Template.registerHelper("sentFrom", function(id) {
     return full_name;
 })
 
+Template.registerHelper("sentTo", function(messageId) {
+  var message = Messages.findOne(messageId);
+    var recipientId = message.sent_to;
+    var user = Meteor.users.findOne(recipientId);
+    var first_name = user.profile.first_name;
+    var last_name = user.profile.last_name;
+    var sentTo = first_name + " " + last_name;
+    return sentTo;
+  
+})
+
+Template.registerHelper("getSentToFirstName", function(){
+     var sent_to = $("p.getter").attr("data-user-id");
+console.log(sent_to);
+})
+
 Template.registerHelper("hasUnreadMessages", function(messages){
-    var replies = this.unreadRep;
-    if (messages.length != 0 || replies.length != 0) {
+    var replies = this.unreadRep; //all replies to user messages (sent to current user)
+    console.log(replies)
+    var recReplies = [];
+    $(replies).each(function(index, value) {
+        var messageId = value.messageId;
+        var message = Messages.findOne(messageId);
+        var sent_to = message.sent_to;
+        var owner = message.owner;
+        if (value.status == "unread" && value.sent_to == Meteor.userId() && value.sent_to != owner) {
+            recReplies.push(value);
+        };
+    });
+    if (messages.length != 0 || recReplies.length != 0) {
         return true
     };
 })
 
 Template.registerHelper("unreadMessagesCount", function(messages){
     var replies = this.unreadRep;
-    var totalUnread =  messages.length + replies.length;
+    var recReplies = [];
+    $(replies).each(function(index, value) {
+        var messageId = value.messageId;
+        var message = Messages.findOne(messageId);
+        var sent_to = message.sent_to;
+        var owner = message.owner;
+        if (value.status == "unread" && value.sent_to == Meteor.userId() && value.sent_to != owner) {
+            recReplies.push(value);
+        };
+    });
+    var totalUnread =  messages.length + recReplies.length;
     return totalUnread;
+})
+
+Template.registerHelper("unreadReplyToSentMsgs", function(messages){
+    var replies = this.unreadRep;
+    console.log(replies);
+    var replyToSentMsgs = [];
+
+    $(replies).each(function(index, value) {
+        var messageId = value.messageId;
+        var message = Messages.findOne(messageId);
+        var owner = message.owner;
+        if (value.status == "unread" && value.sent_to == owner) {
+            replyToSentMsgs.push(value);
+        };
+    });
+
+    if (replyToSentMsgs.length != 0) {
+        return true
+    };
+})
+
+Template.registerHelper("unreadReplyToSentMsgsCount", function(messages){
+    var replies = this.unreadRep;
+    var replyToSentMsgs = [];
+
+    $(replies).each(function(index, value) {
+        var messageId = value.messageId;
+        var message = Messages.findOne(messageId);
+        var owner = message.owner;
+        if (value.status == "unread" && value.sent_to == owner) {
+            replyToSentMsgs.push(value);
+        };
+    });
+
+    return replyToSentMsgs.length;
 })
 
 Template.registerHelper("unread", function(id){
     var message = Messages.findOne(id);
+    console.log(message);
     if (typeof(message) == "undefined") {
         return;
     }
     else {
         var msg_status = message.status;
+        console.log(msg_status);
         var msg_replies = Replies.find({messageId: id}).fetch();
+        console.log(msg_replies);
         var replies = [];
 
         $(msg_replies).each(function(index, value) {
@@ -293,18 +373,19 @@ Template.registerHelper("unread", function(id){
                 replies.push(value);
             };
         });
-        if (msg_status == "unread" || replies.length != 0) {
+        console.log(replies.length);
+        if (msg_status == "unread" || replies.length > 0) {
             return true
         };
     }
 })
 
 Template.registerHelper("shortMessage", function(message){
-    if (message.length < 80) {
+    if (message.length < 50) {
         return message;
     }
     else {
-        var shortmsg = jQuery.trim(message).substring(0, 80).split(" ").slice(0, -1).join(" ") + "...";
+        var shortmsg = jQuery.trim(message).substring(0, 70).split(" ").slice(0, -1).join(" ") + "...";
         return shortmsg;
     }
 })
@@ -327,7 +408,7 @@ Template.registerHelper("hasUnreadReplies", function(id){
     var msg_replies = Replies.find({messageId: id}).fetch();
     var replies = [];
     $(msg_replies).each(function(index, value) {
-        if (value.status == "unread") {
+        if (value.status == "unread" && value.owner != Meteor.userId()) {
             replies.push(value);
         };
     });
@@ -341,7 +422,7 @@ Template.registerHelper("unreadRepliesCount", function(id){
     var msg_replies = Replies.find({messageId: id}).fetch();
     var replies = [];
     $(msg_replies).each(function(index, value) {
-        if (value.status == "unread") {
+        if (value.status == "unread" && value.owner != Meteor.userId()) {
             replies.push(value);
         };
     });
@@ -391,16 +472,27 @@ Template.registerHelper("hasSentRequest", function(itemId){
 })
 
 Template.registerHelper("hasUnreadRequests", function(requests){
-    var requests = requests;
-    if (requests.length != 0) {
+    var recBulkReq = [];
+    $(requests).each(function(index, value) {
+        if (value.type == "bulk_req_carry" && value.owner != Meteor.userId()) {
+            recBulkReq.push(value);
+        }
+    });
+
+    if (requests.length && recBulkReq.length != 0) {
         return true
     };
 })
 
 Template.registerHelper("unreadRequestsCount", function(requests){
-    var requests = requests;
-    var totalUnread =  requests.length;
-    return totalUnread;
+    var recBulkReq = [];
+    $(requests).each(function(index, value) {
+        if (value.type == "bulk_req_carry" && value.owner != Meteor.userId()) {
+            recBulkReq.push(value);
+        };
+    });
+
+    return recBulkReq.length;
 })
 
 Template.registerHelper("userIsOwner", function(userId){
@@ -498,12 +590,23 @@ Template.registerHelper("acceptedResponse", function(notif){
 
 Template.registerHelper("getItemSendDate", function(itemId){
     var item = Items.findOne(itemId);
-    return item.send_date;
+    if (typeof(item) == "undefined") {
+        return;
+    }
+    else {
+         return item.send_date;
+    }
 })
 
 Template.registerHelper("getItemDeliveryDate", function(itemId){
     var item = Items.findOne(itemId);
-    return item.delivery_date;
+    if (typeof(item) == "undefined") {
+        return;
+    }
+    else {
+         return item.delivery_date;
+    }
+   
 })
 
 Template.registerHelper("")
@@ -608,8 +711,13 @@ Template.registerHelper("currentUserProfile", function(userId){
 })
 
 Template.registerHelper("getItemOriginCountry", function(itemId){
-    var item = Items.findOne(itemId);
-    return item.origin_country;
+    if (typeof(itemId) == "undefined" || null) {
+        return;
+    }
+    else {
+        var item = Items.findOne(itemId);
+        return item.origin_country;
+    }
 })
 
 Template.registerHelper("getItemDestinationCountry", function(itemId){
@@ -647,12 +755,68 @@ Template.registerHelper("getRequestTitle", function(requestId){
 })
 
 
-Template.registerHelper("hasNoMainPhoto", function(user){
-   if (typeof(user.profile.photo) == "undefined") {
+Template.registerHelper("hasNoMainPhoto", function(){
+/*   try {
+        var user = Meteor.user();
+       if (user.profile.photo == "none") {
+           return true;
+          }
+          else {
+           return false;
+          }
+   }
+   catch(err) {
+       console.log(err.message);
+   }
+   finally {
+    var user = Meteor.user();
+     if (user.profile.photo == "none") {
+         return true;
+        }
+        else {
+         return false;
+        }
+   }*/
+   var photo = Meteor.user() ? Meteor.user().profile.photo : '';
+   if (typeof(photo) == "undefined") {
     return true;
+   };
+})
+Template.registerHelper("userSendBulkReq", function(){
+   if (this.type == "bulk_req_carry" && this.owner == Meteor.userId()) {
+    return true;
+   };
+})
+
+Template.registerHelper("ReceivedBulkReq", function(){
+   if (this.type == "bulk_req_carry" && this.carrierId == Meteor.userId()) {
+    return true;
+   };
+})
+
+Template.registerHelper("recBulkReqToCarryAUserItem", function(request){
+   if (request.type == "bulk_req_carry" && request.carrierId == Meteor.userId()) {
+    return true;
+   };
+})
+
+Template.registerHelper("getReceivedBulkReqTitle", function(){
+   if (typeof(this) == "undefined" || null) {
+       return;
    }
    else {
-    return false;
+       var itemId = this.req_carry_itemId;
+       var item = Items.findOne(itemId);
+       if (typeof(item) == "undefined" || null) {
+           return;
+       }
+       else {
+           var item_send_date = item.send_date;
+           var m = moment(item_send_date);
+           var date = m.format("dddd, MMMM Do YYYY");
+            return "Are you travelling from " + item.origin_country + " to " + item.destination_country + " between " + date + "...?";
+       }
+       
    }
 })
 

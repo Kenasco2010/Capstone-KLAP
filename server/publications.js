@@ -11,7 +11,7 @@ Meteor.publish('requests', function() {
 });
 
 Meteor.publish('replies', function() {
-  return Replies.find({}, {sort: {createdAt: -1}});
+  return Replies.find({});
 });
 
 Meteor.publish('reviews', function() {
@@ -32,6 +32,7 @@ return Meteor.users.find({}, {
         "profile.first_name":1,
         "profile.last_name":1,
         "profile.city":1,
+        "profile.photo":1,
         "profile.country":1,
         "profile.number_of_deliveries":1,
         "profile.rating":1,
@@ -68,6 +69,7 @@ Meteor.publish("userProfile",function(id){
                 "profile.first_name":1,
                 "profile.last_name":1,
                 "profile.city":1,
+                "profile.photo":1,
                 "profile.country":1,
                 "profile.number_of_deliveries":1,
                 "profile.rating":1,

@@ -123,9 +123,7 @@ AutoForm.hooks({
   sendMessageForm: {
        formToDoc: function(doc, ss, formId) {
         var sent_to = $("p.getter").attr("data-user-id");
-        var sentToArray = [];
-        sentToArray.push(sent_to);
-        doc.sent_to = sentToArray;
+        doc.sent_to = sent_to;
         doc.status = "unread";
         return doc;
       },
@@ -148,10 +146,21 @@ AutoForm.hooks({
 AutoForm.hooks({
   sendReplyForm: {
        formToDoc: function(doc, ss, formId) {
+        var reply_owner =  $("p.getcha").attr("data-rep-owner");
         var messageId = $("p.getter").attr("data-id");
         var sent_to = $("p.getter").attr("data-owner");
         doc.messageId = messageId;
-        doc.sent_to = sent_to;
+        if (typeof(reply_owner) == "undefined") {
+          doc.sent_to = sent_to;
+        }
+        else {
+          if (reply_owner == Meteor.userId()) {
+             doc.sent_to = sent_to;
+          }
+          else {
+            doc.sent_to = reply_owner;
+          }
+        }
         doc.status = "unread";
         return doc;
       },

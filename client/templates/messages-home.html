@@ -70,6 +70,11 @@
                   {{unreadMessagesCount unreadMessages}}
                 </span> 
             {{/if}}
+            {{#if unreadReplyToSentMsgs userSentMessages}}
+              <span class="badge pull-right msg-badge">
+                {{unreadReplyToSentMsgsCount userSentMessages}}
+              </span> 
+            {{/if}}
           </a>
           <a class="item" data-tab="fifth">
           My Requests
@@ -350,7 +355,7 @@
                       <div class="col-sm-3 col-md-2">
                           <ul class="nav nav-pills nav-stacked">
                               <li class="active">
-                                <a href="{{pathFor 'messages-home' _id=$.Meteor.userId}}">
+                                <a href="{{pathFor 'messages-home'}}">
                                   {{#if hasUnreadMessages unreadMessages}}
                                       <span class="badge pull-right">
                                         {{unreadMessagesCount unreadMessages}}
@@ -359,7 +364,16 @@
                                   Inbox 
                                 </a>
                               </li>
-                              <li><a href="{{pathFor 'sent-messages' _id=$.Meteor.userId}}">Sent Messages</a></li>
+                              <li>
+                                <a href="{{pathFor 'sent-messages'}}">
+                                  {{#if unreadReplyToSentMsgs userSentMessages}}
+                                    <span class="badge pull-right">
+                                      {{unreadReplyToSentMsgsCount userSentMessages}}
+                                    </span> 
+                                  {{/if}}
+                                  Sent Messages
+                                </a>
+                              </li>
                           </ul>
                       </div>
                       <div class="col-sm-9 col-md-10">
@@ -372,7 +386,7 @@
                         {{#each messages}}
                           <div class="tab-content">
                               <div class="tab-pane fade in active" id="home">
-                                  <div class="list-group" data-id="{{_id}}">
+                                  <div class="list-group msg-list-group" data-id="{{_id}}">
                                       <a href="{{pathFor 'message-view' _id=_id}}" class="list-group-item">
                                         {{#if unread _id}}
                                           <strong>
@@ -537,7 +551,7 @@
                 <div class="tab-content">
                   <div class="tab-pane fade in active" id="home">
                     <div class="list-group notif-list-group" data-id="{{_id}}">
-                      <a href="{{pathFor 'notification-view' userId=notifFrom _id=_id}}" class="list-group-item">
+                      <a href="{{pathFor 'notification-view' _id=_id}}" class="list-group-item">
                         {{#if unreadNotif status}}
                         <strong>
                           <div class="name col-sm-9">

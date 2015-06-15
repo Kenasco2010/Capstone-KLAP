@@ -23,8 +23,8 @@
 					<ul class="nav navbar-nav pull-right">
 						{{#if currentUser}}
 						<li>
-							<a href="{{pathFor 'my-profile' _id=$.Meteor.userId}}">
-								{{#if hasNoMainPhoto currentUser}}
+							<a href="{{pathFor 'my-profile'}}">
+								{{#if hasNoMainPhoto}}
 									{{> avatar userId=$.Meteor.userId shape="rounded" class="navbar-pic" size="small" }}
 								{{else}}
 									<img src="{{currentUser.profile.photo}}" class="img-responsive img-thumbnail" alt="user photo" height="40" width="40">
@@ -33,7 +33,7 @@
 						</li>
 						{{#if hasProfile $.Meteor.userId}}
 						<li class="">
-							<a href="{{pathFor 'my-profile' _id=$.Meteor.userId}}">
+							<a href="{{pathFor 'my-profile'}}">
 								{{fullUserName currentUser}} (Go To Dashboard)
 								
 							</a>

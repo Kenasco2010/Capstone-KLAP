@@ -69,6 +69,11 @@
               {{unreadMessagesCount unreadMessages}}
             </span> 
         {{/if}}
+        {{#if unreadReplyToSentMsgs userSentMessages}}
+          <span class="badge pull-right msg-badge">
+            {{unreadReplyToSentMsgsCount userSentMessages}}
+          </span> 
+        {{/if}}
       </a>
       <a class="item" data-tab="fifth">
         My Requests
@@ -350,7 +355,7 @@
       <div class="col-sm-3 col-md-2">
         <ul class="nav nav-pills nav-stacked">
                             <li class="active">
-                              <a href="{{pathFor 'messages-home' _id=$.Meteor.userId}}">
+                              <a href="{{pathFor 'messages-home'}}">
                                 {{#if hasUnreadMessages unreadMessages}}
                                     <span class="badge pull-right">
                                       {{unreadMessagesCount unreadMessages}}
@@ -359,7 +364,15 @@
                                 Inbox 
                               </a>
                             </li>
-                          <li><a href="{{pathFor 'sent-messages' _id=$.Meteor.userId}}">Sent Messages</a></li>
+                          <li>
+                          <a href="{{pathFor 'sent-messages'}}">
+                           {{#if unreadReplyToSentMsgs userSentMessages}}
+                                    <span class="badge pull-right">
+                                      {{unreadReplyToSentMsgsCount userSentMessages}}
+                                    </span> 
+                          {{/if}}Sent Messages
+                          </a>
+                          </li>
         </ul>
       </div>
       <div class="col-sm-6 col-md-7">
@@ -397,13 +410,14 @@
         </div>
         <div id="main-replies-bloc">
           {{#each replies}}
+          <p class="getcha" data-rep-id="{{_id}}" data-rep-owner="{{owner}}"></p>
           <div id="reply-content">
             <table style="width:100%">
               <tbody>
                 <tr>
                   <td>
-                    {{#if hasNoMainPhoto currentUser}}
-                        {{> avatar userId=$.Meteor.userId shape="rounded" class="navbar-pic" size="small" }}
+                    {{#if hasNoMainPhoto}}
+                        {{> avatar userId=owner shape="rounded" class="navbar-pic" size="small" }}
                         {{else}}
                         <img src="{{currentUser.profile.photo}}" class="img-responsive img-thumbnail" alt="user photo" height="40" width="40">
                     {{/if}}
@@ -461,7 +475,7 @@
         {{#each openRequests}}
         <div class="tab-content">
           <div class="tab-pane fade in active" id="home">
-            <div class="list-group" data-id="{{_id}}">
+            <div class="list-group open-req-list-group" data-id="{{_id}}">
               <a href="{{pathFor 'request-details' _id=_id}}" class="list-group-item">
                {{#if unreadReq read_status}}
                <strong>
@@ -551,7 +565,7 @@
       <div class="tab-content">
         <div class="tab-pane fade in active" id="home">
           <div class="list-group notif-list-group" data-id="{{_id}}">
-            <a href="{{pathFor 'notification-view' userId=notifFrom _id=_id}}" class="list-group-item">
+            <a href="{{pathFor 'notification-view' _id=_id}}" class="list-group-item">
               {{#if unreadNotif status}}
               <strong>
                 <div class="name col-sm-9">

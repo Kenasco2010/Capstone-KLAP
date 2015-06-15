@@ -127,6 +127,9 @@ Meteor.methods({
   removeItem: function(id){
     Items.remove(id);
   },
+  removeReply: function(id){
+    Replies.remove(id);
+  },
   removeTrip: function(id){
     return Travels.remove({});
   },
