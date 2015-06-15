@@ -6,6 +6,16 @@ Template.navigation.events({
   }
 });
 
+Template.welcome.events({
+  'click #uponbtus': function () {
+    Meteor.call('updateOnboardingStatus', function (error, result) {
+      if (error) {}
+        else {
+        }
+      });
+  }
+});
+
 Template.myProfile.events({
   "click [data-action='delete-item']": function (e, t) {
     var ItemId = e.currentTarget.getAttribute('data-id');
