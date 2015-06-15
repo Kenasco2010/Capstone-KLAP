@@ -281,14 +281,9 @@ Template.registerHelper("sentTo", function(messageId) {
   
 })
 
-Template.registerHelper("getSentToFirstName", function(){
-     var sent_to = $("p.getter").attr("data-user-id");
-console.log(sent_to);
-})
 
 Template.registerHelper("hasUnreadMessages", function(messages){
     var replies = this.unreadRep; //all replies to user messages (sent to current user)
-    console.log(replies)
     var recReplies = [];
     $(replies).each(function(index, value) {
         var messageId = value.messageId;
@@ -322,7 +317,6 @@ Template.registerHelper("unreadMessagesCount", function(messages){
 
 Template.registerHelper("unreadReplyToSentMsgs", function(messages){
     var replies = this.unreadRep;
-    console.log(replies);
     var replyToSentMsgs = [];
 
     $(replies).each(function(index, value) {
@@ -357,15 +351,12 @@ Template.registerHelper("unreadReplyToSentMsgsCount", function(messages){
 
 Template.registerHelper("unread", function(id){
     var message = Messages.findOne(id);
-    console.log(message);
     if (typeof(message) == "undefined") {
         return;
     }
     else {
         var msg_status = message.status;
-        console.log(msg_status);
         var msg_replies = Replies.find({messageId: id}).fetch();
-        console.log(msg_replies);
         var replies = [];
 
         $(msg_replies).each(function(index, value) {
@@ -373,7 +364,6 @@ Template.registerHelper("unread", function(id){
                 replies.push(value);
             };
         });
-        console.log(replies.length);
         if (msg_status == "unread" || replies.length > 0) {
             return true
         };

@@ -827,6 +827,9 @@ a#hide-reviews {
 	color: #999;
 }
 
+.footer {
+	min-width: 1000px;
+}
 .call-out {
 	margin-bottom: 10px;
 }

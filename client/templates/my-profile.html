@@ -480,7 +480,7 @@
       <div class="col-sm-9 col-md-10">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
-          <li class="active"><a href="{{pathFor 'my-profile'}}" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
+          <li class="active"><a href="{{pathFor 'my-profile'  _id=$.Meteor.userId}}" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
           </span>Primary</a></li>
         </ul>
         <!-- Tab panes -->
@@ -488,56 +488,65 @@
         <div class="tab-content">
           <div class="tab-pane fade in active" id="home">
             <div class="list-group open-req-list-group" data-id="{{_id}}">
+            {{#if userSendBulkReq}}
+                {{else}}
               <a href="{{pathFor 'request-details' _id=_id}}" class="list-group-item">
-               {{#if unreadReq read_status}}
-               <strong>
-                 <div class="name col-sm-2">
-                   {{#if userIsOwner owner}}
-                   From You
-                   {{else}}
-                   {{sentFrom owner}}
-                   {{/if}}
-                 </div> 
-                 <div class="text-muted col-sm-7">
-                  {{#if recReqToCarryAnotherUserItem _id}}
-                  {{getRequestTitle _id}}
-                  {{/if}}
-                  {{#if appToCarryItem _id}}
-                  {{getAppToCarryItemTitle _id}}
-                  {{/if}}
-                  {{#if requestToCarryYourItem _id}}
-                  {{getReqToCarryYourItemTitle _id}}
-                  {{/if}}
-                  {{#if recReqToCarryYourItem _id}}
-                  {{getRecReqToCarryYourItemTitle _id}}
-                  {{/if}}
-                </div>
-              </strong> 
-              {{else}}
-              <div class="name col-sm-2">
-                {{sentFrom owner}}
-              </div> 
-              <div class=" text-muted col-sm-7">
-                {{#if recReqToCarryAnotherUserItem _id}}
-                {{getRequestTitle _id}}
-                {{/if}}
-                {{#if appToCarryItem _id}}
-                {{getAppToCarryItemTitle _id}}
-                {{/if}}
-                {{#if requestToCarryYourItem _id}}
-                {{getReqToCarryYourItemTitle _id}}
-                {{/if}}
-                {{#if recReqToCarryYourItem _id}}
-                {{getRecReqToCarryYourItemTitle _id}}
-                {{/if}}
-              </div>
+                       {{#if unreadReq read_status}}
+                       <strong>
+                         <div class="name col-sm-2">
+                           {{#if userIsOwner owner}}
+                              From You
+                           {{else}}
+                              {{sentFrom owner}}
+                           {{/if}}
+                         </div> 
+                         <div class="text-muted col-sm-7">
+                          {{#if recReqToCarryAnotherUserItem _id}}
+                          {{getRequestTitle _id}}
+                          {{/if}}
+                          {{#if appToCarryItem _id}}
+                          {{getAppToCarryItemTitle _id}}
+                          {{/if}}
+                          {{#if requestToCarryYourItem _id}}
+                          {{getReqToCarryYourItemTitle _id}}
+                          {{/if}}
+                          {{#if recReqToCarryYourItem _id}}
+                          {{getRecReqToCarryYourItemTitle _id}}
+                          {{/if}}
+                          {{#if ReceivedBulkReq}}
+                            {{getReceivedBulkReqTitle}}
+                          {{/if}}
+                        </div>
+                      </strong> 
+                      {{else}}
+                      <div class="name col-sm-2">
+                        {{sentFrom owner}}
+                      </div> 
+                      <div class=" text-muted col-sm-7">
+                        {{#if recReqToCarryAnotherUserItem _id}}
+                        {{getRequestTitle _id}}
+                        {{/if}}
+                        {{#if appToCarryItem _id}}
+                        {{getAppToCarryItemTitle _id}}
+                        {{/if}}
+                        {{#if requestToCarryYourItem _id}}
+                        {{getReqToCarryYourItemTitle _id}}
+                        {{/if}}
+                        {{#if recReqToCarryYourItem _id}}
+                        {{getRecReqToCarryYourItemTitle _id}}
+                        {{/if}}
+                        {{#if ReceivedBulkReq}}
+                           {{getReceivedBulkReqTitle}}
+                        {{/if}}
+                      </div>
+                      {{/if}}
+                      <div class="div-badge">
+                       <span class="badge">
+                          {{tm_cal createdAt}}
+                      </span>
+                    </div>
+                  </a>
               {{/if}}
-              <div class="div-badge">
-               <span class="badge">
-                {{tm_cal createdAt}}
-              </span>
-            </div>
-          </a>
         </div>
         {{#if arepagRequests pagRequests}}
         {{> Paginator_UI pagRequests}}
