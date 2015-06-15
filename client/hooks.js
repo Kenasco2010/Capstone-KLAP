@@ -78,7 +78,7 @@ AutoForm.hooks({
         }
         else {
           swal("Thanks! your profile has been updated.")
-          Router.go('my-profile', {_id: Meteor.userId()});
+          Router.go('my-profile');
         }
       });
       return false;  
@@ -104,7 +104,7 @@ AutoForm.hooks({
               sweetAlert({
               title: "Thanks!",
                text: "Your post has successfuly been sent to members who match the route you specified. You will receive a notification if any member accepts to carry your item."
-            }, function(){ Router.go('my-profile', {_id: Meteor.userId()}) }
+            }, function(){ Router.go('my-profile') }
             );
           }
         });
@@ -198,7 +198,7 @@ AutoForm.hooks({
     onSuccess: function(formType, result) {
          swal("Thanks! your item has been successfuly updated");
          $( "button.confirm" ).click(function() {
-           Router.go('my-profile', {_id: Meteor.userId()});
+           Router.go('my-profile');
          });
     }
   }
@@ -234,7 +234,7 @@ AutoForm.hooks({
             else {
               swal("Thanks! your trip has been successfuly updated");
               $( "button.confirm" ).click(function() {
-                Router.go('my-profile', {_id: Meteor.userId()});
+                Router.go('my-profile');
               });
             }
           });
