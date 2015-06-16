@@ -6,7 +6,7 @@
           <div class="row">
             <div class="col-sm-6 col-md-4">
               {{#if hasNoMainPhoto currentUser}}
-              {{> avatar userId=$.Meteor.userId shape="rounded" class="edit-profile-pic" size="large" }}
+              {{> avatar userId=user._id shape="rounded" class="edit-profile-pic" size="large" }}
               {{else}}
               <img src="{{user.profile.photo}}" class="img-responsive img-thumbnail" alt="user photo" height="150" width="150">
               {{/if}}

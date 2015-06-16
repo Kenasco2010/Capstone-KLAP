@@ -196,7 +196,7 @@ Template.registerHelper("checkCarrierStatus", function(user){
             return "available as carrier"
         }
         else {
-            return "available not available as carrier"
+            return "not available as carrier"
         }
     }
 })

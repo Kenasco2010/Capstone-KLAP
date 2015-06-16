@@ -1,5 +1,6 @@
 Meteor.methods({
   updateUserProfile: function(doc) {
+    console.log(doc.birthday);
     Meteor.users.update({_id: Meteor.user()._id}, {
               $set: {"profile.first_name": doc.first_name, 
                       "profile.last_name": doc.last_name,
