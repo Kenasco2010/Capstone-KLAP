@@ -1345,3 +1345,10 @@ span.tags
 
 
 /*===============================================Edit Profile=============================*/
+.name {
+	padding-right: 0;
+}
+
+.hideme {
+	display: none;
+}

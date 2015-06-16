@@ -564,7 +564,7 @@
       <div class="col-sm-3 col-md-2">
         <ul class="nav nav-pills nav-stacked">
           <li class="active">
-            <a href="{{pathFor 'notifications' _id=$.Meteor.userId}}">
+            <a href="{{pathFor 'notifications'}}">
               {{#if hasUnreadNotifications unreadNotifications}}
               <span class="badge pull-right">
                 {{unreadNotificationsCount unreadNotifications}}
@@ -576,48 +576,88 @@
         </ul>
       </div>
       <div class="col-sm-9 col-md-10" id="notif-details">
-        <p class="getter" data-user-id="{{notification.from}}"></p>
-        {{#if acceptedResponse notification}}
-        <div class="col-sm-1">
-          <div class="thumbnail">
-            {{> avatar userId=notification.from shape="rounded" size="small" class="message-view-pic"}}
-          </div><!-- /thumbnail -->
-        </div><!-- /col-sm-1 -->
+          <p class="getter" data-user-id="{{notification.from}}"></p>
+          {{#if acceptedReqResponse notification}}
+          <div class="col-sm-1">
+            <div class="thumbnail">
+              {{> avatar userId=notification.from shape="rounded" size="small" class="message-view-pic"}}
+            </div><!-- /thumbnail -->
+          </div><!-- /col-sm-1 -->
 
-        <div class="col-sm-8">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <strong>{{fullName notification.from}}</strong> <span class="text-muted">responded to your request</span>
-              <span class="pull-right"><!-- {{tm_locale notification}} --></span>
-            </div>
-            <div class="panel-body">
-              Good News! {{fullName notification.from}} is travelling between {{date_ft getItemSendDate notification.itemId}}
-              and {{date_ft getItemDeliveryDate notification.itemId}} and has accepted your request to carry your item.
-            </div><!-- /panel-body -->
-          </div><!-- /panel panel-default -->
-        </div><!-- /col-sm-8 -->
-        <button class="ui button blue notif-send-msg">Send {{firstName notification.from}} a message</button>
-        {{else}}
-        <div class="col-sm-1">
-          <div class="thumbnail">
-            {{> avatar userId=notification.from shape="rounded" size="small" class="message-view-pic"}}
-          </div><!-- /thumbnail -->
-        </div><!-- /col-sm-1 -->
+          <div class="col-sm-8">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <strong>{{fullName notification.from}}</strong> <span class="text-muted">responded to your request</span>
+                <span class="pull-right"><!-- {{tm_locale notification}} --></span>
+              </div>
+              <div class="panel-body">
+                Good News! {{fullName notification.from}} is travelling between {{date_ft getItemSendDate notification.itemId}}
+                and {{date_ft getItemDeliveryDate notification.itemId}} and has accepted your request to carry your item.
+              </div><!-- /panel-body -->
+            </div><!-- /panel panel-default -->
+          </div><!-- /col-sm-8 -->
+          <button class="ui button blue notif-send-msg">Send {{firstName notification.from}} a message</button>
+          {{/if}}
+          {{#if RejectedReqResponse notification}}
+          <div class="col-sm-1">
+            <div class="thumbnail">
+              {{> avatar userId=notification.from shape="rounded" size="small" class="message-view-pic"}}
+            </div><!-- /thumbnail -->
+          </div><!-- /col-sm-1 -->
 
-        <div class="col-sm-8">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <strong>{{fullName notification.from}}</strong> <span class="text-muted">responded to your request</span>
-              <span class="pull-right"><!-- {{tm_locale notification}} --></span>
-            </div>
-            <div class="panel-body">
-              Unfortunately {{fullName notification.from}} is not travelling between {{date_ft getItemSendDate notification.itemId}}
-              and {{date_ft getItemDeliveryDate notification.itemId}} and therfore is not available to carry your item.
-            </div><!-- /panel-body -->
-          </div><!-- /panel panel-default -->
-        </div><!-- /col-sm-8 -->
-        {{/if}}
-      </div>
+          <div class="col-sm-8">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <strong>{{fullName notification.from}}</strong> <span class="text-muted">responded to your request</span>
+                <span class="pull-right"><!-- {{tm_locale notification}} --></span>
+              </div>
+              <div class="panel-body">
+                Unfortunately {{fullName notification.from}} is not travelling between {{date_ft getItemSendDate notification.itemId}}
+                and {{date_ft getItemDeliveryDate notification.itemId}} and therfore is not available to carry your item.
+              </div><!-- /panel-body -->
+            </div><!-- /panel panel-default -->
+          </div><!-- /col-sm-8 -->
+          {{/if}}
+           {{#if AcceptedAppResponse notification}}
+            <div class="col-sm-1">
+              <div class="thumbnail">
+                {{> avatar userId=notification.from shape="rounded" size="small" class="message-view-pic"}}
+              </div><!-- /thumbnail -->
+            </div><!-- /col-sm-1 -->
+
+            <div class="col-sm-8">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <strong>{{fullName notification.from}}</strong> <span class="text-muted">responded to your request</span>
+                  <span class="pull-right"><!-- {{tm_locale notification}} --></span>
+                </div>
+                <div class="panel-body">
+                  Good News! {{fullName notification.from}} has accepted your request to carry the item.
+                </div><!-- /panel-body -->
+              </div><!-- /panel panel-default -->
+            </div><!-- /col-sm-8 -->
+            <button class="ui button blue notif-send-msg">Send {{firstName notification.from}} a message</button>
+           {{/if}}
+           {{#if RejectedAppResponse notification}}
+              <div class="col-sm-1">
+                <div class="thumbnail">
+                  {{> avatar userId=notification.from shape="rounded" size="small" class="message-view-pic"}}
+                </div><!-- /thumbnail -->
+              </div><!-- /col-sm-1 -->
+
+              <div class="col-sm-8">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <strong>{{fullName notification.from}}</strong> <span class="text-muted">responded to your request</span>
+                    <span class="pull-right"><!-- {{tm_locale notification}} --></span>
+                  </div>
+                  <div class="panel-body">
+                    Unfortunately {{fullName notification.from}} has not accepted your request to carry the item.
+                  </div><!-- /panel-body -->
+                </div><!-- /panel panel-default -->
+              </div><!-- /col-sm-8 -->
+           {{/if}}
+        </div> 
     </div>
   </div>
 </div>

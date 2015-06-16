@@ -558,67 +558,70 @@
 </div>
 </div>
 </div>
-<div class="ui bottom attached tab segment" data-tab="sixth">
+<div class="ui bottom attached tab active segment" data-tab="sixth">
   <div class="container">
     <div class="row">
       <div class="col-sm-3 col-md-2">
         <ul class="nav nav-pills nav-stacked">
           <li class="active">
-           <a href="{{pathFor 'notifications'}}">
-             {{#if hasUnreadNotifications unreadNotifications}}
-             <span class="badge pull-right">
-               {{unreadNotificationsCount unreadNotifications}}
-             </span>
-             {{/if}}
-             Notifications
-           </a>
-         </li>
-       </ul>
-     </div>
-     <div class="col-sm-9 col-md-10">
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
-        </span>Primary</a></li>
-      </ul>
-      <!-- Tab panes -->
-      {{#each notifications}}
-      <div class="tab-content">
-        <div class="tab-pane fade in active" id="home">
-          <div class="list-group notif-list-group" data-id="{{_id}}">
-            <a href="{{pathFor 'notification-view' _id=_id}}" class="list-group-item">
-              {{#if unreadNotif status}}
-              <strong>
-                <div class="name col-sm-9">
-                  {{sentFrom from}} responded to your request.
-                </div> 
-                   <!-- <div class="text-muted col-sm-8">
-                     {{message}}
-                   </div> -->
-                 </strong> 
-                 {{else}}
-                 <div class="name col-sm-9">
-                   {{sentFrom from}} responded to your request.
-                 </div> 
-                <!--  <div class="text-muted col-sm-8">
-                   {{message}}
-                 </div> -->
-                 {{/if}}
-                 <div>
-                  <span class="badge">
-                   {{tm_cal createdAt}}
-                 </span>
+            <a href="{{pathFor 'notifications'}}">
+              {{#if hasUnreadNotifications unreadNotifications}}
+              <span class="badge pull-right">
+                {{unreadNotificationsCount unreadNotifications}}
+              </span>
+              {{/if}}
+              Notifications
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-9 col-md-10">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
+          </span>Primary</a></li>
+        </ul>
+        <!-- Tab panes -->
+        {{#each notifications}}
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="home">
+            <div class="list-group notif-list-group" data-id="{{_id}}">
+              {{#if NotifIsFromUser}}
+              {{else}}
+              <a href="{{pathFor 'notification-view' _id=_id}}" class="list-group-item">
+                {{#if unreadNotif status}}
+                <strong>
+                  <div class="name col-sm-9">
+                    {{sentFrom from}} responded to your request.
+                  </div> 
+                       <!-- <div class="text-muted col-sm-8">
+                         {{message}}
+                       </div> -->
+                </strong> 
+                  {{else}}
+                     <div class="name col-sm-9">
+                       {{sentFrom from}} responded to your request.
+                     </div> 
+                    <!--  <div class="text-muted col-sm-8">
+                       {{message}}
+                     </div> -->
+                {{/if}}
+                     <div>
+                      <span class="badge">
+                       {{tm_cal createdAt}}
+                     </span>
+                   </div>
+                 </a>
+            {{/if}}
                </div>
-             </a>
+             </div>
            </div>
+           {{/each}}
          </div>
        </div>
-       {{/each}}
+       {{> Paginator_UI pagNotifications}}
      </div>
    </div>
-   {{> Paginator_UI pagNotifications}}
- </div>
-</div>
 </template>
 
 

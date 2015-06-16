@@ -512,12 +512,18 @@
                       </table>
                       <div id="tk-action-block">
                           <h3>{{getSingleItemTitle request.req_carry_itemId}}</h3>
-                          {{#if acceptedToCarry request.req_carry_itemId}}
+                          {{#if acceptedReqToCarry request.req_carry_itemId}}
                             <button type="button" disabled class="btn btn-default">You have accepted</button>
+                            <div class="ui message">
+                              <i class="close icon"></i>
+                              <div class="header">
+                                Thanks! {{firstName request.owner}} will receive a notification of your acceptance.
+                              </div>
+                            </div>
                           {{else}}
                           <button type="button" data-id="{{request.req_carry_itemId}}" class="ui button blue" id="accept-btn">Yes</button>
                           {{/if}}
-                          {{#if rejectedToCarry request.req_carry_itemId}}
+                          {{#if rejectedReqToCarry request.req_carry_itemId}}
                            <button type="button" disabled class="btn btn-danger">You have not accepted</button>
                           {{else}}
                             <button type="button" data-id="{{request.req_carry_itemId}}" class="ui button red" id="reject-btn">No</button>
@@ -610,12 +616,12 @@
                           </table>
                           <div id="tk-action-block">
                               <h3>{{getSingleItemTitle request.req_carry_itemId}}</h3>
-                              {{#if acceptedToCarry request.req_carry_itemId}}
+                              {{#if acceptedReqToCarry request.req_carry_itemId}}
                                 <button type="button" disabled class="btn btn-default">You have accepted</button>
                               {{else}}
                               <button type="button" data-id="{{request.req_carry_itemId}}" class="ui button blue" id="accept-btn">Yes</button>
                               {{/if}}
-                              {{#if rejectedToCarry request.req_carry_itemId}}
+                              {{#if rejectedReqToCarry request.req_carry_itemId}}
                                <button type="button" disabled class="btn btn-danger">You have not accepted</button>
                               {{else}}
                                 <button type="button" data-id="{{request.req_carry_itemId}}" class="ui button red" id="reject-btn">No</button>
@@ -677,7 +683,7 @@
                           </div>
                         </div>
                         {{/if}}
-                    {{#if appToCarry request}}
+        <!--             {{#if appToCarry request}}
                     <div id="rtc-action-block">
                       <h3>You have requested to carry the following item.</h3>
                     </div>
@@ -733,9 +739,9 @@
                             </ul>
                           </div>
                         </div>
-                      </div><!-- End Listing-->
+                      </div> End Listing
                     </div>
-                {{/if}}
+                {{/if}} -->
                 {{#if recReqToCarryUrItem request}}
                   <div id="rtc-action-block">
                     <h3>{{fullName request.owner}} has requested to carry the following item</h3>
@@ -758,15 +764,15 @@
                   </table>
                   <div id="tk-action-block">
                       <h3>Do you want {{fullName request.owner}} to be the carrier of your item?</h3>
-                      {{#if acceptedToCarry request.app_carry_itemId}}
+                      {{#if acceptedAppToCarry request.app_carry_itemId}}
                         <button type="button" disabled class="btn btn-default">You have accepted</button>
                       {{else}}
-                      <button type="button" data-id="{{request.app_carry_itemId}}" class="ui button blue" id="accept-btn">Yes</button>
+                      <button type="button" data-id="{{request.app_carry_itemId}}" class="ui button blue" id="accept-app-btn">Yes</button>
                       {{/if}}
-                      {{#if rejectedToCarry request.app_carry_itemId}}
+                      {{#if rejectedAppToCarry request.app_carry_itemId}}
                        <button type="button" disabled class="btn btn-danger">You have not accepted</button>
                       {{else}}
-                        <button type="button" data-id="{{request.app_carry_itemId}}" class="ui button red" id="reject-btn">No</button>
+                        <button type="button" data-id="{{request.app_carry_itemId}}" class="ui button red" id="reject-app-btn">No</button>
                       {{/if}}
                   </div>
                 {{/if}}

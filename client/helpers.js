@@ -454,35 +454,49 @@ Template.registerHelper("item_owner_id", function(itemId){
 })
 
 Template.registerHelper("hasSentRequest", function(itemId){
-    var userId = Meteor.userId();
-    var application = Requests.findOne({app_carry_itemId: itemId, owner: userId})
-    if (typeof(application) != "undefined") {
-        return true
-    };
+    return Requests.findOne({app_carry_itemId: itemId, owner: Meteor.userId()});
 })
 
 Template.registerHelper("hasUnreadRequests", function(requests){
-    var recBulkReq = [];
+    var bulkReqs = [];
+    var reqs = [];
+    var apps = [];
+    var genReqs = [];
     $(requests).each(function(index, value) {
-        if (value.type == "bulk_req_carry" && value.owner != Meteor.userId()) {
-            recBulkReq.push(value);
-        }
+        if (value.type == "bulk_req_carry"  && value.owner != Meteor.userId()) {
+            bulkReqs.push(value);
+        };
+        if (value.type == "req_carry") {
+            reqs.push(value);
+        };
+        if (value.type == "app_carry" && value.owner != Meteor.userId()) {
+             apps.push(value);
+        };
     });
-
-    if (requests.length && recBulkReq.length != 0) {
-        return true
+    var total = bulkReqs.length + reqs.length + apps.length;
+    if (total != 0) {
+        return true;
     };
 })
 
 Template.registerHelper("unreadRequestsCount", function(requests){
-    var recBulkReq = [];
-    $(requests).each(function(index, value) {
-        if (value.type == "bulk_req_carry" && value.owner != Meteor.userId()) {
-            recBulkReq.push(value);
-        };
-    });
-
-    return recBulkReq.length;
+  var bulkReqs = [];
+  var reqs = [];
+  var apps = [];
+  var genReqs = [];
+  $(requests).each(function(index, value) {
+      if (value.type == "bulk_req_carry"  && value.owner != Meteor.userId()) {
+          bulkReqs.push(value);
+      };
+      if (value.type == "req_carry") {
+          reqs.push(value);
+      };
+      if (value.type == "app_carry" && value.owner != Meteor.userId()) {
+           apps.push(value);
+      };
+  });
+   var total = bulkReqs.length + reqs.length + apps.length;
+    return total;
 })
 
 Template.registerHelper("userIsOwner", function(userId){
@@ -538,31 +552,54 @@ Template.registerHelper("sendReqToCarryUrItem", function(request){
     
 })
 
-Template.registerHelper("acceptedToCarry", function(itemId){
+Template.registerHelper("acceptedReqToCarry", function(itemId){
     var item = Items.findOne(itemId);
-    if (item.acceptance_status == "accepted") {
+    if (item.accept_req_to_carry_ur_item_status == "accepted") {
+        return true;
+    };
+})
+Template.registerHelper("rejectedReqToCarry", function(itemId){
+       var item = Items.findOne(itemId);
+       if (item.accept_req_to_carry_ur_item_status == "rejected") {
+           return true;
+       };
+})
+Template.registerHelper("acceptedAppToCarry", function(itemId){
+    var item = Items.findOne(itemId);
+    if (item.accept_app_to_carry_ur_item_status == "accepted") {
         return true;
     };
 })
 
-Template.registerHelper("rejectedToCarry", function(itemId){
+Template.registerHelper("rejectedAppToCarry", function(itemId){
        var item = Items.findOne(itemId);
-       if (item.acceptance_status == "rejected") {
+       if (item.accept_app_to_carry_ur_item_status == "rejected") {
            return true;
        };
 })
 
 Template.registerHelper("hasUnreadNotifications", function(notifs){
-    var notifs = notifs;
-    if (notifs.length != 0) {
+    var notifsArray = [];
+    $(notifs).each(function(index, value) {
+        if (value.from != Meteor.userId()) {
+            notifsArray.push(value);
+        };
+    });
+
+    if (notifsArray.length != 0) {
         return true
     };
 })
 
 Template.registerHelper("unreadNotificationsCount", function(notifs){
-    var notifs = notifs;
-    var totalUnread =  notifs.length;
-    return totalUnread;
+    var notifsArray = [];
+    $(notifs).each(function(index, value) {
+        if (value.from != Meteor.userId()) {
+            notifsArray.push(value);
+        };
+    });
+
+    return notifsArray.length;
 })
 
 Template.registerHelper("unreadNotif", function(status){
@@ -571,11 +608,42 @@ Template.registerHelper("unreadNotif", function(status){
     };
 })
 
-Template.registerHelper("acceptedResponse", function(notif){
-    var notification = notif;
-    if (notification.type == "ac-notif") {
+Template.registerHelper("NotifIsFromUser", function(){
+    return this.from == Meteor.userId(); // return true if notification came from the same owner.
+})
+
+Template.registerHelper("acceptedReqResponse", function(notif){
+    if (notif.type == "ac-notif") {
         return true;
     };
+})
+
+Template.notificationView.helpers({
+    notification: function () {
+        var notifId = Router.current().params._id;
+        console.log(Notifications.findOne(notifId));
+        return Notifications.findOne(notifId);
+    }
+});
+
+Template.registerHelper("RejectedReqResponse", function(notif){
+    if (notif.type == "rj-notif") {
+        return true;
+    };
+})
+
+Template.registerHelper("AcceptedAppResponse", function(notif){
+   /* if (notif.type == "ac-app-notif") {
+        return true;
+    };*/
+    return notif.type == "ac-app-notif";
+})
+
+Template.registerHelper("RejectedAppResponse", function(notif){
+    /*if (notif.type == "rj-app-notif") {
+        return true;
+    };*/
+    return notif.type == "rj-app-notif";
 })
 
 Template.registerHelper("getItemSendDate", function(itemId){
@@ -598,8 +666,6 @@ Template.registerHelper("getItemDeliveryDate", function(itemId){
     }
    
 })
-
-Template.registerHelper("")
 
 Template.registerHelper("firstName", function(userId){
     var user = Meteor.users.findOne(userId);

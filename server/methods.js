@@ -182,13 +182,19 @@ Meteor.methods({
       createdAt: new Date() // current time
     }, function(err, id){});
   },
-  acceptedItemStatus: function(status, itemId){
-     Items.update(itemId, {$set: {acceptance_status: status}});
+  accept_req_to_carry_ur_item_status: function(status, itemId){
+     Items.update(itemId, {$set: {accept_req_to_carry_ur_item_status: status}});
   },
-  rejectedItemStatus: function(status, itemId){
-    Items.update(itemId, {$set: {acceptance_status: status}});
+  reject_req_to_carry_ur_item_status: function(status, itemId){
+    Items.update(itemId, {$set: {accept_req_to_carry_ur_item_status: status}});
   },
-  sendAcceptedNotification: function(recipient, from, itemId){
+  accept_app_to_carry_ur_item_status: function(status, itemId){
+    Items.update(itemId, {$set: {accept_app_to_carry_ur_item_status: status}});
+  },
+  reject_app_to_carry_ur_item_status: function(status, itemId){
+    Items.update(itemId, {$set: {accept_app_to_carry_ur_item_status: status}});
+  },
+  sendReqAcceptedNotification: function(recipient, from, itemId){
     Notifications.insert({
       recipient: recipient,
       from: from,
@@ -198,12 +204,32 @@ Meteor.methods({
       createdAt: new Date()
     }, function(err, id){});
   },
-  sendRejectedNotification: function(recipient, from, itemId){
+  sendReqRejectedNotification: function(recipient, from, itemId){
     Notifications.insert({
       recipient: recipient,
       from: from,
       itemId: itemId,
       type: "rj-notif",
+      status: "unread",
+      createdAt: new Date()
+    }, function(err, id){});
+  },
+  sendAppAcceptedNotification: function(recipient, from, itemId){
+    Notifications.insert({
+      recipient: recipient,
+      from: from,
+      type: "ac-app-notif",
+      itemId: itemId,
+      status: "unread",
+      createdAt: new Date()
+    }, function(err, id){});
+  },
+  sendAppRejectedNotification: function(recipient, from, itemId){
+    Notifications.insert({
+      recipient: recipient,
+      from: from,
+      itemId: itemId,
+      type: "rj-app-notif",
       status: "unread",
       createdAt: new Date()
     }, function(err, id){});

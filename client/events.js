@@ -75,7 +75,16 @@ Template.myProfile.events({
   "click .msg-list-group": function(e, t){
     var messageId = e.currentTarget.getAttribute('data-id');
     Meteor.call('updateUserMessageStatus', messageId, function (error, result) {});
+  },
+  'click .open-req-list-group': function (e, t) {
+    var requestId = e.currentTarget.getAttribute('data-id');
+    Meteor.call('updateRequestReadStatus', requestId, function (error, result) {});
+  },
+  'click .notif-list-group': function (e, t) {
+    var notifId = e.currentTarget.getAttribute('data-id');
+    Meteor.call('updateNotifStatus', notifId, function (error, result) {});
   }
+
 });
 
 // Template.userPublicProfile.rendered = function () {
@@ -289,6 +298,14 @@ Template.messagesHome.events({
     // if (typeof(reply) != "undefined") {
        Meteor.call('updateReplyMessageStatus', messageId, function (error, result) {});
     // };
+  },
+  'click .open-req-list-group': function (e, t) {
+    var requestId = e.currentTarget.getAttribute('data-id');
+    Meteor.call('updateRequestReadStatus', requestId, function (error, result) {});
+  },
+  'click .notif-list-group': function (e, t) {
+    var notifId = e.currentTarget.getAttribute('data-id');
+    Meteor.call('updateNotifStatus', notifId, function (error, result) {});
   }
 });
 
@@ -299,6 +316,10 @@ Template.sentMessages.events({
     // if (typeof(reply) != "undefined") {
        Meteor.call('updateReplyMessageStatus', messageId, function (error, result) {});
     // };
+  },
+  'click .open-req-list-group': function (e, t) {
+    var requestId = e.currentTarget.getAttribute('data-id');
+    Meteor.call('updateRequestReadStatus', requestId, function (error, result) {});
   }
 });
 
@@ -315,7 +336,7 @@ Template.selectItem.rendered = function () {
 /*  $('.ui.selection.dropdown')
      .dropdown('restore default text')
      ;*/
-
+     Meteor.subscribe("items");
      $(".ui.selection.dropdown").dropdown({
       onChange: function (val) {
         Session.set("itemSelected", val);
@@ -376,9 +397,31 @@ Template.selectItem.rendered = function () {
       var from = Meteor.userId();
       var status = "accepted";
       var action_status = "closed"
-      Meteor.call('acceptedItemStatus', status, itemId, function (error, result) {});
-      Meteor.call('sendAcceptedNotification', recipient, from, itemId, function (error, result) {});
-      Meteor.call('updateRequestActionStatus', action_status, function (error, result) {});
+      Meteor.call('accept_req_to_carry_ur_item_status', status, itemId, function (error, result) {});
+      Meteor.call('sendReqAcceptedNotification', recipient, from, itemId, function (error, result) {});
+      // Meteor.call('updateRequestActionStatus', action_status, function (error, result) {});
+    },
+    'click #accept-app-btn': function(e, t) {
+      var itemId = e.currentTarget.getAttribute('data-id');
+      var reqOwner = this.request.owner;
+      var recipient = reqOwner;
+      var from = Meteor.userId();
+      var status = "accepted";
+      var action_status = "closed"
+      Meteor.call('accept_app_to_carry_ur_item_status', status, itemId, function (error, result) {});
+      Meteor.call('sendAppAcceptedNotification', recipient, from, itemId, function (error, result) {});
+    },
+    'click #reject-app-btn': function(e, t){
+      var itemId = e.currentTarget.getAttribute('data-id');
+      var reqOwner = this.request.owner;
+      var recipient = reqOwner;
+      var from = Meteor.userId();
+      var status = "rejected"
+      Meteor.call('reject_app_to_carry_ur_item_status', status, itemId, function (error, result) {});
+      Meteor.call('sendAppRejectedNotification', recipient, from, itemId, function (error, result) {});
+    },
+    'click .message .close': function(e, t){
+      $('.message').fadeOut();
     },
     'click #reject-btn': function(e, t){
       var itemId = e.currentTarget.getAttribute('data-id');
@@ -387,9 +430,21 @@ Template.selectItem.rendered = function () {
       var recipient = itemOwner;
       var from = Meteor.userId();
       var status = "rejected"
-      Meteor.call('rejectedItemStatus', status, itemId, function (error, result) {});
-      Meteor.call('sendRejectedNotification', recipient, from, itemId, function (error, result) {});
-      Meteor.call('updateRequestActionStatus', action_status, function (error, result) {});
+      Meteor.call('reject_req_to_carry_ur_item_status', status, itemId, function (error, result) {});
+      Meteor.call('sendReqRejectedNotification', recipient, from, itemId, function (error, result) {});
+      // Meteor.call('updateRequestActionStatus', action_status, function (error, result) {});
+    },
+    'click .open-req-list-group': function (e, t) {
+      var requestId = e.currentTarget.getAttribute('data-id');
+      Meteor.call('updateRequestReadStatus', requestId, function (error, result) {});
+    },
+    'click .notif-list-group': function (e, t) {
+      var notifId = e.currentTarget.getAttribute('data-id');
+      Meteor.call('updateNotifStatus', notifId, function (error, result) {});
+    },
+    'click .notif-list-group': function (e, t) {
+      var notifId = e.currentTarget.getAttribute('data-id');
+      Meteor.call('updateNotifStatus', notifId, function (error, result) {});
     }
   });
 
@@ -399,6 +454,10 @@ Template.notificationView.events({
     $('.ui.send-message.modal')
     .modal('show')
     ;
+  },
+  'click .open-req-list-group': function (e, t) {
+    var requestId = e.currentTarget.getAttribute('data-id');
+    Meteor.call('updateRequestReadStatus', requestId, function (error, result) {});
   }
 });
 
