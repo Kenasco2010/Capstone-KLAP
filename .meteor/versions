@@ -108,8 +108,8 @@ twbs:bootstrap@3.3.4
 ui@1.0.6
 underscore@1.0.3
 url@1.0.4
-useraccounts:bootstrap@1.10.0
 useraccounts:core@1.10.0
+useraccounts:semantic-ui@1.10.0
 utilities:avatar@0.7.10
 webapp@1.2.0
 webapp-hashing@1.0.3
