@@ -201,6 +201,10 @@ Template.registerHelper("checkCarrierStatus", function(user){
     }
 })
 
+Template.registerHelper("user", function(){
+    return Meteor.user();
+})
+
 Template.createProfile.helpers({
     profileFormSchema: function () {
         return Schemas.updateProfile;
@@ -216,9 +220,11 @@ Template.createProfile.helpers({
     }
 });
 
-Template.registerHelper("profileFormSchema", function(){
-    return Schemas.updateProfile
-})
+Template.editProfileForm.helpers({
+    profileFormSchema: function () {
+        return Schemas.updateProfile;
+    }
+});
 
 Template.registerHelper("reviewerPicture", function(id){
     var user = Meteor.users.findOne(id);

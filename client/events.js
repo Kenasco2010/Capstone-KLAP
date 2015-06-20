@@ -87,21 +87,21 @@ Template.myProfile.events({
 
 });
 
-// Template.userPublicProfile.rendered = function () {
-//   $this = this;
-//   ratings = $this.ratings.get();
-//   userId = $this.userId.get();
-//   $('.ui.rating').rating('setting', 'onRate', function(value) {
-//           // Session.set("review-value", value);
-//           if (Meteor.userId() == this.id) {
-//             swal("Illegal Operation");
-//           }
-//           else {
-//             $this.ratings.set(value);
-//             $this.userId.set(this.id);
-//           }
-//         });
-// };
+Template.userPublicProfile.rendered = function () {
+  $this = this;
+  ratings = $this.ratings.get();
+  userId = $this.userId.get();
+  $('.ui.rating').rating('setting', 'onRate', function(value) {
+          // Session.set("review-value", value);
+          if (Meteor.userId() == this.id) {
+            swal("Illegal Operation");
+          }
+          else {
+            $this.ratings.set(value);
+            $this.userId.set(this.id);
+          }
+        });
+};
 
 Template.userPublicProfile.events({
   'click #hide-reviews': function() {

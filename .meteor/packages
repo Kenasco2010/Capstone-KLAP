@@ -38,6 +38,5 @@ utilities:avatar
 hitchcott:paginator
 sacha:spin
 zimme:iron-router-auth
-raix:handlebar-helpers
 dburles:collection-helpers
 
