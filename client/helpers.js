@@ -226,6 +226,10 @@ Template.editProfileForm.helpers({
     }
 });
 
+Template.registerHelper("crtProfileLoading", function(){
+    return Session.get("crtProfileLoading");
+})
+
 Template.registerHelper("reviewerPicture", function(id){
     var user = Meteor.users.findOne(id);
     if (typeof(user) == "undefined") {

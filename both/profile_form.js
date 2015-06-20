@@ -51,7 +51,6 @@ Schemas.updateProfile = new SimpleSchema({
    },
    travel_route_from: {
        type: String,
-       optional: true,
        autoform: {
            type: "selectize",
            options: function() {
@@ -72,7 +71,6 @@ Schemas.updateProfile = new SimpleSchema({
    },
    travel_route_to: {
        type: String,
-       optional: true,
        autoform: {
            type: "selectize",
            options: function() {
