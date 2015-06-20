@@ -1,6 +1,5 @@
-Meteor.subscribe('allUsers');
 Template.registerHelper("fullUserName", function(user){
-    if (typeof(user.profile) == "undefined" || null) {
+    if (typeof(user) == "undefined" || null) {
         return;
     }
     else {
@@ -9,6 +8,21 @@ Template.registerHelper("fullUserName", function(user){
         var full_name = first_name + " " + last_name;
         return full_name;
     }
+})
+
+Template.registerHelper("getPublicProfileFullName", function(){
+    var first_name = this.profile.first_name;
+    var last_name = this.profile.last_name;
+    var full_name = first_name + " " + last_name;
+    return full_name;
+})
+
+Template.registerHelper("getTripOwnerFullName", function(owner){
+    var user = Meteor.users.findOne(owner);
+    var first_name = user.profile.first_name;
+    var last_name = user.profile.last_name;
+    var full_name = first_name + " " + last_name;
+    return full_name;
 })
 
 Template.registerHelper("rating", function(user){
@@ -107,14 +121,15 @@ Template.registerHelper("itemOwnerId", function(){
 })
 
 Template.registerHelper("tripOwnerId", function(){
-    var trip = Travels.findOne(this._id);
-    var ownerId = trip.owner;
-    return ownerId;
+    console.log(this);
+    /*var trip = Travels.findOne(this._id);
+    var ownerId = trip.owner;*/
+    return this.owner;
 })
 
 
-Template.registerHelper("trip_owner", function(tripId){
-        var trip = Travels.findOne(tripId);
+Template.registerHelper("trip_owner", function(owner){
+   /*     var trip = Travels.findOne(tripId);
         if (typeof(trip) == "undefined") {
                 return;
             }
@@ -136,7 +151,18 @@ Template.registerHelper("trip_owner", function(tripId){
                         return full_name;
                     }
                 }
+        }*/
+        if (Meteor.userId() == owner) {
+            return "You"
         }
+        else {
+        var user = Meteor.users.findOne(owner);
+        var first_name = user.profile.first_name;
+        var last_name = user.profile.last_name;
+        var full_name = first_name + " " + last_name;
+        return full_name;
+    }
+
 })
 
 Template.registerHelper("photoUpOptions", function(){
@@ -201,10 +227,6 @@ Template.registerHelper("checkCarrierStatus", function(user){
     }
 })
 
-Template.registerHelper("user", function(){
-    return Meteor.user();
-})
-
 Template.createProfile.helpers({
     profileFormSchema: function () {
         return Schemas.updateProfile;
@@ -249,6 +271,12 @@ Template.registerHelper("reviewCountString", function(count){
     else {
         return "Reviews";
     }
+})
+
+Template.registerHelper("reviewCount", function(){
+    var userId = this._id;
+    var myreviews = Reviews.find({reviewee: userId}).fetch();
+    return myreviews.length;
 })
 
 Template.registerHelper("checkBio", function(id){

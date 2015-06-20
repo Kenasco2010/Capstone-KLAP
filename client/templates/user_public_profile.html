@@ -48,24 +48,25 @@
     <div class="container">
         <div class="row">
             <div class=" col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+            {{#with profileOwner}}
                 <div class="well profile">
                     <div class="col-sm-12">
                         <div class="col-xs-12 col-sm-7">
-                            <h2>{{fullUserName user}}</h2>
-                            <p><strong>Country of Residence: </strong>{{user.profile.country}}</p>
-                            <p><strong>City of Residence:</strong> {{user.profile.city}}</p>
+                            <h2>{{getPublicProfileFullName}}</h2>
+                            <p><strong>Country of Residence: </strong>{{profile.country}}</p>
+                            <p><strong>City of Residence:</strong> {{profile.city}}</p>
                             <p>
-                              <strong>Travel Route: </strong>{{user.profile.travel_route_from}} 
-                              <i class="fa fa-arrow-right"></i> {{user.profile.travel_route_to}}
+                              <strong>Travel Route: </strong>{{profile.travel_route_from}} 
+                              <i class="fa fa-arrow-right"></i> {{profile.travel_route_to}}
                             </p>
                             <!-- <p>
                               <strong>Number of Travels: </strong> {{user.profile.number_of_travels}} times a year
                             </p> -->
                             <p>
                               <strong>Number of Deliveries: </strong> 
-                              {{user.profile.number_of_deliveries}}
+                              {{profile.number_of_deliveries}}
                             </p>
-                            {{#if currentUserProfile user._id}}
+                            {{#if currentUserProfile _id}}
                                 <button class="btn btn-primary send-req-disabled" disabled>Send delivery request</button>
                                 <button class="btn btn-info send-msg-disabled" disabled>Send message</button>
                               {{else}}
@@ -76,19 +77,19 @@
                         </div> 
                         <div class="col-xs-12 col-sm-5 text-center">
                             <figure>
-                                {{#if ownerHasPhoto user._id}}
-                                    <img src="{{getOwnerPhotoUrl user._id}}" class="img-responsive img-circle" alt="user photo" height="150" width="150">
+                                {{#if ownerHasPhoto _id}}
+                                    <img src="{{getOwnerPhotoUrl _id}}" class="img-responsive img-circle" alt="user photo" height="150" width="150">
                                     {{else}}
-                                      {{> avatar userId=user._id shape="circle" size="large" class="public-avatar"}}
+                                      {{> avatar userId=_id shape="circle" size="large" class="public-avatar"}}
                                 {{/if}}
                                 <figcaption class="ratings">
                                     <p>Ratings</p>
                                     
                                         <!-- {{> rating}} -->
-                                    {{#if currentUserProfile user._id}}
-                                        <div class="ui rating" id="{{user._id}}" data-rating="{{user.profile.rating}}" data-max-rating="5" disabled></div>
+                                    {{#if currentUserProfile _id}}
+                                        <div class="ui rating" id="{{_id}}" data-rating="{{profile.rating}}" data-max-rating="5" disabled></div>
                                       {{else}}
-                                        <div class="ui rating" id="{{user._id}}" data-rating="{{user.profile.rating}}" data-max-rating="5"></div>
+                                        <div class="ui rating" id="{{_id}}" data-rating="{{profile.rating}}" data-max-rating="5"></div>
                                     {{/if}}
                                     
                                 </figcaption>
@@ -98,7 +99,7 @@
                     <div class="col-sm-12 col-xs-12">
                         <section class="col-xs-12 col-sm-12 divider about-section">
                             <strong><p>Bio</p></strong>
-                            <p>{{checkBio user._id}}</p>
+                            <p>{{checkBio _id}}</p>
                         </section>
                     </div>
                     <div class="col-xs-12 divider text-center action-buttons-section">
@@ -110,14 +111,14 @@
                             <h2><strong>{{reviewCount}}</strong></h2>                    
                             <p><small>{{reviewCountString reviewCount}}</small></p>
                         {{#if noReviews reviewCount}}
-                             {{#if currentUserProfile user._id}}
+                             {{#if currentUserProfile _id}}
                                   <button class="btn btn-info" disabled>Add a review</button>
                                 {{else}}
                                 <button class="btn btn-info btn-block hidden-xs show-reviews"><span class="fa fa-comments"></span> Add a review </button>
                                 <button class="btn btn-info btn-block btn-sm visible-xs show-reviews"><span class="fa fa-comments"></span>  Add a review</button>
                              {{/if}}
                         {{else}}
-                              {{#if currentUserProfile user._id}}
+                              {{#if currentUserProfile _id}}
                                         <button class="btn btn-info" disabled>View Reviews</button>
                                  {{else}}
                                         <button class="btn btn-info btn-block hidden-xs show-reviews"><span class="fa fa-comments"></span> View Reviews </button>
@@ -142,6 +143,7 @@
                         </div> -->
                     </div>
                 </div>
+            {{/with}}
             </div>
         </div>
     </div>
@@ -158,7 +160,7 @@
                     {{/autoForm}}
 
                     <div class="ui list">
-                    <p class="getter" data-user-id="{{user._id}}"></p>
+                    <p class="getter" data-user-id="{{_id}}"></p>
                     {{#each reviews}}
                       <div class="item">
                             <img class="ui avatar image" src="{{reviewerPicture reviewer}}">
@@ -184,5 +186,5 @@
 
 <template name="rating">
         <!-- <div class="rating" data-role="rating" data-size="small" data-on-rate="demo_func_onRate"></div> -->
-        <div class="ui rating" id="{{user._id}}" data-rating="{{user.profile.rating}}" data-max-rating="5"></div>
+        <div class="ui rating" id="{{_id}}" data-rating="{{profile.rating}}" data-max-rating="5"></div>
 </template>

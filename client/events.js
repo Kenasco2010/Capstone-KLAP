@@ -263,19 +263,14 @@ Template.editProfileForm.events({
   }
 });
 
-Template.editProfileForm.events({
-  'change #user_resident_country': function (e,t) {
-    var countries = e.currentTarget.value ? e.currentTarget.value : null
-    Session.set('userResidentCountry', countries);
-
-  }
-});
-
 Template.createProfile.events({
   'change #user_resident_country': function (e,t) {
     var countries = e.currentTarget.value ? e.currentTarget.value : null
     Session.set('userResidentCountry', countries);
-
+  },
+  'change #create_profile_country': function(e,t){
+    var countries = e.currentTarget.value ? e.currentTarget.value : null
+    Session.set('createProfileResidenceCity', countries);
   }
 });
 
@@ -323,14 +318,6 @@ Template.sentMessages.events({
   }
 });
 
-Template.createProfile.events({
-  'change #create_profile_country': function(e,t){
-    // alert("you have clicked me")
-    var countries = e.currentTarget.value ? e.currentTarget.value : null
-    Session.set('createProfileResidenceCity', countries);
-  }
-
-})
 
 Template.selectItem.rendered = function () {
 /*  $('.ui.selection.dropdown')
@@ -374,11 +361,13 @@ Template.selectItem.rendered = function () {
           Meteor.call('changeUserProfilePhoto', getImageUrl, function (error, result) {
            if (error) {
              $('.ui.chgProfilePhoto.modal').modal('hide');
-             swal("Sorry! something went wrong");
+             // swal("Sorry! something went wrong");
+             sAlert.error('Sorry! something went wrong');
            }
            else {
              $('.ui.chgProfilePhoto.modal').modal('hide');
-             swal("Thanks! your photo has been changed");
+             // swal("Thanks! your photo has been changed");
+             sAlert.success('Thanks! your photo has been changed');
            }
          });
           return false;

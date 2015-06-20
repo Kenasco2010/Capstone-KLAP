@@ -56,18 +56,26 @@
 							<p> <strong>Travelling on: </strong> {{date_ft travel_date }} </p>
 							<p><strong>General Travel Info: </strong> {{general_thoughts}}
 							</p>
-							<div class="btn-group dropup btn-block view-profile-block">
+							<!-- <div class="btn-group dropup btn-block view-profile-block">
 								<button class="btn btn-info" disabled=""><span class="fa fa-user"></span> View Profile</button>
 								{{#if ownerOfTrip _id}}
 								{{else}}
 								<a class="btn btn-info btn-block" href="{{pathFor 'user_profile' _id=owner}}"><span class="fa fa-user"></span> View Profile </a>
 								{{/if}}
-							</div>
+							</div> -->
 						</div>             
-						<div class="col-xs-12 col-sm-4 text-center">
+						<div class="col-xs-12 col-sm-4 text-center trip-details-figure">
 							<figure>
-								{{> avatar userId=tripOwnerId shape="circle" size="large" class="public-avatar"}}
+								{{> avatar userId=owner shape="circle" size="large" class="public-avatar"}}
 							</figure>
+							<figcaption>
+							<p><strong><small>{{getTripOwnerFullName owner}}</small></strong></p>
+							</figcaption>
+							   {{#if ownerOfTrip _id}}
+								<button class="btn btn-info" disabled=""><span class="fa fa-user"></span> View Profile</button>
+								{{else}}
+									<a class="btn btn-info btn-block btn-view-user-profile" href="{{pathFor 'user_profile' _id=owner}}"><span class="fa fa-user"></span> View Profile </a>
+							   {{/if}}
 						</div>
 					</div>            
 					<div class="col-xs-12 divider text-center">
