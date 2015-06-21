@@ -1,7 +1,7 @@
 <template name="selectItem">
       <div class="ui selection dropdown select-package-dropdown">
         <input type="hidden" name="title">
-        <div class="default text">Select your item</div>
+        <div class="default text">{{#if noItemsFound Items}} No Items Found! You have to post an item before sending a request.{{else}}Select your item{{/if}}</div>
         <i class="dropdown icon"></i>
         <p class="getme" data-user-id="{{user._id}}"></p>
         <div class="menu">

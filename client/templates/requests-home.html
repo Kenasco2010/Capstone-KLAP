@@ -492,6 +492,8 @@
                 {{else}}
             {{#if appToCarryItem _id}}
                 {{else}}
+            {{#if requestToCarryYourItem _id}}
+            {{else}}
               <a href="{{pathFor 'request-details' _id=_id}}" class="list-group-item">
                        {{#if unreadReq read_status}}
                        <strong>
@@ -506,9 +508,9 @@
                           {{#if recReqToCarryAnotherUserItem _id}}
                           {{getRequestTitle _id}}
                           {{/if}}
-                          {{#if requestToCarryYourItem _id}}
+                          <!-- {{#if requestToCarryYourItem _id}}
                           {{getReqToCarryYourItemTitle _id}}
-                          {{/if}}
+                          {{/if}} -->
                           {{#if recReqToCarryYourItem _id}}
                           {{getRecReqToCarryYourItemTitle _id}}
                           {{/if}}
@@ -525,9 +527,9 @@
                         {{#if recReqToCarryAnotherUserItem _id}}
                         {{getRequestTitle _id}}
                         {{/if}}
-                        {{#if requestToCarryYourItem _id}}
+                        <!-- {{#if requestToCarryYourItem _id}}
                         {{getReqToCarryYourItemTitle _id}}
-                        {{/if}}
+                        {{/if}} -->
                         {{#if recReqToCarryYourItem _id}}
                         {{getRecReqToCarryYourItemTitle _id}}
                         {{/if}}
@@ -542,6 +544,7 @@
                       </span>
                     </div>
                   </a>
+              {{/if}}
               {{/if}}
               {{/if}}
         </div>

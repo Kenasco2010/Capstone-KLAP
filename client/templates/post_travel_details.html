@@ -72,7 +72,7 @@
 							<p><strong><small>{{getTripOwnerFullName owner}}</small></strong></p>
 							</figcaption>
 							   {{#if ownerOfTrip _id}}
-								<button class="btn btn-info" disabled=""><span class="fa fa-user"></span> View Profile</button>
+								<button class="btn btn-info btn-view-user-profile" disabled><span class="fa fa-user"></span> View Profile</button>
 								{{else}}
 									<a class="btn btn-info btn-block btn-view-user-profile" href="{{pathFor 'user_profile' _id=owner}}"><span class="fa fa-user"></span> View Profile </a>
 							   {{/if}}

@@ -201,7 +201,7 @@
                   <a href="{{pathFor 'tripDetails' _id=_id}}" target="_parent">
                     {{origin_country}} to {{destination_country}}
                   </a>
-                  <a href="{{#if ownerOfTrip _id}} {{pathFor 'my-profile'}} {{else}} {{pathFor 'user_profile' _id=owner}} {{/if}}">
+                  <a href="{{#if ownerOfTrip }} {{pathFor 'my-profile'}} {{else}} {{pathFor 'user_profile' _id=owner}} {{/if}}">
                     <small class="pull-right">
                       by {{trip_owner owner}}
                     </small>

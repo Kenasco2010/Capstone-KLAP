@@ -121,7 +121,6 @@ Template.registerHelper("itemOwnerId", function(){
 })
 
 Template.registerHelper("tripOwnerId", function(){
-    console.log(this);
     /*var trip = Travels.findOne(this._id);
     var ownerId = trip.owner;*/
     return this.owner;
@@ -473,6 +472,10 @@ Template.selectItem.helpers({
     }
 });
 
+Template.registerHelper("noItemsFound", function(items){
+      return items.length == 0;
+})
+
 Template.registerHelper("getItemId", function(){
     var options = [];
     var userId = Meteor.userId();
@@ -516,6 +519,8 @@ Template.registerHelper("hasUnreadRequests", function(requests){
         return true;
     };
 })
+
+
 
 Template.registerHelper("unreadRequestsCount", function(requests){
   var bulkReqs = [];
@@ -789,9 +794,8 @@ Template.registerHelper("ownerOfItem", function(itemId){
     };
 })
 
-Template.registerHelper("ownerOfTrip", function(tripId){
-    var trip = Travels.findOne(tripId);
-    if (trip.owner == Meteor.userId()) {
+Template.registerHelper("ownerOfTrip", function(){
+    if (this.owner == Meteor.userId()) {
         return true;
     };
 })
@@ -924,7 +928,7 @@ Template.registerHelper("getSingleItemTitle", function(itemId){
     var send_date = sd.format("dddd, MMMM Do YYYY");
     var delivery_date = dd.format("dddd, MMMM Do YYYY");
 
-    return  "Are you travelling from " + item.origin_country + " to " + item.destination_country + " between " + send_date + " and " + delivery_date + " and " + " and willing to carry the following item?";
+    return  "Are you travelling from " + item.origin_country + " to " + item.destination_country + " between " + send_date + " and " + delivery_date + " and " + " willing to carry the following item?";
 })
 
     Template.registerHelper("appToCarryItem", function(requestId){

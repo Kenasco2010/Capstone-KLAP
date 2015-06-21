@@ -1,5 +1,6 @@
 Template.postItem.events({
     "change .file_bag": function(event, template){
+        sAlert.info('Please wait! photo upload is in progress', {effect: 'bouncyflip', timeout: 10000});
         var files = $("input.file_bag")[0].files
                 S3.upload({
                         files:files,
@@ -18,7 +19,7 @@ Template.postItem.events({
                         }
                 });
     },
-    "click [data-action='remove-image']": function() {
+    "click [data-action='remove-image']": function(e, t) {
         var relative_url = this.relative_url;
         S3.delete(
             relative_url,
@@ -29,9 +30,9 @@ Template.postItem.events({
             else {
                 this.status = 'removed';
                 reset_form_element( $('.file_bag') );
-                $("#imageThumbnail img").attr("src", "");
-                   $('.img-thumbnail').hide();
-                   $("[data-action='remove-image']").hide();
+                $("#imageThumbnail").remove();
+                   $('.img-thumb').remove();
+                   $("[data-action='remove-image']").remove();
                    $(".progress").remove();
             }
         });

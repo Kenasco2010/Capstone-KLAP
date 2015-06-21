@@ -102,16 +102,17 @@ AutoForm.hooks({
               sweetAlert({
               title: "Thanks!",
                text: "Your post has successfuly been sent to members who match the route you specified. You will receive a notification if any member accepts to carry your item."
-            }, function(){ Router.go('my-profile') }
+            }, function(){ 
+              Router.go('my-profile'); 
+              $("#imageThumbnail").remove();
+              $('.img-thumb').remove();
+              $("[data-action='remove-image']").remove();
+              $(".progress").remove();
+            }
             );
           }
         });
          this.done();
-         this.resetForm();
-         $("#imageThumbnail img").attr("src", "");
-         $('.img-thumbnail').hide();
-         $("[data-action='remove-image']").hide();
-         $(".progress").remove();
          return false;  
     }
 }
@@ -197,6 +198,10 @@ AutoForm.hooks({
          swal("Thanks! your item has been successfuly updated");
          $( "button.confirm" ).click(function() {
            Router.go('my-profile');
+           $("#imageThumbnail").remove();
+           $('.img-thumb').remove();
+           $("[data-action='remove-image']").remove();
+           $(".progress").remove();
          });
     }
   }

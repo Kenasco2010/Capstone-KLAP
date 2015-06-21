@@ -59,6 +59,7 @@
                               <strong>Travel Route: </strong>{{profile.travel_route_from}} 
                               <i class="fa fa-arrow-right"></i> {{profile.travel_route_to}}
                             </p>
+                            <p class="getme" data-user-id="{{_id}}"></p>
                             <!-- <p>
                               <strong>Number of Travels: </strong> {{user.profile.number_of_travels}} times a year
                             </p> -->
@@ -160,7 +161,7 @@
                     {{/autoForm}}
 
                     <div class="ui list">
-                    <p class="getter" data-user-id="{{_id}}"></p>
+                    <p class="getter" data-user-id="{{profileOwner._id}}"></p>
                     {{#each reviews}}
                       <div class="item">
                             <img class="ui avatar image" src="{{reviewerPicture reviewer}}">

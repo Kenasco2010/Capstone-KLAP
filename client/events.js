@@ -122,16 +122,21 @@ Template.userPublicProfile.events({
         closable: false,
         onApprove: function () {
          var req_carry_itemId = Session.get("itemSelected");
-         Meteor.call('requestToCarry', req_carry_itemId, carrierId, function (error, result) {
-          if (error) {
-            $('.ui.send-request.modal').modal('hide');
-            swal("Sorry! something went wrong");
-          }
-          else {
-            $('.ui.send-request.modal').modal('hide');
-            swal("Thanks! your request has been sent");
-          }
-        });
+         if (typeof(req_carry_itemId) == "undefined") {
+          return;
+         }
+         else {
+             Meteor.call('requestToCarry', req_carry_itemId, carrierId, function (error, result) {
+              if (error) {
+                $('.ui.send-request.modal').modal('hide');
+                swal("Sorry! something went wrong");
+              }
+              else {
+                $('.ui.send-request.modal').modal('hide');
+                swal("Thanks! your request has been sent");
+              }
+            });
+         }
          return false;
        }
      }).modal("show");
@@ -371,7 +376,13 @@ Template.selectItem.rendered = function () {
            }
          });
           return false;
-        }
+        },
+        onHidden: function (){
+          $("#imageThumbnail").remove();
+          $('.img-thumb').remove();
+          $("[data-action='remove-image']").remove();
+          $(".progress").remove();
+        },
       }).modal("show");
     },
   });
