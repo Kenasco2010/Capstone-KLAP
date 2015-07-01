@@ -55,8 +55,8 @@ Template.changeProfilePhoto.helpers({
         };
     },
     'uploadNotStarted': function() {
-        if (this.percent_uploaded == 'undefined' || null) {
-            return true;
-        };
+       if (this.loaded == 0 && this.percent_uploaded !== NaN) {
+           return true;
+       };
     }
 })

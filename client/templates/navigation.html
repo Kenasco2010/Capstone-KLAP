@@ -31,7 +31,6 @@
 								{{/if}}
 							</a>
 						</li>
-						{{#if hasProfile $.Meteor.userId}}
 						<li class="">
 							<a href="{{pathFor 'my-profile'}}">
 								{{fullUserName currentUser}} (Go To Dashboard)
@@ -45,7 +44,6 @@
 								</li>
 							</ul> -->
 						</li>
-						{{/if}}
 						<li><a href="#" data-action="sign-out">Sign Out</a></li>
 						{{else}}
 						<li><a href="{{pathFor 'signin'}}">Sign In</a></li>

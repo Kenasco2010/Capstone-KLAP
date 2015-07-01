@@ -59,7 +59,8 @@
     {{#each files}}
     <div>
       {{#if uploadNotStarted}}
-      <p>starting upload...</p>
+      <h3>Please wait! starting upload...</h3>
+      <p>{{> loadingTemplate}}</p>
       {{/if}}
     </div>
     <div class="progress">

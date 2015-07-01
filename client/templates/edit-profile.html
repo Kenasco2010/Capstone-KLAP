@@ -19,7 +19,7 @@
                 <p>
                   <i class="fa fa-shopping-cart"></i>&nbsp;{{checkCarrierStatus user}}
                   <br />
-                  <i class="fa fa-plane"></i>&nbsp;{{user.profile.travel_route_from}} to {{user.profile.travel_route_to}}
+                  <i class="fa fa-plane"></i>&nbsp;{{user.profile.travel_route_from}} {{getToString}} {{user.profile.travel_route_to}}
                   <br />
                   <i class="fa fa-birthday-cake"></i>&nbsp;{{dob_ft user.profile.birthday}}
                   <br />

@@ -40,8 +40,14 @@ return Meteor.users.find({}, {
         "profile.rating":1,
         "profile.travel_route_from":1,
         "profile.travel_route_to":1,
+        "services.facebook.first_name":1,
+        "services.facebook.last_name":1,
+        "services.facebook.name":1,
         "services.facebook.id":1,
-        "services.google.picture":1  
+        "services.google.picture":1, 
+        "services.google.given_name":1,
+        "services.google.family_name":1,
+        "services.google.name":1 
     }
 });
 });
@@ -79,8 +85,14 @@ Meteor.publish("userProfile",function(id){
                 "profile.rating":1,
                 "profile.travel_route_from":1,
                 "profile.travel_route_to":1,
+                "services.facebook.first_name":1,
+                "services.facebook.last_name":1,
+                "services.facebook.name":1,
                 "services.facebook.id":1,
-                "services.google.picture":1
+                "services.google.picture":1, 
+                "services.google.given_name":1,
+                "services.google.family_name":1,
+                "services.google.name":1,
                 
 
                 

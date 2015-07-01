@@ -1,28 +1,86 @@
+Template.registerHelper("Users", function(){
+    return Meteor.users
+})
+
+Template.registerHelper("User", function(){
+    return Meteor.user()
+})
+
+Template.registerHelper("getToString", function(){
+    var user = Meteor.user();
+    if (typeof(user) !== "null" || "undefined") {
+        if (user.profile.travel_route_from && user.profile.travel_route_to) {
+            return "To";
+        };
+    };
+})
+
 Template.registerHelper("fullUserName", function(user){
     if (typeof(user) == "undefined" || null) {
         return;
     }
+    else if (typeof(user.services.facebook) != "undefined") {
+        return user.services.facebook.name;
+    }
+
+    else if (user.services.google) {
+        return user.services.google.name;
+    }
     else {
-        var first_name = user.profile.first_name;
-        var last_name = user.profile.last_name;
-        var full_name = first_name + " " + last_name;
-        return full_name;
+        if (typeof(user.profile.first_name) === "undefined") {
+            return "User";
+        }
+        else {
+            var first_name = user.profile.first_name;
+            var last_name = user.profile.last_name;
+            var full_name = first_name + " " + last_name;
+            return full_name;
+        }
     }
 })
 
 Template.registerHelper("getPublicProfileFullName", function(){
-    var first_name = this.profile.first_name;
-    var last_name = this.profile.last_name;
-    var full_name = first_name + " " + last_name;
-    return full_name;
+    if (this.services.facebook) {
+        return this.services.facebook.name;
+    }
+
+    else if (this.services.google) {
+        return this.services.google.name;
+    }
+    else {
+        if (typeof(this.profile.first_name) === "undefined") {
+            return "User";
+        }
+        else {
+            var first_name = this.profile.first_name;
+            var last_name = this.profile.last_name;
+            var full_name = first_name + " " + last_name;
+            return full_name;
+        }
+    }
 })
 
 Template.registerHelper("getTripOwnerFullName", function(owner){
     var user = Meteor.users.findOne(owner);
-    var first_name = user.profile.first_name;
-    var last_name = user.profile.last_name;
-    var full_name = first_name + " " + last_name;
-    return full_name;
+
+    if (user.services.facebook) {
+        return user.services.facebook.name;
+    }
+
+    else if (user.services.google) {
+        return user.services.google.name;
+    }
+    else {
+        if (typeof(user.profile.first_name) === "undefined") {
+            return "User";
+        }
+        else {
+            var first_name = user.profile.first_name;
+            var last_name = user.profile.last_name;
+            var full_name = first_name + " " + last_name;
+            return full_name;
+        }
+    }
 })
 
 Template.registerHelper("rating", function(user){
@@ -107,10 +165,28 @@ Template.registerHelper("item_owner", function(itemId){
             }
             
             else {
-                var first_name = owner.profile.first_name;
+               /* var first_name = owner.profile.first_name;
                 var last_name = owner.profile.last_name;
                 var full_name = first_name + " " + last_name;
-                return full_name;
+                return full_name;*/
+                if (owner.services.facebook) {
+                    return owner.services.facebook.name;
+                }
+
+                else if (owner.services.google) {
+                    return owner.services.google.name;
+                }
+                else {
+                    if (typeof(owner.profile.first_name) === "undefined") {
+                        return "User";
+                    }
+                    else {
+                        var first_name = owner.profile.first_name;
+                        var last_name = owner.profile.last_name;
+                        var full_name = first_name + " " + last_name;
+                        return full_name;
+                    }
+                }
             }
 })
 
@@ -128,6 +204,7 @@ Template.registerHelper("tripOwnerId", function(){
 
 
 Template.registerHelper("trip_owner", function(owner){
+    var user = Meteor.users.findOne(owner);
    /*     var trip = Travels.findOne(tripId);
         if (typeof(trip) == "undefined") {
                 return;
@@ -155,11 +232,27 @@ Template.registerHelper("trip_owner", function(owner){
             return "You"
         }
         else {
-        var user = Meteor.users.findOne(owner);
-        var first_name = user.profile.first_name;
-        var last_name = user.profile.last_name;
-        var full_name = first_name + " " + last_name;
-        return full_name;
+        // var user = Meteor.users.findOne(owner);
+
+            if (user.services.facebook) {
+                return user.services.facebook.name;
+            }
+
+            else if (user.services.google) {
+                return user.services.google.name;
+            }
+            else {
+
+                if (typeof(user.profile.first_name) === "undefined") {
+                    return "User";
+                }
+                else {
+                    var first_name = user.profile.first_name;
+                    var last_name = user.profile.last_name;
+                    var full_name = first_name + " " + last_name;
+                    return full_name;
+                }
+            }
     }
 
 })
@@ -280,7 +373,25 @@ Template.registerHelper("reviewCount", function(){
 
 Template.registerHelper("checkBio", function(id){
     var user = Meteor.users.findOne(id);
-    var first_name = user.profile.first_name;
+    var first_name;
+
+    if (user.services.facebook) {
+        first_name = user.services.facebook.first_name;
+    }
+
+    else if (user.services.google) {
+        first_name = user.services.google.given_name;
+    }
+    else {
+        if (typeof(user.profile.first_name) === "undefined") {
+            first_name = "User";
+        }
+        else {
+            first_name = user.profile.first_name;
+        }
+    }
+
+
     var bio = user.profile.bio;
     if (typeof(bio) == "undefined" || null) {
         return "(" + first_name + " has not written any bio yet)";
@@ -301,20 +412,59 @@ Template.registerHelper("helpMessage", function(){
 
 Template.registerHelper("sentFrom", function(id) {
     var user = Meteor.users.findOne(id);
-    var first_name = user.profile.first_name;
+    /*var first_name = user.profile.first_name;
     var last_name = user.profile.last_name;
     var full_name = first_name + " " + last_name;
-    return full_name;
+    return full_name;*/
+
+    if (user.services.facebook) {
+        return user.services.facebook.name;
+    }
+
+    else if (user.services.google) {
+        return user.services.google.name;
+    }
+    else {
+        if (typeof(user.profile.first_name) === "undefined") {
+            return "User";
+        }
+        else {
+            var first_name = user.profile.first_name;
+            var last_name = user.profile.last_name;
+            var full_name = first_name + " " + last_name;
+            return full_name;
+        }
+    }
+
+
 })
 
 Template.registerHelper("sentTo", function(messageId) {
   var message = Messages.findOne(messageId);
     var recipientId = message.sent_to;
     var user = Meteor.users.findOne(recipientId);
-    var first_name = user.profile.first_name;
+   /* var first_name = user.profile.first_name;
     var last_name = user.profile.last_name;
     var sentTo = first_name + " " + last_name;
-    return sentTo;
+    return sentTo;*/
+    if (user.services.facebook) {
+        return user.services.facebook.name;
+    }
+
+    else if (user.services.google) {
+        return user.services.google.name;
+    }
+    else {
+        if (typeof(user.profile.first_name) === "undefined") {
+            return "User";
+        }
+        else {
+            var first_name = user.profile.first_name;
+            var last_name = user.profile.last_name;
+            var full_name = first_name + " " + last_name;
+            return full_name;
+        }
+    }
   
 })
 
@@ -422,11 +572,29 @@ Template.registerHelper("fullName", function(id){
     if (typeof(user) == "undefined") {
         return;
     }
-    else {
+   /* else {
         var first_name = user.profile.first_name;
         var last_name = user.profile.last_name;
         var full_name = first_name + " " + last_name;
         return full_name;
+    }*/
+    else if (user.services.facebook) {
+        return user.services.facebook.name;
+    }
+
+    else if (user.services.google) {
+        return user.services.google.name;
+    }
+    else {
+        if (typeof(user.profile.first_name) === "undefined") {
+            return "User";
+        }
+        else {
+            var first_name = user.profile.first_name;
+            var last_name = user.profile.last_name;
+            var full_name = first_name + " " + last_name;
+            return full_name;
+        }
     }
 })
 
@@ -558,10 +726,28 @@ Template.registerHelper("reqToCarryItemOwner", function(itemId){
     var item = Items.findOne(itemId);
     var ownerId = item.owner;
     var user = Meteor.users.findOne(ownerId);
-    var first_name = user.profile.first_name;
+    /*var first_name = user.profile.first_name;
     var last_name = user.profile.last_name;
     var full_name = first_name + " " + last_name;
-    return full_name;
+    return full_name;*/
+    if (user.services.facebook) {
+        return user.services.facebook.name;
+    }
+
+    else if (user.services.google) {
+        return user.services.google.name;
+    }
+    else {
+        if (typeof(user.profile.first_name) === "undefined") {
+            return "User";
+        }
+        else {
+            var first_name = user.profile.first_name;
+            var last_name = user.profile.last_name;
+            var full_name = first_name + " " + last_name;
+            return full_name;
+        }
+    }
 
 })
 
@@ -664,7 +850,6 @@ Template.registerHelper("acceptedReqResponse", function(notif){
 Template.notificationView.helpers({
     notification: function () {
         var notifId = Router.current().params._id;
-        console.log(Notifications.findOne(notifId));
         return Notifications.findOne(notifId);
     }
 });
@@ -712,8 +897,23 @@ Template.registerHelper("getItemDeliveryDate", function(itemId){
 
 Template.registerHelper("firstName", function(userId){
     var user = Meteor.users.findOne(userId);
-    var first_name = user.profile.first_name;
-    return first_name;
+    /*var first_name = user.profile.first_name;
+    return first_name;*/
+    if (user.services.facebook) {
+        return user.services.facebook.first_name;
+    }
+
+    else if (user.services.google) {
+        return user.services.google.given_name;
+    }
+    else {
+        if (typeof(user.profile.first_name) === "undefined") {
+            return "User";
+        }
+        else {
+            return user.profile.first_name;
+        }
+    }
 })
 
 Template.registerHelper("getItemPicUrl", function(itemId){
@@ -945,7 +1145,23 @@ Template.registerHelper("getSingleItemTitle", function(itemId){
         var item = Items.findOne(itemId);
         var item_owner = item.owner;
         var user = Meteor.users.findOne(item_owner);
-        var first_name = user.profile.first_name;
+        var first_name;
+
+        if (user.services.facebook) {
+            first_name = user.services.facebook.first_name;
+        }
+
+        else if (user.services.google) {
+            first_name = user.services.google.given_name;
+        }
+        else {
+            if (typeof(user.profile.first_name) === "undefined") {
+                first_name = "User";
+            }
+            else {
+                first_name = user.profile.first_name;
+            }
+        }
         return "you have requested to carry " + first_name + "'s item";
     })
 
@@ -976,7 +1192,24 @@ Template.registerHelper("getSingleItemTitle", function(itemId){
         var item = Items.findOne(itemId);
         var carrierId = request.carrierId;
         var user = Meteor.users.findOne(carrierId);
-        var first_name = user.profile.first_name;
+        // var first_name = user.profile.first_name;
+        var first_name;
+
+        if (user.services.facebook) {
+            first_name = user.services.facebook.first_name;
+        }
+
+        else if (user.services.google) {
+            first_name = user.services.google.given_name;
+        }
+        else {
+            if (typeof(user.profile.first_name) === "undefined") {
+                first_name = "User";
+            }
+            else {
+                first_name = user.profile.first_name;
+            }
+        }
         return "you have requested " + first_name + " to carry your item.";
 
     })
@@ -987,7 +1220,25 @@ Template.registerHelper("getSingleItemTitle", function(itemId){
         var item = Items.findOne(itemId);
         var requesterId = request.owner;
         var user = Meteor.users.findOne(requesterId);
-        var first_name = user.profile.first_name;
+        // var first_name = user.profile.first_name;
+
+        var first_name;
+
+        if (user.services.facebook) {
+            first_name = user.services.facebook.first_name;
+        }
+
+        else if (user.services.google) {
+            first_name = user.services.google.given_name;
+        }
+        else {
+            if (typeof(user.profile.first_name) === "undefined") {
+                first_name = "User";
+            }
+            else {
+                first_name = user.profile.first_name;
+            }
+        }
         return first_name + " has requested to carry your item.";
     })
 
@@ -1016,4 +1267,11 @@ Template.registerHelper("notifFrom", function(){
 
 Template.registerHelper("current", function(){
     return Meteor.user();
+})
+
+Template.registerHelper("emailUser", function(){
+    user = Meteor.user();
+    if (!user.services.facebook && !user.services.google) {
+        return true;
+    };
 })

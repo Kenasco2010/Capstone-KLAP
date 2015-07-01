@@ -1,16 +1,18 @@
-Schemas = {};
+// Schemas = {};
 
-SimpleSchema.messages({
+/*SimpleSchema.messages({
   maxString: "[label] cannot exceed [max] characters"
 })
 
-Schemas.updateProfile = new SimpleSchema({
+Schemas.UserProfile = new SimpleSchema({
     first_name: {
         type: String,
+        optional: true,
         max: 30
     },
     last_name: {
         type: String,
+        optional: true,
         max: 30
     },
     birthday: {
@@ -101,10 +103,11 @@ Schemas.updateProfile = new SimpleSchema({
     },
 city: {
     type: String,
+    optional: true
     autoform: {
       options: []
   }
 },
 });
-
+*/
 // Meteor.users.attachSchema(Schemas.updateProfile)

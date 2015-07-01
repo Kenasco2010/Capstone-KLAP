@@ -53,9 +53,11 @@ Template.postItem.helpers({
         };
     },
     'uploadNotStarted': function() {
-        if (this.percent_uploaded == 'undefined' || null) {
+        console.log(this);
+        if (this.loaded == 0 && this.percent_uploaded !== NaN) {
             return true;
         };
+       
     }
 })
 

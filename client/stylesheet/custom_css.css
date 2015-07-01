@@ -1369,3 +1369,7 @@ span.tags
 .hideme {
 	display: none;
 }
+
+#center-div {
+	margin: 0 auto;
+}

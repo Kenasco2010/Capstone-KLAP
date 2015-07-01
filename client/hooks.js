@@ -55,20 +55,23 @@ AutoForm.hooks({
 
 AutoForm.hooks({
   profileForm: {
-    onSubmit: function (insertDoc, updateDoc, currentDoc) {
+  /*  onSubmit: function (insertDoc, updateDoc, currentDoc) {
       Meteor.call('updateUserProfile', insertDoc, function (error, result) {
         if (error) {
           this.done();
         };
       });
       return false;  
+    }*/
+    onSuccess: function(formType, result) {
+      Router.go("welcome-page");
     }
   }
 });
 
 AutoForm.hooks({
   editProfileForm: {
-    onSubmit: function (insertDoc, updateDoc, currentDoc) {
+  /*  onSubmit: function (insertDoc, updateDoc, currentDoc) {
       Meteor.call('updateUserProfile', insertDoc, function (error, result) {
         if (error) {
           this.done();
@@ -79,6 +82,11 @@ AutoForm.hooks({
         }
       });
       return false;  
+    }*/
+    onSuccess: function(formType, result) {
+       // sAlert.success('Thanks! your profile has been updated', {effect: 'bouncyflip', timeout: 5000});
+       sAlert.success('Thanks! your photo has been changed');
+       setTimeout(function(){Router.go('my-profile');}, 3000);
     }
   }
 });
